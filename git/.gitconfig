@@ -1,0 +1,48 @@
+[push]
+	default = matching
+[core]
+	trustctime = false
+	editor = vim
+	filemode = false
+	preloadindex = true
+	fscache = true
+	autocrlf = input
+[color]
+	ui = auto
+[merge]
+	tool = bc4
+[mergetool]
+	keeptemporaries = false
+	keepbackup = false
+	prompt = false
+	trustexitcode = true
+[alias]
+	last = log -1 --stat
+	cp = cherry-pick
+	co = checkout
+	cl = clone
+	ci = commit
+	st = status -sb
+	br = branch
+	unstage = reset HEAD --
+	dc = diff --cached
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative --all
+	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+	lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+	ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+	bs = for-each-ref --format='%(committerdate) %09 %(authorname) %09 %(refname)'
+	behind-ahead = !sh -c 'git "for-each-ref --format=\"%(refname:short) %(upstream:track)\" refs/heads"'
+	br = !git fetch && git behind-ahead
+	example = !sh -c 'echo "Merge branch ${1} into ${1}"' -
+[user]
+	name = Claude Müller
+	email = claude@dxt.rs
+[diff]
+	tool = bc4
+[difftool "bc4"]
+	cmd = \"c:/program files/beyond compare 4/bcomp.exe\" \"$LOCAL\" \"$REMOTE\"
+[mergetool "bc4"]
+	cmd = \"c:/program files/beyond compare 4/bcomp.exe\" \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
+[credential]
+	helper = store

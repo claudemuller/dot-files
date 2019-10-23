@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+choices="Yes\nNo"
+clipboard=$(xclip -o)
+question="Translate:$clipboard"
+chosen=$(echo -e "$choices" | dmenu -i -p "$question")
+
+case "$chosen" in
+    Yes) qutebrowser --target window "https://translate.google.com/#view=home&op=translate&sl=auto&tl=en&text=$clipboard" ;;
+esac
+

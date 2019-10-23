@@ -1,0 +1,2 @@
+rofi.theme: ~/.config/rofi/themes/custom-nord.rasi
+rofi.font: Ubuntu Mono derivative Powerline 11

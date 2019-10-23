@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+sudo -u dief DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus notify-send -i $1 -t 0 $2 $3
+

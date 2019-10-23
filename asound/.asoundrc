@@ -1,0 +1,13 @@
+pcm.!default {
+    #type hw
+    #card 1
+    type plug
+    slave {
+        pcm "hw:1,0"
+    }
+}
+
+ctl.!default {
+    type hw
+    card 1
+}

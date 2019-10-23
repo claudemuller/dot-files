@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+
+choices="bspwm\npolybar\nsxhkd\n.Xresources\ni3\ncompton"
+question="What do I do?"
+chosen=$(echo -e "$choices" | dmenu -i -p "$question")
+home="/home/dief"
+configs="$home/.config"
+vim="$home/.local/bin/vimed.sh"
+gvim="gvim"
+
+echo "$chosen"
+
+case "$chosen" in
+    bspwm) $vim "$configs/bspwm/bspwmrc" ;;
+    polybar) $gvim "$configs/polybar/config" ;;
+    ".Xresources") $vim "$home/.Xresources" ;;
+    sxhkd) $vim "$configs/sxhkd/sxhkdrc" ;;
+    i3) $vim "$home/.i3/config" ;;
+    compton) $vim "$configs/compton.conf" ;;
+esac
+

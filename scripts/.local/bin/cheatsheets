@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+cheatsheets_dir="/home/dief/repos/cheatsheets"
+choices=$(ls -1 "$cheatsheets_dir")
+question="Which cheatsheet do you want to read?"
+chosen=$(echo -e "$choices" | dmenu -i -p "$question")
+
+#/usr/bin/urxvt -e vim "/home/dief/repos/cheatsheets/$chosen"
+#/usr/bin/qutebrowser "/home/dief/repos/cheatsheets/$chosen"
+/usr/bin/pandoc "$cheatsheets_dir/$chosen" | lynx -vikeys -stdin
+

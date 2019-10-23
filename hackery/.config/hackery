@@ -1,0 +1,44 @@
+! Project:    Hackery XResources
+! Version:    0.1.0
+! Repository: https://github.com/
+! License:    MIT
+
+#define hackery0 #0B0D0E;
+#define hackery1 #4E4E4A;
+#define hackery2 #5F5F5A;
+#define hackery3 #676559;
+#define hackery4 #6F706D;
+#define hackery5 #7F7F7C;
+#define hackery6 #878575;
+#define hackery7 #bfbfbf;
+#define hackery8 #858585;
+#define hackery9 #4E4E4A;
+#define hackery10 #5F5F5A;
+#define hackery11 #676559;
+#define hackery12 #6F706D;
+#define hackery13 #7F7F7C;
+#define hackery14 #878575;
+#define hackery15 #bfbfbf;
+
+*.foreground:   hackery4
+*.background:   hackery0
+*.cursorColor:  hackery4
+*fading: 35
+*fadeColor: hackery3
+
+*.color0: hackery1
+*.color1: hackery11
+*.color2: hackery14
+*.color3: hackery13
+*.color4: hackery9
+*.color5: hackery15
+*.color6: hackery8
+*.color7: hackery5
+*.color8: hackery3
+*.color9: hackery11
+*.color10: hackery14
+*.color11: hackery13
+*.color12: hackery9
+*.color13: hackery15
+*.color14: hackery7
+*.color15: hackery6
