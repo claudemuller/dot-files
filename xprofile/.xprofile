@@ -5,7 +5,7 @@ nitrogen --restore &
 sleep 1; compton -b
 nm-applet &
 volumeicon &
-clipit &
+#clipit &
 blueman-applet &
 cbatticon &
 
