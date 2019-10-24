@@ -2,6 +2,7 @@
 
 wmname LG3D &
 nitrogen --restore &
+dunst
 sleep 1; compton -b
 nm-applet &
 volumeicon &
