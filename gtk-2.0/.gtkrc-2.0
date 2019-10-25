@@ -2,8 +2,8 @@
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
 include "/home/dief/.gtkrc-2.0.mine"
-gtk-icon-theme-name=”flattrcolor”
-#gtk-icon-theme-name="Papirus-Dark"
+#gtk-icon-theme-name=”flattrcolor”
+gtk-icon-theme-name="Papirus-Dark"
 gtk-theme-name=”FlatColor”
 #gtk-theme-name="Arc-Dark"
 gtk-font-name="Ubuntu Mono Nerd Font Complete Mono 10"

@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-choices="Quit bspwm\nShutdown\nReboot"
+choices="Quit dwm\nShutdown\nReboot"
 question="What do I do?"
 chosen=$(echo -e "$choices" | dmenu -i -p "$question")
 
