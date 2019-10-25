@@ -5,7 +5,8 @@ question="What do I do?"
 chosen=$(echo -e "$choices" | dmenu -i -p "$question")
 
 case "$chosen" in
-    "Quit bspwm") bspc quit ;;
+    #"Quit bspwm") bspc quit ;;
+    "Quit dwm") killall xinit ;;
     Shutdown) /bin/shutdown -h now ;;
     Reboot) /bin/shutdown -r now ;;
 esac

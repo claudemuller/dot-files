@@ -1,11 +1,17 @@
-pcm.!default {
-    type hw
-    card 1
-    #device 0
-    #type plug
+#pcm.!default {
+#    type plug;
+#    slave.pcm {
+#        type hw;
+#        card 1;
+#    }
     #slave {
     #    pcm "hw:1,0"
     #}
+#}
+
+pcm.!default {
+    type hw
+    card 1
 }
 
 ctl.!default {

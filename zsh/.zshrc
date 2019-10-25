@@ -18,7 +18,8 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 VISUAL=vim; export VISUAL EDITOR=vim; export EDITOR
 
-setxkbmap -option caps:backspace
-setxkbmap -option compose:ralt
-
 neofetch
+
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+    startx
+fi

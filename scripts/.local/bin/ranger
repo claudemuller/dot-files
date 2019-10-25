@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+st /usr/bin/ranger
+
