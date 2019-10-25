@@ -20,7 +20,8 @@
 call plug#begin('~/nvim/plugged')
 
 " General Plugins
-Plug 'scrooloose/nerdtree'                       " file explorer plugin
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind']}  " file explorer plugin
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'bfredl/nvim-miniyank'                      " vim register browser plugin
 Plug 'itchyny/lightline.vim'                     " status line plugin
 Plug 'tpope/vim-abolish'                         " substitution plugin that handles plurals, case and underscores
@@ -31,6 +32,7 @@ Plug 'junegunn/fzf.vim'                          " fuzzy finder plugin using fzf
 Plug 'wincent/ferret'                            " fuzzy search and multiple file replace plugin                                     
 Plug 'tpope/vim-fugitive'                        " git plugin
 Plug 'mhinz/vim-signify'                         " plugin to show what has changed according to git history
+Plug 'tpope/vim-surround'                        " surround text with char plugin
 
 " Coding plugins
 Plug 'SirVer/ultisnips'                          " very good and fast snippet engine
@@ -59,23 +61,6 @@ call plug#end()
 
 
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
-" | Plugins Config                                                                                                                                           |
-" +----------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-" ripgrep config
-
-noremap <leader>a :Rg<space>
-nnoremap <leader>A :exec "Rg ".expand("<cword>")<cr>
-
-autocmd VimEnter * command! -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
-
-
-" +----------------------------------------------------------------------------------------------------------------------------------------------------------+
 " | Apply Settings                                                                                                                                           |
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
 
@@ -96,6 +81,32 @@ set cc=160                              " set an 80 column border for good codin
 filetype plugin indent on               " allows auto-indenting depending on file type
 syntax on         	                    " switch syntax highlighting on
 colorscheme default                     " set colour scheme to default
+let g:mapleader = ','                                       " set leader to ,
+
+
+" +----------------------------------------------------------------------------------------------------------------------------------------------------------+
+" | Plugins Config                                                                                                                                           |
+" +----------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+" ripgrep config
+
+noremap <leader>a :Rg<space>
+nnoremap <leader>A :exec "Rg ".expand("<cword>")<cr>
+
+autocmd VimEnter * command! -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+
+" vim-project config
+
+let g:project_use_nerdtree = 1
+let g:project_enable_welcome = 1
+" load projects config
+so ~/.config/nvim/.projects
+nmap <leader><F2> :e ~/.config/nvim/.projects<cr>
 
 
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -107,7 +118,6 @@ colorscheme default                     " set colour scheme to default
 " | vnoremap: visual mode keymapping                                                                                                                         |
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-let g:mapleader = ','                                       " set leader to ,
 " nnoremap <leader>s :set invspell<CR>                      " when invoking an Ex command <CR> is needed to complete command
 " inoremap <leader>d <C-R>=strftime("%Y-%m-%dT%H:%M")<CR>   " <C-R>= is used to insert output at cursor loc
 " 
@@ -116,5 +126,6 @@ let g:mapleader = ','                                       " set leader to ,
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
 " | Autorun commands                                                                                                                                         |
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
-au BufWritePost *.php silent! !eval '[ -f ".git/hooks/ctags" ] && .git/hooks/ctags' &  " generate ctags on .php save
+" generate ctags on .php save
+au BufWritePost *.php silent! !eval '[ -f ".git/hooks/ctags" ] && .git/hooks/ctags' &  
 

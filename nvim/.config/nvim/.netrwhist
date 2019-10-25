@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =4
+let g:netrw_dirhist_4='/home/dief/dxtrs/projects/team-extension/sbt/SBT-CMS/app/Http/Controllers'
+let g:netrw_dirhist_3='/home/dief/dxtrs/projects/team-extension/sbt/SBT-CMS/app/Http'
+let g:netrw_dirhist_2='/home/dief/dxtrs/projects/team-extension/sbt/SBT-CMS/app'
+let g:netrw_dirhist_1='/home/dief/dxtrs/projects/team-extension/sbt/SBT-CMS'
