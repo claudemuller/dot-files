@@ -82,4 +82,4 @@
    XF86AudioMicMute
 
 "import ~/temp/screenshot.png"
-  XF86Explorer
+  XF86Display
