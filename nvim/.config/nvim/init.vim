@@ -100,6 +100,10 @@ autocmd VimEnter * command! -nargs=* Rg
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
 
+" nerdtree config
+set rtp+=~/nvim/plugged/nerdtree/
+map <C-n> :NERDTreeToggle<CR>
+
 " vim-project config
 
 let g:project_use_nerdtree = 1
