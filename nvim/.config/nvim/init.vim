@@ -33,6 +33,7 @@ Plug 'wincent/ferret'                            " fuzzy search and multiple fil
 Plug 'tpope/vim-fugitive'                        " git plugin
 Plug 'mhinz/vim-signify'                         " plugin to show what has changed according to git history
 Plug 'tpope/vim-surround'                        " surround text with char plugin
+Plug 'deviantfero/wpgtk.vim'                     " wpgtk colour scheme for vim
 
 " Coding plugins
 Plug 'SirVer/ultisnips'                          " very good and fast snippet engine
@@ -80,7 +81,7 @@ set wildmode=longest,list               " get bash-like tab completions
 set cc=160                              " set an 80 column border for good coding style
 filetype plugin indent on               " allows auto-indenting depending on file type
 syntax on         	                    " switch syntax highlighting on
-colorscheme default                     " set colour scheme to default
+colorscheme wpgtk                       " set colour scheme to wpgtk - alternative: wpgtkAlt
 let g:mapleader = ','                                       " set leader to ,
 
 
