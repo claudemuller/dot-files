@@ -25,11 +25,23 @@ while true; do
     R2=$(< /sys/class/net/wlp3s0/statistics/rx_bytes)
     T2=$(< /sys/class/net/wlp3s0/statistics/tx_bytes)
     TBPS=$(expr "$T2" - "$T1")
+    if [ "$TBPS" -gt 1048576 ]; then
+        TKBPS="$(expr "$TBPS" / 1024 / 1024) mB"
+    elif [ "$TBPS" -gt 1024 ]; then
+        TKBPS="$(expr "$TBPS" / 1024) kB"
+    else
+        TKBPS="$(expr "$TBPS") B"
+    fi
     RBPS=$(expr "$R2" - "$R1")
-    TKBPS=$(expr "$TBPS" / 1024)
-    RKBPS=$(expr "$RBPS" / 1024)
+    if [ "$RBPS" -gt 1048576 ]; then
+        RKBPS="$(expr "$RBPS" / 1024 / 1024) mB"
+    elif [ "$RBPS" -gt 1024 ]; then
+        RKBPS="$(expr "$RBPS" / 1024) kB"
+    else
+        RKBPS="$(expr "$RBPS") B"
+    fi
 
-    xsetroot -name "${TKBPS}/${RKBPS} kB | ${CPU_TEMP}°C | ${USED_RAM}GB | ${USED_ROOT}B | $LOCALTIME"
+    xsetroot -name "${TKBPS}/${RKBPS} | ${CPU_TEMP}°C | ${USED_RAM}GB | ${USED_ROOT}B | $LOCALTIME"
 
 	sleep 10s
 done &
