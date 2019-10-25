@@ -59,7 +59,7 @@ alt + shift + {e,r}
 #   bspc node -c
 
 # close window
-alt + shift + q
+alt + shift + c
 	bspc node --close
 
 # alternate between the tiled and monocle layout
