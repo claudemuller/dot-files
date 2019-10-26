@@ -4,7 +4,7 @@ nitrogen --restore &
 dunst &
 sleep 1; compton -b
 nm-applet &
-volumeicon &
+pasystray &
 #clipit &
 blueman-applet &
 cbatticon &
@@ -12,7 +12,7 @@ cbatticon &
 setxkbmap -option caps:backspace
 setxkbmap -option compose:ralt
 
-amixer set Capture toggle
+#amixer set Capture toggle
 
 ~/.local/bin/dwm-status
 
