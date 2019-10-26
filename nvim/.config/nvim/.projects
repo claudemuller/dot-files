@@ -3,4 +3,4 @@ set syntax=vim
 set rtp+=~/nvim/plugged/vim-project/
 call project#rc("~/dxtrs/projects")
 
-so ~/dxtrs/projects/team-extension/sbt/SBT-CMS/.vimrc
+so ~/dxtrs/projects/team-extension/sbt/sites/SBT-CMS/.vimrc
