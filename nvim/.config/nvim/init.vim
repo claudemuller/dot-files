@@ -90,7 +90,6 @@ let g:mapleader = ','                                       " set leader to ,
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 " ripgrep config
-
 noremap <leader>a :Rg<space>
 nnoremap <leader>A :exec "Rg ".expand("<cword>")<cr>
 
@@ -106,13 +105,14 @@ set rtp+=~/nvim/plugged/nerdtree/
 map <C-n> :NERDTreeToggle<CR>
 
 " vim-project config
-
 let g:project_use_nerdtree = 1
 let g:project_enable_welcome = 1
 " load projects config
 so ~/.config/nvim/.projects
 nmap <leader><F2> :e ~/.config/nvim/.projects<cr>
 
+" fzf config
+map <C-S-E> :FZF<CR>
 
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
 " | Keymappings                                                                                                                                              |
@@ -125,12 +125,12 @@ nmap <leader><F2> :e ~/.config/nvim/.projects<cr>
 
 " nnoremap <leader>s :set invspell<CR>                      " when invoking an Ex command <CR> is needed to complete command
 " inoremap <leader>d <C-R>=strftime("%Y-%m-%dT%H:%M")<CR>   " <C-R>= is used to insert output at cursor loc
-" 
 
 
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
 " | Autorun commands                                                                                                                                         |
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
 " generate ctags on .php save
-au BufWritePost *.php silent! !eval '[ -f ".git/hooks/ctags" ] && .git/hooks/ctags' &  
+au BufWritePost *.php !eval '[ -f ".git/hooks/ctags" ] && .git/hooks/ctags'
+"au BufWritePost *.php !silent !eval '[ -f ".git/hooks/ctags" ] && .git/hooks/ctags' &  
 
