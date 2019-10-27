@@ -15,9 +15,21 @@ compinit
 
 # colours
 (cat ~/.config/wpg/sequences &)
+#xrdb -load ~/.Xresources &
 
 # Autosuggestions
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Prompt
+export PS1="[%n@%m %c]$ "
+# Git in prompt
+autoload -Uz vcs_info
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+RPROMPT=\$vcs_info_msg_0_
+zstyle ':vcs_info:git:*' formats '%F{240}(%b)%r%f'
+zstyle ':vcs_info:*' enable git
 
 VISUAL=vim; export VISUAL EDITOR=vim; export EDITOR
 

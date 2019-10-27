@@ -4,3 +4,6 @@ set rtp+=~/nvim/plugged/vim-project/
 call project#rc("~/dxtrs/projects")
 
 so ~/dxtrs/projects/team-extension/sbt/sites/SBT-CMS/.vimrc
+so ~/dxtrs/projects/team-extension/sbt/sites/SBT_IOT_current/.vimrc
+so ~/dxtrs/projects/team-extension/sbt/sites/sbt-mvp-backend/.vimrc
+so ~/dxtrs/projects/crayon/site/.vimrc

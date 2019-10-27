@@ -7,9 +7,10 @@ let g:startify_bookmarks = [
             \ {'1': '~/workspace/mySuperProject/README.md'},
             \]
 
-call project#rc("~/workspace")
 Project  'mySuperProject'
 Callback 'mySuperProject', ['Symfony', 'mySuperProject']
+
+set tags=~/dxtrs/projects/team-extension/sbt/sites/SBT-CMS/.git/tags
 
 function! mySuperProject(...)
     let g:vdebug_options["path_maps"] = {

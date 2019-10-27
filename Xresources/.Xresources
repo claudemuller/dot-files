@@ -1,52 +1,45 @@
-*.background:	#0A0A0A
-*.color0:	#0A0A0A
-*.color1:	#A4A4A4
-*.color10:	#A8A8A8
-*.color11:	#ADADAD
-*.color12:	#B3B3B3
-*.color13:	#D0D0D0
-*.color14:	#E8E8E8
-*.color15:	#f1f1f1
-*.color2:	#A8A8A8
-*.color3:	#ADADAD
-*.color4:	#B3B3B3
-*.color5:	#D0D0D0
-*.color6:	#E8E8E8
-*.color66:	#0A0A0A
-*.color7:	#f1f1f1
-*.color8:	#a8a8a8
-*.color9:	#A4A4A4
-*.foreground:	#f1f1f1
+! special
+*.foreground:   #c5c8c6
+*.background:   #1d1f21
+*.cursorColor:  #c5c8c6
 
-*background:	#0A0A0A
-*color0:	#0A0A0A
-*color1:	#A4A4A4
-*color10:	#A8A8A8
-*color11:	#ADADAD
-*color12:	#B3B3B3
-*color13:	#D0D0D0
-*color14:	#E8E8E8
-*color15:	#f1f1f1
-*color2:	#A8A8A8
-*color3:	#ADADAD
-*color4:	#B3B3B3
-*color5:	#D0D0D0
-*color6:	#E8E8E8
-*color66:	#0A0A0A
-*color7:	#f1f1f1
-*color8:	#a8a8a8
-*color9:	#A4A4A4
-*foreground:	#f1f1f1
+! black
+*.color0:       #282a2e
+*.color8:       #373b41
 
-URxvt*background:	[100]#0A0A0A
-URxvt*borderColor:	[100]#0A0A0A
-URxvt*cursorColor:	#f1f1f1
-URxvt*depth:	32
-URxvt*foreground:	#f1f1f1
+! red
+*.color1:       #a54242
+*.color9:       #cc6666
 
-UXTerm*background:	#0A0A0A
-UXTerm*cursorColor:	#f1f1f1
-UXTerm*foreground:	#f1f1f1
-XTerm*background:	#0A0A0A
-XTerm*cursorColor:	#f1f1f1
-XTerm*foreground:	#f1f1f1
+! green
+*.color2:       #8c9440
+*.color10:      #b5bd68
+
+! yellow
+*.color3:       #de935f
+*.color11:      #f0c674
+
+! blue
+*.color4:       #5f819d
+*.color12:      #81a2be
+
+! magenta
+*.color5:       #85678f
+*.color13:      #b294bb
+
+! cyan
+*.color6:       #5e8d87
+*.color14:      #8abeb7
+
+! white
+*.color7:       #707880
+*.color15:      #c5c8c6
+
+URxvt*background:	background
+URxvt*foreground:	foreground
+URxvt*borderColor:	color12
+URxvt*cursorColor:	color12
+URxvt.font:         xft:Inconsolata Nerd Font Mono:size=16:antialias=true
+URxvt.boldFont:     xft:Inconsolata Nerd Font Mono:bold:size=16:antialias=true
+URxvt*depth:	    32
+
