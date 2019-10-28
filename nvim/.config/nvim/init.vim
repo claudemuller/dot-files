@@ -27,8 +27,7 @@ Plug 'itchyny/lightline.vim'                     " status line plugin
 Plug 'tpope/vim-abolish'                         " substitution plugin that handles plurals, case and underscores
 Plug 'amiorin/vim-project'                       " project management plugin
 Plug 'mhinz/vim-startify'                        " startup screen plugin
-Plug 'neomake/neomake'                           " plugin to asynchronously make/run code
-Plug 'junegunn/fzf.vim'                          " fuzzy finder plugin using fzf :req: fzf,ripgrep
+Plug 'junegunn/fzf.vim'                          " fuzzy finder plugin using fzf :req: fzf,ripgrep/silver-searcher
 Plug 'wincent/ferret'                            " fuzzy search and multiple file replace plugin                                     
 Plug 'tpope/vim-fugitive'                        " git plugin
 Plug 'mhinz/vim-signify'                         " plugin to show what has changed according to git history
@@ -36,9 +35,11 @@ Plug 'tpope/vim-surround'                        " surround text with char plugi
 Plug 'deviantfero/wpgtk.vim'                     " wpgtk colour scheme for vim
 
 " Coding plugins
+Plug 'neomake/neomake'                           " plugin to asynchronously make/run code to detect issues
 Plug 'SirVer/ultisnips'                          " very good and fast snippet engine
 Plug 'honza/vim-snippets'                        " set of snippets for code plugin
 Plug 'ncm2/ncm2'                                 " autocompletion engine plugin 
+Plug 'roxma/nvim-yarp'                           " required by ncm2
 Plug 'tpope/vim-commentary'                      " commenting plugin
 Plug 'majutsushi/tagbar'                         " method and class outline/browser plugin
 Plug 'joonty/vdebug'                             " debugger plugin
@@ -47,7 +48,7 @@ Plug 'joonty/vdebug'                             " debugger plugin
 " .php Plugins
 Plug 'StanAngeloff/php.vim'                      " improved .php syntax highlighting plugin
 Plug 'stephpy/vim-php-cs-fixer'                  " plugin that reformats .php code based on PSR1/PSR2 upon event
-Plug 'phpactor/phpactor'                         " autocompletion plugin for .php
+Plug 'phpactor/phpactor' ,  {'do': 'composer install', 'for': 'php'}    " autocompletion plugin for .php
 Plug 'phpactor/ncm2-phpactor'                    " plugin to link phpfactor to ncm2
 Plug 'adoy/vim-php-refactoring-toolbox'          " .php refactoring toolbox plugin
 Plug 'tobyS/pdv'                                 " generates .php docblocks plugin
@@ -62,7 +63,7 @@ call plug#end()
 
 
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
-" | Apply Settings                                                                                                                                           |
+" | User Config                                                                                                                                              |
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 set showmatch                           " show matching brackets.
@@ -82,7 +83,13 @@ set cc=160                              " set an 80 column border for good codin
 filetype plugin indent on               " allows auto-indenting depending on file type
 syntax on         	                    " switch syntax highlighting on
 colorscheme wpgtk                       " set colour scheme to wpgtk - alternative: wpgtkAlt
-let g:mapleader = ','                                       " set leader to ,
+let g:mapleader = '\'                                       " set leader to ,
+
+
+" +----------------------------------------------------------------------------------------------------------------------------------------------------------+
+" | User Config                                                                                                                                              |
+" +----------------------------------------------------------------------------------------------------------------------------------------------------------+
+map <C-b> :b#<CR>
 
 
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -112,7 +119,46 @@ so ~/.config/nvim/.projects
 nmap <leader><F2> :e ~/.config/nvim/.projects<cr>
 
 " fzf config
-map <C-S-E> :FZF<CR>
+map <leader>ff :FZF<CR>
+map <leader>ft :Tags<CR>
+map <leader>fm :BTags<CR>
+map <leader>fb :Buffers<CR>
+map <leader>fs :Ag<CR>
+
+" vim-miniyank config
+map <leader>p <Plug>(miniyank-cycle)
+
+" ncm2-(phpactor?) config
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
+
+" neomake config
+call neomake#configure#automake('nrwi', 500)
+
+" lightline config
+
+" phpactor config
+" Include use statement
+"nmap <Leader>u :call phpactor#UseAdd()<CR>
+" Invoke the context menu
+"nmap <Leader>pc :call phpactor#ContextMenu()<CR>
+" Invoke the navigation menu
+"nmap <Leader>nn :call phpactor#Navigate()<CR>
+" Goto definition of class or class member under the cursor
+"nmap <Leader>o :call phpactor#GotoDefinition()<CR>
+" Show brief information about the symbol under the cursor
+nmap <Leader>D :call phpactor#Hover()<CR>
+" Transform the classes in the current file
+"nmap <Leader>tt :call phpactor#Transform()<CR>
+" Generate a new class (replacing the current file)
+"nmap <Leader>cc :call phpactor#ClassNew()<CR>
+" Extract expression (normal mode)
+"nmap <silent><Leader>ee :call phpactor#ExtractExpression(v:false)<CR>
+" Extract expression from selection
+"vmap <silent><Leader>ee :<C-U>call phpactor#ExtractExpression(v:true)<CR>
+" Extract method from selection
+"vmap <silent><Leader>em :<C-U>call phpactor#ExtractMethod()<CR>
+
 
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
 " | Keymappings                                                                                                                                              |
@@ -131,6 +177,21 @@ map <C-S-E> :FZF<CR>
 " | Autorun commands                                                                                                                                         |
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
 " generate ctags on .php save
-au BufWritePost *.php !eval '[ -f ".git/hooks/ctags" ] && .git/hooks/ctags'
-"au BufWritePost *.php !silent !eval '[ -f ".git/hooks/ctags" ] && .git/hooks/ctags' &  
+autocmd BufWritePost *.php silent! !eval '[ -f ".git/hooks/ctags" ] && .git/hooks/ctags' &  
+
+" show active file in NERDTree when opening a file
+" returns true iff is NERDTree open/active
+function! NtIsOpen()        
+  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+" calls NERDTreeFind iff NERDTree is active, current window contains a modifiable file, and we're not in vimdiff
+function! NtSyncTree()
+  if &modifiable && NtIsOpen() && strlen(expand('%')) > 0 && !&diff
+    NERDTreeFind
+    wincmd p
+  endif
+endfunction
+
+autocmd BufEnter * call NtSyncTree()
 

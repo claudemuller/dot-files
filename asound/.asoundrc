@@ -9,12 +9,22 @@
     #}
 #}
 
-pcm.!default {
-    type hw
-    card 1
-}
+#pcm.!default {
+#    type hw
+#    card 1
+#}
 
-ctl.!default {
-    type hw
-    card 1
+#ctl.!default {
+#    type hw
+#    card 1
+#}
+
+pcm_slave.slavej {
+  pcm "hw:0"
+  channels 2
+  rate 44100
+}
+pcm.plugj {
+  type hw
+  slave slavej
 }
