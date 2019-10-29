@@ -33,8 +33,12 @@ Plug 'tpope/vim-fugitive'                        " git plugin
 Plug 'mhinz/vim-signify'                         " plugin to show what has changed according to git history
 Plug 'tpope/vim-surround'                        " surround text with char plugin
 Plug 'deviantfero/wpgtk.vim'                     " wpgtk colour scheme for vim
+Plug '907th/vim-auto-save'                       " auto save plugin
+Plug 'alvan/vim-closetag'                        " autoclose (x)html tags plugin
+Plug 'jiangmiao/auto-pairs'                      " autoclose brackets, quotes and such plugin
+Plug 'terryma/vim-multiple-cursors'              " multiple cursors plugin
 
-" Coding plugins
+"" Coding plugins
 Plug 'neomake/neomake'                           " plugin to asynchronously make/run code to detect issues
 Plug 'SirVer/ultisnips'                          " very good and fast snippet engine
 Plug 'honza/vim-snippets'                        " set of snippets for code plugin
@@ -53,7 +57,8 @@ Plug 'phpactor/ncm2-phpactor'                    " plugin to link phpfactor to n
 Plug 'adoy/vim-php-refactoring-toolbox'          " .php refactoring toolbox plugin
 Plug 'tobyS/pdv'                                 " generates .php docblocks plugin
 "Plug 'noahfrederick/vim-laravel'                 " laravel plugin
-Plug 'jwalton512/vim-blade'                      " blade syntax hilighting
+Plug 'jwalton512/vim-blade'                      " blade syntax hilighting plugin
+Plug 'nelsyeung/twig.vim'                        " twig syntax hilighting plugin
 " https://github.com/squizlabs/PHP_CodeSniffer   " will make sure that .php is properly formatted
                                                  "   `composer global require "squizlabs/php_codesniffer=*"`
 " https://github.com/phpstan/phpstan             " will make some guesses about types in your code based on typehints and phpDoc annotations <- requires setup
@@ -85,7 +90,8 @@ set cc=160                              " set an 80 column border for good codin
 filetype plugin indent on               " allows auto-indenting depending on file type
 syntax on         	                    " switch syntax highlighting on
 colorscheme wpgtk                       " set colour scheme to wpgtk - alternative: wpgtkAlt
-let g:mapleader = '\'                                       " set leader to ,
+let g:mapleader = '\'                   " set leader to ,
+autocmd CursorHold * update             " autosave 
 
 
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -112,6 +118,7 @@ autocmd VimEnter * command! -nargs=* Rg
 " nerdtree config
 set rtp+=~/nvim/plugged/nerdtree/
 map <C-n> :NERDTreeToggle<CR>
+"let NERDTreeWinSize=1
 
 " vim-project config
 let g:project_use_nerdtree = 1
@@ -160,6 +167,9 @@ nmap <Leader>D :call phpactor#Hover()<CR>
 "vmap <silent><Leader>ee :<C-U>call phpactor#ExtractExpression(v:true)<CR>
 " Extract method from selection
 "vmap <silent><Leader>em :<C-U>call phpactor#ExtractMethod()<CR>
+
+" vim-auto-save config
+let g:auto_save = 1
 
 
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
