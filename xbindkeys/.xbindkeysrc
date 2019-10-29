@@ -78,9 +78,12 @@
    XF86MonBrightnessDown
 
 # Mute and unmute mic
-#amixer set Capture toggle
-"amixer -D pulse sset Master toggle && amixer get Capture | grep '\[off\]' && notify-send 'MIC switched OFF' || notify-send 'MIC switched ON'"
+"amixer set Capture toggle && amixer get Capture | grep '\[off\]' && notify-send 'Mic switched OFF' || notify-send 'Mic switched ON'"
    XF86AudioMicMute
+
+# Mute and unmute audio
+"amixer -D pulse sset Master toggle && amixer get Master | grep '\[off\]' && notify-send 'Audio switched OFF' || notify-send 'Audio switched ON'"
+   XF86AudioMute
 
 # Pulse Audio media buttons
 "amixer -D pulse sset Master 5%+"
@@ -88,5 +91,6 @@
 "amixer -D pulse sset Master 5%-"
    XF86AudioLowerVolume
 
-"import ~/temp/screenshot.png"
+"import ~/temp/screenshot.png && notify-send 'Select portion of the screen to capture'"
   XF86Display
+

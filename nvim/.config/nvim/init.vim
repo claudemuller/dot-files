@@ -52,6 +52,8 @@ Plug 'phpactor/phpactor' ,  {'do': 'composer install', 'for': 'php'}    " autoco
 Plug 'phpactor/ncm2-phpactor'                    " plugin to link phpfactor to ncm2
 Plug 'adoy/vim-php-refactoring-toolbox'          " .php refactoring toolbox plugin
 Plug 'tobyS/pdv'                                 " generates .php docblocks plugin
+"Plug 'noahfrederick/vim-laravel'                 " laravel plugin
+Plug 'jwalton512/vim-blade'                      " blade syntax hilighting
 " https://github.com/squizlabs/PHP_CodeSniffer   " will make sure that .php is properly formatted
                                                  "   `composer global require "squizlabs/php_codesniffer=*"`
 " https://github.com/phpstan/phpstan             " will make some guesses about types in your code based on typehints and phpDoc annotations <- requires setup
