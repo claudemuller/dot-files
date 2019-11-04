@@ -94,3 +94,7 @@
 "import ~/temp/screenshot.png && notify-send 'Select portion of the screen to capture'"
   XF86Display
 
+# Ranger shortcut
+"ranger &"
+  Alt+F1
+

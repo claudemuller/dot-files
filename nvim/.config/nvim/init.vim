@@ -38,7 +38,7 @@ Plug 'alvan/vim-closetag'                        " autoclose (x)html tags plugin
 Plug 'jiangmiao/auto-pairs'                      " autoclose brackets, quotes and such plugin
 Plug 'terryma/vim-multiple-cursors'              " multiple cursors plugin
 
-"" Coding plugins
+" Coding plugins
 Plug 'neomake/neomake'                           " plugin to asynchronously make/run code to detect issues
 Plug 'SirVer/ultisnips'                          " very good and fast snippet engine
 Plug 'honza/vim-snippets'                        " set of snippets for code plugin
@@ -49,7 +49,7 @@ Plug 'majutsushi/tagbar'                         " method and class outline/brow
 Plug 'joonty/vdebug'                             " debugger plugin
 " Plug 'tobyS/vmustache'                         " an implementation of the Mustache template system in VIMScript <- requires setup
 
-" .php Plugins
+" .php plugins
 Plug 'StanAngeloff/php.vim'                      " improved .php syntax highlighting plugin
 Plug 'stephpy/vim-php-cs-fixer'                  " plugin that reformats .php code based on PSR1/PSR2 upon event
 Plug 'phpactor/phpactor' ,  {'do': 'composer install', 'for': 'php'}    " autocompletion plugin for .php
@@ -65,6 +65,10 @@ Plug 'nelsyeung/twig.vim'                        " twig syntax hilighting plugin
                                                  "   `composer require --dev phpstan/phpstan`
 " https://phpmd.org/                             " possible bugs;  suboptimal code; overcomplicated expressions; Unused parameters, methods, properties 
                                                  "   `composer require --dev phpmd/phpmd`
+
+" .js plugins
+Plug 'othree/yajs.vim'                           " .js plugin
+Plug 'dense-analysis/ale'                        " code and style syntax and problem checker
 
 call plug#end()
 
@@ -91,13 +95,15 @@ filetype plugin indent on               " allows auto-indenting depending on fil
 syntax on         	                    " switch syntax highlighting on
 colorscheme wpgtk                       " set colour scheme to wpgtk - alternative: wpgtkAlt
 let g:mapleader = '\'                   " set leader to ,
-autocmd CursorHold * update             " autosave 
 
 
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
 " | User Config                                                                                                                                              |
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
 map <C-b> :b#<CR>
+set tabstop=4                           " number of columns occupied by a tab character
+set softtabstop=4                       " see multiple spaces as tabstops so <BS> does the right thing
+set shiftwidth=4                        " width for autoindents
 
 
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -171,6 +177,18 @@ nmap <Leader>D :call phpactor#Hover()<CR>
 " vim-auto-save config
 let g:auto_save = 1
 
+" ale config
+let g:ale_completion_enabled = 1
+
+
+" .js config
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+
+" .html config
+autocmd FileType html       setlocal shiftwidth=4 tabstop=4
+
+" .php config
+autocmd FileType html       setlocal shiftwidth=4 tabstop=4
 
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
 " | Keymappings                                                                                                                                              |
@@ -190,6 +208,9 @@ let g:auto_save = 1
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
 " generate ctags on .php save
 autocmd BufWritePost *.php silent! !eval '[ -f ".git/hooks/ctags" ] && .git/hooks/ctags' &  
+
+" generate ctags on .js save
+autocmd BufWritePost *.js silent! !eval '[ -f ".git/hooks/ctags" ] && .git/hooks/ctags' &  
 
 " show active file in NERDTree when opening a file
 " returns true iff is NERDTree open/active

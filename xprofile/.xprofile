@@ -8,7 +8,7 @@ pasystray &
 #clipit &
 blueman-applet &
 cbatticon &
-/home/dief/.local/share/tresorit/tresorit &
+/home/dief/.local/share/tresorit/tresorit --hidden &
 
 setxkbmap -option caps:backspace
 setxkbmap -option compose:ralt
