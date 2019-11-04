@@ -14,10 +14,7 @@ compinit
 # End of lines added by compinstall
 
 # colours
-if [[ "$host" == "shinobi" ]]
-then
-	(cat ~/.config/wpg/sequences &)
-fi
+(cat ~/.config/wpg/sequences &)
 #xrdb -load ~/.Xresources &
 
 # Autosuggestions

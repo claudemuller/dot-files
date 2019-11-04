@@ -37,6 +37,7 @@ Plug '907th/vim-auto-save'                       " auto save plugin
 Plug 'alvan/vim-closetag'                        " autoclose (x)html tags plugin
 Plug 'jiangmiao/auto-pairs'                      " autoclose brackets, quotes and such plugin
 Plug 'terryma/vim-multiple-cursors'              " multiple cursors plugin
+Plug 'RRethy/vim-illuminate' 			         " autohighlight word matches when hovering on word plugin 				
 
 " Coding plugins
 Plug 'neomake/neomake'                           " plugin to asynchronously make/run code to detect issues
@@ -44,7 +45,7 @@ Plug 'SirVer/ultisnips'                          " very good and fast snippet en
 Plug 'honza/vim-snippets'                        " set of snippets for code plugin
 Plug 'ncm2/ncm2'                                 " autocompletion engine plugin 
 Plug 'roxma/nvim-yarp'                           " required by ncm2
-Plug 'tpope/vim-commentary'                      " commenting plugin
+Plug 'scrooloose/nerdcommenter'                  " commenting plugin
 Plug 'majutsushi/tagbar'                         " method and class outline/browser plugin
 Plug 'joonty/vdebug'                             " debugger plugin
 " Plug 'tobyS/vmustache'                         " an implementation of the Mustache template system in VIMScript <- requires setup
@@ -55,8 +56,9 @@ Plug 'stephpy/vim-php-cs-fixer'                  " plugin that reformats .php co
 Plug 'phpactor/phpactor' ,  {'do': 'composer install', 'for': 'php'}    " autocompletion plugin for .php
 Plug 'phpactor/ncm2-phpactor'                    " plugin to link phpfactor to ncm2
 Plug 'adoy/vim-php-refactoring-toolbox'          " .php refactoring toolbox plugin
-Plug 'tobyS/pdv'                                 " generates .php docblocks plugin
-"Plug 'noahfrederick/vim-laravel'                 " laravel plugin
+"Plug 'tobyS/pdv'                                " generates .php docblocks plugin
+"Plug 'sumpygump/php-documentor-vim'              " php docblock generator plugin
+"Plug 'noahfrederick/vim-laravel'                " laravel plugin
 Plug 'jwalton512/vim-blade'                      " blade syntax hilighting plugin
 Plug 'nelsyeung/twig.vim'                        " twig syntax hilighting plugin
 " https://github.com/squizlabs/PHP_CodeSniffer   " will make sure that .php is properly formatted
@@ -65,6 +67,7 @@ Plug 'nelsyeung/twig.vim'                        " twig syntax hilighting plugin
                                                  "   `composer require --dev phpstan/phpstan`
 " https://phpmd.org/                             " possible bugs;  suboptimal code; overcomplicated expressions; Unused parameters, methods, properties 
                                                  "   `composer require --dev phpmd/phpmd`
+"Plug 'shawncplus/phpcomplete.vim'                " php autocomplete plugin - OmniComplete
 
 " .js plugins
 Plug 'othree/yajs.vim'                           " .js plugin
@@ -95,15 +98,7 @@ filetype plugin indent on               " allows auto-indenting depending on fil
 syntax on         	                    " switch syntax highlighting on
 colorscheme wpgtk                       " set colour scheme to wpgtk - alternative: wpgtkAlt
 let g:mapleader = '\'                   " set leader to ,
-
-
-" +----------------------------------------------------------------------------------------------------------------------------------------------------------+
-" | User Config                                                                                                                                              |
-" +----------------------------------------------------------------------------------------------------------------------------------------------------------+
-map <C-b> :b#<CR>
-set tabstop=4                           " number of columns occupied by a tab character
-set softtabstop=4                       " see multiple spaces as tabstops so <BS> does the right thing
-set shiftwidth=4                        " width for autoindents
+map <C-b> :b#<CR>                       " switch buffers
 
 
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -131,7 +126,7 @@ let g:project_use_nerdtree = 1
 let g:project_enable_welcome = 1
 " load projects config
 so ~/.config/nvim/.projects
-nmap <leader><F2> :e ~/.config/nvim/.projects<cr>
+nmap <leader><F2> :e ~/.config/nvim/.projects<CR>
 
 " fzf config
 map <leader>ff :FZF<CR>
@@ -154,7 +149,7 @@ call neomake#configure#automake('nrwi', 500)
 
 " phpactor config
 " Include use statement
-"nmap <Leader>u :call phpactor#UseAdd()<CR>
+nmap <Leader>u :call phpactor#UseAdd()<CR>
 " Invoke the context menu
 "nmap <Leader>pc :call phpactor#ContextMenu()<CR>
 " Invoke the navigation menu
@@ -173,12 +168,23 @@ nmap <Leader>D :call phpactor#Hover()<CR>
 "vmap <silent><Leader>ee :<C-U>call phpactor#ExtractExpression(v:true)<CR>
 " Extract method from selection
 "vmap <silent><Leader>em :<C-U>call phpactor#ExtractMethod()<CR>
+let g:phpactorOmniAutoClassImport = v:true
 
 " vim-auto-save config
 let g:auto_save = 1
 
 " ale config
 let g:ale_completion_enabled = 1
+
+" scrooloose/nerdcommenter
+map <C-_> <leader>c<space>              " remap comment toggle to ctrl forward slash
+
+" sumpygump/php-documentor-vim
+"let g:pdv_cfg_Author = 'Claude Müller <claude@dxt.rs>'
+"let g:pdv_cfg_ClassTags = ["package","author","version"]
+"au BufRead,BufNewFile *.php inoremap <buffer> <C-P> :call PhpDoc()<CR>
+"au BufRead,BufNewFile *.php nnoremap <buffer> <C-P> :call PhpDoc()<CR>
+"au BufRead,BufNewFile *.php vnoremap <buffer> <C-P> :call PhpDocRange()<CR>
 
 
 " .js config

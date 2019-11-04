@@ -39,7 +39,7 @@ URxvt*background:	background
 URxvt*foreground:	foreground
 URxvt*borderColor:	color12
 URxvt*cursorColor:	color12
-URxvt.font:         xft:Inconsolata Nerd Font Mono:size=16:antialias=true
-URxvt.boldFont:     xft:Inconsolata Nerd Font Mono:bold:size=16:antialias=true
+URxvt.font:         xft:Source Code Pro:size=16:antialias=true
+URxvt.boldFont:     xft:Source Code Pro:bold:size=16:antialias=true
 URxvt*depth:	    32
 
