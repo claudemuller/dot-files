@@ -12,6 +12,9 @@ Callback 'mySuperProject', ['Symfony', 'mySuperProject']
 
 set tags=~/dxtrs/projects/team-extension/sbt/sites/SBT-CMS/.git/tags
 
+" set author phpdoc
+let g:pdv_cfg_Author = 'Claude Müller <claude@crayon.jobs>'
+
 function! mySuperProject(...)
     let g:vdebug_options["path_maps"] = {
     \       "/mySuperProject": "/home/mySuperUser/workspace/mySuperProject"
