@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-wpg -rs 'samurai1.jpg' 'samurai1.jpg'
+wpg -rs 'skull-minimalist-new-1920x1080.jpg' 'samurai1.jpg'

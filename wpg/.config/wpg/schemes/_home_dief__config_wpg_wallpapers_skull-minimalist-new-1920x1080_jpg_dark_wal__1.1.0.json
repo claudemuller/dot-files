@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/dief/.config/wpg/wallpapers/skull-minimalist-new-1920x1080.jpg",
+    "alpha": "95",
+
+    "special": {
+        "background": "#0f1522",
+        "foreground": "#e0dc8c",
+        "cursor": "#e0dc8c"
+    },
+    "colors": {
+        "color0": "#0f1522",
+        "color1": "#535746",
+        "color2": "#827E2D",
+        "color3": "#A39E2E",
+        "color4": "#C5BB2A",
+        "color5": "#E9DC1F",
+        "color6": "#FAEA0D",
+        "color7": "#e0dc8c",
+        "color8": "#9c9a62",
+        "color9": "#535746",
+        "color10": "#827E2D",
+        "color11": "#A39E2E",
+        "color12": "#C5BB2A",
+        "color13": "#E9DC1F",
+        "color14": "#FAEA0D",
+        "color15": "#e0dc8c"
+    }
+}
