@@ -5,6 +5,7 @@ dunst &
 sleep 1; compton -b
 nm-applet &
 pasystray &
+blueman-applet &
 #clipit &
 blueman-applet &
 cbatticon &
@@ -23,4 +24,3 @@ export BROWSER=/usr/bin/chromium
 export VISUAL=/usr/bin/nvim
 export EDITOR=/usr/bin/nvim
 export PATH=$HOME/.local/bin:$PATH
-
