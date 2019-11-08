@@ -186,6 +186,8 @@ map <C-_> <leader>c<space>              " remap comment toggle to ctrl forward s
 "au BufRead,BufNewFile *.php nnoremap <buffer> <C-P> :call PhpDoc()<CR>
 "au BufRead,BufNewFile *.php vnoremap <buffer> <C-P> :call PhpDocRange()<CR>
 
+" rrethy/vim-illustrate
+hi link illuminatedWord Visual
 
 " .js config
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
