@@ -28,7 +28,7 @@ Plug 'tpope/vim-abolish'                         " substitution plugin that hand
 Plug 'amiorin/vim-project'                       " project management plugin
 Plug 'mhinz/vim-startify'                        " startup screen plugin
 Plug 'junegunn/fzf.vim'                          " fuzzy finder plugin using fzf :req: fzf,ripgrep/silver-searcher
-Plug 'wincent/ferret'                            " fuzzy search and multiple file replace plugin                                     
+Plug 'wincent/ferret'                            " fuzzy search and multiple file replace plugin
 Plug 'tpope/vim-fugitive'                        " git plugin
 Plug 'mhinz/vim-signify'                         " plugin to show what has changed according to git history
 Plug 'tpope/vim-surround'                        " surround text with char plugin
@@ -37,18 +37,19 @@ Plug '907th/vim-auto-save'                       " auto save plugin
 Plug 'alvan/vim-closetag'                        " autoclose (x)html tags plugin
 Plug 'jiangmiao/auto-pairs'                      " autoclose brackets, quotes and such plugin
 Plug 'terryma/vim-multiple-cursors'              " multiple cursors plugin
-Plug 'RRethy/vim-illuminate' 			         " autohighlight word matches when hovering on word plugin 				
+Plug 'RRethy/vim-illuminate' 			         " autohighlight word matches when hovering on word plugin
 
 " Coding plugins
 Plug 'neomake/neomake'                           " plugin to asynchronously make/run code to detect issues
 Plug 'SirVer/ultisnips'                          " very good and fast snippet engine
 Plug 'honza/vim-snippets'                        " set of snippets for code plugin
-Plug 'ncm2/ncm2'                                 " autocompletion engine plugin 
+Plug 'ncm2/ncm2'                                 " autocompletion engine plugin
 Plug 'roxma/nvim-yarp'                           " required by ncm2
 Plug 'scrooloose/nerdcommenter'                  " commenting plugin
 Plug 'majutsushi/tagbar'                         " method and class outline/browser plugin
 Plug 'joonty/vdebug'                             " debugger plugin
-" Plug 'tobyS/vmustache'                         " an implementation of the Mustache template system in VIMScript <- requires setup
+Plug 'dense-analysis/ale'                        " code and style syntax and problem checker
+Plug 'tobyS/vmustache'                           " an implementation of the Mustache template system  - required for pdv
 
 " .php plugins
 Plug 'StanAngeloff/php.vim'                      " improved .php syntax highlighting plugin
@@ -56,8 +57,7 @@ Plug 'stephpy/vim-php-cs-fixer'                  " plugin that reformats .php co
 Plug 'phpactor/phpactor' ,  {'do': 'composer install', 'for': 'php'}    " autocompletion plugin for .php
 Plug 'phpactor/ncm2-phpactor'                    " plugin to link phpfactor to ncm2
 Plug 'adoy/vim-php-refactoring-toolbox'          " .php refactoring toolbox plugin
-"Plug 'tobyS/pdv'                                " generates .php docblocks plugin
-"Plug 'sumpygump/php-documentor-vim'              " php docblock generator plugin
+Plug 'tobyS/pdv'                                " generates .php docblocks plugin
 "Plug 'noahfrederick/vim-laravel'                " laravel plugin
 Plug 'jwalton512/vim-blade'                      " blade syntax hilighting plugin
 Plug 'nelsyeung/twig.vim'                        " twig syntax hilighting plugin
@@ -65,13 +65,12 @@ Plug 'nelsyeung/twig.vim'                        " twig syntax hilighting plugin
                                                  "   `composer global require "squizlabs/php_codesniffer=*"`
 " https://github.com/phpstan/phpstan             " will make some guesses about types in your code based on typehints and phpDoc annotations <- requires setup
                                                  "   `composer require --dev phpstan/phpstan`
-" https://phpmd.org/                             " possible bugs;  suboptimal code; overcomplicated expressions; Unused parameters, methods, properties 
+" https://phpmd.org/                             " possible bugs;  suboptimal code; overcomplicated expressions; Unused parameters, methods, properties
                                                  "   `composer require --dev phpmd/phpmd`
 "Plug 'shawncplus/phpcomplete.vim'                " php autocomplete plugin - OmniComplete
 
 " .js plugins
 Plug 'othree/yajs.vim'                           " .js plugin
-Plug 'dense-analysis/ale'                        " code and style syntax and problem checker
 
 call plug#end()
 
@@ -91,7 +90,8 @@ set shiftwidth=4                        " width for autoindents
 set autoindent                          " indent a new line the same amount as the line just typed
 set number                              " add line numbers
 set relativenumber                      " set relative numbering
-set ruler                               " show line at cursor
+set ruler                               " show line
+set cursorline                          " highlight current line
 set wildmode=longest,list               " get bash-like tab completions
 set cc=160                              " set an 80 column border for good coding style
 filetype plugin indent on               " allows auto-indenting depending on file type
@@ -99,6 +99,16 @@ syntax on         	                    " switch syntax highlighting on
 colorscheme wpgtk                       " set colour scheme to wpgtk - alternative: wpgtkAlt
 let g:mapleader = '\'                   " set leader to ,
 map <C-b> :b#<CR>                       " switch buffers
+command! -nargs=1 Silent execute ':silent !'.<q-args> | execute ':redraw!'
+map <c-s> <esc>:w<cr>:Silent php-cs-fixer fix %:p --level=symfony<cr>
+let g:elite_mode=1                      " enable elite mode, No ARRRROWWS!!!!
+if get(g:, 'elite_mode')
+    nnoremap <Up>    :resize +2<CR>
+    nnoremap <Down>  :resize -2<CR>
+    nnoremap <Left>  :vertical resize +2<CR>
+    nnoremap <Right> :vertical resize -2<CR>
+endif
+set clipboard=unnamed,unnamedplus
 
 
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -141,6 +151,7 @@ map <leader>p <Plug>(miniyank-cycle)
 " ncm2-(phpactor?) config
 autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " neomake config
 call neomake#configure#automake('nrwi', 500)
@@ -175,19 +186,37 @@ let g:auto_save = 1
 
 " ale config
 let g:ale_completion_enabled = 1
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 0
+"let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+"let g:ale_open_list = 1
+"let g:ale_keep_list_window_open=0
+"let g:ale_set_quickfix=0
+"let g:ale_list_window_size = 5
+let g:ale_php_phpcbf_standard='PSR2'
+let g:ale_php_phpcs_standard='phpcs.xml.dist'
+let g:ale_php_phpmd_ruleset='phpmd.xml'
+let g:ale_fixers = {
+  \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+  \ 'php': ['phpcbf', 'php_cs_fixer', 'remove_trailing_lines', 'trim_whitespace'],
+  \}
+let g:ale_fix_on_save = 1
 
-" scrooloose/nerdcommenter
+" scrooloose/nerdcommenter config
 map <C-_> <leader>c<space>              " remap comment toggle to ctrl forward slash
 
-" sumpygump/php-documentor-vim
-"let g:pdv_cfg_Author = 'Claude Müller <claude@dxt.rs>'
-"let g:pdv_cfg_ClassTags = ["package","author","version"]
+" tobyS/pdv
+let g:pdv_template_dir = $HOME . "/nvim/plugged/pdv/templates_snip"
+nnoremap <buffer> <C-p> :call pdv#DocumentWithSnip()<CR>
+let g:pdv_cfg_Author = 'Claude Müller <claude@dxt.rs>'
+let g:pdv_cfg_ClassTags = ["package","author","version"]
 "au BufRead,BufNewFile *.php inoremap <buffer> <C-P> :call PhpDoc()<CR>
 "au BufRead,BufNewFile *.php nnoremap <buffer> <C-P> :call PhpDoc()<CR>
 "au BufRead,BufNewFile *.php vnoremap <buffer> <C-P> :call PhpDocRange()<CR>
 
-" rrethy/vim-illustrate
+" rrethy/vim-illustrate config
 hi link illuminatedWord Visual
+
 
 " .js config
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
@@ -215,14 +244,14 @@ autocmd FileType html       setlocal shiftwidth=4 tabstop=4
 " | Autorun commands                                                                                                                                         |
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
 " generate ctags on .php save
-autocmd BufWritePost *.php silent! !eval '[ -f ".git/hooks/ctags" ] && .git/hooks/ctags' &  
+autocmd BufWritePost *.php silent! !eval '[ -f ".git/hooks/ctags" ] && .git/hooks/ctags' &
 
 " generate ctags on .js save
-autocmd BufWritePost *.js silent! !eval '[ -f ".git/hooks/ctags" ] && .git/hooks/ctags' &  
+autocmd BufWritePost *.js silent! !eval '[ -f ".git/hooks/ctags" ] && .git/hooks/ctags' &
 
 " show active file in NERDTree when opening a file
 " returns true iff is NERDTree open/active
-function! NtIsOpen()        
+function! NtIsOpen()
   return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 endfunction
 
@@ -235,4 +264,3 @@ function! NtSyncTree()
 endfunction
 
 autocmd BufEnter * call NtSyncTree()
-
