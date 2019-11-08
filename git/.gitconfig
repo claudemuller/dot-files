@@ -39,10 +39,10 @@
 	name = Claude Müller
 	email = claude@dxt.rs
 [diff]
-	tool = bc4
-[difftool "bc4"]
-	cmd = \"c:/program files/beyond compare 4/bcomp.exe\" \"$LOCAL\" \"$REMOTE\"
-[mergetool "bc4"]
-	cmd = \"c:/program files/beyond compare 4/bcomp.exe\" \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
+    tool = nvimdiff2
+[difftool "nvimdiff2"]
+    cmd = nvim -d $LOCAL $REMOTE
+[mergetool "nfugitive"]
+    cmd = nvim -f -c "Gdiff" "$MERGED"
 [credential]
 	helper = store
