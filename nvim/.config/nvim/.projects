@@ -8,3 +8,6 @@ so ~/dxtrs/projects/team-extension/sbt/sites/SBT_IOT_current/.vimrc
 so ~/dxtrs/projects/team-extension/sbt/sites/sbt-mvp-backend/.vimrc
 so ~/dxtrs/projects/crayon/site/.vimrc
 so ~/dxtrs/projects/automattic/frontend-code-test-claudemuller/.vimrc
+so ~/dxtrs/projects/team-extension/prepay-power/remote-repo/referrer-dash/.vimrc
+so ~/dxtrs/projects/team-extension/prepay-power/remote-repo/agent-dash/.vimrc
+so ~/dxtrs/projects/team-extension/prepay-power/remote-repo/refer-a-friend/.vimrc
