@@ -55,10 +55,18 @@ bindkey -M vicmd "^V" edit-command-line
 export KEYTIMEOUT=1
 
 # Some vars
-VISUAL=vim; export VISUAL EDITOR=vim; export EDITOR
+export VISUAL=vim;
+export EDITOR=vim;
 
+# nvm stuff
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# System info
 neofetch
 
+# If logging in to TTY after boot start X
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
     startx
 fi

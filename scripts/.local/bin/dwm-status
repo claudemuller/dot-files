@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
 
 while true; do
-	date +%A\ %H:%M > /tmp/CurTime.tmp
+	date +%a\ %d\ %B\ %H:%M > /tmp/CurTime.tmp
     findmnt -no used / > /tmp/CurUsedRoot.tmp
+    /home/dief/.local/bin/harvest > /tmp/Harvest.tmp
 
 	sleep 60s
 done &
 
 while true; do
+    HARVEST=$(< /tmp/Harvest.tmp)
 	LOCALTIME=$(< /tmp/CurTime.tmp)
 	USED_ROOT=$(< /tmp/CurUsedRoot.tmp)
 
@@ -41,7 +43,7 @@ while true; do
         RKBPS="$(expr "$RBPS") B"
     fi
 
-    xsetroot -name "${TKBPS}/${RKBPS} | ${CPU_TEMP}°C | ${USED_RAM}GB | ${USED_ROOT}B | $LOCALTIME"
+    xsetroot -name "${HARVEST} | ${TKBPS}/${RKBPS} | ${CPU_TEMP}°C | ${USED_RAM}GB | ${USED_ROOT}B | ${LOCALTIME}"
 
 	sleep 10s
 done &
