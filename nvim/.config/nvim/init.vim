@@ -40,27 +40,30 @@ Plug 'terryma/vim-multiple-cursors'              " multiple cursors plugin
 Plug 'RRethy/vim-illuminate' 			         " autohighlight word matches when hovering on word plugin
 
 " Coding plugins
-Plug 'neomake/neomake'                           " plugin to asynchronously make/run code to detect issues
+"Plug 'neomake/neomake'                           " plugin to asynchronously make/run code to detect issues
 Plug 'SirVer/ultisnips'                          " very good and fast snippet engine
 Plug 'honza/vim-snippets'                        " set of snippets for code plugin
-Plug 'ncm2/ncm2'                                 " autocompletion engine plugin
-Plug 'roxma/nvim-yarp'                           " required by ncm2
+"Plug 'ncm2/ncm2'                                 " autocompletion engine plugin
+"Plug 'roxma/nvim-yarp'                           " required by ncm2
 Plug 'scrooloose/nerdcommenter'                  " commenting plugin
 Plug 'majutsushi/tagbar'                         " method and class outline/browser plugin
 Plug 'joonty/vdebug'                             " debugger plugin
 Plug 'dense-analysis/ale'                        " code and style syntax and problem checker
 Plug 'tobyS/vmustache'                           " an implementation of the Mustache template system  - required for pdv
+Plug 'ludovicchabant/vim-gutentags'              " auto ctags handling
+Plug 'neoclide/coc.nvim', {'branch': 'release'}  " code completion plugin
 
 " .php plugins
 Plug 'StanAngeloff/php.vim'                      " improved .php syntax highlighting plugin
 Plug 'stephpy/vim-php-cs-fixer'                  " plugin that reformats .php code based on PSR1/PSR2 upon event
-Plug 'phpactor/phpactor' ,  {'do': 'composer install', 'for': 'php'}    " autocompletion plugin for .php
-Plug 'phpactor/ncm2-phpactor'                    " plugin to link phpfactor to ncm2
+"Plug 'phpactor/phpactor' ,  {'do': 'composer install', 'for': 'php'}    " autocompletion plugin for .php
+"Plug 'phpactor/ncm2-phpactor'                    " plugin to link phpfactor to ncm2
 Plug 'adoy/vim-php-refactoring-toolbox'          " .php refactoring toolbox plugin
-Plug 'tobyS/pdv'                                " generates .php docblocks plugin
+Plug 'tobyS/pdv'                                 " generates .php docblocks plugin
 "Plug 'noahfrederick/vim-laravel'                " laravel plugin
 Plug 'jwalton512/vim-blade'                      " blade syntax hilighting plugin
 Plug 'nelsyeung/twig.vim'                        " twig syntax hilighting plugin
+Plug 'arnaud-lb/vim-php-namespace'               " use statement insertion plugin
 " https://github.com/squizlabs/PHP_CodeSniffer   " will make sure that .php is properly formatted
                                                  "   `composer global require "squizlabs/php_codesniffer=*"`
 " https://github.com/phpstan/phpstan             " will make some guesses about types in your code based on typehints and phpDoc annotations <- requires setup
@@ -115,20 +118,9 @@ set clipboard=unnamed,unnamedplus
 " | Plugins Config                                                                                                                                           |
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-" ripgrep config
-noremap <leader>a :Rg<space>
-nnoremap <leader>A :exec "Rg ".expand("<cword>")<cr>
-
-autocmd VimEnter * command! -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
-
 " nerdtree config
 set rtp+=~/nvim/plugged/nerdtree/
-map <C-n> :NERDTreeToggle<CR>
+"map <C-n> :NERDTreeToggle<CR>
 "let NERDTreeWinSize=1
 
 " vim-project config
@@ -149,18 +141,16 @@ map <leader>fs :Ag<CR>
 map <leader>p <Plug>(miniyank-cycle)
 
 " ncm2-(phpactor?) config
-autocmd BufEnter * call ncm2#enable_for_buffer()
-set completeopt=noinsert,menuone,noselect
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+"autocmd BufEnter * call ncm2#enable_for_buffer()
+"set completeopt=noinsert,menuone,noselect
+"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " neomake config
-call neomake#configure#automake('nrwi', 500)
-
-" lightline config
+"call neomake#configure#automake('nrwi', 500)
 
 " phpactor config
 " Include use statement
-nmap <Leader>u :call phpactor#UseAdd()<CR>
+"nmap <Leader>u :call phpactor#UseAdd()<CR>
 " Invoke the context menu
 "nmap <Leader>pc :call phpactor#ContextMenu()<CR>
 " Invoke the navigation menu
@@ -168,7 +158,7 @@ nmap <Leader>u :call phpactor#UseAdd()<CR>
 " Goto definition of class or class member under the cursor
 "nmap <Leader>o :call phpactor#GotoDefinition()<CR>
 " Show brief information about the symbol under the cursor
-nmap <Leader>D :call phpactor#Hover()<CR>
+"nmap <Leader>D :call phpactor#Hover()<CR>
 " Transform the classes in the current file
 "nmap <Leader>tt :call phpactor#Transform()<CR>
 " Generate a new class (replacing the current file)
@@ -179,13 +169,13 @@ nmap <Leader>D :call phpactor#Hover()<CR>
 "vmap <silent><Leader>ee :<C-U>call phpactor#ExtractExpression(v:true)<CR>
 " Extract method from selection
 "vmap <silent><Leader>em :<C-U>call phpactor#ExtractMethod()<CR>
-let g:phpactorOmniAutoClassImport = v:true
+"let g:phpactorOmniAutoClassImport = v:true
 
 " vim-auto-save config
 let g:auto_save = 1
 
 " ale config
-let g:ale_completion_enabled = 1
+"let g:ale_completion_enabled = 1
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
 "let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
@@ -198,7 +188,7 @@ let g:ale_php_phpcs_standard='phpcs.xml.dist'
 let g:ale_php_phpmd_ruleset='phpmd.xml'
 let g:ale_fixers = {
   \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-  \ 'php': ['phpcbf', 'php_cs_fixer', 'remove_trailing_lines', 'trim_whitespace'],
+  \ 'php': ['phpcbf', 'php_cs_fixer'],
   \}
 let g:ale_fix_on_save = 1
 
@@ -217,6 +207,87 @@ let g:pdv_cfg_ClassTags = ["package","author","version"]
 " rrethy/vim-illustrate config
 hi link illuminatedWord Visual
 
+" gutentags config
+set statusline+=%{gutentags#statusline()}
+let g:gutentags_add_default_project_roots = 0
+let g:gutentags_project_root = ['package.json', '.git']
+let g:gutentags_cache_dir = expand('~/.cache/nvim/ctags/')
+let g:gutentags_generate_on_new = 1
+let g:gutentags_generate_on_missing = 1
+let g:gutentags_generate_on_write = 1
+let g:gutentags_generate_on_empty_buffer = 0
+
+" neoclide/coc config
+let g:coc_global_extensions = [ 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-phpls', 'coc-js', 'coc-html', 'coc-css', 'coc-json', 'coc-python' ]
+" Better display for messages
+set cmdheight=2
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
+" Don't give |ins-completion-menu| messages.
+set shortmess+=c
+" Always show signcolumns
+set signcolumn=yes
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use D to show documentation in preview window
+nnoremap <silent> D :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" SirVer/ultisnips
+" Remap ExpandTrigger
+let g:UltiSnipsExpandTrigger="<c-tab>"
+
+" vim-php-namespace config
+" automatic namespace inserting
+let g:php_namespace_sort_after_insert=1
+" insert use statements
+autocmd FileType php inoremap <Leader>pu <Esc>:call IPhpInsertUse()<CR>
+autocmd FileType php noremap <Leader>pu :call PhpInsertUse()<CR>
+
+function! IPhpInsertUse()
+    call PhpInsertUse()
+    call feedkeys('a',  'n')
+endfunction
+
+" expand fully qualified names
+autocmd FileType php inoremap <Leader>pe <Esc>:call IPhpExpandClass()<CR>
+autocmd FileType php noremap <Leader>pe :call PhpExpandClass()<CR>
+
+function! IPhpExpandClass()
+    call PhpExpandClass()
+    call feedkeys('a', 'n')
+endfunction
+
+" jump to definition
+"nmap <silent> <leader>ld <Plug>(coc-definition)
+"nmap <silent> <leader>lt <Plug>(coc-type-definition)
+"nmap <silent> <leader>li <Plug>(coc-implementation)
+"nmap <silent> <leader>lf <Plug>(coc-references)
+
+" +----------------------------------------------------------------------------------------------------------------------------------------------------------+
+" | Language Configs                                                                                                                                         |
+" +----------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 " .js config
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
@@ -226,6 +297,7 @@ autocmd FileType html       setlocal shiftwidth=4 tabstop=4
 
 " .php config
 autocmd FileType html       setlocal shiftwidth=4 tabstop=4
+
 
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
 " | Keymappings                                                                                                                                              |
@@ -244,10 +316,10 @@ autocmd FileType html       setlocal shiftwidth=4 tabstop=4
 " | Autorun commands                                                                                                                                         |
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
 " generate ctags on .php save
-autocmd BufWritePost *.php silent! !eval '[ -f ".git/hooks/ctags" ] && .git/hooks/ctags' &
+"autocmd BufWritePost *.php silent! !eval '[ -f ".git/hooks/ctags" ] && .git/hooks/ctags' &
 
 " generate ctags on .js save
-autocmd BufWritePost *.js silent! !eval '[ -f ".git/hooks/ctags" ] && .git/hooks/ctags' &
+"autocmd BufWritePost *.js silent! !eval '[ -f ".git/hooks/ctags" ] && .git/hooks/ctags' &
 
 " show active file in NERDTree when opening a file
 " returns true iff is NERDTree open/active
