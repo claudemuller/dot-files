@@ -12,25 +12,25 @@ then
 fi
 
 sxhkd &
-wmname LG3D &
+#wmname LG3D &
 nitrogen --restore &
 sleep 1; compton -b
 /home/dief/.config/polybar/launch.sh &
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-#nm-applet &
-#volumeicon &
-clipit &
+#/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+nm-applet &
+volumeicon &
+#clipit &
 blueman-applet &
 #start_conky_maia &
 #rescuetime &
 xautolock -time 10 -locker /home/dief/.local/bin/lock &
 #ff-theme-util &
 #fix_xcursor &
+/home/dief/.local/share/tresorit/tresorit --hidden &
 
 if [[ "$host" == "samurai" ]]
 then
     pamac-tray &
-    /home/dief/.local/share/tresorit/tresorit --hidden &
 fi
 
 #### AUTOSTART and place on desktop ####
@@ -40,10 +40,9 @@ then
     bspc rule -a st-256color -o desktop=^1 && st /home/dief/.local/bin/vagrant-up &
     bspc rule -a Slack -o desktop=^2 && slack &
     bspc rule -a Brave-browser -o desktop=^6 && brave &
+    bspc rule -a Chromium -o desktop=^11 && chromium &
 fi
 bspc rule -a Google-chrome -o desktop=^3 && google-chrome-stable &
-bspc rule -a Chromium -o desktop=^11 && chromium &
-#bspc rule -a jetbrains-phpstorm -o desktop=^10 && phpstorm &
 
 #### MONITORS ####
 
@@ -101,14 +100,15 @@ bspc rule -a Slack desktop='^2'
 bspc rule -a Google-chrome desktop='^3'
 bspc rule -a Brave-browser desktop='^4'
 bspc rule -a mplayer2 state=floating
-bspc rule -a Chromium state=floating
+if [[ "$host" == "samurai" ]]
+then
+    bspc rule -a Chromium state=floating
+fi
 bspc rule -a TorGuard state=floating
 bspc rule -a jetbrains-toolbox state=floating
-bspc rule -a state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 
 #### setxkbmap commands ####
 setxkbmap -option caps:backspace
 setxkbmap -option compose:ralt
-
