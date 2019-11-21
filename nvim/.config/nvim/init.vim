@@ -234,7 +234,6 @@ inoremap <silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
@@ -242,7 +241,6 @@ endfunction
 
 " Use D to show documentation in preview window
 nnoremap <silent> D :call <SID>show_documentation()<CR>
-
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
@@ -264,7 +262,6 @@ let g:php_namespace_sort_after_insert=1
 " insert use statements
 autocmd FileType php inoremap <Leader>pu <Esc>:call IPhpInsertUse()<CR>
 autocmd FileType php noremap <Leader>pu :call PhpInsertUse()<CR>
-
 function! IPhpInsertUse()
     call PhpInsertUse()
     call feedkeys('a',  'n')
@@ -273,7 +270,6 @@ endfunction
 " expand fully qualified names
 autocmd FileType php inoremap <Leader>pe <Esc>:call IPhpExpandClass()<CR>
 autocmd FileType php noremap <Leader>pe :call PhpExpandClass()<CR>
-
 function! IPhpExpandClass()
     call PhpExpandClass()
     call feedkeys('a', 'n')
@@ -284,6 +280,22 @@ endfunction
 "nmap <silent> <leader>lt <Plug>(coc-type-definition)
 "nmap <silent> <leader>li <Plug>(coc-implementation)
 "nmap <silent> <leader>lf <Plug>(coc-references)
+
+" lightline config
+let g:lightline = {
+      \ 'colorscheme': 'jellybeans',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head',
+      \   'filename': 'LightLineFilename'
+      \ },
+      \ }
+function! LightLineFilename()
+  return expand('%')
+endfunction
 
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
 " | Language Configs                                                                                                                                         |
