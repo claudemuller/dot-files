@@ -9,9 +9,11 @@ host=$(hostname)
 if [[ "$host" == "samurai" ]]
 then
     xrandr --output DVI-D-0 --left-of DP-0 --output HDMI-0 --right-of DP-0
+    sxhkd &
+else
+    sxhkd -c /home/dief/.config/sxhkd/sxhkdrc.shinobi &
 fi
 
-sxhkd &
 nitrogen --restore &
 sleep 1; compton -b
 ~/.config/wpg/wp_init.sh

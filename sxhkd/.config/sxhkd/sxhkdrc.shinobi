@@ -31,21 +31,6 @@ alt + shift + F3
 alt + F4
     filezilla
 
-alt + F5
-    phpstorm
-
-alt + F6
-    virtualbox
-
-alt + F7
-    brave
-
-alt + F8
-    qutebrowser
-
-alt + F9
-    vimed.sh /home/dief/Desktop/notes.md
-
 alt + F11
     gksu torguard
 
@@ -124,35 +109,11 @@ alt + {o,i}
 	bspc wm -h on
 
 # focus or send to the given desktop
-alt + {_,shift + }{1-5}
-	bspc {desktop -f,node -d} '^{1-5}'
+alt + {_,shift + }{1-9}
+	bspc {desktop -f,node -d} '^{1-9}'
 
-alt + ctrl + {_,shift + }1
-    bspc {desktop -f,node -d} '^6'
-
-alt + ctrl + {_,shift + }2
-    bspc {desktop -f,node -d} '^7'
-
-alt + ctrl + {_,shift + }3
-	bspc {desktop -f,node -d} '^8'
-
-alt + ctrl + {_,shift + }4
-	bspc {desktop -f,node -d} '^9'
-
-alt + {_,shift + }6
-	bspc {desktop -f,node -d} '^10'
-
-alt + {_,shift + }7
-	bspc {desktop -f,node -d} '^11'
-
-alt + {_,shift + }8
-	bspc {desktop -f,node -d} '^12'
-
-alt + {_,shift + }9
-    bspc {desktop -f,node -d} '^13'
-
-alt + {_,shift + }0
-    bspc {desktop -f,node -d} '^14'
+alt + ctrl + {_,shift + }0
+    bspc {desktop -f,node -d} '^0'
 
 #
 # preselect
