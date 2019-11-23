@@ -3,7 +3,7 @@
 #
 
 ## define the font for dmenu to be used
-DMENU_FN="UbuntuMono Nerd Font-10.5"
+DMENU_FN="TerminessTTF NF-10"
 
 ## background colour for unselected menu-items
 DMENU_NB="#292d3e"

@@ -8,29 +8,35 @@ host=$(hostname)
 
 if [[ "$host" == "samurai" ]]
 then
-    xrandr  --output DVI-D-0 --left-of DP-0 --output HDMI-0 --right-of DP-0
+    xrandr --output DVI-D-0 --left-of DP-0 --output HDMI-0 --right-of DP-0
 fi
 
 sxhkd &
-#wmname LG3D &
 nitrogen --restore &
 sleep 1; compton -b
+~/.config/wpg/wp_init.sh
 /home/dief/.config/polybar/launch.sh &
-#/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 nm-applet &
-volumeicon &
-#clipit &
 blueman-applet &
-#start_conky_maia &
-#rescuetime &
 xautolock -time 10 -locker /home/dief/.local/bin/lock &
 #ff-theme-util &
 #fix_xcursor &
 /home/dief/.local/share/tresorit/tresorit --hidden &
 
+if [[ "$host" == "shinobi" ]]
+then
+    cbatticon &
+    pasystray &
+    #amixer set Capture toggle
+fi
+
 if [[ "$host" == "samurai" ]]
 then
     pamac-tray &
+    /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+    start_conky_maia &
+    volumeicon &
+    clipit &
 fi
 
 #### AUTOSTART and place on desktop ####
@@ -53,7 +59,7 @@ then
     bspc monitor HDMI-0 -d 10 11 12 13 14
 elif [[ "$host" == "shinobi" ]]
 then
-    bspc monitor eDP-1 -d 1 2 3 4 5 6 7 8 9 0
+    bspc monitor eDP1 -d 1 2 3 4 5 6 7 8 9 0
 else
     bspc monitor default -d 1 2 3 4 5 6 7 8 9 0
 fi

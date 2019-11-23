@@ -84,7 +84,7 @@ volume-max = #bf616a
 
 [bar/mainbar-bspwm]
 monitor = ${env:MONITOR}
-;monitor-fallback = HDMI1
+monitor-fallback = eDP1
 monitor-strict = false
 override-redirect = false
 bottom = false
@@ -189,17 +189,13 @@ pin-workspaces = true
 ws-icon-0 = 1;
 ws-icon-1 = 2;
 ws-icon-2 = 3;
-ws-icon-3 = 4;
-ws-icon-4 = 5;
-ws-icon-5 = 6;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
 ws-icon-6 = 7;
 ws-icon-7 = 8;
 ws-icon-8 = 9;
-ws-icon-9 = 10;
-ws-icon-10 = "11;"
-ws-icon-11 = "12;"
-ws-icon-12 = "13;"
-ws-icon-13 = "14;"
+ws-icon-9 = 10;
 ws-icon-default = " "
 
 format = <label-state> <label-mode>

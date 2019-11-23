@@ -1,4 +1,3 @@
-
 #
 # wm independent hotkeys
 #
@@ -193,7 +192,8 @@ alt + {Left,Down,Up,Right}
 
 # run program launcher
 alt + space
-	rofi -show run
+    dmenu_run
+	#rofi -show run
 
 # take a screenshot section
 ctrl + mod4 + F12

@@ -1,22 +1,21 @@
 #!/usr/bin/env sh
 
-nitrogen --restore &
-dunst &
-sleep 1; compton -b
-nm-applet &
-pasystray &
-blueman-applet &
+#nitrogen --restore &
+#dunst &
+#sleep 1; compton -b
+#nm-applet &
+#pasystray &
 #clipit &
-blueman-applet &
-cbatticon &
-/home/dief/.local/share/tresorit/tresorit --hidden &
+#blueman-applet &
+#cbatticon &
+#/home/dief/.local/share/tresorit/tresorit --hidden &
 
-setxkbmap -option caps:backspace
-setxkbmap -option compose:ralt
+#setxkbmap -option caps:backspace
+#setxkbmap -option compose:ralt
 
 #amixer set Capture toggle
 
-~/.local/bin/dwm-status
+#~/.local/bin/dwm-status
 
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
