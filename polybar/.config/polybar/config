@@ -119,8 +119,8 @@ module-margin-left = 0
 module-margin-right = 0
 
 ;https://github.com/jaagr/polybar/wiki/Fonts
-font-0 = "TerminessTTF NF:size=10;2"
-font-1 = "TerminessTTF NF:size=16;4"
+font-0 = "TerminessTTF Nerd Font:size=10;2"
+font-1 = "TerminessTTF Nerd Font:size=16;4"
 font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=8;1"
 font-3 = "Font Awesome 5 Free:style=Solid:pixelsize=8;1"
 font-4 = "Font Awesome 5 Brands:pixelsize=8;1"
