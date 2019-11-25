@@ -30,6 +30,7 @@ then
     cbatticon &
     pasystray &
     #amixer set Capture toggle
+    dunst &
 fi
 
 if [[ "$host" == "samurai" ]]

@@ -32,7 +32,8 @@ alt + F4
     filezilla
 
 alt + F11
-    gksu torguard
+    pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY torguard $@
+
 
 #
 # bspwm hotkeys
@@ -162,11 +163,24 @@ alt + space
 
 # take a screenshot section
 ctrl + mod4 + F12
-	import ~/temp/screenshot.png
+	import ~/temp/screenshot.png && notify-send 'Select portion of the screen to capture'
 
 # screen backlight brightness
 XF86MonBrightness{Up,Down}
     xbacklight {-inc,-dec} 10
+
+# volume level adjustment
+XF86Audio{Raise,Lower}Volume
+    amixer -D pulse sset Master 5%{+,-}
+
+# mute audio
+XF86AudioMute
+    amixer -D pulse sset Master toggle && amixer get Master | grep '\[off\]' && notify-send 'Audio switched OFF' || notify-send 'Audio switched ON'
+
+# mute mic
+XF86AudioMicMute
+    amixer set Capture toggle && amixer get Capture | grep '\[off\]' && notify-send 'Mic switched OFF' || notify-send 'Mic switched ON'
+
 
 #bindsym $mod+Control+space exec --no-startup-id rofi -show window
 #bindsym $mod+Control+Shift+c exec rofi -show calc -modi calc -no-show-match -no-sort
