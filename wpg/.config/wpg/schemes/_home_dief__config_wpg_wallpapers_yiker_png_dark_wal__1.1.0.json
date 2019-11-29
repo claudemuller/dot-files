@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/dief/.config/wpg/wallpapers/yiker.png",
+    "alpha": "95",
+
+    "special": {
+        "background": "#0F161E",
+        "foreground": "#cac3a4",
+        "cursor": "#cac3a4"
+    },
+    "colors": {
+        "color0": "#0F161E",
+        "color1": "#2B3442",
+        "color2": "#592952",
+        "color3": "#2A5343",
+        "color4": "#5B5C58",
+        "color5": "#A95354",
+        "color6": "#40A55B",
+        "color7": "#cac3a4",
+        "color8": "#8d8872",
+        "color9": "#2B3442",
+        "color10": "#592952",
+        "color11": "#2A5343",
+        "color12": "#5B5C58",
+        "color13": "#A95354",
+        "color14": "#40A55B",
+        "color15": "#cac3a4"
+    }
+}
