@@ -21,12 +21,12 @@ alt + F2
     st -e vim
 
 alt + F3
-    st ranger
+    ranger
 
 # bindsym $mod+F3 exec ranger
 
 alt + shift + F3
-    gksu st ranger
+    gksu ranger
 
 alt + F4
     filezilla
@@ -162,7 +162,7 @@ alt + space
 	#rofi -show run
 
 # take a screenshot section
-ctrl + mod4 + F12
+XF86Display
 	import ~/temp/screenshot.png && notify-send 'Select portion of the screen to capture'
 
 # screen backlight brightness

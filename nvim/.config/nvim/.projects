@@ -4,13 +4,15 @@ set rtp+=~/nvim/plugged/vim-project/
 call project#rc("~/")
 
 so ~/dxtrs/projects/team-extension/sbt/sites/SBT-CMS/.vimrc
-so ~/dxtrs/projects/team-extension/sbt/sites/SBT_IOT_current/.vimrc
 so ~/dxtrs/projects/team-extension/sbt/sites/sbt-mvp-backend/.vimrc
 so ~/dxtrs/projects/crayon/site/.vimrc
 so ~/dxtrs/projects/automattic/frontend-code-test-claudemuller/.vimrc
+so ~/personal/study-notes/c++/frostbyte-engine_cpp/.vimrc
+so ~/personal/study-notes/c/frostbyte-engine_c/.vimrc
 
 "so ~/personal/code/c++/the-cherno-game-engine-series/game-engine/.vimrc
 
+"so ~/dxtrs/projects/team-extension/sbt/sites/SBT_IOT_current/.vimrc
 "so ~/dxtrs/projects/team-extension/prepay-power/remote-repo/referrer-dash/.vimrc
 "so ~/dxtrs/projects/team-extension/prepay-power/remote-repo/agent-dash/.vimrc
 "so ~/dxtrs/projects/team-extension/prepay-power/remote-repo/refer-a-friend/.vimrc

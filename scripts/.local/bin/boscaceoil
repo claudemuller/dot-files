@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+PULSE_LATENCY_MSEC=80 /opt/adobe-air-sdk/bin/adl -nodebug /opt/Boscaceoil/share/META-INF/AIR/application.xml /opt/Boscaceoil/share/
