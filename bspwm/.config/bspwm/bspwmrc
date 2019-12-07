@@ -28,7 +28,7 @@ xautolock -time 10 -locker /home/dief/.local/bin/lock &
 if [[ "$host" == "shinobi" ]]
 then
     cbatticon &
-    pasystray &
+    #pasystray &
     #amixer set Capture toggle
     dunst &
 fi
@@ -37,8 +37,8 @@ if [[ "$host" == "samurai" ]]
 then
     pamac-tray &
     /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-    start_conky_maia &
-    volumeicon &
+    #start_conky_maia &
+    #volumeicon &
     clipit &
 fi
 

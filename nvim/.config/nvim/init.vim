@@ -345,7 +345,7 @@ function! NtIsOpen()
   return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 endfunction
 
-" calls NERDTreeFind iff NERDTree is active, current window contains a modifiable file, and we're not in vimdiff
+" calls NERDTreeFind if NERDTree is active, current window contains a modifiable file, and we're not in vimdiff
 function! NtSyncTree()
   if &modifiable && NtIsOpen() && strlen(expand('%')) > 0 && !&diff
     NERDTreeFind
