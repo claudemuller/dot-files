@@ -121,3 +121,4 @@ bspc rule -a Screenkey manage=off
 #### setxkbmap commands ####
 setxkbmap -option caps:backspace
 setxkbmap -option compose:ralt
+bash /home/dief/.config/bspwm/bspwm_colors.sh &

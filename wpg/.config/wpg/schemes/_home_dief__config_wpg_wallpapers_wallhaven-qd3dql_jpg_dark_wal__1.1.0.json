@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/dief/.config/wpg/wallpapers/wallhaven-qd3dql.jpg",
+    "alpha": "95",
+
+    "special": {
+        "background": "#1f1e20",
+        "foreground": "#d7c9cd",
+        "cursor": "#d7c9cd"
+    },
+    "colors": {
+        "color0": "#1f1e20",
+        "color1": "#4E484E",
+        "color2": "#665964",
+        "color3": "#8F6A6E",
+        "color4": "#7E8C78",
+        "color5": "#6D5F8E",
+        "color6": "#957191",
+        "color7": "#d7c9cd",
+        "color8": "#968c8f",
+        "color9": "#4E484E",
+        "color10": "#665964",
+        "color11": "#8F6A6E",
+        "color12": "#7E8C78",
+        "color13": "#6D5F8E",
+        "color14": "#957191",
+        "color15": "#d7c9cd"
+    }
+}

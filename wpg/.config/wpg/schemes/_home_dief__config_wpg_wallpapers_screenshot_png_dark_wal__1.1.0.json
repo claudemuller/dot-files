@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/dief/.config/wpg/wallpapers/screenshot.png",
+    "alpha": "95",
+
+    "special": {
+        "background": "#0F0014",
+        "foreground": "#d589df",
+        "cursor": "#d589df"
+    },
+    "colors": {
+        "color0": "#0F0014",
+        "color1": "#610878",
+        "color2": "#6F5379",
+        "color3": "#71028B",
+        "color4": "#762C8B",
+        "color5": "#794F89",
+        "color6": "#9107AA",
+        "color7": "#d589df",
+        "color8": "#955f9c",
+        "color9": "#610878",
+        "color10": "#6F5379",
+        "color11": "#71028B",
+        "color12": "#762C8B",
+        "color13": "#794F89",
+        "color14": "#9107AA",
+        "color15": "#d589df"
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/dief/.config/wpg/wallpapers/mechanical-keyboard-from-chernobyl-wallpaper.jpg",
+    "alpha": "95",
+
+    "special": {
+        "background": "#080506",
+        "foreground": "#d9d5d1",
+        "cursor": "#d9d5d1"
+    },
+    "colors": {
+        "color0": "#080506",
+        "color1": "#946A67",
+        "color2": "#9E837C",
+        "color3": "#315E8A",
+        "color4": "#65768D",
+        "color5": "#768898",
+        "color6": "#9F9C9F",
+        "color7": "#d9d5d1",
+        "color8": "#979592",
+        "color9": "#946A67",
+        "color10": "#9E837C",
+        "color11": "#315E8A",
+        "color12": "#65768D",
+        "color13": "#768898",
+        "color14": "#9F9C9F",
+        "color15": "#d9d5d1"
+    }
+}

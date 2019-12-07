@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/dief/.config/wpg/wallpapers/10425-1280x1024-obraz--1-.JPG",
+    "alpha": "95",
+
+    "special": {
+        "background": "#020C0F",
+        "foreground": "#ece0e7",
+        "cursor": "#ece0e7"
+    },
+    "colors": {
+        "color0": "#020C0F",
+        "color1": "#294253",
+        "color2": "#4C4C4B",
+        "color3": "#9F5E47",
+        "color4": "#EF724A",
+        "color5": "#B29868",
+        "color6": "#C7ADB3",
+        "color7": "#ece0e7",
+        "color8": "#a59ca1",
+        "color9": "#294253",
+        "color10": "#4C4C4B",
+        "color11": "#9F5E47",
+        "color12": "#EF724A",
+        "color13": "#B29868",
+        "color14": "#C7ADB3",
+        "color15": "#ece0e7"
+    }
+}
