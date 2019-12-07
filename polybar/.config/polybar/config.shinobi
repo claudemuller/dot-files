@@ -1,8 +1,3 @@
-#  ____ _____
-# |  _ \_   _|  Derek Taylor (DistroTube)
-# | | | || |    http://www.youtube.com/c/DistroTube
-# | |_| || |    http://www.gitlab.com/dwt1/
-# |____/ |_|
 
 ;=====================================================
 ;
@@ -45,14 +40,26 @@ format-margin =
 format-offset =
 
 [colors]
-; Nord theme ============
-background = #292d3e
-background_highlight = #333748
-foreground = #c0c5ce
-alert = #bd2c40
+;PyWPG theme ============
+background = ${xrdb:color0:#222}
+background_highlight = ${xrdb:color0:#222}
+foreground = ${xrdb:color7:#222}
+foreground-alt = ${xrdb:color7:#222}
+primary = ${xrdb:color1:#222}
+secondary = ${xrdb:color2:#222}
+alert = ${xrdb:color3:#222}
 volume-min = #a3be8c
 volume-med = #ebcb8b
 volume-max = #bf616a
+
+; Nord theme ============
+;background = #292d3e
+;background_highlight = #333748
+;foreground = #c0c5ce
+;alert = #bd2c40
+;volume-min = #a3be8c
+;volume-med = #ebcb8b
+;volume-max = #bf616a
 ; =======================
 
 ; Gotham theme ==========
@@ -811,10 +818,9 @@ format-online-background = ${colors.background}
 [module/networkspeedup]
 ;https://github.com/jaagr/polybar/wiki/Module:-network
 type = internal/network
-;interface = wlp3s0
+interface = wlp3s0
 ;interface = enp14s0
 ;interface = enp0s31f6
-interface = eno1
 label-connected = "%upspeed:7%"
 format-connected = <label-connected>
 format-connected-prefix = " "
@@ -827,10 +833,10 @@ format-connected-background = #C3E88D
 [module/networkspeeddown]
 ;https://github.com/jaagr/polybar/wiki/Module:-network
 type = internal/network
-;interface = wlp3s0
+interface = wlp3s0
 ;interface = enp14s0
 ;interface = enp0s31f6
-interface = eno1
+;interface = eno1
 label-connected = "%downspeed:7%"
 format-connected = <label-connected>
 format-connected-prefix = "  "
