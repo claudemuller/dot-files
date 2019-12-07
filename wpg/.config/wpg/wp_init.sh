@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-wpg -rs 'wallhaven-2k1y59.png' 'wallhaven-2k1y59.png'
+wpg -rs 'abstract-purple-glitch-art-katana-samurai-distortion-833831-wallhere.com.jpg' 'abstract-purple-glitch-art-katana-samurai-distortion-833831-wallhere.com.jpg'

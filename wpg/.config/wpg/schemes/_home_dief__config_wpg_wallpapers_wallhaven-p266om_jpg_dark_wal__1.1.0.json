@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/dief/.config/wpg/wallpapers/wallhaven-p266om.jpg",
+    "alpha": "95",
+
+    "special": {
+        "background": "#070A08",
+        "foreground": "#cdcdcc",
+        "cursor": "#cdcdcc"
+    },
+    "colors": {
+        "color0": "#070A08",
+        "color1": "#5E6164",
+        "color2": "#6D6E72",
+        "color3": "#7D7C82",
+        "color4": "#807F84",
+        "color5": "#7E8181",
+        "color6": "#8E8D91",
+        "color7": "#cdcdcc",
+        "color8": "#8f8f8e",
+        "color9": "#5E6164",
+        "color10": "#6D6E72",
+        "color11": "#7D7C82",
+        "color12": "#807F84",
+        "color13": "#7E8181",
+        "color14": "#8E8D91",
+        "color15": "#cdcdcc"
+    }
+}

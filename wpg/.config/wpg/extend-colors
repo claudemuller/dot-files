@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+color1=$(cat "$1" | jq -r '.colors.color1' | sed 's/#//g')
+color2=$(cat "$1" | jq -r '.colors.color2' | sed 's/#//g')
+color3=$(cat "$1" | jq -r '.colors.color3' | sed 's/#//g')
+color4=$(cat "$1" | jq -r '.colors.color4' | sed 's/#//g')
+color5=$(cat "$1" | jq -r '.colors.color5' | sed 's/#//g')
+color6=$(cat "$1" | jq -r '.colors.color6' | sed 's/#//g')
+color7=$(cat "$1" | jq -r '.colors.color7' | sed 's/#//g')
+
+color9="    \"color9\": \" + $(pastel ${color1} | pastel lighten 0.1) + "\","
+
+echo "${color9}"

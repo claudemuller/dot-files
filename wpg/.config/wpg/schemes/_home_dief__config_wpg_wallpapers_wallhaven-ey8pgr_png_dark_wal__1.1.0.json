@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/dief/.config/wpg/wallpapers/wallhaven-ey8pgr.png",
+    "alpha": "95",
+
+    "special": {
+        "background": "#0f1112",
+        "foreground": "#d5d7d8",
+        "cursor": "#d5d7d8"
+    },
+    "colors": {
+        "color0": "#0f1112",
+        "color1": "#295F66",
+        "color2": "#474B4F",
+        "color3": "#5B5F67",
+        "color4": "#CB463F",
+        "color5": "#59837F",
+        "color6": "#3FCACE",
+        "color7": "#d5d7d8",
+        "color8": "#959697",
+        "color9": "#295F66",
+        "color10": "#474B4F",
+        "color11": "#5B5F67",
+        "color12": "#CB463F",
+        "color13": "#59837F",
+        "color14": "#3FCACE",
+        "color15": "#d5d7d8"
+    }
+}
