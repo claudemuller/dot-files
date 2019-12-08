@@ -14,9 +14,9 @@ else
     sxhkd -c /home/dief/.config/sxhkd/sxhkdrc.shinobi &
 fi
 
+~/.config/wpg/wp_init.sh
 #nitrogen --restore &
 sleep 1; compton -b
-~/.config/wpg/wp_init.sh
 /home/dief/.config/polybar/launch.sh &
 nm-applet &
 blueman-applet &
