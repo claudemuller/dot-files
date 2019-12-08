@@ -42,12 +42,12 @@ format-offset =
 [colors]
 ;PyWPG theme ============
 background = ${xrdb:color0:#222}
-background_highlight = ${xrdb:color0:#222}
+background_highlight = ${xrdb:color2:#222}
 foreground = ${xrdb:color7:#222}
 foreground-alt = ${xrdb:color7:#222}
-primary = ${xrdb:color1:#222}
-secondary = ${xrdb:color2:#222}
-alert = ${xrdb:color3:#222}
+primary = ${xrdb:color2:#222}
+secondary = ${xrdb:color5:#222}
+alert = r{xrdb:color1:#222}
 volume-min = #a3be8c
 volume-med = #ebcb8b
 volume-max = #bf616a
@@ -212,7 +212,7 @@ label-focused = %icon%
 label-focused-background = ${colors.background_highlight}
 #label-focused-underline= #6790eb
 label-focused-padding = 2
-label-focused-foreground = ${colors.foreground}
+label-focused-foreground = ${colors.background}
 
 label-occupied = %icon%
 label-occupied-padding = 2
@@ -264,7 +264,7 @@ format-background = ${colors.background}
 type = custom/text
 content = "%{T2} %{T-}"
 content-font = 2
-content-foreground = #85E3FF
+content-foreground = ${xrdb:color6}
 content-background = ${colors.background}
 
 [module/arrow1]
@@ -272,8 +272,8 @@ content-background = ${colors.background}
 type = custom/text
 content = "%{T2} %{T-}"
 content-font = 2
-content-foreground = #C3E88D
-content-background = #85E3FF
+content-foreground = ${xrdb:color5}
+content-background = ${xrdb:color6}
 
 
 [module/arrow2]
@@ -281,32 +281,32 @@ content-background = #85E3FF
 type = custom/text
 content = "%{T2} %{T-}"
 content-font = 2
-content-foreground = #82AAFF
-content-background = #C3E88D
+content-foreground = ${xrdb:color6}
+content-background = ${xrdb:color5}
 
 [module/arrow3]
 ; grey to Blue
 type = custom/text
 content = "%{T2} %{T-}"
 content-font = 2
-content-foreground = #C792EA
-content-background = #82AAFF
+content-foreground = ${xrdb:color5}
+content-background = ${xrdb:color6}
 
 [module/arrow4]
 ; grey to Blue
 type = custom/text
 content = "%{T2} %{T-}"
 content-font = 2
-content-foreground = #FFE585
-content-background = #C792EA
+content-foreground = ${xrdb:color6}
+content-background = ${xrdb:color5}
 
 [module/arrow5]
 ; grey to Blue
 type = custom/text
 content = "%{T2} %{T-}"
 content-font = 2
-content-foreground = #F07178
-content-background = #FFE585
+content-foreground = ${xrdb:color5}
+content-background = ${xrdb:color6}
 
 [module/arrow6]
 ; grey to Blue
@@ -314,7 +314,7 @@ type = custom/text
 content = "%{T2} %{T-}"
 content-font = 2
 content-foreground = ${colors.background}
-content-background = #F07178
+content-background = ${xrdb:color5}
 
 
 ################################################################################
@@ -386,7 +386,7 @@ interval = 300
 exec = ~/.config/polybar/scripts/harvest.sh
 tail = true
 format-foreground = ${colors.background}
-format-background = #85E3FF
+format-background = ${xrdb:color6}
 
 ################################################################################
 
@@ -413,7 +413,7 @@ label = Aur: %output%
 #format-prefix-foreground = #FFBB00
 #format-underline = #FFBB00
 format-foreground = ${colors.background}
-format-background = #F07178
+format-background = ${xrdb:color5}
 format-prefix = "  "
 format-prefix-foreground = ${colors.background}
 
@@ -583,7 +583,7 @@ type = internal/cpu
 ; Default: 1
 interval = 1
 format-foreground = ${colors.background}
-format-background = #C792EA
+format-background = ${xrdb:color5}
 format-prefix = " "
 format-prefix-foreground = ${colors.background}
 
@@ -819,7 +819,7 @@ format = Mem <label>
 format-prefix = " "
 format-prefix-foreground = #292d3e
 format-foreground = #292d3e
-format-background = #82AAFF
+format-background = ${xrdb:color6}
 
 ################################################################################
 
@@ -883,7 +883,7 @@ format-connected = <label-connected>
 format-connected-prefix = " "
 format-connected-prefix-foreground = #292d3e
 format-connected-foreground = #292d3e
-format-connected-background = #C3E88D
+format-connected-background = ${xrdb:color5}
 
 ################################################################################
 
@@ -899,7 +899,7 @@ format-connected = <label-connected>
 format-connected-prefix = "  "
 format-connected-prefix-foreground = #292d3e
 format-connected-foreground = #292d3e
-format-connected-background = #C3E88D
+format-connected-background = ${xrdb:color5}
 
 ################################################################################
 
@@ -927,7 +927,7 @@ click-left = ~/.config/polybar/scripts/pavolume.sh --togmute
 scroll-up = ~/.config/polybar/scripts/pavolume.sh --up
 scroll-down = ~/.config/polybar/scripts/pavolume.sh --down
 format-foreground = ${colors.background}
-format-background = #FFE585
+format-background = ${xrdb:color6}
 
 
 
