@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-choices="Quit dwm\nShutdown\nReboot"
+choices="Quit bspwm\nShutdown\nReboot"
 question="What do I do?"
 chosen=$(echo -e "$choices" | dmenu -i -p "$question")
 
@@ -10,4 +10,3 @@ case "$chosen" in
     Shutdown) /bin/shutdown -h now ;;
     Reboot) /bin/shutdown -r now ;;
 esac
-
