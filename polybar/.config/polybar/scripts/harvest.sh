@@ -40,4 +40,4 @@ for row in $(echo $TE_ENTRIES | jq -c '.time_entries[] | .hours'); do
   TOTAL_TIME=$(echo "$TOTAL_TIME + $row" | bc)
 done
 
-echo 'TE: ' $TOTAL_TIME ' | Crayon: ' $CR_TOTAL_TIME;
+echo 'TE:' $TOTAL_TIME ' | C:' $CR_TOTAL_TIME;
