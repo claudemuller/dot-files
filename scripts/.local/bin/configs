@@ -12,10 +12,9 @@ echo "$chosen"
 
 case "$chosen" in
     bspwm) $vim "$configs/bspwm/bspwmrc" ;;
-    polybar) $gvim "$configs/polybar/config" ;;
+    polybar) $vim "$configs/polybar/config" ;;
     ".Xresources") $vim "$home/.Xresources" ;;
     sxhkd) $vim "$configs/sxhkd/sxhkdrc" ;;
     i3) $vim "$home/.i3/config" ;;
     compton) $vim "$configs/compton.conf" ;;
 esac
-
