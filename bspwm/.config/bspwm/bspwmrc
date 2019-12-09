@@ -30,7 +30,10 @@ then
     cbatticon &
     #pasystray &
     #amixer set Capture toggle
-    dunst &
+    until dunst; do
+        echo "'dunst' crashed with exit code $?.  Respawning.." >&2
+        sleep 1
+    done
 fi
 
 if [[ "$host" == "samurai" ]]
@@ -90,6 +93,9 @@ bspc config pointer_action2 resize_side
 bspc config pointer_action3 resize_corner
 bspc config remove_disabled_monitors true
 bspc config merge_overlapping_monitors true
+# remove border for inactive windows
+bspc config -n $(bspc query -N -n) border_width 1
+
 
 #### BSPWM coloring ####
 
