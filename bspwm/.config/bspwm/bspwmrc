@@ -20,11 +20,10 @@ fi
 sleep 1; compton -b
 /home/dief/.config/polybar/launch.sh &
 nm-applet &
-blueman-applet &
+#blueman-applet &
 xautolock -time 10 -locker /home/dief/.local/bin/lock &
 #ff-theme-util &
 #fix_xcursor &
-/home/dief/.local/share/tresorit/tresorit --hidden &
 redshift-gtk &
 
 if [[ "$host" == "shinobi" ]]
@@ -32,10 +31,10 @@ then
     cbatticon &
     #pasystray &
     #amixer set Capture toggle
-    until dunst; do
-        echo "'dunst' crashed with exit code $?.  Respawning.." >&2
-        sleep 1
-    done
+    #until dunst; do
+        #echo "'dunst' crashed with exit code $?.  Respawning.." >&2
+        #sleep 1
+    #done
 fi
 
 if [[ "$host" == "samurai" ]]

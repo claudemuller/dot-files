@@ -181,6 +181,13 @@ XF86AudioMute
 XF86AudioMicMute
     amixer set Capture toggle && amixer get Capture | grep '\[off\]' && notify-send 'Mic switched OFF' || notify-send 'Mic switched ON'
 
+# switch to colemak
+XF86Explorer
+    setxkbmap -v colemak && xset r 66
+
+# switch to qwerty
+XF86LaunchA
+    setxkbmap us; xset -r 66
 
 #bindsym $mod+Control+space exec --no-startup-id rofi -show window
 #bindsym $mod+Control+Shift+c exec rofi -show calc -modi calc -no-show-match -no-sort
