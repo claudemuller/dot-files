@@ -120,11 +120,11 @@ set clipboard=unnamed,unnamedplus
 
 " nerdtree config
 set rtp+=~/nvim/plugged/nerdtree/
-"map <C-n> :NERDTreeToggle<CR>
+map <leader>n :NERDTreeToggle<CR>
 "let NERDTreeWinSize=1
 
 " vim-project config
-let g:project_use_nerdtree = 1
+"let g:project_use_nerdtree = 1
 let g:project_enable_welcome = 1
 " load projects config
 so ~/.config/nvim/.projects
@@ -354,3 +354,20 @@ function! NtSyncTree()
 endfunction
 
 autocmd BufEnter * call NtSyncTree()
+
+function! s:get_visual_selection()
+  " Why is this not a built-in Vim script function?!
+  let [lnum1, col1] = getpos("'<")[1:2]
+  let [lnum2, col2] = getpos("'>")[1:2]
+  let lines = getline(lnum1, lnum2)
+  let lines[-1] = lines[-1][: col2 - (&selection == 'inclusive' ? 1 : 2)]
+  let lines[0] = lines[0][col1 - 1:]
+  return join(lines, "\n")
+endfunction
+
+function! GetCommitForSelection(lines)
+    echo lines
+endfunction
+
+command! LESIGH call GetCommitForSelection([s:get_visual_selection()])
+command! WTF :<C-U>GetCommitForSelection<cr>

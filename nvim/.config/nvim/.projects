@@ -9,6 +9,7 @@ so ~/dxtrs/projects/crayon/site/.vimrc
 so ~/dxtrs/projects/automattic/frontend-code-test-claudemuller/.vimrc
 so ~/personal/study-notes/c++/frostbyte-engine_cpp/.vimrc
 so ~/personal/study-notes/c/frostbyte-engine_c/.vimrc
+so ~/personal/study-notes/c++/cpp-2d-game-engine/2dgameengine/.vimrc
 
 "so ~/personal/code/c++/the-cherno-game-engine-series/game-engine/.vimrc
 

@@ -42,7 +42,7 @@ format-offset =
 [colors]
 ;PyWPG theme ============
 background = ${xrdb:color0:#222}
-background_highlight = ${xrdb:color2:#222}
+background_highlight = ${xrdb:color6:#222}
 foreground = ${xrdb:color7:#222}
 foreground-alt = ${xrdb:color7:#222}
 primary = ${xrdb:color2:#222}
@@ -267,7 +267,7 @@ format-background = ${colors.background}
 type = custom/text
 content = "%{T2} %{T-}"
 content-font = 2
-content-foreground = ${xrdb:color6}
+content-foreground = ${xrdb:color7}
 content-background = ${colors.background}
 
 [module/arrow1]
@@ -276,7 +276,7 @@ type = custom/text
 content = "%{T2} %{T-}"
 content-font = 2
 content-foreground = ${xrdb:color5}
-content-background = ${xrdb:color6}
+content-background = ${xrdb:color7}
 
 
 [module/arrow2]
@@ -284,7 +284,7 @@ content-background = ${xrdb:color6}
 type = custom/text
 content = "%{T2} %{T-}"
 content-font = 2
-content-foreground = ${xrdb:color6}
+content-foreground = ${xrdb:color7}
 content-background = ${xrdb:color5}
 
 [module/arrow3]
@@ -293,14 +293,14 @@ type = custom/text
 content = "%{T2} %{T-}"
 content-font = 2
 content-foreground = ${xrdb:color5}
-content-background = ${xrdb:color6}
+content-background = ${xrdb:color7}
 
 [module/arrow4]
 ; grey to Blue
 type = custom/text
 content = "%{T2} %{T-}"
 content-font = 2
-content-foreground = ${xrdb:color6}
+content-foreground = ${xrdb:color7}
 content-background = ${xrdb:color5}
 
 [module/arrow5]
@@ -309,7 +309,7 @@ type = custom/text
 content = "%{T2} %{T-}"
 content-font = 2
 content-foreground = ${xrdb:color5}
-content-background = ${xrdb:color6}
+content-background = ${xrdb:color7}
 
 [module/arrow6]
 ; grey to Blue
@@ -333,7 +333,7 @@ interval = 300
 exec = ~/.config/polybar/scripts/harvest.sh
 tail = true
 format-foreground = ${colors.background}
-format-background = ${xrdb:color6}
+format-background = ${xrdb:color7}
 
 ################################################################################
 
@@ -768,7 +768,7 @@ format = <label>
 format-prefix = " "
 format-prefix-foreground = #292d3e
 format-foreground = #292d3e
-format-background = ${xrdb:color6}
+format-background = ${xrdb:color7}
 
 ################################################################################
 
@@ -877,7 +877,7 @@ click-left = ~/.config/polybar/scripts/pavolume.sh --togmute
 scroll-up = ~/.config/polybar/scripts/pavolume.sh --up
 scroll-down = ~/.config/polybar/scripts/pavolume.sh --down
 format-foreground = ${colors.background}
-format-background = ${xrdb:color6}
+format-background = ${xrdb:color7}
 
 
 

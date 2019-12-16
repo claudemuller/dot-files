@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/dief/.config/wpg/wallpapers/9ale0jbghs441.jpg",
+    "alpha": "25",
+
+    "special": {
+        "background": "#0c0f16",
+        "foreground": "#8ddbef",
+        "cursor": "#8ddbef"
+    },
+    "colors": {
+        "color0": "#0c0f16",
+        "color1": "#1A5D9F",
+        "color2": "#386DAD",
+        "color3": "#887892",
+        "color4": "#2298E4",
+        "color5": "#529DC6",
+        "color6": "#ff8f2c",
+        "color7": "#8ddbef",
+        "color8": "#6299a7",
+        "color9": "#1A5D9F",
+        "color10": "#386DAD",
+        "color11": "#887892",
+        "color12": "#2298E4",
+        "color13": "#529DC6",
+        "color14": "#ff8f2c",
+        "color15": "#8ddbef"
+    }
+}
