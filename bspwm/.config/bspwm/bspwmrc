@@ -23,7 +23,7 @@ nm-applet &
 xautolock -time 10 -locker /home/dief/.local/bin/lock &
 #ff-theme-util &
 #fix_xcursor &
-/home/dief/.local/share/tresorit/tresorit --hidden &
+redshift-gtk &
 
 if [[ "$host" == "shinobi" ]]
 then
