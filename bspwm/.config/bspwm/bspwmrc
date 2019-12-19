@@ -4,6 +4,7 @@
 
 host=$(hostname)
 
+
 #### AUTOSTART ####
 
 if [[ "$host" == "samurai" ]]
@@ -19,11 +20,10 @@ fi
 #nitrogen --restore &
 sleep 1; compton -b
 /home/dief/.config/polybar/launch.sh &
+/home/dief/.local/bin/set-border &
 nm-applet &
 #blueman-applet &
 xautolock -time 10 -locker /home/dief/.local/bin/lock &
-#ff-theme-util &
-#fix_xcursor &
 redshift-gtk &
 
 if [[ "$host" == "shinobi" ]]
@@ -43,8 +43,9 @@ then
     /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
     #start_conky_maia &
     #volumeicon &
-    clipit &
+    #clipit &
 fi
+
 
 #### AUTOSTART and place on desktop ####
 
@@ -56,6 +57,7 @@ then
     bspc rule -a Chromium -o desktop=^11 && chromium &
 fi
 bspc rule -a Google-chrome -o desktop=^3 && google-chrome-stable &
+
 
 #### MONITORS ####
 
@@ -71,10 +73,11 @@ else
     bspc monitor default -d 1 2 3 4 5 6 7 8 9 0
 fi
 
+
 #### BSPWM configuration ####
 
 #bspc config border_radius       8
-bspc config border_width         1
+bspc config border_width         0
 bspc config window_gap           10
 bspc config top_padding          20
 bspc config bottom_padding       0
@@ -94,8 +97,6 @@ bspc config pointer_action2 resize_side
 bspc config pointer_action3 resize_corner
 bspc config remove_disabled_monitors true
 bspc config merge_overlapping_monitors true
-# remove border for inactive windows
-bspc config -n $(bspc query -N -n) border_width 1
 
 
 #### BSPWM coloring ####
@@ -115,11 +116,11 @@ xdo below -t $(xdo id -n root) $(xdo id -a polybar-main_HDMI-0)
 bspc rule -a Slack desktop='^2'
 bspc rule -a Google-chrome desktop='^3'
 bspc rule -a Brave-browser desktop='^4'
-bspc rule -a mplayer2 state=floating
 if [[ "$host" == "samurai" ]]
 then
     bspc rule -a Chromium state=floating
 fi
+bspc rule -a mplayer2 state=floating
 bspc rule -a TorGuard state=floating
 bspc rule -a jetbrains-toolbox state=floating
 bspc rule -a Kupfer.py focus=on
@@ -128,4 +129,5 @@ bspc rule -a Screenkey manage=off
 #### setxkbmap commands ####
 setxkbmap -option caps:backspace
 setxkbmap -option compose:ralt
+
 bash /home/dief/.config/bspwm/bspwm_colors.sh &
