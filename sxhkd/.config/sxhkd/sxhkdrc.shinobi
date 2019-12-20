@@ -80,7 +80,7 @@ alt + ctrl + {m,x,y,z}
 #
 
 # focus the node in the given direction
-alt + {_,shift + }{h,j,k,l}
+alt + {_,shift + }{h,y,n,u}
 	bspc node -{f,s} {west,south,north,east}
 
 # focus the node for the given path jump

@@ -8,6 +8,18 @@ color5=$(cat "$1" | jq -r '.colors.color5' | sed 's/#//g')
 color6=$(cat "$1" | jq -r '.colors.color6' | sed 's/#//g')
 color7=$(cat "$1" | jq -r '.colors.color7' | sed 's/#//g')
 
-color9="    \"color9\": \" + $(pastel ${color1} | pastel lighten 0.1) + "\","
+color9=$(pastel lighten 0.1 "$color1" | pastel format hex)
+color10=$(pastel lighten 0.1 "$color2" | pastel format hex)
+color11=$(pastel lighten 0.1 "$color3" | pastel format hex)
+color12=$(pastel lighten 0.1 "$color4" | pastel format hex)
+color13=$(pastel lighten 0.1 "$color5" | pastel format hex)
+color14=$(pastel lighten 0.1 "$color6" | pastel format hex)
+color15=$(pastel lighten 0.1 "$color7" | pastel format hex)
 
-echo "${color9}"
+sed -i "s/.*color9.*/        \"color9\": \"$color9\",/g" $1
+sed -i "s/.*color10.*/        \"color10\": \"$color10\",/g" $1
+sed -i "s/.*color11.*/        \"color11\": \"$color11\",/g" $1
+sed -i "s/.*color12.*/        \"color12\": \"$color12\",/g" $1
+sed -i "s/.*color13.*/        \"color13\": \"$color13\",/g" $1
+sed -i "s/.*color14.*/        \"color14\": \"$color14\",/g" $1
+sed -i "s/.*color15.*/        \"color15\": \"$color15\"/g" $1
