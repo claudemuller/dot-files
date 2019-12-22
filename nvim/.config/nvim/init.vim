@@ -210,7 +210,7 @@ hi link illuminatedWord Visual
 " gutentags config
 set statusline+=%{gutentags#statusline()}
 let g:gutentags_add_default_project_roots = 0
-let g:gutentags_project_root = ['package.json', '.git']
+let g:gutentags_project_root = ['package.json', '.git', 'Makefile']
 let g:gutentags_cache_dir = expand('~/.cache/nvim/ctags/')
 let g:gutentags_generate_on_new = 1
 let g:gutentags_generate_on_missing = 1
@@ -276,10 +276,14 @@ function! IPhpExpandClass()
 endfunction
 
 " jump to definition
-"nmap <silent> <leader>ld <Plug>(coc-definition)
-"nmap <silent> <leader>lt <Plug>(coc-type-definition)
-"nmap <silent> <leader>li <Plug>(coc-implementation)
-"nmap <silent> <leader>lf <Plug>(coc-references)
+nmap <silent> <leader>cd <Plug>(coc-definition)
+nmap <silent> <leader>ct <Plug>(coc-type-definition)
+nmap <silent> <leader>ci <Plug>(coc-implementation)
+nmap <silent> <leader>cf <Plug>(coc-references)
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " lightline config
 let g:lightline = {
