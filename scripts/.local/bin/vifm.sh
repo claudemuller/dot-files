@@ -1,3 +1,3 @@
 #!/usr/bin/env zsh
 
-/usr/bin/st -e vifm
+/usr/local/bin/st -e vifm
