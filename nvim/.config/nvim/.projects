@@ -7,9 +7,7 @@ so ~/dxtrs/projects/team-extension/sbt/sites/SBT-CMS/.vimrc
 so ~/dxtrs/projects/team-extension/sbt/sites/sbt-mvp-backend/.vimrc
 so ~/dxtrs/projects/crayon/site/.vimrc
 so ~/dxtrs/projects/automattic/frontend-code-test-claudemuller/.vimrc
-so ~/personal/study-notes/c++/frostbyte-engine_cpp/.vimrc
-so ~/personal/study-notes/c/frostbyte-engine_c/.vimrc
-so ~/personal/study-notes/c++/cpp-2d-game-engine/2dgameengine/.vimrc
+so ~/dxtrs/dxtrs-games/code/frostbyte-engine/.vimrc
 
 "so ~/personal/code/c++/the-cherno-game-engine-series/game-engine/.vimrc
 
