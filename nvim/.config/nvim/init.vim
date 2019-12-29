@@ -122,7 +122,7 @@ set clipboard=unnamed,unnamedplus
 set rtp+=~/nvim/plugged/nerdtree/
 map <leader>n :NERDTreeToggle<CR>
 "let NERDTreeWinSize=1
-
+umap <leader>ci<CR>
 " vim-project config
 "let g:project_use_nerdtree = 1
 let g:project_enable_welcome = 1
