@@ -122,7 +122,7 @@ set clipboard=unnamed,unnamedplus
 set rtp+=~/nvim/plugged/nerdtree/
 map <leader>n :NERDTreeToggle<CR>
 "let NERDTreeWinSize=1
-umap <leader>ci<CR>
+"unmap <leader>ci<CR>
 " vim-project config
 "let g:project_use_nerdtree = 1
 let g:project_enable_welcome = 1
@@ -279,7 +279,7 @@ endfunction
 nmap <silent> <leader>cd <Plug>(coc-definition)
 nmap <silent> <leader>ct <Plug>(coc-type-definition)
 nmap <silent> <leader>ci <Plug>(coc-implementation)
-nmap <silent> <leader>cf <Plug>(coc-references)
+nmap <silent> <leader>cr <Plug>(coc-references)
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
