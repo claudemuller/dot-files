@@ -334,12 +334,19 @@ autocmd FileType html       setlocal shiftwidth=4 tabstop=4
 " nnoremap <leader>s :set invspell<CR>                      " when invoking an Ex command <CR> is needed to complete command
 " inoremap <leader>d <C-R>=strftime("%Y-%m-%dT%H:%M")<CR>   " <C-R>= is used to insert output at cursor loc
 
-function! Runf9()
+function! BuildAndRun()
   if filereadable("./Makefile")
     make build_and_run
   endif
 endfunction
-nmap <silent> <F9> :call Runf9()<CR>
+nmap <silent> <F9> :call BuildAndRun()<CR>
+
+function! BuildAndDebug()
+  if filereadable("./Makefile")
+    make debug
+  endif
+endfunction
+nmap <silent> <F10> :call BuildAndDebug()<CR> :Termdebug game<CR>
 
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
 " | Autorun commands                                                                                                                                         |

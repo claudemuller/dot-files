@@ -10,6 +10,7 @@ so ~/dxtrs/projects/automattic/frontend-code-test-claudemuller/.vimrc
 so ~/dxtrs/dxtrs-games/code/frostbyte-engine/.vimrc
 so ~/dxtrs/dxtrs-games/games/memorize/code/.vimrc
 so ~/dxtrs/dxtrs-games/code/tile-editor/.vimrc
+so ~/personal/code/c++/run-jump/.vimrc
 
 "so ~/personal/code/c++/the-cherno-game-engine-series/game-engine/.vimrc
 
