@@ -307,6 +307,14 @@ nnoremap <leader>gd :Gvdiffsplit!<CR>
 nnoremap gdh :diffget //2<CR>
 nnoremap gdl :diffget //3<CR>
 
+" termdebug shortcuts
+nmap <silent> <leader>dr :Run<CR>
+nmap <silent> <leader>db :Break<CR>
+nmap <silent> <leader>dc :Clear<CR>
+nmap <silent> <leader>ds :Step<CR>
+nmap <silent> <leader>do :Over<CR>
+nmap <silent> <leader>df :Finish<CR>
+nmap <silent> <leader>de :Evaluate<CR>
 
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
 " | Language Configs                                                                                                                                         |
@@ -346,7 +354,7 @@ function! BuildAndDebug()
     make debug
   endif
 endfunction
-nmap <silent> <F10> :call BuildAndDebug()<CR> :Termdebug game<CR>
+nmap <silent> <F10> :call BuildAndDebug()<CR> :packadd termdebug<CR> :Termdebug game<CR>
 
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
 " | Autorun commands                                                                                                                                         |
