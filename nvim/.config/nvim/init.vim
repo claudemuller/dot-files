@@ -122,7 +122,7 @@ set clipboard=unnamed,unnamedplus
 set rtp+=~/nvim/plugged/nerdtree/
 map <leader>n :NERDTreeToggle<CR>
 "let NERDTreeWinSize=1
-umap <leader>ci<CR>
+"unmap <leader>ci<CR>
 " vim-project config
 "let g:project_use_nerdtree = 1
 let g:project_enable_welcome = 1
@@ -279,7 +279,7 @@ endfunction
 nmap <silent> <leader>cd <Plug>(coc-definition)
 nmap <silent> <leader>ct <Plug>(coc-type-definition)
 nmap <silent> <leader>ci <Plug>(coc-implementation)
-nmap <silent> <leader>cf <Plug>(coc-references)
+nmap <silent> <leader>cr <Plug>(coc-references)
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -307,6 +307,14 @@ nnoremap <leader>gd :Gvdiffsplit!<CR>
 nnoremap gdh :diffget //2<CR>
 nnoremap gdl :diffget //3<CR>
 
+" termdebug shortcuts
+nmap <silent> <leader>dr :Run<CR>
+nmap <silent> <leader>db :Break<CR>
+nmap <silent> <leader>dc :Clear<CR>
+nmap <silent> <leader>ds :Step<CR>
+nmap <silent> <leader>do :Over<CR>
+nmap <silent> <leader>df :Finish<CR>
+nmap <silent> <leader>de :Evaluate<CR>
 
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
 " | Language Configs                                                                                                                                         |
@@ -334,12 +342,19 @@ autocmd FileType html       setlocal shiftwidth=4 tabstop=4
 " nnoremap <leader>s :set invspell<CR>                      " when invoking an Ex command <CR> is needed to complete command
 " inoremap <leader>d <C-R>=strftime("%Y-%m-%dT%H:%M")<CR>   " <C-R>= is used to insert output at cursor loc
 
-function! Runf9()
+function! BuildAndRun()
   if filereadable("./Makefile")
     make build_and_run
   endif
 endfunction
-nmap <silent> <F9> :call Runf9()<CR>
+nmap <silent> <F9> :call BuildAndRun()<CR>
+
+function! BuildAndDebug()
+  if filereadable("./Makefile")
+    make debug
+  endif
+endfunction
+nmap <silent> <F10> :call BuildAndDebug()<CR> :packadd termdebug<CR> :Termdebug game<CR>
 
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
 " | Autorun commands                                                                                                                                         |
