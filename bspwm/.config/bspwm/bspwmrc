@@ -132,7 +132,7 @@ setxkbmap -option compose:ralt
 
 if [[ "$host" == "samurai" ]]
 then
-    xinput --set-prop 9 'libinput Accel Speed' -1
+#    xinput --set-prop 9 'libinput Accel Speed' -1
 fi
 
 bash /home/dief/.config/bspwm/bspwm_colors.sh &
