@@ -31,6 +31,7 @@ then
     cbatticon &
     #pasystray &
     #amixer set Capture toggle
+    /home/dief/.local/share/tresorit/tresorit &
     #until dunst; do
         #echo "'dunst' crashed with exit code $?.  Respawning.." >&2
         #sleep 1
@@ -136,3 +137,11 @@ then
 fi
 
 bash /home/dief/.config/bspwm/bspwm_colors.sh &
+
+if [[ "$host" == "shinobi" ]]
+then
+    until dunst; do
+        echo "'dunst' crashed with exit code $?.  Respawning.." >&2
+        sleep 1
+    done
+fi
