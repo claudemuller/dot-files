@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/dief/.config/wpg/wallpapers/darth-vader-dart-veider-vader-starwars-is-coming-star-wars-l.jpg",
+    "alpha": "25",
+
+    "special": {
+        "background": "#03172f",
+        "foreground": "#e8eef0",
+        "cursor": "#e8eef0"
+    },
+    "colors": {
+        "color0": "#03172f",
+        "color1": "#BA2B30",
+        "color2": "#F7920A",
+        "color3": "#21649C",
+        "color4": "#4461AB",
+        "color5": "#9D4F8B",
+        "color6": "#22ADC7",
+        "color7": "#cad7db",
+        "color8": "#5c5c5c",
+        "color9": "#d44449",
+        "color10": "#f9a73b",
+        "color11": "#2a80c6",
+        "color12": "#627dc0",
+        "color13": "#b46ba3",
+        "color14": "#3ec6de",
+        "color15": "#e8eef0"
+    }
+}
