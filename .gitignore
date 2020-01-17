@@ -1,5 +1,6 @@
 scripts/.local/share/*
 scripts/.local/include/
 scripts/.local/lib/
+scripts/.local/bin/running.pid
 ranger/.config/ranger/__pycache__/
 ranger/.config/ranger/plugins/__pycache__/

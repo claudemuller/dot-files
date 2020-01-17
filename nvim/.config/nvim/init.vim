@@ -22,7 +22,7 @@ call plug#begin('~/nvim/plugged')
 " General Plugins
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind']}  " file explorer plugin
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'bfredl/nvim-miniyank'                      " vim register browser plugin
+"Plug 'svermeulen/vim-yoink'                      " vim register browser plugin
 Plug 'itchyny/lightline.vim'                     " status line plugin
 Plug 'tpope/vim-abolish'                         " substitution plugin that handles plurals, case and underscores
 Plug 'amiorin/vim-project'                       " project management plugin
@@ -120,7 +120,7 @@ set clipboard=unnamed,unnamedplus
 
 " nerdtree config
 set rtp+=~/nvim/plugged/nerdtree/
-map <leader>n :NERDTreeToggle<CR>
+nnoremap <leader>ne :NERDTreeToggle<CR>
 "let NERDTreeWinSize=1
 "unmap <leader>ci<CR>
 " vim-project config
@@ -137,8 +137,11 @@ map <leader>fm :BTags<CR>
 map <leader>fb :Buffers<CR>
 map <leader>fs :Ag<CR>
 
-" vim-miniyank config
-map <leader>p <Plug>(miniyank-cycle)
+" vim-yoink config
+"nmap <c-n> <plug>(YoinkPostPasteSwapBack)
+"nmap <c-p> <plug>(YoinkPostPasteSwapForward)
+"nmap p <plug>(YoinkPaste_p)
+"nmap P <plug>(YoinkPaste_P)
 
 " ncm2-(phpactor?) config
 "autocmd BufEnter * call ncm2#enable_for_buffer()
