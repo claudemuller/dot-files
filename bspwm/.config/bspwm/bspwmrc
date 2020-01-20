@@ -25,13 +25,13 @@ nm-applet &
 #blueman-applet &
 xautolock -time 10 -locker /home/dief/.local/bin/lock &
 redshift-gtk &
+/home/dief/.local/share/tresorit/tresorit &
 
 if [[ "$host" == "shinobi" ]]
 then
     cbatticon &
     #pasystray &
     #amixer set Capture toggle
-    /home/dief/.local/share/tresorit/tresorit &
     #until dunst; do
         #echo "'dunst' crashed with exit code $?.  Respawning.." >&2
         #sleep 1
