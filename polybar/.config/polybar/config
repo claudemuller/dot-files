@@ -42,9 +42,9 @@ format-offset =
 [colors]
 ;PyWPG theme ============
 background = ${xrdb:color0:#222}
-background_highlight = ${xrdb:color6:#222}
+background_highlight = ${xrdb:color0:#222}
 foreground = ${xrdb:color7:#222}
-foreground-alt = ${xrdb:color7:#222}
+foreground-alt = ${xrdb:color10:#222}
 primary = ${xrdb:color2:#222}
 secondary = ${xrdb:color5:#222}
 alert = r{xrdb:color1:#222}
@@ -112,15 +112,15 @@ radius = 0.0
 line-size = 2
 line-color = #000000
 
-border-size = 0
+border-size = 4
 ;border-left-size = 25
 ;border-right-size = 25
 ;border-top-size = 0
 ;border-bottom-size = 25
-border-color = #000000
+border-color = ${colors.background}
 
-padding-left = 1
-padding-right = 1
+padding-left = 0
+padding-right = 0
 
 module-margin-left = 0
 module-margin-right = 0
@@ -132,9 +132,10 @@ font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=8;1"
 font-3 = "Font Awesome 5 Free:style=Solid:pixelsize=8;1"
 font-4 = "Font Awesome 5 Brands:pixelsize=8;1"
 
-modules-left = bspwm xwindow
+modules-left = s0 bspwm s1 s6 xwindow s7
 modules-center =
-modules-right = arrow0 harvest arrow1  networkspeedup networkspeeddown arrow2 memory2 arrow3 cpu2 arrow4 pavolume arrow5 aur-updates arrow6 date
+#modules-right = arrow0 harvest arrow1  networkspeedup networkspeeddown arrow2 memory2 arrow3 cpu2 arrow4 pavolume arrow5 aur-updates arrow6 date
+modules-right = s9 harvest s4 s3 networkspeedup s4 s3 networkspeeddown s4 s3 memory2 s4 s3 cpu2 s4 s3 pavolume s4 s3 aur-updates s4 date
 
 separator =
 
@@ -198,7 +199,7 @@ ws-icon-1 = 2;
 ws-icon-2 = 3;
 ws-icon-3 = 4;
 ws-icon-4 = 5;
-ws-icon-5 = 6;
+ws-icon-5 = test6;
 ws-icon-6 = 7;
 ws-icon-7 = 8;
 ws-icon-8 = 9;
@@ -212,38 +213,47 @@ ws-icon-default = " "
 format = <label-state> <label-mode>
 
 label-focused = %icon%
-label-focused-background = ${colors.background_highlight}
+label-focused-background = ${xrdb:color5}
 #label-focused-underline= #6790eb
 label-focused-padding = 2
-label-focused-foreground = ${colors.background}
+label-focused-foreground = ${colors.foreground}
 
 label-occupied = %icon%
 label-occupied-padding = 2
-label-occupied-background = ${colors.background}
+label-occupied-foreground = ${colors.background}
+label-occupied-background = ${xrdb:color5}
 
 label-urgent = %icon%
 label-urgent-padding = 2
 
 label-empty = %icon%
-label-empty-foreground = ${colors.foreground}
+label-empty-foreground = ${xrdb:color13}
 label-empty-padding = 2
-label-empty-background = ${colors.background}
+label-empty-background = ${xrdb:color5}
 label-monocle = "  "
 label-monocle-foreground = ${colors.foreground}
+label-monocle-background = ${xrdb:color5}
 label-tiled = "  "
 label-tiled-foreground = ${colors.foreground}
+label-tiled-background = ${xrdb:color5}
 label-fullscreen = "  "
 label-fullscreen-foreground = ${colors.foreground}
+label-fullscreen-background = ${xrdb:color5}
 label-floating = "  "
 label-floating-foreground = ${colors.foreground}
+label-floating-background = ${xrdb:color5}
 label-pseudotiled = "  "
 label-pseudotiled-foreground = ${colors.foreground}
+label-pseudotiled-background = ${xrdb:color5}
 label-locked = "  "
 label-locked-foreground = ${colors.foreground}
+label-locked-background = ${xrdb:color5}
 label-sticky = "  "
 label-sticky-foreground = ${colors.foreground}
+label-sticky-background = ${xrdb:color5}
 label-private =  "     "
 label-private-foreground = ${colors.foreground}
+label-private-background = ${xrdb:color5}
 
 ; Separator in between workspaces
 ;label-separator = |
@@ -252,8 +262,6 @@ label-private-foreground = ${colors.foreground}
 
 format-foreground = ${colors.foreground}
 format-background = ${colors.background}
-
-
 
 
 ################################################################################
@@ -320,6 +328,88 @@ content-foreground = ${colors.background}
 content-background = ${xrdb:color5}
 
 
+################################################################################
+################################################################################
+############                      MODULES SLANTS                    ############
+################################################################################
+################################################################################
+
+#
+
+[module/s0]
+type = custom/text
+content = "%{T2}%{T-}"
+content-font = 5
+content-foreground = ${xrdb:color5}
+content-background = ${colors.background}
+
+[module/s1]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 5
+content-foreground = ${xrdb:color5}
+content-background = ${colors.background}
+
+[module/s2]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 5
+content-foreground = ${xrdb:color5}
+content-background = ${colors.background}
+
+[module/s3]
+; purple top slant to right
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 5
+content-foreground = ${xrdb:color13}
+content-background = ${colors.background}
+
+[module/s4]
+; light purple bottom slant to left
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 5
+content-foreground = ${xrdb:color5}
+content-background = ${colors.background}
+
+[module/s5]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 5
+content-foreground = ${colors.background}
+content-background = ${xrdb:color5}
+
+[module/s6]
+type = custom/text
+content = "%{T2}%{T-}"
+content-font = 5
+content-foreground = ${xrdb:color13}
+content-background = ${colors.background}
+
+[module/s7]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 5
+content-foreground = ${xrdb:color13}
+content-background = ${colors.background}
+
+[module/s8]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 5
+content-foreground = ${xrdb:color13}
+content-background = ${colors.background}
+
+[module/s9]
+; purple top slant to right
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 5
+content-foreground = ${xrdb:color5}
+content-background = ${colors.background}
+
+
 
 ################################################################################
 ###############################################################################
@@ -333,7 +423,7 @@ interval = 300
 exec = ~/.config/polybar/scripts/harvest.sh
 tail = true
 format-foreground = ${colors.background}
-format-background = ${xrdb:color7}
+format-background = ${xrdb:color5}
 
 ################################################################################
 
@@ -353,7 +443,7 @@ format-prefix-foreground = ${colors.background}
 type = custom/script
 exec = pacman -Qu | sed "/\bignored\b/d" | wc -l
 interval = 1000
-label = Aur: %output%
+label = " Aur: %output%"
 #format-foreground = ${colors.foreground}
 #format-background = ${colors.background}
 #format-prefix = "  "
@@ -361,8 +451,9 @@ label = Aur: %output%
 #format-underline = #FFBB00
 format-foreground = ${colors.background}
 format-background = ${xrdb:color5}
-format-prefix = "  "
+format-prefix = " "
 format-prefix-foreground = ${colors.background}
+format-prefix-background = ${xrdb:color13}
 
 
 ################################################################################
@@ -533,6 +624,7 @@ format-foreground = ${colors.background}
 format-background = ${xrdb:color5}
 format-prefix = " "
 format-prefix-foreground = ${colors.background}
+format-prefix-background = ${xrdb:color13}
 
 label-font = 1
 
@@ -761,14 +853,15 @@ interval = 1
 ;   %mb_used%
 ;   %mb_free%
 ;   %mb_total%
-label = %percentage_used%%
+label = " %percentage_used%%"
 
 #format = Mem <label>
 format = <label>
 format-prefix = " "
 format-prefix-foreground = #292d3e
+format-prefix-background = ${xrdb:color13}
 format-foreground = #292d3e
-format-background = ${xrdb:color7}
+format-background = ${xrdb:color5}
 
 ################################################################################
 
@@ -829,11 +922,12 @@ type = internal/network
 ;interface = enp0s31f6
 interface = eno1
 label-connected = "%upspeed:7%"
+label-connected-background = ${xrdb:color5}
 format-connected = <label-connected>
 format-connected-prefix = " "
-format-connected-prefix-foreground = #292d3e
-format-connected-foreground = #292d3e
-format-connected-background = ${xrdb:color5}
+format-connected-prefix-foreground = ${colors.background}
+format-connected-foreground = ${colors.background}
+format-connected-background = ${xrdb:color13}
 
 ################################################################################
 
@@ -845,11 +939,12 @@ type = internal/network
 ;interface = enp0s31f6
 interface = eno1
 label-connected = "%downspeed:7%"
+label-connected-background = ${xrdb:color5}
 format-connected = <label-connected>
-format-connected-prefix = "  "
-format-connected-prefix-foreground = #292d3e
-format-connected-foreground = #292d3e
-format-connected-background = ${xrdb:color5}
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.background}
+format-connected-foreground = ${colors.background}
+format-connected-background = ${xrdb:color13}
 
 ################################################################################
 
@@ -870,16 +965,17 @@ format-underline = #FFBB00
 [module/pavolume]
 type = custom/script
 tail = true
-label = %output%
+label = " %output%"
 exec = ~/.config/polybar/scripts/pavolume.sh --listen
 click-right = exec pavucontrol
 click-left = ~/.config/polybar/scripts/pavolume.sh --togmute
 scroll-up = ~/.config/polybar/scripts/pavolume.sh --up
 scroll-down = ~/.config/polybar/scripts/pavolume.sh --down
 format-foreground = ${colors.background}
-format-background = ${xrdb:color7}
-
-
+format-background = ${xrdb:color5}
+format-prefix = " "
+format-prefix-foreground = ${colors.background}
+format-prefix-background = ${xrdb:color13}
 
 ################################################################################
 
@@ -1179,8 +1275,8 @@ label = %title%
 label-maxlen = 50
 
 format-prefix = "  "
-format-foreground = ${colors.foreground}
-format-background = ${colors.background}
+format-foreground = ${colors.background}
+format-background = ${xrdb:color13}
 
 ###############################################################################
 # vim:ft=dosini
