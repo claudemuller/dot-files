@@ -51,6 +51,7 @@ alert = r{xrdb:color1:#222}
 volume-min = #a3be8c
 volume-med = #ebcb8b
 volume-max = #bf616a
+transparent = #00000000
 
 ; Nord theme ============
 ;background = #292d3e
@@ -101,7 +102,7 @@ height = 20
 ;offset-x = 1%
 ;offset-y = 1%
 
-background = ${colors.background}
+background = ;${colors.transparent}
 foreground = ${colors.foreground}
 
 ; Background gradient (vertical steps)
@@ -117,7 +118,7 @@ border-size = 4
 ;border-right-size = 25
 ;border-top-size = 0
 ;border-bottom-size = 25
-border-color = ${colors.background}
+border-color = ${colors.transparent}
 
 padding-left = 0
 padding-right = 0
@@ -135,7 +136,7 @@ font-4 = "Font Awesome 5 Brands:pixelsize=8;1"
 modules-left = s0 bspwm s1 s6 xwindow s7
 modules-center =
 #modules-right = arrow0 harvest arrow1  networkspeedup networkspeeddown arrow2 memory2 arrow3 cpu2 arrow4 pavolume arrow5 aur-updates arrow6 date
-modules-right = s9 harvest s4 s3 networkspeedup s4 s3 networkspeeddown s4 s3 memory2 s4 s3 cpu2 s4 s3 pavolume s4 s3 aur-updates s4 date
+modules-right = s9 harvest s4 s3 networkspeedup s4 s3 networkspeeddown s4 s3 memory2 s4 s3 cpu2 s4 s3 pavolume s4 s3 aur-updates s4 s10 date
 
 separator =
 
@@ -341,73 +342,77 @@ type = custom/text
 content = "%{T2}%{T-}"
 content-font = 5
 content-foreground = ${xrdb:color5}
-content-background = ${colors.background}
+content-background = ${colors.transparent}
 
 [module/s1]
 type = custom/text
 content = "%{T3}%{T-}"
 content-font = 5
 content-foreground = ${xrdb:color5}
-content-background = ${colors.background}
+content-background = ${colors.transparent}
 
 [module/s2]
 type = custom/text
 content = "%{T3}%{T-}"
 content-font = 5
 content-foreground = ${xrdb:color5}
-content-background = ${colors.background}
+content-background = ${colors.transparent}
 
 [module/s3]
-; purple top slant to right
 type = custom/text
 content = "%{T3}%{T-}"
 content-font = 5
 content-foreground = ${xrdb:color13}
-content-background = ${colors.background}
+content-background = ${colors.transparent}
 
 [module/s4]
-; light purple bottom slant to left
 type = custom/text
 content = "%{T3}%{T-}"
 content-font = 5
 content-foreground = ${xrdb:color5}
-content-background = ${colors.background}
+content-background = ${colors.transparent}
 
 [module/s5]
 type = custom/text
 content = "%{T3}%{T-}"
 content-font = 5
 content-foreground = ${colors.background}
-content-background = ${xrdb:color5}
+content-background = ${colors.transparent}
 
 [module/s6]
 type = custom/text
 content = "%{T2}%{T-}"
 content-font = 5
 content-foreground = ${xrdb:color13}
-content-background = ${colors.background}
+content-background = ${colors.transparent}
 
 [module/s7]
 type = custom/text
 content = "%{T3}%{T-}"
 content-font = 5
 content-foreground = ${xrdb:color13}
-content-background = ${colors.background}
+content-background = ${colors.transparent}
 
 [module/s8]
 type = custom/text
 content = "%{T3}%{T-}"
 content-font = 5
 content-foreground = ${xrdb:color13}
-content-background = ${colors.background}
+content-background = ${colors.transparent}
 
 [module/s9]
-; purple top slant to right
 type = custom/text
 content = "%{T3}%{T-}"
 content-font = 5
 content-foreground = ${xrdb:color5}
-content-background = ${colors.background}
+content-background = ${colors.transparent}
+
+[module/s10]
+type = custom/text
+content = "%{T3}%{T-}"
+content-font = 5
+content-foreground = ${colors.background}
+content-background = ${colors.transparent}
 
 
 
