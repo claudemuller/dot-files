@@ -923,7 +923,6 @@ type = internal/network
 interface = wlp3s0
 ;interface = enp14s0
 ;interface = enp0s31f6
-label-connected = "%upspeed:7%"
 label-connected = " %upspeed:7%"
 label-connected-background = ${xrdb:color5}
 format-connected = <label-connected>
