@@ -4,7 +4,7 @@
 
 # terminal emulator
 alt + Return
-	st -e
+	alacritty
 
 # make sxhkd reload its configuration files:
 alt + Escape
@@ -18,18 +18,18 @@ alt + p
 # app shortcuts
 #
 alt + F1
-    st -e vim /home/dief/personal/scratch-pad
+    alacritty -e vim /home/dief/personal/scratch-pad
 
 alt + F2
-    st -e vim
+    alacritty -e vim
 
 alt + F3
-    st ranger
+    alacritty ranger
 
 # bindsym $mod+F3 exec ranger
 
 alt + shift + F3
-    gksu st ranger
+    gksu alacritty ranger
 
 alt + F4
     filezilla
