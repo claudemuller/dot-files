@@ -17,6 +17,9 @@ alt + p
 #
 # app shortcuts
 #
+alt + F1
+    st -e vim /home/dief/personal/scratch-pad
+
 alt + F2
     st -e vim
 
