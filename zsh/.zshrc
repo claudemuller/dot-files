@@ -70,3 +70,5 @@ neofetch
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
     startx
 fi
+
+source /home/dief/.config/broot/launcher/bash/br
