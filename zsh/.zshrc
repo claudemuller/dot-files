@@ -51,6 +51,8 @@ bindkey -M vicmd "j" down-line-or-beginning-search
 # open Vim
 bindkey -M vicmd "^V" edit-command-line
 
+# Aliases
+alias ls="br -dp"
 # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
 export KEYTIMEOUT=1
 
