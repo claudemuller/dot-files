@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/dief/.config/wpg/wallpapers/urnjwi013yd41.png",
+    "alpha": "25",
+
+    "special": {
+        "background": "#0f212e",
+        "foreground": "#9ad7df",
+        "cursor": "#9ad7df"
+    },
+    "colors": {
+        "color0": "#0f212e",
+        "color1": "#30728A",
+        "color2": "#33769E",
+        "color3": "#457898",
+        "color4": "#388AA0",
+        "color5": "#4993AC",
+        "color6": "#52B3C8",
+        "color7": "#9ad7df",
+        "color8": "#6b969c",
+        "color9": "#30728A",
+        "color10": "#33769E",
+        "color11": "#457898",
+        "color12": "#388AA0",
+        "color13": "#4993AC",
+        "color14": "#52B3C8",
+        "color15": "#9ad7df"
+    }
+}

@@ -77,7 +77,7 @@ fi
 
 #### BSPWM configuration ####
 
-#bspc config border_radius       8
+bspc config border_radius        5
 bspc config border_width         0
 bspc config window_gap           10
 bspc config top_padding          20
