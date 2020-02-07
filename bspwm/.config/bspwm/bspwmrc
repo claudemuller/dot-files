@@ -25,7 +25,7 @@ nm-applet &
 #blueman-applet &
 xautolock -time 10 -locker /home/dief/.local/bin/lock &
 redshift-gtk &
-/home/dief/.local/share/tresorit/tresorit &
+/home/dief/.local/share/tresorit/tresorit --hidden &
 
 if [[ "$host" == "shinobi" ]]
 then
