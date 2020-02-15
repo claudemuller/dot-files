@@ -12,6 +12,7 @@ then
     xrandr --output DVI-D-0 --right-of DVI-D-0 --output HDMI-0 --right-of HDMI-0 --output DP-0
     xrandr --output DP-0 --rotate right
     sxhkd &
+    $($HOME/.local/bin/package-list)
 else
     sxhkd -c /home/dief/.config/sxhkd/sxhkdrc.shinobi &
 fi
@@ -19,23 +20,19 @@ fi
 ~/.config/wpg/wp_init.sh
 #nitrogen --restore &
 sleep 1; compton -b
-/home/dief/.config/polybar/launch.sh &
-/home/dief/.local/bin/set-border &
+$HOME/.config/polybar/launch.sh &
+$HOME/.local/bin/set-border &
 nm-applet &
 #blueman-applet &
 xautolock -time 10 -locker /home/dief/.local/bin/lock &
 redshift-gtk &
-/home/dief/.local/share/tresorit/tresorit --hidden &
+$HOME/.local/share/tresorit/tresorit --hidden &
 
 if [[ "$host" == "shinobi" ]]
 then
     cbatticon &
     #pasystray &
     #amixer set Capture toggle
-    #until dunst; do
-        #echo "'dunst' crashed with exit code $?.  Respawning.." >&2
-        #sleep 1
-    #done
 fi
 
 if [[ "$host" == "samurai" ]]
@@ -136,12 +133,4 @@ then
 #    xinput --set-prop 9 'libinput Accel Speed' -1
 fi
 
-bash /home/dief/.config/bspwm/bspwm_colors.sh &
-
-#if [[ "$host" == "shinobi" ]]
-#then
-    #until dunst; do
-        #echo "'dunst' crashed with exit code $?.  Respawning.." >&2
-        #sleep 1
-    #done
-#fi
+bash $HOME/.config/bspwm/bspwm_colors.sh &
