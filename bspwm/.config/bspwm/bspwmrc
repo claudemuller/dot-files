@@ -12,7 +12,7 @@ then
     xrandr --output DVI-D-0 --right-of DVI-D-0 --output HDMI-0 --right-of HDMI-0 --output DP-0
     xrandr --output DP-0 --rotate right
     sxhkd &
-    $($HOME/.local/bin/package-list)
+    $HOME/.local/bin/package-list
 else
     sxhkd -c /home/dief/.config/sxhkd/sxhkdrc.shinobi &
 fi
