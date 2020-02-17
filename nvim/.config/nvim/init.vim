@@ -40,7 +40,7 @@ Plug 'terryma/vim-multiple-cursors'              " multiple cursors plugin
 Plug 'RRethy/vim-illuminate' 			         " autohighlight word matches when hovering on word plugin
 
 " Coding plugins
-"Plug 'neomake/neomake'                           " plugin to asynchronously make/run code to detect issues
+Plug 'neomake/neomake'                           " plugin to asynchronously make/run code to detect issues
 Plug 'SirVer/ultisnips'                          " very good and fast snippet engine
 Plug 'honza/vim-snippets'                        " set of snippets for code plugin
 "Plug 'ncm2/ncm2'                                 " autocompletion engine plugin
@@ -52,6 +52,7 @@ Plug 'dense-analysis/ale'                        " code and style syntax and pro
 Plug 'tobyS/vmustache'                           " an implementation of the Mustache template system  - required for pdv
 Plug 'ludovicchabant/vim-gutentags'              " auto ctags handling
 Plug 'neoclide/coc.nvim', {'branch': 'release'}  " code completion plugin
+Plug 'SirVer/ultisnips'                          " snippet plugin
 
 " .php plugins
 Plug 'StanAngeloff/php.vim'                      " improved .php syntax highlighting plugin
@@ -358,6 +359,20 @@ function! BuildAndDebug()
   endif
 endfunction
 nmap <silent> <F10> :call BuildAndDebug()<CR> :packadd termdebug<CR> :Termdebug game<CR>
+
+" Symfony code style for PHP
+function! Symfony(...)
+    let g:ultisnips_php_scalar_types = 1
+
+    " standard phpcs config
+    let g:neomake_php_phpcs_args_standard = 'PSR2'
+
+    " php cs fixer
+    let g:php_cs_fixer_php_path = "php"
+
+    autocmd FileType php nnoremap <leader>g :call PhpCsFixerFixFile()<CR>
+endfunction
+
 
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
 " | Autorun commands                                                                                                                                         |
