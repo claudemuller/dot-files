@@ -22,4 +22,4 @@ export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 export BROWSER=/usr/bin/brave
 export VISUAL=vim;
 export EDITOR=vim;
-export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.local/bin:/home/dief/.gem/ruby/2.7.0/bin:$PATH
