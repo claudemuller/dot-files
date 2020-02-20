@@ -1,4 +1,3 @@
 #!/usr/bin/env sh
 
-st /usr/bin/ranger
-
+alacritty -e /usr/bin/ranger
