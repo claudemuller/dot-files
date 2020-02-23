@@ -318,6 +318,7 @@ ttf-ms-fonts
 ttf-muli
 ttf-ubuntu-mono-derivative-powerline-git
 ungoogled-chromium-bin
+unrar
 unzip
 upower
 usbutils
