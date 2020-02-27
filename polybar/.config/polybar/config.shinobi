@@ -212,20 +212,20 @@ format = <label-state> <label-mode>
 label-focused = %icon%
 label-focused-background = ${xrdb:color5}
 #label-focused-underline= #6790eb
-label-focused-padding = 2
+label-focused-padding = 1
 label-focused-foreground = ${colors.foreground}
 
 label-occupied = %icon%
-label-occupied-padding = 2
+label-occupied-padding = 1
 label-occupied-foreground = ${colors.background}
 label-occupied-background = ${xrdb:color5}
 
 label-urgent = %icon%
-label-urgent-padding = 2
+label-urgent-padding = 1
 
 label-empty = %icon%
 label-empty-foreground = ${xrdb:color13}
-label-empty-padding = 2
+label-empty-padding = 1
 label-empty-background = ${xrdb:color5}
 label-monocle = "  "
 label-monocle-foreground = ${colors.foreground}
