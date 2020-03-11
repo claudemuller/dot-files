@@ -4,6 +4,7 @@ set rtp+=~/nvim/plugged/vim-project/
 call project#rc("~/")
 
 so ~/dxtrs/projects/team-extension/sbt/sites/sbt-mvp-backend/.vimrc
+so ~/personal/study-notes/javascript/the-complete-javascript-course/src/.vimrc
 so ~/dxtrs/dxtrs-games/code/frostbyte-engine/.vimrc
 so ~/dxtrs/dxtrs-games/games/memorize/code/.vimrc
 so ~/dxtrs/dxtrs-games/code/tile-editor/.vimrc
