@@ -26,21 +26,14 @@ nm-applet &
 #blueman-applet &
 xautolock -time 10 -locker /home/dief/.local/bin/lock &
 redshift-gtk &
+volumeicon &
+pamac-tray &
 $HOME/.local/share/tresorit/tresorit --hidden &
-
-if [[ "$host" == "shinobi" ]]
-then
-    cbatticon &
-    #pasystray &
-    #amixer set Capture toggle
-fi
 
 if [[ "$host" == "samurai" ]]
 then
-    pamac-tray &
     /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
     #start_conky_maia &
-    volumeicon &
     #clipit &
 fi
 
@@ -128,10 +121,5 @@ bspc rule -a Screenkey manage=off
 #### setxkbmap commands ####
 setxkbmap -option caps:backspace
 setxkbmap -option compose:ralt
-
-if [[ "$host" == "samurai" ]]
-then
-#    xinput --set-prop 9 'libinput Accel Speed' -1
-fi
 
 bash $HOME/.config/bspwm/bspwm_colors.sh &
