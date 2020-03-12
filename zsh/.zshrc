@@ -74,3 +74,9 @@ if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
 fi
 
 #source /home/dief/.config/broot/launcher/bash/br
+
+host=$(hostname)
+if [[ "$host" == "shinobi" ]]
+then
+    source $HOME/.config/alacritty/alacritty.shinobi.yml
+fi
