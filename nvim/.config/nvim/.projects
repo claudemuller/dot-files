@@ -3,13 +3,12 @@ set syntax=vim
 set rtp+=~/nvim/plugged/vim-project/
 call project#rc("~/")
 
-so ~/dxtrs/projects/team-extension/sbt/sites/sbt-mvp-backend/.vimrc
-so ~/dxtrs/projects/team-extension/sbt/sites/SBT-CMS/.vimrc
 so ~/dxtrs/dxtrs-games/code/frostbyte-engine/.vimrc
-so ~/dxtrs/dxtrs-games/games/memorize/code/.vimrc
 so ~/dxtrs/dxtrs-games/code/tile-editor/.vimrc
-so ~/personal/code/c++/run-jump/.vimrc
 
+"so ~/dxtrs/dxtrs-games/games/memorize/code/.vimrc
+"so ~/personal/study-notes/javascript/the-complete-javascript-course/src/.vimrc
+"so ~/personal/code/c++/run-jump/.vimrc
 "so ~/dxtrs/projects/crayon/site/.vimrc
 "so ~/dxtrs/projects/automattic/frontend-code-test-claudemuller/.vimrc
 "so ~/personal/code/c++/the-cherno-game-engine-series/game-engine/.vimrc
