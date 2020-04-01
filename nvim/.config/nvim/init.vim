@@ -43,16 +43,17 @@ Plug 'RRethy/vim-illuminate' 			         " autohighlight word matches when hover
 Plug 'neomake/neomake'                           " plugin to asynchronously make/run code to detect issues
 Plug 'SirVer/ultisnips'                          " very good and fast snippet engine
 Plug 'honza/vim-snippets'                        " set of snippets for code plugin
-"Plug 'ncm2/ncm2'                                 " autocompletion engine plugin
-"Plug 'roxma/nvim-yarp'                           " required by ncm2
+"Plug 'ncm2/ncm2'                                " autocompletion engine plugin
+"Plug 'roxma/nvim-yarp'                          " required by ncm2
 Plug 'scrooloose/nerdcommenter'                  " commenting plugin
 Plug 'majutsushi/tagbar'                         " method and class outline/browser plugin
-Plug 'joonty/vdebug'                             " debugger plugin
+Plug 'vim-vdebug/vdebug'                         " debugger plugin
 Plug 'dense-analysis/ale'                        " code and style syntax and problem checker
 Plug 'tobyS/vmustache'                           " an implementation of the Mustache template system  - required for pdv
 Plug 'ludovicchabant/vim-gutentags'              " auto ctags handling
 Plug 'neoclide/coc.nvim', {'branch': 'release'}  " code completion plugin
 Plug 'SirVer/ultisnips'                          " snippet plugin
+Plug 'janko/vim-test'                            " unit testing wrapper
 
 " .php plugins
 Plug 'StanAngeloff/php.vim'                      " improved .php syntax highlighting plugin
@@ -72,6 +73,7 @@ Plug 'arnaud-lb/vim-php-namespace'               " use statement insertion plugi
 " https://phpmd.org/                             " possible bugs;  suboptimal code; overcomplicated expressions; Unused parameters, methods, properties
                                                  "   `composer require --dev phpmd/phpmd`
 "Plug 'shawncplus/phpcomplete.vim'                " php autocomplete plugin - OmniComplete
+Plug 'tpope/vim-pathogen'
 
 " .js plugins
 Plug 'othree/yajs.vim'                           " .js plugin
@@ -118,6 +120,10 @@ set clipboard=unnamed,unnamedplus
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
 " | Plugins Config                                                                                                                                           |
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+" pathogen config
+execute pathogen#infect()
+call pathogen#helptags()
 
 " nerdtree config
 set rtp+=~/nvim/plugged/nerdtree/
@@ -319,6 +325,14 @@ nmap <silent> <leader>ds :Step<CR>
 nmap <silent> <leader>do :Over<CR>
 nmap <silent> <leader>df :Finish<CR>
 nmap <silent> <leader>de :Evaluate<CR>
+
+" vim-test
+nmap <silent> t<C-n> :TestNearest<CR>
+nmap <silent> t<C-f> :TestFile<CR>
+nmap <silent> t<C-s> :TestSuite<CR>
+nmap <silent> t<C-l> :TestLast<CR>
+nmap <silent> t<C-g> :TestVisit<CR>
+
 
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
 " | Language Configs                                                                                                                                         |

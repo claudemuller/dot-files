@@ -32,6 +32,7 @@ byobu
 bzip2
 calibre
 cantarell-fonts
+ccls
 clipit
 cmatrix-git
 cnijfilter2-bin
@@ -226,6 +227,7 @@ numix-gtk-theme-git
 numix-icon-theme-git
 numix-square-icon-theme-git
 nvidia-430xx-utils
+nvm
 olive
 open-fuse-iso
 openresolv
