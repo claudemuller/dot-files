@@ -73,10 +73,6 @@ if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
     startx
 fi
 
-#source /home/dief/.config/broot/launcher/bash/br
+alias alacritty='/usr/bin/alacritty --config-file $HOME/alacritty.yml'
 
-host=$(hostname)
-if [[ "$host" == "shinobi" ]]
-then
-    source $HOME/.config/alacritty/alacritty.shinobi.yml
-fi
+#source /home/dief/.config/broot/launcher/bash/br
