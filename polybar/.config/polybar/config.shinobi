@@ -133,10 +133,10 @@ font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=8;1"
 font-3 = "Font Awesome 5 Free:style=Solid:pixelsize=8;1"
 font-4 = "Font Awesome 5 Brands:pixelsize=8;1"
 
-modules-left = s0 bspwm s1 s6 xwindow s7
+modules-left = bspwm xwindow
 modules-center =
 #modules-right = arrow0 harvest arrow1  networkspeedup networkspeeddown arrow2 memory2 arrow3 cpu2 arrow4 pavolume arrow5 aur-updates arrow6 date
-modules-right = s3 networkspeedup networkspeeddown s4 s3 memory2 s4 s3 cpu2 s4 s3 pavolume s4 s3 aur-updates s4 s10 date
+modules-right = networkspeedup networkspeeddown memory2 cpu2 pavolume aur-updates date
 #s9 harvest s4 s3
 
 separator =
@@ -447,7 +447,7 @@ format-prefix-foreground = ${colors.background}
 type = custom/script
 exec = pacman -Qu | sed "/\bignored\b/d" | wc -l
 interval = 1000
-label = " Aur: %output%"
+label = " Aur: %output% "
 #format-foreground = ${colors.foreground}
 #format-background = ${colors.background}
 #format-prefix = "  "
@@ -455,7 +455,7 @@ label = " Aur: %output%"
 #format-underline = #FFBB00
 format-foreground = ${colors.background}
 format-background = ${xrdb:color5}
-format-prefix = " "
+format-prefix = "  "
 format-prefix-foreground = ${colors.background}
 format-prefix-background = ${xrdb:color13}
 
@@ -626,7 +626,7 @@ type = internal/cpu
 interval = 1
 format-foreground = ${colors.background}
 format-background = ${xrdb:color5}
-format-prefix = " "
+format-prefix = "  "
 format-prefix-foreground = ${colors.background}
 format-prefix-background = ${xrdb:color13}
 
@@ -637,7 +637,7 @@ label-font = 1
 ;   <bar-load>
 ;   <ramp-load>
 ;   <ramp-coreload>
-format = <label>
+format = "<label> "
 
 
 ; Available tokens:
@@ -860,8 +860,8 @@ interval = 1
 label = " %percentage_used%%"
 
 #format = Mem <label>
-format = <label>
-format-prefix = " "
+format = "<label> "
+format-prefix = "  "
 format-prefix-foreground = #292d3e
 format-prefix-background = ${xrdb:color13}
 format-foreground = #292d3e
@@ -927,7 +927,7 @@ interface = wlp3s0
 label-connected = " %upspeed:7%"
 label-connected-background = ${xrdb:color5}
 format-connected = <label-connected>
-format-connected-prefix = "  "
+format-connected-prefix = "   "
 format-connected-prefix-foreground = ${colors.background}
 format-connected-foreground = ${colors.background}
 format-connected-background = ${xrdb:color13}
@@ -941,7 +941,7 @@ interface = wlp3s0
 ;interface = enp14s0
 ;interface = enp0s31f6
 ;interface = eno1
-label-connected = " %downspeed:7%"
+label-connected = " %downspeed:7% "
 label-connected-background = ${xrdb:color5}
 format-connected = <label-connected>
 #format-connected-prefix = " "
@@ -968,7 +968,7 @@ format-underline = #FFBB00
 [module/pavolume]
 type = custom/script
 tail = true
-label = " %output%"
+label = " %output% "
 exec = ~/.config/polybar/scripts/pavolume.sh --listen
 click-right = exec pavucontrol
 click-left = ~/.config/polybar/scripts/pavolume.sh --togmute
@@ -976,7 +976,7 @@ scroll-up = ~/.config/polybar/scripts/pavolume.sh --up
 scroll-down = ~/.config/polybar/scripts/pavolume.sh --down
 format-foreground = ${colors.background}
 format-background = ${xrdb:color5}
-format-prefix = " "
+format-prefix = "  "
 format-prefix-foreground = ${colors.background}
 format-prefix-background = ${xrdb:color13}
 
@@ -1274,7 +1274,7 @@ type = internal/xwindow
 ; Available tokens:
 ;   %title%
 ; Default: %title%
-label = %title%
+label = "%title% "
 label-maxlen = 50
 
 format-prefix = "  "

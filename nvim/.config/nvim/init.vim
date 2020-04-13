@@ -387,6 +387,9 @@ function! Symfony(...)
     autocmd FileType php nnoremap <leader>g :call PhpCsFixerFixFile()<CR>
 endfunction
 
+" Go to index of notes and set working directory to my notes
+nnoremap <leader>ni :e $NOTES_DIR/index.md<CR>:cd $NOTES_DIR<CR>
+
 
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
 " | Autorun commands                                                                                                                                         |
