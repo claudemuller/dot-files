@@ -44,8 +44,8 @@ if [[ "$host" == "samurai" ]]
 then
     #bspc rule -a st-256color -o desktop=^1 && st /home/dief/.local/bin/vagrant-up &
     bspc rule -a Slack -o desktop=^2 && slack &
-    bspc rule -a Brave-browser -o desktop=^6 && brave &
-    bspc rule -a Chromium -o desktop=^11 && chromium &
+    #bspc rule -a Brave-browser -o desktop=^6 && brave &
+    #bspc rule -a Chromium -o desktop=^11 && chromium &
 fi
 bspc rule -a Google-chrome -o desktop=^3 && google-chrome-stable &
 

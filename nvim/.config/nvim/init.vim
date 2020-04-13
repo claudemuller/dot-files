@@ -106,7 +106,6 @@ colorscheme wpgtk                       " set colour scheme to wpgtk - alternati
 let g:mapleader = '\'                   " set leader to ,
 map <C-b> :b#<CR>                       " switch buffers
 command! -nargs=1 Silent execute ':silent !'.<q-args> | execute ':redraw!'
-map <c-s> <esc>:w<cr>:Silent php-cs-fixer fix %:p --level=symfony<cr>
 let g:elite_mode=1                      " enable elite mode, No ARRRROWWS!!!!
 if get(g:, 'elite_mode')
     nnoremap <Up>    :resize +2<CR>
@@ -376,15 +375,14 @@ nmap <silent> <F10> :call BuildAndDebug()<CR> :packadd termdebug<CR> :Termdebug 
 
 " Symfony code style for PHP
 function! Symfony(...)
-    let g:ultisnips_php_scalar_types = 1
+    map <c-s> <esc>:w<cr>:Silent php-cs-fixer fix %:p --level=symfony<cr>
 
-    " standard phpcs config
-    let g:neomake_php_phpcs_args_standard = 'PSR2'
-
-    " php cs fixer
-    let g:php_cs_fixer_php_path = "php"
-
-    autocmd FileType php nnoremap <leader>g :call PhpCsFixerFixFile()<CR>
+    "let g:ultisnips_php_scalar_types = 1
+    "" standard phpcs config
+    "let g:neomake_php_phpcs_args_standard = 'PSR2'
+    "" php cs fixer
+    "let g:php_cs_fixer_php_path = "php"
+    "autocmd FileType php nnoremap <leader>g :call PhpCsFixerFixFile()<CR>
 endfunction
 
 

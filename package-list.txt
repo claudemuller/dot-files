@@ -40,6 +40,7 @@ composer
 cool-retro-term-git
 coreutils
 corrupter-git
+couchpotato-git
 cpupower
 crda
 cronie
@@ -119,6 +120,7 @@ gvfs-smb
 gzip
 haveged
 htop
+hugo
 hunspell-en_GB
 hyphen-en
 inetutils
@@ -131,6 +133,7 @@ iputils
 ipw2100-fw
 ipw2200-fw
 irssi
+jackett
 jetbrains-toolbox
 jfsutils
 jq
@@ -267,6 +270,7 @@ python-pip
 qt5-styleplugins
 qt5ct
 qutebrowser-git
+radarr
 ranger
 redshift-gtk-git
 refind-theme-maia
@@ -278,6 +282,7 @@ rsync
 rxvt-unicode
 s-nail
 s-tui
+sabnzbd
 sbxkb
 scangearmp2
 screenfetch
@@ -286,6 +291,7 @@ sdl2_mixer
 sdl2_ttf
 sed
 shadow
+sickchill-git
 silver-searcher-git
 skypeforlinux-stable-bin
 slack-desktop
@@ -293,6 +299,7 @@ smartmontools
 spectre-meltdown-checker
 speedometer
 speedtest-cli
+sqlitebrowser
 steam-manjaro
 stow
 subversion
@@ -303,6 +310,7 @@ syslog-ng
 systemd-fsck-silent
 systemd-sysvcompat
 tar
+teams
 terminus-font
 texinfo
 tlp
