@@ -103,6 +103,7 @@ set cc=160                              " set an 80 column border for good codin
 filetype plugin indent on               " allows auto-indenting depending on file type
 syntax on         	                    " switch syntax highlighting on
 colorscheme wpgtk                       " set colour scheme to wpgtk - alternative: wpgtkAlt
+hi! Normal ctermbg=NONE
 let g:mapleader = '\'                   " set leader to ,
 map <C-b> :b#<CR>                       " switch buffers
 command! -nargs=1 Silent execute ':silent !'.<q-args> | execute ':redraw!'
