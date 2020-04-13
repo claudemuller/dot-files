@@ -76,6 +76,6 @@ fi
 export PATH=$PATH:/home/dief/.config/composer/vendor/bin
 export NOTES_DIR=/home/dief/repos/notes
 
-alias alacritty='/usr/bin/alacritty --config-file $HOME/alacritty.yml'
+alias tsm='transmission-remote'
 
 #source /home/dief/.config/broot/launcher/bash/br
