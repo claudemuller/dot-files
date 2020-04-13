@@ -73,10 +73,9 @@ if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
     startx
 fi
 
-#source /home/dief/.config/broot/launcher/bash/br
+export PATH=$PATH:/home/dief/.config/composer/vendor/bin
+export NOTES_DIR=/home/dief/repos/notes
 
-host=$(hostname)
-if [[ "$host" == "shinobi" ]]
-then
-    source $HOME/.config/alacritty/alacritty.shinobi.yml
-fi
+alias alacritty='/usr/bin/alacritty --config-file $HOME/alacritty.yml'
+
+#source /home/dief/.config/broot/launcher/bash/br

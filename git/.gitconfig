@@ -34,6 +34,7 @@
 	bs = for-each-ref --format='%(committerdate) %09 %(authorname) %09 %(refname)'
 	behind-ahead = !sh -c 'git "for-each-ref --format=\"%(refname:short) %(upstream:track)\" refs/heads"'
 	br = !git fetch && git behind-ahead
+    checkconflicts = diff -S "<<<<<<< HEAD" -S "=======" -S ">>>>>>> $(git name-rev --name-only MERGE_HEAD)" HEAD
 	example = !sh -c 'echo "Merge branch ${1} into ${1}"' -
 [user]
 	name = Claude Müller

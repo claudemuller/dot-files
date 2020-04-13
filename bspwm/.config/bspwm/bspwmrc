@@ -28,13 +28,19 @@ xautolock -time 10 -locker /home/dief/.local/bin/lock &
 redshift-gtk &
 volumeicon &
 pamac-tray &
+clipit &
 $HOME/.local/share/tresorit/tresorit --hidden &
 
 if [[ "$host" == "samurai" ]]
 then
     /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
     #start_conky_maia &
-    #clipit &
+fi
+
+if [[ "$host" == "shinobi" ]]
+then
+    cbatticon
+    cat $HOME/.config/alacritty/alacritty.yml $HOME/.config/alacritty/alacritty.shinobi.yml > $HOME/alacritty.yml
 fi
 
 
