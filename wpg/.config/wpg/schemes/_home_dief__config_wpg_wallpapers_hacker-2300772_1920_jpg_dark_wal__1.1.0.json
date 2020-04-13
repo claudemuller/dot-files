@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/dief/.config/wpg/wallpapers/hacker-2300772_1920.jpg",
+    "alpha": "25",
+
+    "special": {
+        "background": "#040507",
+        "foreground": "#bdcccf",
+        "cursor": "#bdcccf"
+    },
+    "colors": {
+        "color0": "#040507",
+        "color1": "#3E5261",
+        "color2": "#47545F",
+        "color3": "#465866",
+        "color4": "#536976",
+        "color5": "#607985",
+        "color6": "#728E98",
+        "color7": "#bdcccf",
+        "color8": "#848e90",
+        "color9": "#3E5261",
+        "color10": "#47545F",
+        "color11": "#465866",
+        "color12": "#536976",
+        "color13": "#607985",
+        "color14": "#728E98",
+        "color15": "#bdcccf"
+    }
+}
