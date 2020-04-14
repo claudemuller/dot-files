@@ -32,7 +32,7 @@ alt + shift + F3
     gksu alacritty ranger
 
 alt + F4
-    filezilla
+    bspc rule -a \* -o state=floating && alacritty -e quick-note
 
 alt + F5
     phpstorm

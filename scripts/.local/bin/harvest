@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-ACCESS_TOKEN=1596442.pt.JW8_Zbphm_RWEe3Rj0nfeLHzRqil1TxoTYtM7qeNUu3l66kaThVHJ0HUQWA6Yvd0sQXwh3vIGr6DR6bJ3AA8kA
-ACCOUNT_ID=929259
+ACCESS_TOKEN=$(<~/personal/documents/keys/harvest)
+ACCOUNT_ID=$(<~/personal/documents/keys/harvest)
 CRAYON=19456852
 TE1=20884702
 TE2=21404879
