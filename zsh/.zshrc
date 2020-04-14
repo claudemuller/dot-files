@@ -77,5 +77,6 @@ export PATH=$PATH:/home/dief/.config/composer/vendor/bin
 export NOTES_DIR=/home/dief/repos/notes
 
 alias tsm='transmission-remote'
+alias dls='watch -n 5 "transmission-remote -tall -l | egrep \"(Downloading|Seeding)\" | sort -k 9"'
 
 #source /home/dief/.config/broot/launcher/bash/br

@@ -52,6 +52,10 @@ volume-min = #a3be8c
 volume-med = #ebcb8b
 volume-max = #bf616a
 transparent = #00000000
+s3background = ${xrdb:color4}
+s3foreground = ${color.background}
+s4background = ${xrdb:color5}
+s4foreground = ${color.background}
 
 ; Nord theme ============
 ;background = #292d3e
@@ -363,14 +367,14 @@ content-background = ${colors.transparent}
 type = custom/text
 content = "%{T3}%{T-}"
 content-font = 5
-content-foreground = ${xrdb:color13}
+content-foreground = ${colors.s3background}
 content-background = ${colors.transparent}
 
 [module/s4]
 type = custom/text
 content = "%{T3}%{T-}"
 content-font = 5
-content-foreground = ${xrdb:color5}
+content-foreground = ${colors.s4background}
 content-background = ${colors.transparent}
 
 [module/s5]
@@ -456,10 +460,10 @@ label = " Aur: %output%"
 #format-prefix-foreground = #FFBB00
 #format-underline = #FFBB00
 format-foreground = ${colors.background}
-format-background = ${xrdb:color5}
+format-background = ${colors.s4background}
 format-prefix = " "
 format-prefix-foreground = ${colors.background}
-format-prefix-background = ${xrdb:color13}
+format-prefix-background = ${colors.s3background}
 
 
 ################################################################################
@@ -627,10 +631,10 @@ type = internal/cpu
 ; Default: 1
 interval = 1
 format-foreground = ${colors.background}
-format-background = ${xrdb:color5}
+format-background = ${colors.s4background}
 format-prefix = " "
 format-prefix-foreground = ${colors.background}
-format-prefix-background = ${xrdb:color13}
+format-prefix-background = ${colors.s3background}
 
 label-font = 1
 
@@ -865,9 +869,9 @@ label = " %percentage_used%%"
 format = <label>
 format-prefix = " "
 format-prefix-foreground = #292d3e
-format-prefix-background = ${xrdb:color13}
+format-prefix-background = ${colors.s3background}
 format-foreground = #292d3e
-format-background = ${xrdb:color5}
+format-background = ${colors.s4background}
 
 ################################################################################
 
@@ -928,12 +932,12 @@ type = internal/network
 ;interface = enp0s31f6
 interface = eno1
 label-connected = " %upspeed:7%"
-label-connected-background = ${xrdb:color5}
+label-connected-background = ${colors.s4background}
 format-connected = <label-connected>
 format-connected-prefix = "  "
 format-connected-prefix-foreground = ${colors.background}
 format-connected-foreground = ${colors.background}
-format-connected-background = ${xrdb:color13}
+format-connected-background = ${colors.s3background}
 
 ################################################################################
 
@@ -945,12 +949,12 @@ type = internal/network
 ;interface = enp0s31f6
 interface = eno1
 label-connected = " %downspeed:7%"
-label-connected-background = ${xrdb:color5}
+label-connected-background = ${colors.s4background}
 format-connected = <label-connected>
 ;format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.background}
 format-connected-foreground = ${colors.background}
-format-connected-background = ${xrdb:color13}
+format-connected-background = ${colors.s3background}
 
 ################################################################################
 
@@ -978,10 +982,10 @@ click-left = ~/.config/polybar/scripts/pavolume.sh --togmute
 scroll-up = ~/.config/polybar/scripts/pavolume.sh --up
 scroll-down = ~/.config/polybar/scripts/pavolume.sh --down
 format-foreground = ${colors.background}
-format-background = ${xrdb:color5}
+format-background = ${colors.s4background}
 format-prefix = " "
 format-prefix-foreground = ${colors.background}
-format-prefix-background = ${xrdb:color13}
+format-prefix-background = ${colors.s3background}
 
 ################################################################################
 

@@ -3,6 +3,7 @@ set syntax=vim
 set rtp+=~/nvim/plugged/vim-project/
 call project#rc("~/")
 
+so ~/repos/xfitness-api/.vimrc
 so ~/dxtrs/dxtrs-games/code/frostbyte-engine/.vimrc
 so ~/dxtrs/dxtrs-games/code/tile-editor/.vimrc
 
