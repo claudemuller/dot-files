@@ -22,13 +22,13 @@ fi
 sleep 1; compton -b
 $HOME/.config/polybar/launch.sh &
 $HOME/.local/bin/set-border &
-nm-applet &
+#nm-applet &
 #blueman-applet &
 xautolock -time 10 -locker /home/dief/.local/bin/lock &
-redshift-gtk &
-volumeicon &
-pamac-tray &
-clipit &
+#redshift-gtk &
+#volumeicon &
+#pamac-tray &
+#clipit &
 $HOME/.local/share/tresorit/tresorit --hidden &
 
 if [[ "$host" == "samurai" ]]

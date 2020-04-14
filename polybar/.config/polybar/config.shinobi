@@ -143,14 +143,14 @@ separator =
 
 ;dim-value = 1.0
 
-tray-position = ${env:TRAY_POS}
-tray-detached = false
-tray-maxsize = 20
-tray-background = ${colors.background}
-tray-offset-x = 0
-tray-offset-y = 0
-tray-padding = 4
-tray-scale = 1.0
+;tray-position = ${env:TRAY_POS}
+;tray-detached = false
+;tray-maxsize = 20
+;tray-background = ${colors.background}
+;tray-offset-x = 0
+;tray-offset-y = 0
+;tray-padding = 4
+;tray-scale = 1.0
 
 ;override-redirect = true
 
