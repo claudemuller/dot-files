@@ -136,7 +136,7 @@ font-4 = "Font Awesome 5 Brands:pixelsize=8;1"
 modules-left = bspwm xwindow
 modules-center =
 #modules-right = arrow0 harvest arrow1  networkspeedup networkspeeddown arrow2 memory2 arrow3 cpu2 arrow4 pavolume arrow5 aur-updates arrow6 date
-modules-right = networkspeedup networkspeeddown memory2 cpu2 pavolume aur-updates date
+modules-right = wireless-network networkspeedup networkspeeddown memory2 cpu2 pavolume aur-updates date
 #s9 harvest s4 s3
 
 separator =
@@ -1186,16 +1186,16 @@ label-disconnected-foreground = ${colors.foreground}
 type = internal/network
 interface = ${env:WIRELESS}
 interval = 3.0
-label-connected = %essid%
+label-connected = " %essid% "
 
 format-connected = <label-connected>
 ;format-connected = <ramp-signal> <label-connected>
-format-connected-foreground = ${colors.foreground}
-format-connected-background = ${colors.background}
+format-connected-foreground = ${colors.background}
+format-connected-background = ${xrdb:color5}
 format-connected-prefix = "  "
-format-connected-prefix-foreground = #7e52c6
-format-connected-prefix-background = ${colors.background}
-format-connected-underline = #7e52c6
+format-connected-prefix-foreground = ${colors.background}
+format-connected-prefix-background = ${xrdb:color13}
+;format-connected-underline = #7e52c6
 
 label-disconnected = %ifname% disconnected
 label-disconnected-foreground = ${colors.alert}
@@ -1208,6 +1208,8 @@ format-disconnected-prefix = "  "
 format-disconnected-prefix-foreground = ${colors.alert}
 format-disconnected-prefix-background = ${colors.background}
 format-disconnected-underline =${colors.alert}
+
+click-left = /usr/bin/nmtui-connect
 
 ramp-signal-0 = ▁
 ramp-signal-1 = ▂
