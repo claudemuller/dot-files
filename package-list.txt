@@ -67,6 +67,7 @@ evince
 exfat-utils
 f2fs-tools
 fakeroot
+fd
 feh
 ffmpeg
 ffmpegthumbnailer
