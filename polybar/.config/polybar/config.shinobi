@@ -136,7 +136,7 @@ font-4 = "Font Awesome 5 Brands:pixelsize=8;1"
 modules-left = bspwm xwindow
 modules-center =
 #modules-right = arrow0 harvest arrow1  networkspeedup networkspeeddown arrow2 memory2 arrow3 cpu2 arrow4 pavolume arrow5 aur-updates arrow6 date
-modules-right = wireless-network networkspeedup networkspeeddown memory2 cpu2 pavolume aur-updates date
+modules-right = wireless-network memory2 cpu2 pavolume battery aur-updates date
 #s9 harvest s4 s3
 
 separator =
@@ -513,24 +513,24 @@ bar-empty = ─
 ;https://github.com/jaagr/polybar/wiki/Module:-battery
 type = internal/battery
 battery = BAT0
-adapter = AC0
+adapter = AC
 full-at = 100
 
 format-charging = <animation-charging> <label-charging>
 label-charging =  %percentage%%
-format-charging-foreground = ${colors.foreground}
-format-charging-background = ${colors.background}
-format-charging-underline = #a3c725
+format-charging-foreground = ${colors.background}
+format-charging-background = ${xrdb.color5}
+;format-charging-underline = #a3c725
 
 format-discharging = <ramp-capacity> <label-discharging>
-label-discharging =  %percentage%%
-format-discharging-underline = #c7ae25
-format-discharging-foreground = ${colors.foreground}
-format-discharging-background = ${colors.background}
+label-discharging = "  %percentage%% "
+;format-discharging-underline = #c7ae25
+format-discharging-foreground = ${colors.background}
+format-discharging-background = ${xrdb.color13}
 
-format-full-prefix = " "
+format-full-prefix = "  "
 format-full-prefix-foreground = #a3c725
-format-full-underline = #a3c725
+;format-full-underline = #a3c725
 format-foreground = ${colors.foreground}
 format-background = ${colors.background}
 
