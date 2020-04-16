@@ -35,6 +35,7 @@ if [[ "$host" == "samurai" ]]
 then
     /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
     #start_conky_maia &
+    /home/dief/.local/bin/init-bluetooth
 fi
 
 if [[ "$host" == "shinobi" ]]

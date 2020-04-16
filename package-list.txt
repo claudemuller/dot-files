@@ -19,6 +19,7 @@ avahi
 awesome-terminal-fonts
 b43-fwcutter
 bash
+bind-tools
 binutils
 bison
 blueman
@@ -50,6 +51,7 @@ device-mapper
 dfc
 dhclient
 dhcpcd
+dialog
 diffutils
 dmg2img
 dmidecode
@@ -90,7 +92,6 @@ gettext
 ghc
 gimp
 git
-gksu-polkit
 glibc
 gnome-disk-utility
 gnome-keyring
@@ -139,7 +140,6 @@ jetbrains-toolbox
 jfsutils
 jq
 json-c
-kazam
 krita
 kvantum-manjaro
 lando-git
@@ -208,7 +208,6 @@ ncmpc
 ncmpcpp
 neofetch
 neovim
-nerd-fonts-ubuntu-mono
 netctl
 network-manager-applet
 networkmanager
@@ -259,6 +258,7 @@ plex-media-server
 polkit-gnome
 polybar
 poppler-data
+postman
 powertop
 preload
 procps-ng
@@ -347,6 +347,7 @@ volumeicon
 w3m
 wget
 which
+whois
 wireless_tools
 wireshark-qt
 wmname
@@ -364,9 +365,7 @@ xdg-utils
 xdotool
 xf86-input-elographics
 xf86-input-evdev
-xf86-input-keyboard
 xf86-input-libinput
-xf86-input-mouse
 xf86-input-void
 xfburn
 xfce4-power-manager

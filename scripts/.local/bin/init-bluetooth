@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+coproc bluetoothctl
+echo -e 'power on' >&${COPROC[1]}
+echo -e 'pairable on' >&${COPROC[1]}
+echo -e 'scan on' >&${COPROC[1]}
+echo -e 'connect 2C:41:A1:C8:E8:27' >&${COPROC[1]}
+echo -e 'exit' >&${COPROC[1]}

@@ -21,7 +21,7 @@ alt + F1
     alacritty -e vim
 
 alt + F2
-    alacritty ranger
+    alacritty -e ranger
 
 alt + shift + F2
     gksu alacritty ranger
