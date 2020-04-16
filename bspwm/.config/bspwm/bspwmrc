@@ -53,7 +53,7 @@ then
     #bspc rule -a Brave-browser -o desktop=^6 && brave &
     #bspc rule -a Chromium -o desktop=^11 && chromium &
 fi
-bspc rule -a Google-chrome -o desktop=^3 && google-chrome-stable &
+#bspc rule -a Google-chrome -o desktop=^3 && google-chrome-stable &
 
 
 #### MONITORS ####
