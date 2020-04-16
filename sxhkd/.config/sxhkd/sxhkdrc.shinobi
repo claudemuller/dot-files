@@ -17,22 +17,19 @@ alt + p
 #
 # app shortcuts
 #
-alt + F2
-    st -e vim
+alt + F1
+    alacritty -e vim
 
-alt + F3
-    ranger
+alt + F2
+    alacritty ranger
+
+alt + shift + F2
+    gksu alacritty ranger
 
 # bindsym $mod+F3 exec ranger
 
-alt + shift + F3
-    gksu ranger
-
-alt + F4
-    filezilla
-
-alt + F11
-    pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY torguard $@
+alt + F3
+    bspc rule -a \* -o state=floating && alacritty -e quick-note
 
 
 #

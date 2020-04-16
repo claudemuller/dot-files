@@ -18,39 +18,19 @@ alt + p
 # app shortcuts
 #
 alt + F1
-    alacritty -e vim /home/dief/personal/scratch-pad
-
-alt + F2
     alacritty -e vim
 
-alt + F3
+alt + F2
     alacritty ranger
+
+alt + shift + F2
+    gksu alacritty ranger
 
 # bindsym $mod+F3 exec ranger
 
-alt + shift + F3
-    gksu alacritty ranger
+alt + F3
+    bspc rule -a \* -o state=floating && alacritty -e quick-note
 
-alt + F4
-    filezilla
-
-alt + F5
-    phpstorm
-
-alt + F6
-    virtualbox
-
-alt + F7
-    brave
-
-alt + F8
-    qutebrowser
-
-alt + F9
-    vimed.sh /home/dief/Desktop/notes.md
-
-alt + F11
-    gksu torguard
 
 #
 # bspwm hotkeys

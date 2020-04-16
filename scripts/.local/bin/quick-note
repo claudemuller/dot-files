@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+# get the token and setup temp file
+token=$(<~/personal/documents/keys/todoist)
+output='/tmp/quick-note.txt'
+
+# create temp file
+>$output
+
+# call the dialog and feed output into temp file
+dialog --title "Todoist Quick Note" --inputbox "Enter yer note! [@label #project p1,2,3,4]" 8 60 2>$output
+
+# record OK, Cancel or Esc
+respose=$?
+
+# get data stored in temp file using input redirection
+note=$(<$output)
+
+# make a decsion
+case $respose in
+    0)
+        curl https://api.todoist.com/sync/v8/quick/add -d token=$token -d text="$note"
+        ;;
+    1)
+        echo "Cancel pressed."
+        ;;
+    255)
+        echo "[ESC] key pressed."
+esac
+
+# remove the temp file
+rm $output

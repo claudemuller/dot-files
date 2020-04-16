@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/dief/.config/wpg/wallpapers/hello-world.asm.png",
+    "alpha": "25",
+
+    "special": {
+        "background": "#0c0d03",
+        "foreground": "#d7e38f",
+        "cursor": "#d7e38f"
+    },
+    "colors": {
+        "color0": "#0c0d03",
+        "color1": "#7F8E20",
+        "color2": "#889822",
+        "color3": "#97A926",
+        "color4": "#A5B929",
+        "color5": "#BFD630",
+        "color6": "#C0D730",
+        "color7": "#d7e38f",
+        "color8": "#969e64",
+        "color9": "#7F8E20",
+        "color10": "#889822",
+        "color11": "#97A926",
+        "color12": "#A5B929",
+        "color13": "#BFD630",
+        "color14": "#C0D730",
+        "color15": "#d7e38f"
+    }
+}
