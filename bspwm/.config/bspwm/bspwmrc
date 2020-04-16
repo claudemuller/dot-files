@@ -28,7 +28,7 @@ xautolock -time 10 -locker /home/dief/.local/bin/lock &
 #redshift-gtk &
 #volumeicon &
 #pamac-tray &
-#clipit &
+clipit &
 $HOME/.local/share/tresorit/tresorit --hidden &
 
 if [[ "$host" == "samurai" ]]
