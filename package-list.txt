@@ -125,6 +125,7 @@ htop
 hugo
 hunspell-en_GB
 hyphen-en
+i3lock
 inetutils
 intel-ucode
 intellij-idea-community-edition-jre
@@ -140,6 +141,7 @@ jetbrains-toolbox
 jfsutils
 jq
 json-c
+khal
 krita
 kvantum-manjaro
 lando-git
@@ -287,6 +289,7 @@ sabnzbd
 sbxkb
 scangearmp2
 screenfetch
+scrot
 sdl2_image
 sdl2_mixer
 sdl2_ttf

@@ -7,6 +7,7 @@ so ~/repos/xfitness-api/.vimrc
 so ~/dxtrs/dxtrs-games/code/frostbyte-engine/.vimrc
 so ~/dxtrs/dxtrs-games/code/tile-editor/.vimrc
 so ~/repos/notes/.vimrc
+so ~/personal/study-notes/python/django/python-django-dev-to-deployment/btre_resources/.vimrc
 
 "so ~/dxtrs/dxtrs-games/games/memorize/code/.vimrc
 "so ~/personal/study-notes/javascript/the-complete-javascript-course/src/.vimrc
