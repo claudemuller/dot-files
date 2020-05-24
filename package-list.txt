@@ -6,6 +6,8 @@ alsa-firmware
 alsa-plugins
 alsa-utils
 amd-ucode
+android-tools
+android-udev
 apg
 arandr
 arc-gtk-theme
@@ -235,6 +237,7 @@ nvidia-430xx-utils
 nvm
 olive
 open-fuse-iso
+openrazer-daemon-git
 openresolv
 openssh
 os-prober
@@ -259,7 +262,9 @@ pkgconf
 plex-media-server
 polkit-gnome
 polybar
+polychromatic-git
 poppler-data
+postgresql
 postman
 powertop
 preload
@@ -268,6 +273,7 @@ ps_mem
 psmisc
 pulseaudio-bluetooth
 pygtk
+python-notify2
 python-pillow
 python-pip
 qt5-styleplugins
