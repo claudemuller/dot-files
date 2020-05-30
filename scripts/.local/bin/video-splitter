@@ -1,0 +1,58 @@
+#!/usr/bin/env sh
+
+scripttitle="Slice n Dice"
+prefix="slice-n-dice-"
+videourl="/tmp/${prefix}video-url"
+timestamps="/tmp/${prefix}timestamps"
+ts="/tmp/${prefix}ts"
+outputdir="$HOME/temp/slice-n-dice"
+
+dialog --title "$scripttitle" \
+--inputbox "Enter the YT video URL" 8 60 2>$videourl
+
+dialog --title "$scripttitle" \
+--inputbox "Enter start, end and title [xx:xx:xx xx:xx:xx a title]" 8 60 2>$ts
+
+t=$(<$ts)
+while [ ! -z "$t" ]
+do
+    echo "$(cat $ts)" >> $timestamps
+
+    dialog --title "$scripttitle" \
+    --inputbox "Enter start, end and title [xx:xx:xx xx:xx:xx <a title>]" 8 60 2>$ts
+
+    t=$(<$ts)
+done
+
+if [ ! -f "$timestamps" ];
+then
+    exit 0
+fi
+
+url=$(cat $videourl)
+inputformat="$(youtube-dl -F "$url" | grep -v 'video only' | ag 640x360)"
+inputformati="$(echo "$inputformat" | cut -d" " -f1)"
+ext="$(echo $inputformat | cut -d" " -f2)"
+inputvideo="/tmp/${prefix}video.$ext"
+
+youtube-dl -f $inputformati "$url" -o $inputvideo
+
+mkdir -p $outputdir
+
+while read -r x;
+do
+    start="$(echo "$x" | cut -d' ' -f1)"
+    end="$(echo "$x" | cut -d' ' -f2)"
+    title="$(echo "$x" | cut -d' ' -f 3-)"
+    esctitle="$(echo "$title" | iconv -cf UTF-8 -t ASCII//TRANSLIT | tr -d '[:punct:]' | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | sed "s/-\+/-/g;s/\(^-\|-\$\)//g")"
+    file="$outputdir/$esctitle.$ext"
+
+    echo "From $to to $end; $title"
+    echo "Splitting \"$title\"..."
+    ffmpeg -nostdin -y -loglevel -8 -i "$inputvideo" -ss "$start" -to "$end" -c:v copy -c:a copy "$file"
+done < "$timestamps"
+
+rm $inputvideo
+rm $videourl
+rm $ts
+rm $timestamps

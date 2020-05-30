@@ -18,8 +18,8 @@ else
 fi
 
 ~/.config/wpg/wp_init.sh
-#nitrogen --restore &
-sleep 1; compton -b
+nitrogen --restore &
+sleep 1; picom
 $HOME/.config/polybar/launch.sh &
 $HOME/.local/bin/set-border &
 #nm-applet &

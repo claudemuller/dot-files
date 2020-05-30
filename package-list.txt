@@ -97,6 +97,7 @@ git
 glibc
 gnome-disk-utility
 gnome-keyring
+go
 google-chrome
 gparted
 grep
@@ -148,6 +149,8 @@ krita
 kvantum-manjaro
 lando-git
 languagetool
+lazydocker-git
+lazygit-git
 less
 lib32-nvidia-430xx-utils
 libdvdcss
@@ -238,8 +241,10 @@ nvm
 olive
 open-fuse-iso
 openrazer-daemon-git
+openrazer-meta-git
 openresolv
 openssh
+opustags
 os-prober
 otf-font-awesome
 p7zip
