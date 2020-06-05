@@ -11,7 +11,7 @@ dialog --title "$scripttitle" \
 --inputbox "Enter the YT video URL" 8 60 2>$videourl
 
 dialog --title "$scripttitle" \
---inputbox "Enter start, end and title [xx:xx:xx xx:xx:xx a title]" 8 60 2>$ts
+--inputbox "Enter start, end and title [xx:xx:xx.xx xx:xx:xx.xx a title]" 8 60 2>$ts
 
 t=$(<$ts)
 while [ ! -z "$t" ]
@@ -19,7 +19,7 @@ do
     echo "$(cat $ts)" >> $timestamps
 
     dialog --title "$scripttitle" \
-    --inputbox "Enter start, end and title [xx:xx:xx xx:xx:xx <a title>]" 8 60 2>$ts
+    --inputbox "Enter start, end and title [xx:xx:xx.xx xx:xx:xx.xx <a title>]" 8 60 2>$ts
 
     t=$(<$ts)
 done
@@ -29,13 +29,21 @@ then
     exit 0
 fi
 
-url=$(cat $videourl)
-inputformat="$(youtube-dl -F "$url" | grep -v 'video only' | ag 640x360)"
-inputformati="$(echo "$inputformat" | cut -d" " -f1)"
-ext="$(echo $inputformat | cut -d" " -f2)"
+ext="$(ls /tmp/${prefix}video.* | cut -d"." -f2)"
 inputvideo="/tmp/${prefix}video.$ext"
 
-youtube-dl -f $inputformati "$url" -o $inputvideo
+if [[ $(< $videourl) != "" ]]
+then
+    rm $inputvideo
+    url=$(cat $videourl)
+    inputformat="$(youtube-dl -F "$url" | grep -v 'video only' | ag 640x360)"
+    inputformati="$(echo "$inputformat" | cut -d" " -f1)"
+    ext="$(echo $inputformat | cut -d" " -f2)"
+    inputvideo="/tmp/${prefix}video.$ext"
+    rm $videourl
+
+    youtube-dl -f $inputformati "$url" -o $inputvideo
+fi
 
 mkdir -p $outputdir
 
@@ -47,12 +55,10 @@ do
     esctitle="$(echo "$title" | iconv -cf UTF-8 -t ASCII//TRANSLIT | tr -d '[:punct:]' | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | sed "s/-\+/-/g;s/\(^-\|-\$\)//g")"
     file="$outputdir/$esctitle.$ext"
 
-    echo "From $to to $end; $title"
+    echo "From $start to $end; $title; $inputvideo"
     echo "Splitting \"$title\"..."
     ffmpeg -nostdin -y -loglevel -8 -i "$inputvideo" -ss "$start" -to "$end" -c:v copy -c:a copy "$file"
 done < "$timestamps"
 
-rm $inputvideo
-rm $videourl
 rm $ts
 rm $timestamps
