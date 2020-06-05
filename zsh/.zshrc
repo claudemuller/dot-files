@@ -18,7 +18,16 @@ compinit
 #xrdb -load ~/.Xresources &
 
 # Autosuggestions
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+IS_MAC=$(uname)
+echo "herllo\n"
+echo IS_MAC
+echo "\n\n"
+if [[ "$IS_MAC" == "Darwin" ]]
+then
+    source /usr/local/Cellar/zsh-autosuggestions/0.6.4/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+else
+    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
 
 # Prompt
 export PS1="[%n@%m %c]$ "
@@ -78,5 +87,7 @@ export NOTES_DIR=/home/dief/repos/notes
 
 alias tsm='transmission-remote'
 alias dls='watch -n 5 "transmission-remote -tall -l | egrep \"(Downloading|Seeding|Up & Down|Uploading|Idle)\" | sort -k 2 -n -r"'
+alias vim='nvim'
+alias ls='ls --color=tty'
 
 #source /home/dief/.config/broot/launcher/bash/br
