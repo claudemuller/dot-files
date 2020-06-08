@@ -95,12 +95,10 @@ alias vim='nvim'
 if [[ "$IS_MAC" == "Darwin" ]]
 then
     alias ls="ls -G"
+    fpath=($fpath "/home/dief/.zfunctions")
 else
     alias ls="ls --color=tty"
 fi
-
-#source /home/dief/.config/broot/launcher/bash/br
-fpath=($fpath "/home/dief/.zfunctions")
 
 # Set Spaceship ZSH as a prompt
 autoload -U promptinit; promptinit
