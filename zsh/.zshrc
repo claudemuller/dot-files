@@ -91,3 +91,8 @@ alias vim='nvim'
 alias ls='ls --color=tty'
 
 #source /home/dief/.config/broot/launcher/bash/br
+fpath=($fpath "/home/dief/.zfunctions")
+
+  # Set Spaceship ZSH as a prompt
+  autoload -U promptinit; promptinit
+  prompt spaceship
