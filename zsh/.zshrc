@@ -95,9 +95,9 @@ alias vim='nvim'
 if [[ "$IS_MAC" == "Darwin" ]]
 then
     alias ls="ls -G"
-    fpath=($fpath "/home/dief/.zfunctions")
 else
     alias ls="ls --color=tty"
+    fpath=($fpath "/home/dief/.zfunctions")
 fi
 
 # Set Spaceship ZSH as a prompt
