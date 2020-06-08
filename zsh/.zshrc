@@ -102,8 +102,11 @@ fi
 eval $(ssh-agent -s) >/dev/null
 ssh-add $(ls -d $PWD/.ssh/*rsa* | grep -v '.pub$') >/dev/null
 
-#source /home/dief/.config/broot/launcher/bash/br
+if [[ "$IS_MAC" == "Darwin" ]]
+then
+    fpath=($fpath "/home/dief/.zfunctions")
+fi
 
-  # Set Spaceship ZSH as a prompt
-  autoload -U promptinit; promptinit
-  prompt spaceship
+# Set Spaceship ZSH as a prompt
+autoload -U promptinit; promptinit
+prompt spaceship
