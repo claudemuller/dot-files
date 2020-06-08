@@ -99,12 +99,9 @@ else
     alias ls="ls --color=tty"
 fi
 
-eval $(ssh-agent -s) >/dev/null
-ssh-add $(ls -d $PWD/.ssh/*rsa* | grep -v '.pub$') >/dev/null
-
 #source /home/dief/.config/broot/launcher/bash/br
 fpath=($fpath "/home/dief/.zfunctions")
 
-  # Set Spaceship ZSH as a prompt
-  autoload -U promptinit; promptinit
-  prompt spaceship
+# Set Spaceship ZSH as a prompt
+autoload -U promptinit; promptinit
+prompt spaceship
