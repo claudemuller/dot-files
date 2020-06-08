@@ -103,3 +103,7 @@ eval $(ssh-agent -s) >/dev/null
 ssh-add $(ls -d $PWD/.ssh/*rsa* | grep -v '.pub$') >/dev/null
 
 #source /home/dief/.config/broot/launcher/bash/br
+
+  # Set Spaceship ZSH as a prompt
+  autoload -U promptinit; promptinit
+  prompt spaceship
