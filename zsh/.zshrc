@@ -2,26 +2,30 @@
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
+IS_MAC=$(uname)
 setopt appendhistory nomatch notify
 unsetopt autocd beep extendedglob
 bindkey -e
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/dief/.zshrc'
-
 autoload -Uz compinit
-compinit
+if [[ "$IS_MAC" == "Darwin" ]]
+then
+    compinit | xargs chmod g-w
+else
+    compinit
+fi
 # End of lines added by compinstall
 
 # Colours
-(cat ~/.config/wpg/sequences &)
+if [[ "$IS_MAC" != "Darwin" ]]
+then
+    (cat ~/.config/wpg/sequences &)
+fi
 #xrdb -load ~/.Xresources &
 
 # Autosuggestions
-IS_MAC=$(uname)
-echo "herllo\n"
-echo IS_MAC
-echo "\n\n"
 if [[ "$IS_MAC" == "Darwin" ]]
 then
     source /usr/local/Cellar/zsh-autosuggestions/0.6.4/share/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -88,7 +92,15 @@ export NOTES_DIR=/home/dief/repos/notes
 alias tsm='transmission-remote'
 alias dls='watch -n 5 "transmission-remote -tall -l | egrep \"(Downloading|Seeding|Up & Down|Uploading|Idle)\" | sort -k 2 -n -r"'
 alias vim='nvim'
-alias ls='ls --color=tty'
+if [[ "$IS_MAC" == "Darwin" ]]
+then
+    alias ls="ls -G"
+else
+    alias ls="ls --color=tty"
+fi
+
+eval $(ssh-agent -s) >/dev/null
+ssh-add $(ls -d $PWD/.ssh/*rsa* | grep -v '.pub$') >/dev/null
 
 #source /home/dief/.config/broot/launcher/bash/br
 fpath=($fpath "/home/dief/.zfunctions")
