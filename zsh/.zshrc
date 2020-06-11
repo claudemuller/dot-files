@@ -100,6 +100,8 @@ else
     fpath=($fpath "/home/dief/.zfunctions")
 fi
 
+alias cp="cp -iv"
+
 # Set Spaceship ZSH as a prompt
 autoload -U promptinit; promptinit
 prompt spaceship
