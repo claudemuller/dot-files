@@ -1,5 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =4
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/Users/span/repos/span/span-www-backend/pkg/service'
+let g:netrw_dirhist_6='/Users/span/repos/span/span-www-backend/pkg/service/dto'
+let g:netrw_dirhist_5='/Users/span/repos/span/span-www-backend/pkg/service'
 let g:netrw_dirhist_4='/home/dief/dxtrs/projects/team-extension/sbt/SBT-CMS/app/Http/Controllers'
 let g:netrw_dirhist_3='/home/dief/dxtrs/projects/team-extension/sbt/SBT-CMS/app/Http'
 let g:netrw_dirhist_2='/home/dief/dxtrs/projects/team-extension/sbt/SBT-CMS/app'
