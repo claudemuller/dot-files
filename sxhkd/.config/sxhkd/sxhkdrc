@@ -4,7 +4,7 @@
 
 # terminal emulator
 mod4 + Return
-	alacritty
+	/usr/bin/alacritty --config-file /home/dief/.config/alacritty/alacritty.samurai.yml
 
 # make sxhkd reload its configuration files:
 mod4 + Escape
