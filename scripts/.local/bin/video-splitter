@@ -52,7 +52,7 @@ do
     start="$(echo "$x" | cut -d' ' -f1)"
     end="$(echo "$x" | cut -d' ' -f2)"
     title="$(echo "$x" | cut -d' ' -f 3-)"
-    esctitle="$(echo "$title" | iconv -cf UTF-8 -t ASCII//TRANSLIT | tr -d '[:punct:]' | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | sed "s/-\+/-/g;s/\(^-\|-\$\)//g")"
+    esctitle="$(echo "$title" | iconv -c -f UTF-8 -t ASCII//TRANSLIT | tr -d '[:punct:]' | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | sed "s/-\+/-/g;s/\(^-\|-\$\)//g")"
     file="$outputdir/$esctitle.$ext"
 
     echo "From $start to $end; $title; $inputvideo"
