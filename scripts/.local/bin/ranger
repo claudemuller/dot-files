@@ -1,3 +1,9 @@
 #!/usr/bin/env sh
 
-alacritty -e /usr/bin/ranger
+IS_MAC=$(uname)
+
+if [[ "$IS_MAC" == "Darwin" ]]; then
+    alacritty -e /usr/local/opt/ranger/bin/ranger
+else
+    alacritty -e "$(whereis ranger)"
+fi

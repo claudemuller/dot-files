@@ -74,6 +74,8 @@ fi
 
 export PATH=$PATH:$HOME/.config/composer/vendor/bin
 export NOTES_DIR=$HOME/repos/notes
+export NASA_API_KEY=rMifLvTLpgYfUomy1Iidfjamje0XOY5igAbYoOII
+export ANDROID_HOME=/Users/claude/Library/Android/sdk
 
 alias tsm='transmission-remote'
 alias dls='watch -n 5 "transmission-remote -tall -l | egrep \"(Downloading|Seeding|Up & Down|Uploading|Idle)\" | sort -k 2 -n -r"'
