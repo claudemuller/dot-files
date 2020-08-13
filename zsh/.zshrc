@@ -77,6 +77,14 @@ export NOTES_DIR=$HOME/repos/notes
 export NASA_API_KEY=rMifLvTLpgYfUomy1Iidfjamje0XOY5igAbYoOII
 export ANDROID_HOME=/Users/claude/Library/Android/sdk
 
+if [[ "$IS_MAC" == "Darwin" ]]; then
+    export JAVA_HOME=$(/usr/libexec/java_home -v11)
+    export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
+    export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
+    alias java8='export JAVA_HOME=$JAVA_8_HOME'
+    alias java11='export JAVA_HOME=$JAVA_11_HOME'
+fi
+
 alias tsm='transmission-remote'
 alias dls='watch -n 5 "transmission-remote -tall -l | egrep \"(Downloading|Seeding|Up & Down|Uploading|Idle)\" | sort -k 2 -n -r"'
 alias vim='nvim'
