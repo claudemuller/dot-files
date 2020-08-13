@@ -366,6 +366,7 @@ wireless_tools
 wireshark-qt
 wmname
 wmutils
+woeusb-git
 wpa_supplicant
 wpgtk-git
 xarchiver
