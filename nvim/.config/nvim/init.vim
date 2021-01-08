@@ -25,15 +25,13 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 "Plug 'svermeulen/vim-yoink'                      " vim register browser plugin
 Plug 'itchyny/lightline.vim'                     " status line plugin
 Plug 'tpope/vim-abolish'                         " substitution plugin that handles plurals, case and underscores
-Plug 'amiorin/vim-project'                       " project management plugin
-Plug 'mhinz/vim-startify'                        " startup screen plugin
 Plug 'junegunn/fzf.vim'                          " fuzzy finder plugin using fzf :req: fzf,ripgrep/silver-searcher
 Plug 'wincent/ferret'                            " fuzzy search and multiple file replace plugin
 Plug 'tpope/vim-fugitive'                        " git plugin
 Plug 'mhinz/vim-signify'                         " plugin to show what has changed according to git history
 Plug 'tpope/vim-surround'                        " surround text with char plugin
 Plug 'deviantfero/wpgtk.vim'                     " wpgtk colour scheme for vim
-Plug '907th/vim-auto-save'                       " auto save plugin
+"Plug '907th/vim-auto-save'                       " auto save plugin
 Plug 'alvan/vim-closetag'                        " autoclose (x)html tags plugin
 Plug 'jiangmiao/auto-pairs'                      " autoclose brackets, quotes and such plugin
 Plug 'terryma/vim-multiple-cursors'              " multiple cursors plugin
@@ -55,28 +53,14 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}  " code completion plugin
 Plug 'SirVer/ultisnips'                          " snippet plugin
 Plug 'janko/vim-test'                            " unit testing wrapper
 
-" .php plugins
-Plug 'StanAngeloff/php.vim'                      " improved .php syntax highlighting plugin
-Plug 'stephpy/vim-php-cs-fixer'                  " plugin that reformats .php code based on PSR1/PSR2 upon event
-"Plug 'phpactor/phpactor' ,  {'do': 'composer install', 'for': 'php'}    " autocompletion plugin for .php
-"Plug 'phpactor/ncm2-phpactor'                    " plugin to link phpfactor to ncm2
-Plug 'adoy/vim-php-refactoring-toolbox'          " .php refactoring toolbox plugin
-Plug 'tobyS/pdv'                                 " generates .php docblocks plugin
-"Plug 'noahfrederick/vim-laravel'                " laravel plugin
-Plug 'jwalton512/vim-blade'                      " blade syntax hilighting plugin
-Plug 'nelsyeung/twig.vim'                        " twig syntax hilighting plugin
-Plug 'arnaud-lb/vim-php-namespace'               " use statement insertion plugin
-" https://github.com/squizlabs/PHP_CodeSniffer   " will make sure that .php is properly formatted
-                                                 "   `composer global require "squizlabs/php_codesniffer=*"`
-" https://github.com/phpstan/phpstan             " will make some guesses about types in your code based on typehints and phpDoc annotations <- requires setup
-                                                 "   `composer require --dev phpstan/phpstan`
-" https://phpmd.org/                             " possible bugs;  suboptimal code; overcomplicated expressions; Unused parameters, methods, properties
-                                                 "   `composer require --dev phpmd/phpmd`
-"Plug 'shawncplus/phpcomplete.vim'                " php autocomplete plugin - OmniComplete
-Plug 'tpope/vim-pathogen'
-
 " .js plugins
 Plug 'othree/yajs.vim'                           " .js plugin
+
+" V plugins
+Plug 'ollykel/v-vim'
+
+" Go plugins
+Plug 'fatih/vim-go'
 
 call plug#end()
 
@@ -116,6 +100,11 @@ if get(g:, 'elite_mode')
 endif
 set clipboard=unnamed,unnamedplus
 
+" Set make command for .v
+autocmd FileType v setlocal makeprg=vet\ run\ %
+" Set make command for .go
+autocmd FileType go setlocal makeprg=go\ run\ %
+
 
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
 " | Plugins Config                                                                                                                                           |
@@ -134,7 +123,7 @@ nnoremap <leader>ne :NERDTreeToggle<CR>
 "let g:project_use_nerdtree = 1
 let g:project_enable_welcome = 1
 " load projects config
-so ~/.config/nvim/.projects
+"so ~/.config/nvim/.projects
 nmap <leader><F2> :e ~/.config/nvim/.projects<CR>
 
 " fzf config
@@ -228,7 +217,7 @@ let g:gutentags_generate_on_write = 1
 let g:gutentags_generate_on_empty_buffer = 0
 
 " neoclide/coc config
-let g:coc_global_extensions = [ 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-phpls', 'coc-js', 'coc-html', 'coc-css', 'coc-json', 'coc-python' ]
+let g:coc_global_extensions = [ 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-phpls', 'coc-html', 'coc-css', 'coc-json', 'coc-python' ]
 " Better display for messages
 set cmdheight=2
 " You will have bad experience for diagnostic messages when it's default 4000.
@@ -360,12 +349,14 @@ autocmd FileType html       setlocal shiftwidth=4 tabstop=4
 " nnoremap <leader>s :set invspell<CR>                      " when invoking an Ex command <CR> is needed to complete command
 " inoremap <leader>d <C-R>=strftime("%Y-%m-%dT%H:%M")<CR>   " <C-R>= is used to insert output at cursor loc
 
+nmap <silent> <F9> :make<CR>
+
 function! BuildAndRun()
   if filereadable("./Makefile")
     make build_and_run
   endif
 endfunction
-nmap <silent> <F9> :call BuildAndRun()<CR>
+"nmap <silent> <F9> :call BuildAndRun()<CR>
 
 function! BuildAndDebug()
   if filereadable("./Makefile")
