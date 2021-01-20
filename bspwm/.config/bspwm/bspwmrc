@@ -7,47 +7,43 @@ host=$(hostname)
 
 #### AUTOSTART ####
 
-if [[ "$host" == "samurai" ]]
+if [[ "$host" == "shinobi" ]]
 then
-    xrandr --output DVI-D-0 --right-of DVI-D-0 --output HDMI-0 --below DVI-D-0 --output DP-0
+    #xrandr --output DVI-D-0 --right-of DVI-D-0 --output HDMI-0 --below DVI-D-0 --output DP-0
     #xrandr --output DP-0 --rotate right
     sxhkd &
-    $HOME/.local/bin/package-list
 else
-    sxhkd -c /home/dief/.config/sxhkd/sxhkdrc.shinobi &
+    sxhkd -c /home/dief/.config/sxhkd/sxhkdrc.samurai &
+    #$HOME/.local/bin/package-list
 fi
 
-~/.config/wpg/wp_init.sh
-nitrogen --restore &
-sleep 1; picom
+#~/.config/wpg/wp_init.sh
+#nitrogen --restore &
+#sleep 1; picom
 $HOME/.config/polybar/launch.sh &
 $HOME/.local/bin/set-border &
 #nm-applet &
 #blueman-applet &
-xautolock -time 10 -locker /home/dief/.local/bin/lock &
-redshift &
+#xautolock -time 10 -locker /home/dief/.local/bin/lock &
+#redshift &
 #volumeicon &
 #pamac-tray &
-clipit &
-$HOME/.local/share/tresorit/tresorit --hidden &
-
-if [[ "$host" == "samurai" ]]
-then
-    /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-    #start_conky_maia &
-    /home/dief/.local/bin/init-bluetooth
-fi
+#clipit &
+#$HOME/.local/share/tresorit/tresorit --hidden &
 
 if [[ "$host" == "shinobi" ]]
 then
+    #/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+    #start_conky_maia &
+    #/home/dief/.local/bin/init-bluetooth
     #cbatticon
-    cat $HOME/.config/alacritty/alacritty.yml $HOME/.config/alacritty/alacritty.shinobi.yml > $HOME/alacritty.yml
+    #cat $HOME/.config/alacritty/alacritty.yml $HOME/.config/alacritty/alacritty.shinobi.yml > $HOME/alacritty.yml
 fi
 
 
 #### AUTOSTART and place on desktop ####
 
-if [[ "$host" == "samurai" ]]
+if [[ "$host" == "shinobi" ]]
 then
     #bspc rule -a st-256color -o desktop=^1 && st /home/dief/.local/bin/vagrant-up &
     bspc rule -a Slack -o desktop=^2 && slack &
@@ -55,6 +51,24 @@ then
     #bspc rule -a Chromium -o desktop=^11 && chromium &
 fi
 #bspc rule -a Google-chrome -o desktop=^3 && google-chrome-stable &
+#bspc rule -a Gimp state=floating follow=on
+bspc rule -a Slack desktop='^2'
+bspc rule -a Google-chrome desktop='^3'
+bspc rule -a Brave-browser desktop='^4'
+if [[ "$host" == "samurai" ]]
+then
+    bspc rule -a Chromium state=floating
+fi
+bspc rule -a mplayer2 state=floating
+bspc rule -a TorGuard state=floating
+bspc rule -a jetbrains-toolbox state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+
+
+#### Additional Config ####
+setxkbmap -option caps:backspace
+setxkbmap -option compose:ralt
 
 
 #### MONITORS ####
@@ -110,23 +124,5 @@ bspc config urgent_border_color 	"#dd2727"
 #find out the name of your monitor with xrandr
 xdo below -t $(xdo id -n root) $(xdo id -a polybar-main_DP-0)
 xdo below -t $(xdo id -n root) $(xdo id -a polybar-main_HDMI-0)
-
-#bspc rule -a Gimp state=floating follow=on
-bspc rule -a Slack desktop='^2'
-bspc rule -a Google-chrome desktop='^3'
-bspc rule -a Brave-browser desktop='^4'
-if [[ "$host" == "samurai" ]]
-then
-    bspc rule -a Chromium state=floating
-fi
-bspc rule -a mplayer2 state=floating
-bspc rule -a TorGuard state=floating
-bspc rule -a jetbrains-toolbox state=floating
-bspc rule -a Kupfer.py focus=on
-bspc rule -a Screenkey manage=off
-
-#### setxkbmap commands ####
-setxkbmap -option caps:backspace
-setxkbmap -option compose:ralt
 
 bash $HOME/.config/bspwm/bspwm_colors.sh &

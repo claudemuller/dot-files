@@ -4,7 +4,7 @@
 
 # terminal emulator
 alt + Return
-	/usr/bin/alacritty --config-file /home/dief/.config/alacritty/alacritty.shinobi.yml
+	/usr/bin/alacritty --config-file /home/dief/.config/alacritty/alacritty.samurai.yml
 
 # make sxhkd reload its configuration files:
 alt + Escape
