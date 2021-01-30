@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/dief/.config/wpg/wallpapers/hks1.jpg",
+    "alpha": "25",
+
+    "special": {
+        "background": "#010101",
+        "foreground": "#f2e9eb",
+        "cursor": "#f2e9eb"
+    },
+    "colors": {
+        "color0": "#010101",
+        "color1": "#FEFE33",
+        "color2": "#8C8552",
+        "color3": "#19498D",
+        "color4": "#5491AE",
+        "color5": "#62B7DD",
+        "color6": "#6AC4EC",
+        "color7": "#dfc9cd",
+        "color8": "#9c8c8f",
+        "color9": "#fefe66",
+        "color10": "#a7a069",
+        "color11": "#2160b8",
+        "color12": "#77a8be",
+        "color13": "#8cc9e6",
+        "color14": "#97d7f2",
+        "color15": "#f2e9eb"
+    }
+}

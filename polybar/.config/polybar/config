@@ -52,10 +52,6 @@ volume-min = #a3be8c
 volume-med = #ebcb8b
 volume-max = #bf616a
 transparent = #00000000
-s3background = ${xrdb:color4}
-s3foreground = ${color.background}
-s4background = ${xrdb:color5}
-s4foreground = ${color.background}
 
 ; Nord theme ============
 ;background = #292d3e
@@ -96,7 +92,7 @@ s4foreground = ${color.background}
 
 [bar/mainbar-bspwm]
 monitor = ${env:MONITOR}
-;monitor-fallback = HDMI1
+monitor-fallback = eDP1
 monitor-strict = false
 override-redirect = false
 bottom = false
@@ -137,11 +133,11 @@ font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=8;1"
 font-3 = "Font Awesome 5 Free:style=Solid:pixelsize=8;1"
 font-4 = "Font Awesome 5 Brands:pixelsize=8;1"
 
-modules-left = s0 bspwm s1 s6 xwindow s7
+modules-left = bspwm xwindow
 modules-center =
 #modules-right = arrow0 harvest arrow1  networkspeedup networkspeeddown arrow2 memory2 arrow3 cpu2 arrow4 pavolume arrow5 aur-updates arrow6 date
-modules-right = s3 networkspeedup networkspeeddown s4 s3 memory2 s4 s3 cpu2 s4 s3 pavolume s4 s3 aur-updates s4 s10 date
-#s9 harvest s4
+modules-right = wireless-network memory2 cpu2 pavolume battery aur-updates date
+#s9 harvest s4 s3
 
 separator =
 
@@ -203,17 +199,13 @@ pin-workspaces = true
 ws-icon-0 = 1;
 ws-icon-1 = 2;
 ws-icon-2 = 3;
-ws-icon-3 = 4;
-ws-icon-4 = 5;
-ws-icon-5 = test6;
-ws-icon-6 = 7;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
 ws-icon-7 = 8;
 ws-icon-8 = 9;
-ws-icon-9 = 10;
-ws-icon-10 = "11;"
-ws-icon-11 = "12;"
-ws-icon-12 = "13;"
-ws-icon-13 = "14;"
+ws-icon-9 = 10;
 ws-icon-default = " "
 
 format = <label-state> <label-mode>
@@ -221,20 +213,20 @@ format = <label-state> <label-mode>
 label-focused = %icon%
 label-focused-background = ${xrdb:color5}
 #label-focused-underline= #6790eb
-label-focused-padding = 2
+label-focused-padding = 1
 label-focused-foreground = ${colors.foreground}
 
 label-occupied = %icon%
-label-occupied-padding = 2
+label-occupied-padding = 1
 label-occupied-foreground = ${colors.background}
 label-occupied-background = ${xrdb:color5}
 
 label-urgent = %icon%
-label-urgent-padding = 2
+label-urgent-padding = 1
 
 label-empty = %icon%
 label-empty-foreground = ${xrdb:color13}
-label-empty-padding = 2
+label-empty-padding = 1
 label-empty-background = ${xrdb:color5}
 label-monocle = "  "
 label-monocle-foreground = ${colors.foreground}
@@ -268,6 +260,8 @@ label-private-background = ${xrdb:color5}
 
 format-foreground = ${colors.foreground}
 format-background = ${colors.background}
+
+
 
 
 ################################################################################
@@ -367,14 +361,14 @@ content-background = ${colors.transparent}
 type = custom/text
 content = "%{T3}%{T-}"
 content-font = 5
-content-foreground = ${colors.s3background}
+content-foreground = ${xrdb:color13}
 content-background = ${colors.transparent}
 
 [module/s4]
 type = custom/text
 content = "%{T3}%{T-}"
 content-font = 5
-content-foreground = ${colors.s4background}
+content-foreground = ${xrdb:color5}
 content-background = ${colors.transparent}
 
 [module/s5]
@@ -453,17 +447,17 @@ format-prefix-foreground = ${colors.background}
 type = custom/script
 exec = pacman -Qu | sed "/\bignored\b/d" | wc -l
 interval = 1000
-label = " Aur: %output%"
+label = " Aur: %output% "
 #format-foreground = ${colors.foreground}
 #format-background = ${colors.background}
 #format-prefix = "  "
 #format-prefix-foreground = #FFBB00
 #format-underline = #FFBB00
 format-foreground = ${colors.background}
-format-background = ${colors.s4background}
-format-prefix = " "
+format-background = ${xrdb:color5}
+format-prefix = "  "
 format-prefix-foreground = ${colors.background}
-format-prefix-background = ${colors.s3background}
+format-prefix-background = ${xrdb:color13}
 
 
 ################################################################################
@@ -519,24 +513,24 @@ bar-empty = ─
 ;https://github.com/jaagr/polybar/wiki/Module:-battery
 type = internal/battery
 battery = BAT0
-adapter = AC0
+adapter = AC
 full-at = 100
 
 format-charging = <animation-charging> <label-charging>
 label-charging =  %percentage%%
-format-charging-foreground = ${colors.foreground}
-format-charging-background = ${colors.background}
-format-charging-underline = #a3c725
+format-charging-foreground = ${colors.background}
+format-charging-background = ${xrdb.color5}
+;format-charging-underline = #a3c725
 
 format-discharging = <ramp-capacity> <label-discharging>
-label-discharging =  %percentage%%
-format-discharging-underline = #c7ae25
-format-discharging-foreground = ${colors.foreground}
-format-discharging-background = ${colors.background}
+label-discharging = "  %percentage%% "
+;format-discharging-underline = #c7ae25
+format-discharging-foreground = ${colors.background}
+format-discharging-background = ${xrdb.color13}
 
-format-full-prefix = " "
+format-full-prefix = "  "
 format-full-prefix-foreground = #a3c725
-format-full-underline = #a3c725
+;format-full-underline = #a3c725
 format-foreground = ${colors.foreground}
 format-background = ${colors.background}
 
@@ -631,10 +625,10 @@ type = internal/cpu
 ; Default: 1
 interval = 1
 format-foreground = ${colors.background}
-format-background = ${colors.s4background}
-format-prefix = " "
+format-background = ${xrdb:color5}
+format-prefix = "  "
 format-prefix-foreground = ${colors.background}
-format-prefix-background = ${colors.s3background}
+format-prefix-background = ${xrdb:color13}
 
 label-font = 1
 
@@ -643,7 +637,7 @@ label-font = 1
 ;   <bar-load>
 ;   <ramp-load>
 ;   <ramp-coreload>
-format = <label>
+format = "<label> "
 
 
 ; Available tokens:
@@ -866,12 +860,12 @@ interval = 1
 label = " %percentage_used%%"
 
 #format = Mem <label>
-format = <label>
-format-prefix = " "
+format = "<label> "
+format-prefix = "  "
 format-prefix-foreground = #292d3e
-format-prefix-background = ${colors.s3background}
+format-prefix-background = ${xrdb:color13}
 format-foreground = #292d3e
-format-background = ${colors.s4background}
+format-background = ${xrdb:color5}
 
 ################################################################################
 
@@ -927,34 +921,33 @@ format-online-background = ${colors.background}
 [module/networkspeedup]
 ;https://github.com/jaagr/polybar/wiki/Module:-network
 type = internal/network
-;interface = wlp3s0
+interface = wlp3s0
 ;interface = enp14s0
 ;interface = enp0s31f6
-interface = eno1
 label-connected = " %upspeed:7%"
-label-connected-background = ${colors.s4background}
+label-connected-background = ${xrdb:color5}
 format-connected = <label-connected>
-format-connected-prefix = "  "
+format-connected-prefix = "   "
 format-connected-prefix-foreground = ${colors.background}
 format-connected-foreground = ${colors.background}
-format-connected-background = ${colors.s3background}
+format-connected-background = ${xrdb:color13}
 
 ################################################################################
 
 [module/networkspeeddown]
 ;https://github.com/jaagr/polybar/wiki/Module:-network
 type = internal/network
-;interface = wlp3s0
+interface = wlp3s0
 ;interface = enp14s0
 ;interface = enp0s31f6
-interface = eno1
-label-connected = " %downspeed:7%"
-label-connected-background = ${colors.s4background}
+;interface = eno1
+label-connected = " %downspeed:7% "
+label-connected-background = ${xrdb:color5}
 format-connected = <label-connected>
-;format-connected-prefix = " "
+#format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.background}
 format-connected-foreground = ${colors.background}
-format-connected-background = ${colors.s3background}
+format-connected-background = ${xrdb:color13}
 
 ################################################################################
 
@@ -975,17 +968,17 @@ format-underline = #FFBB00
 [module/pavolume]
 type = custom/script
 tail = true
-label = " %output%"
+label = " %output% "
 exec = ~/.config/polybar/scripts/pavolume.sh --listen
 click-right = exec pavucontrol
 click-left = ~/.config/polybar/scripts/pavolume.sh --togmute
 scroll-up = ~/.config/polybar/scripts/pavolume.sh --up
 scroll-down = ~/.config/polybar/scripts/pavolume.sh --down
 format-foreground = ${colors.background}
-format-background = ${colors.s4background}
-format-prefix = " "
+format-background = ${xrdb:color5}
+format-prefix = "  "
 format-prefix-foreground = ${colors.background}
-format-prefix-background = ${colors.s3background}
+format-prefix-background = ${xrdb:color13}
 
 ################################################################################
 
@@ -1193,16 +1186,16 @@ label-disconnected-foreground = ${colors.foreground}
 type = internal/network
 interface = ${env:WIRELESS}
 interval = 3.0
-label-connected = %essid%
+label-connected = " %essid% "
 
 format-connected = <label-connected>
 ;format-connected = <ramp-signal> <label-connected>
-format-connected-foreground = ${colors.foreground}
-format-connected-background = ${colors.background}
+format-connected-foreground = ${colors.background}
+format-connected-background = ${xrdb:color5}
 format-connected-prefix = "  "
-format-connected-prefix-foreground = #7e52c6
-format-connected-prefix-background = ${colors.background}
-format-connected-underline = #7e52c6
+format-connected-prefix-foreground = ${colors.background}
+format-connected-prefix-background = ${xrdb:color13}
+;format-connected-underline = #7e52c6
 
 label-disconnected = %ifname% disconnected
 label-disconnected-foreground = ${colors.alert}
@@ -1215,6 +1208,8 @@ format-disconnected-prefix = "  "
 format-disconnected-prefix-foreground = ${colors.alert}
 format-disconnected-prefix-background = ${colors.background}
 format-disconnected-underline =${colors.alert}
+
+click-left = /usr/bin/nmtui-connect
 
 ramp-signal-0 = ▁
 ramp-signal-1 = ▂
@@ -1281,7 +1276,7 @@ type = internal/xwindow
 ; Available tokens:
 ;   %title%
 ; Default: %title%
-label = %title%
+label = "%title% "
 label-maxlen = 50
 
 format-prefix = "  "
