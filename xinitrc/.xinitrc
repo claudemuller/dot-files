@@ -7,4 +7,4 @@
 [ -f ~/.xprofile ] && . ~/.xprofile
 
 #exec dwm
-exec bspwm
+exec bspwm 

@@ -13,11 +13,11 @@ for m in $(polybar --list-monitors | cut -d":" -f1); do
 		export TRAY_POS=right
 	#fi
 
-    if [[ "$host" == "samurai" ]]
+    if [[ "$host" == "shinobi" ]]
     then
         WIRELESS=$(ls /sys/class/net/ | grep ^wl | awk 'NR==1{print $1}') MONITOR=$m polybar --reload mainbar-bspwm &
     else
-        WIRELESS=$(ls /sys/class/net/ | grep ^wl | awk 'NR==1{print $1}') MONITOR=$m polybar -c /home/dief/.config/polybar/config.shinobi --reload mainbar-bspwm &
+        WIRELESS=$(ls /sys/class/net/ | grep ^wl | awk 'NR==1{print $1}') MONITOR=$m polybar -c /home/dief/.config/polybar/config.samurai --reload mainbar-bspwm &
     fi
 done
 

@@ -4,7 +4,7 @@
 
 # terminal emulator
 alt + Return
-	/usr/bin/alacritty --config-file /home/dief/.config/alacritty/alacritty.shinobi.yml
+	/usr/bin/alacritty --config-file /home/dief/.config/alacritty/alacritty.samurai.yml
 
 # make sxhkd reload its configuration files:
 alt + Escape
@@ -157,34 +157,6 @@ alt + {Left,Down,Up,Right}
 alt + space
     dmenu_run
 	#rofi -show run
-
-# take a screenshot section
-XF86Display
-	import ~/temp/screenshot.png && notify-send 'Select portion of the screen to capture'
-
-# screen backlight brightness
-XF86MonBrightness{Up,Down}
-    xbacklight {-inc,-dec} 10
-
-# volume level adjustment
-XF86Audio{Raise,Lower}Volume
-    amixer -D pulse sset Master 5%{+,-}
-
-# mute audio
-XF86AudioMute
-    amixer -D pulse sset Master toggle && amixer get Master | grep '\[off\]' && notify-send 'Audio switched OFF' || notify-send 'Audio switched ON'
-
-# mute mic
-XF86AudioMicMute
-    amixer set Capture toggle && amixer get Capture | grep '\[off\]' && notify-send 'Mic switched OFF' || notify-send 'Mic switched ON'
-
-# switch to colemak
-XF86Explorer
-    setxkbmap us -variant colemak
-
-# switch to qwerty
-XF86LaunchA
-    setxkbmap us
 
 #bindsym $mod+Control+space exec --no-startup-id rofi -show window
 #bindsym $mod+Control+Shift+c exec rofi -show calc -modi calc -no-show-match -no-sort
