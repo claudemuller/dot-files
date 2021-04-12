@@ -101,6 +101,10 @@ if [[ "$IS_MAC" == "Darwin" ]]; then
     export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
     alias java8='export JAVA_HOME=$JAVA_8_HOME'
     alias java11='export JAVA_HOME=$JAVA_11_HOME'
+    export GONOSUMDB='*.apple.com'
+    export GOPRIVATE='*.apple.com'
+    export GOPROXY=https://athens.apple.com
+    export GONOPROXY=none
 else
     export JAVA_HOME=/usr/lib/jvm/java-14-openjdk
     export _JAVA_AWT_WM_NONREPARENTING=1
