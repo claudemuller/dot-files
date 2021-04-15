@@ -86,7 +86,7 @@ export KEYTIMEOUT=1
 # Some vars
 export VISUAL=vim;
 export EDITOR=vim;
-export BROWSER=brave;
+export BROWSER=firefox;
 
 # nvm stuff
 export NVM_DIR="$HOME/.nvm"
@@ -98,24 +98,16 @@ if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
     startx
 fi
 
-export PATH=$PATH:$HOME/.config/composer/vendor/bin:/home/dief/.gem/ruby/2.7.0:/usr/lib/ruby/gems/2.7.0:$HOME/.local/bin
-export NOTES_DIR=$HOME/repos/notes
-export NASA_API_KEY=rMifLvTLpgYfUomy1Iidfjamje0XOY5igAbYoOII
-
 if [[ "$IS_MAC" == "Darwin" ]]; then
-    export ANDROID_HOME=/Users/claude/Library/Android/sdk
     export JAVA_HOME=$(/usr/libexec/java_home -v11)
     export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
     export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
     alias java8='export JAVA_HOME=$JAVA_8_HOME'
     alias java11='export JAVA_HOME=$JAVA_11_HOME'
-    export GONOSUMDB='*.apple.com'
-    export GOPRIVATE='*.apple.com'
-    export GOPROXY=https://athens.apple.com
-    export GONOPROXY=none
 else
     export JAVA_HOME=/usr/lib/jvm/java-14-openjdk
     export _JAVA_AWT_WM_NONREPARENTING=1
+    export PATH=$PATH:$HOME/.config/composer/vendor/bin:/home/dief/.gem/ruby/2.7.0:/usr/lib/ruby/gems/2.7.0:$HOME/.local/bin
 fi
 
 alias tsm='transmission-remote-cli'
