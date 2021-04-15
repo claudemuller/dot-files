@@ -1,8 +1,7 @@
-if [[ $(lsb_release -si) == "Pop" ]]; then
-    IS_POP=true
-fi
 if [[ $(uname) == "Darwin" ]]; then
     IS_MAC=true
+elif [[ $(lsb_release -si) == "Pop" ]]; then
+    IS_POP=true
 fi
 
 if [[ "$IS_POP" == false ]]; then
@@ -30,7 +29,7 @@ bindkey -e
 # End of lines configured by zsh-newuser-install
 
 # Colours
-if [[ "$IS_MAC" == true ]]; then
+if [[ "$IS_MAC" != true ]]; then
     (cat ~/.config/wpg/sequences &)
 fi
 #xrdb -load ~/.Xresources &
