@@ -97,8 +97,11 @@ export KEYTIMEOUT=1
 export VISUAL=vim;
 export EDITOR=vim;
 export BROWSER=firefox;
-export TERM=xterm-kitty
-export TERMINFO=/usr/lib/kitty/terminfo
+
+if [[ "$IS_POP" == true ]]; then
+    export TERM=xterm-kitty
+    export TERMINFO=/usr/lib/kitty/terminfo
+fi
 
 # nvm stuff
 export NVM_DIR="$HOME/.nvm"
@@ -111,11 +114,8 @@ if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
 fi
 
 export PATH=$PATH:$HOME/.config/composer/vendor/bin:$HOME/.gem/ruby/2.7.0:/usr/lib/ruby/gems/2.7.0:$HOME/.local/bin:/usr/local/lib/node_modules/yarn/bin/
-export NOTES_DIR=$HOME/repos/notes
-export NASA_API_KEY=rMifLvTLpgYfUomy1Iidfjamje0XOY5igAbYoOII
 
 if [[ "$IS_MAC" == true ]]; then
-    export ANDROID_HOME=/Users/claude/Library/Android/sdk
     export JAVA_HOME=$(/usr/libexec/java_home -v11)
     export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
     export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
@@ -126,6 +126,7 @@ elif [[ "$IS_POP" == true ]]; then
 else
     export JAVA_HOME=/usr/lib/jvm/java-14-openjdk
     export _JAVA_AWT_WM_NONREPARENTING=1
+    export PATH=$PATH:$HOME/.config/composer/vendor/bin:/home/dief/.gem/ruby/2.7.0:/usr/lib/ruby/gems/2.7.0:$HOME/.local/bin
 fi
 
 alias pv=protonvpn-cli
