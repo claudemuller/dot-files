@@ -36,6 +36,9 @@ Plug 'alvan/vim-closetag'                        " autoclose (x)html tags plugin
 Plug 'jiangmiao/auto-pairs'                      " autoclose brackets, quotes and such plugin
 Plug 'terryma/vim-multiple-cursors'              " multiple cursors plugin
 Plug 'RRethy/vim-illuminate' 			         " autohighlight word matches when hovering on word plugin
+Plug 'vim-airline/vim-airline'
+Plug 'rakr/vim-one'
+Plug 'robertbasic/vim-hugo-helper'
 
 " Coding plugins
 Plug 'neomake/neomake'                           " plugin to asynchronously make/run code to detect issues
@@ -99,6 +102,7 @@ if get(g:, 'elite_mode')
     nnoremap <Right> :vertical resize +2<CR>
 endif
 set clipboard=unnamed,unnamedplus
+let g:airline_powerline_fonts = 1
 
 " Set make command for .v
 autocmd FileType v setlocal makeprg=vet\ run\ %

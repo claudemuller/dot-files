@@ -1,20 +1,28 @@
-#U
-USE_POWERLINE="true"
-
-# Source manjaro-zsh-configuration
-if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
-  source /usr/share/zsh/manjaro-zsh-config
+if [[ $(lsb_release -si) == "Pop" ]]; then
+    IS_POP=true
 fi
-# Use manjaro zsh prompt
-if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
-  source /usr/share/zsh/manjaro-zsh-prompt
+if [[ $(uname) == "Darwin" ]]; then
+    IS_MAC=true
+fi
+
+if [[ "$IS_POP" == false ]]; then
+    #U
+    USE_POWERLINE="true"
+
+    # Source manjaro-zsh-configuration
+    if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
+      source /usr/share/zsh/manjaro-zsh-config
+    fi
+    # Use manjaro zsh prompt
+    if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
+      source /usr/share/zsh/manjaro-zsh-prompt
+    fi
 fi
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
-IS_MAC=$(uname)
 
 setopt appendhistory nomatch notify
 unsetopt autocd beep extendedglob
@@ -22,14 +30,16 @@ bindkey -e
 # End of lines configured by zsh-newuser-install
 
 # Colours
-if [[ "$IS_MAC" != "Darwin" ]]; then
+if [[ "$IS_MAC" == true ]]; then
     (cat ~/.config/wpg/sequences &)
 fi
 #xrdb -load ~/.Xresources &
 
 # Load zsh plugins
-if [[ "$IS_MAC" == "Darwin" ]]; then
+if [[ "$IS_MAC" == true ]]; then
     source /usr/local/Cellar/zsh-autosuggestions/0.6.4/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+elif [[ "$IS_POP" == true ]]; then
+    source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 else
     source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
@@ -38,13 +48,13 @@ fi
 #export PS1="[%n@%m %c]$ "
 
 # Git in prompt
-autoload -Uz vcs_info
-precmd_vcs_info() { vcs_info }
-precmd_functions+=( precmd_vcs_info )
-setopt prompt_subst
-RPROMPT=\$vcs_info_msg_0_
-zstyle ':vcs_info:git:*' formats '%F{240}(%b)%r%f'
-zstyle ':vcs_info:*' enable git
+#autoload -Uz vcs_info
+#precmd_vcs_info() { vcs_info }
+#precmd_functions+=( precmd_vcs_info )
+#setopt prompt_subst
+#RPROMPT=\$vcs_info_msg_0_
+#zstyle ':vcs_info:git:*' formats '%F{240}(%b)%r%f'
+#zstyle ':vcs_info:*' enable git
 
 # Use vi mode
 bindkey -v
@@ -86,7 +96,9 @@ export KEYTIMEOUT=1
 # Some vars
 export VISUAL=vim;
 export EDITOR=vim;
-export BROWSER=brave;
+export BROWSER=firefox;
+export TERM=xterm-kitty
+export TERMINFO=/usr/lib/kitty/terminfo
 
 # nvm stuff
 export NVM_DIR="$HOME/.nvm"
@@ -98,28 +110,33 @@ if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
     startx
 fi
 
-export PATH=$PATH:$HOME/.config/composer/vendor/bin:/home/dief/.gem/ruby/2.7.0:/usr/lib/ruby/gems/2.7.0:$HOME/.local/bin
+export PATH=$PATH:$HOME/.config/composer/vendor/bin:$HOME/.gem/ruby/2.7.0:/usr/lib/ruby/gems/2.7.0:$HOME/.local/bin:/usr/local/lib/node_modules/yarn/bin/
 export NOTES_DIR=$HOME/repos/notes
 export NASA_API_KEY=rMifLvTLpgYfUomy1Iidfjamje0XOY5igAbYoOII
 
-if [[ "$IS_MAC" == "Darwin" ]]; then
+if [[ "$IS_MAC" == true ]]; then
     export ANDROID_HOME=/Users/claude/Library/Android/sdk
     export JAVA_HOME=$(/usr/libexec/java_home -v11)
     export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
     export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
     alias java8='export JAVA_HOME=$JAVA_8_HOME'
     alias java11='export JAVA_HOME=$JAVA_11_HOME'
+elif [[ "$IS_POP" == true ]]; then
+    export JAVA_HOME=/usr/lib/jvm/java-1.14.0-openjdk-amd64
 else
     export JAVA_HOME=/usr/lib/jvm/java-14-openjdk
     export _JAVA_AWT_WM_NONREPARENTING=1
 fi
 
+alias pv=protonvpn-cli
 alias tsm='transmission-remote-cli'
 alias dls='watch -n 5 "transmission-remote-cli -tall -l | egrep \"(Downloading|Seeding|Up & Down|Uploading|Idle)\" | sort -k 2 -n -r"'
 alias vim='nvim'
 alias cp="cp -iv"
-if [[ "$IS_MAC" == "Darwin" ]]; then
+if [[ "$IS_MAC" == true ]]; then
     alias ls="ls -G"
+elif [[ "$IS_POP" == true ]]; then
+    alias fd="fdfind"
 else
     alias ls="ls --color=tty"
 fi
@@ -131,7 +148,7 @@ fi
 FPATH=$HOME/.zsh/completions:$FPATH
 autoload -Uz compinit
 rm -f ~/.zcompdump
-if [[ "$IS_MAC" == "Darwin" ]]; then
+if [[ "$IS_MAC" == true ]]; then
     compinit -i | xargs chmod g-w
 else
     zstyle :compinstall filename "$HOME/.zshrc"
@@ -139,31 +156,57 @@ fi
 compinit
 
 # SSH Agent Stuff
-SSH_ENV="$HOME/.ssh/agent-environment"
+if [[ "$IS_POP" == false ]]; then
+    SSH_ENV="$HOME/.ssh/agent-environment"
 
-function start_agent {
-    echo "Initialising new SSH agent..."
-    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-    echo succeeded
-    chmod 600 "${SSH_ENV}"
-    . "${SSH_ENV}" > /dev/null
-    /usr/bin/ssh-add;
-}
-
-# Source SSH settings, if applicable
-if [ -f "${SSH_ENV}" ]; then
-    . "${SSH_ENV}" > /dev/null
-    #ps ${SSH_AGENT_PID} doesn't work under cywgin
-    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-        start_agent;
+    function start_agent {
+        echo "Initialising new SSH agent..."
+        /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+        echo succeeded
+        chmod 600 "${SSH_ENV}"
+        . "${SSH_ENV}" > /dev/null
+        /usr/bin/ssh-add;
     }
-else
-    start_agent;
+
+    # Source SSH settings, if applicable
+    if [ -f "${SSH_ENV}" ]; then
+        . "${SSH_ENV}" > /dev/null
+        #ps ${SSH_AGENT_PID} doesn't work under cywgin
+        ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+            start_agent;
+        }
+    else
+        start_agent;
+    fi
 fi
 
 # Set Spaceship ZSH as a prompt
-#autoload -U promptinit; promptinit
-#prompt spaceship
+fpath=( "${ZDOTDIR:-$HOME}/.zfunctions" $fpath )
+autoload -U promptinit; promptinit
+prompt spaceship
+# Prompt
+#ZSH_THEME="spaceship"
+#SPACESHIP_PROMPT_ADD_NEWLINE="true"
+#SPACESHIP_CHAR_PREFIX='\ufbdf '
+#SPACESHIP_CHAR_PREFIX_COLOR='yellow'
+#SPACESHIP_CHAR_SUFFIX=(" ")
+#SPACESHIP_CHAR_COLOR_SUCCESS="yellow"
+#SPACESHIP_CHAR_SYMBOL='~'
+#SPACESHIP_PROMPT_DEFAULT_PREFIX="$USER"
+#SPACESHIP_PROMPT_FIRST_PREFIX_SHOW="true"
+#SPACESHIP_VENV_COLOR="magenta"
+#SPACESHIP_VENV_PREFIX="("
+#SPACESHIP_VENV_SUFFIX=")"
+#SPACESHIP_VENV_SYMBOL='\uf985'
+#SPACESHIP_USER_SHOW="true"
+#SPACESHIP_DOCKER_SYMBOL='\ue7b0'
+#SPACESHIP_DOCKER_VERBOSE='false'
+#SPACESHIP_BATTERY_SHOW='always'
+#SPACESHIP_BATTERY_SYMBOL_DISCHARGING='\uf57d'
+#SPACESHIP_BATTERY_SYMBOL_FULL='\uf583'
+#SPACESHIP_BATTERY_SYMBOL_CHARGING='\uf588'
+
+#eval "$(starship init zsh)"
 
 # System info
 neofetch
