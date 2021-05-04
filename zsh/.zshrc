@@ -2,6 +2,8 @@ if [[ $(uname) == "Darwin" ]]; then
     IS_MAC=true
 elif [[ $(lsb_release -si) == "Pop" ]]; then
     IS_POP=true
+elif [[ $(hostname) == "daimyo" ]]; then
+    IS_DAIMYO=true
 fi
 
 if [[ "$IS_POP" == false ]]; then
@@ -28,8 +30,8 @@ unsetopt autocd beep extendedglob
 bindkey -e
 # End of lines configured by zsh-newuser-install
 
-if [[ "$IS_MAC" != true ]]; then
-    # Colours
+# Colours
+if [[ "$IS_MAC" != true && "$IS_DAIMYO" != true ]]; then
     (cat ~/.config/wpg/sequences &)
 else
     # pyenv
@@ -47,6 +49,8 @@ if [[ "$IS_MAC" == true ]]; then
     source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 elif [[ "$IS_POP" == true ]]; then
     source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+elif [[ "$IS_DAIMYO" == true ]]; then
+    source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 else
     source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
@@ -110,6 +114,10 @@ if [[ "$IS_POP" == true ]]; then
     export TERMINFO=/usr/lib/kitty/terminfo
 fi
 
+if [[ "$IS_DAIMYO" == true ]]; then
+    export TERM=ansi
+fi
+
 # nvm stuff
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -150,7 +158,11 @@ fi
 if type brew &>/dev/null; then
     FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 fi
-FPATH=$HOME/.zsh/completions:$FPATH
+if [[ "$IS_DAIMYO" == true ]]; then
+    FPATH=/usr/share/zsh/site-functions:$FPATH
+else
+    FPATH=$HOME/.zsh/completions:$FPATH
+fi
 autoload -Uz compinit
 rm -f ~/.zcompdump
 if [[ "$IS_MAC" == true ]]; then
@@ -220,10 +232,4 @@ fi
 
 # System info
 neofetch
-
-
-#### FIG ENV VARIABLES ####
-#[ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
-#### END FIG ENV VARIABLES ####
-
 
