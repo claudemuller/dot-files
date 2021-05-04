@@ -28,15 +28,23 @@ unsetopt autocd beep extendedglob
 bindkey -e
 # End of lines configured by zsh-newuser-install
 
-# Colours
 if [[ "$IS_MAC" != true ]]; then
+    # Colours
     (cat ~/.config/wpg/sequences &)
+else
+    # pyenv
+    if command -v pyenv 1>/dev/null 2>&1; then
+      eval "$(pyenv init -)"
+    fi
+
+    alias python=$HOME/.pyenv/versions/3.9.4/bin/python
 fi
 #xrdb -load ~/.Xresources &
 
 # Load zsh plugins
 if [[ "$IS_MAC" == true ]]; then
-    source /usr/local/Cellar/zsh-autosuggestions/0.6.4/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    #source /usr/local/Cellar/zsh-autosuggestions/0.6.4/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 elif [[ "$IS_POP" == true ]]; then
     source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 else
@@ -129,6 +137,9 @@ alias vim='nvim'
 alias cp="cp -iv"
 if [[ "$IS_MAC" == true ]]; then
     alias ls="ls -G"
+    alias dcl="docker container list"
+    alias dcs="docker container start"
+    alias dc="docker container"
 elif [[ "$IS_POP" == true ]]; then
     alias fd="fdfind"
 else
@@ -209,3 +220,10 @@ fi
 
 # System info
 neofetch
+
+
+#### FIG ENV VARIABLES ####
+#[ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
+#### END FIG ENV VARIABLES ####
+
+
