@@ -1,0 +1,5 @@
+#!/bin/bash
+
+setxkbmap dvorak
+#setxkbmap us
+#notify-send -t 5000 "Keyboard settings applied"

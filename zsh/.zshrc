@@ -113,7 +113,7 @@ if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
     startx
 fi
 
-export PATH=$PATH:$HOME/.config/composer/vendor/bin:$HOME/.gem/ruby/2.7.0:/usr/lib/ruby/gems/2.7.0:$HOME/.local/bin:/usr/local/lib/node_modules/yarn/bin/
+export PATH=$PATH:$HOME/.config/composer/vendor/bin:$HOME/.gem/ruby/2.7.0:/usr/lib/ruby/gems/2.7.0:$HOME/.local/bin:/usr/local/lib/node_modules/yarn/bin/:$HOME/.yarn/bin
 
 if [[ "$IS_MAC" == true ]]; then
     export JAVA_HOME=$(/usr/libexec/java_home -v11)
@@ -122,11 +122,12 @@ if [[ "$IS_MAC" == true ]]; then
     alias java8='export JAVA_HOME=$JAVA_8_HOME'
     alias java11='export JAVA_HOME=$JAVA_11_HOME'
 elif [[ "$IS_POP" == true ]]; then
-    export JAVA_HOME=/usr/lib/jvm/java-1.14.0-openjdk-amd64
+    # use 'sudo update-java-alternatives --set <jdk_loc>'
+    #export JAVA_HOME=/usr/lib/jvm/java-1.14.0-openjdk-amd64
 else
     export JAVA_HOME=/usr/lib/jvm/java-14-openjdk
     export _JAVA_AWT_WM_NONREPARENTING=1
-    export PATH=$PATH:$HOME/.config/composer/vendor/bin:/home/dief/.gem/ruby/2.7.0:/usr/lib/ruby/gems/2.7.0:$HOME/.local/bin
+    export PATH=$PATH:$HOME/.config/composer/vendor/bin:/home/dief/.gem/ruby/2.7.0:/usr/lib/ruby/gems/2.7.0:$HOME/.local/bin:/usr/local/go/bin
 fi
 
 alias pv=protonvpn-cli
