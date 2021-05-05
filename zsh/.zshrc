@@ -1,8 +1,9 @@
-if [[ $(lsb_release -si) == "Pop" ]]; then
-    IS_POP=true
-fi
 if [[ $(uname) == "Darwin" ]]; then
     IS_MAC=true
+elif [[ $(lsb_release -si) == "Pop" ]]; then
+    IS_POP=true
+elif [[ $(hostname) == "daimyo" ]]; then
+    IS_DAIMYO=true
 fi
 
 if [[ "$IS_POP" == false ]]; then
@@ -30,16 +31,26 @@ bindkey -e
 # End of lines configured by zsh-newuser-install
 
 # Colours
-if [[ "$IS_MAC" == true ]]; then
+if [[ "$IS_MAC" != true && "$IS_DAIMYO" != true ]]; then
     (cat ~/.config/wpg/sequences &)
+else
+    # pyenv
+    if command -v pyenv 1>/dev/null 2>&1; then
+      eval "$(pyenv init -)"
+    fi
+
+    alias python=$HOME/.pyenv/versions/3.9.4/bin/python
 fi
 #xrdb -load ~/.Xresources &
 
 # Load zsh plugins
 if [[ "$IS_MAC" == true ]]; then
-    source /usr/local/Cellar/zsh-autosuggestions/0.6.4/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    #source /usr/local/Cellar/zsh-autosuggestions/0.6.4/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 elif [[ "$IS_POP" == true ]]; then
     source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+elif [[ "$IS_DAIMYO" == true ]]; then
+    source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 else
     source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
@@ -103,6 +114,10 @@ if [[ "$IS_POP" == true ]]; then
     export TERMINFO=/usr/lib/kitty/terminfo
 fi
 
+if [[ "$IS_DAIMYO" == true ]]; then
+    export TERM=ansi
+fi
+
 # nvm stuff
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -137,6 +152,9 @@ alias vim='nvim'
 alias cp="cp -iv"
 if [[ "$IS_MAC" == true ]]; then
     alias ls="ls -G"
+    alias dcl="docker container list"
+    alias dcs="docker container start"
+    alias dc="docker container"
 elif [[ "$IS_POP" == true ]]; then
     alias fd="fdfind"
 else
@@ -147,7 +165,11 @@ fi
 if type brew &>/dev/null; then
     FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 fi
-FPATH=$HOME/.zsh/completions:$FPATH
+if [[ "$IS_DAIMYO" == true ]]; then
+    FPATH=/usr/share/zsh/site-functions:$FPATH
+else
+    FPATH=$HOME/.zsh/completions:$FPATH
+fi
 autoload -Uz compinit
 rm -f ~/.zcompdump
 if [[ "$IS_MAC" == true ]]; then
@@ -210,5 +232,11 @@ prompt spaceship
 
 #eval "$(starship init zsh)"
 
+if [[ "$IS_MAC" == true ]]; then
+    export SDKMAN_DIR="/Users/claudemuller/.sdkman"
+    [[ -s "/Users/claudemuller/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/claudemuller/.sdkman/bin/sdkman-init.sh"
+fi
+
 # System info
 neofetch
+
