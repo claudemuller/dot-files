@@ -32,7 +32,7 @@ bindkey -e
 
 # Colours
 if [[ "$IS_MAC" != true && "$IS_DAIMYO" != true ]]; then
-    (cat ~/.config/wpg/sequences &)
+    #(cat ~/.config/wpg/sequences &)
 else
     # pyenv
     if command -v pyenv 1>/dev/null 2>&1; then

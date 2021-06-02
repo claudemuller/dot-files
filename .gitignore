@@ -4,4 +4,5 @@ scripts/.local/lib/
 scripts/.local/bin/running.pid
 ranger/.config/ranger/__pycache__/
 ranger/.config/ranger/plugins/__pycache__/
+gtk-3.0/.config/gtk-3.0/bookmarks
 .DS_Store
