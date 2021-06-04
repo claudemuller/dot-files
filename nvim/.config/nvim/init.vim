@@ -26,6 +26,7 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'itchyny/lightline.vim'                     " status line plugin
 Plug 'tpope/vim-abolish'                         " substitution plugin that handles plurals, case and underscores
 Plug 'junegunn/fzf.vim'                          " fuzzy finder plugin using fzf :req: fzf,ripgrep/silver-searcher
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'wincent/ferret'                            " fuzzy search and multiple file replace plugin
 Plug 'tpope/vim-fugitive'                        " git plugin
 Plug 'mhinz/vim-signify'                         " plugin to show what has changed according to git history
@@ -54,6 +55,7 @@ Plug 'tobyS/vmustache'                           " an implementation of the Must
 "Plug 'ludovicchabant/vim-gutentags'              " auto ctags handling
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}  " code completion plugin
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug 'neoclide/coc-tsserver'
 Plug 'SirVer/ultisnips'                          " snippet plugin
 Plug 'janko/vim-test'                            " unit testing wrapper
 
@@ -93,7 +95,7 @@ syntax on         	                    " switch syntax highlighting on
 colorscheme wpgtk                       " set colour scheme to wpgtk - alternative: wpgtkAlt
 hi! Normal ctermbg=NONE
 let g:mapleader = '\'                   " set leader to ,
-map <C-b> :b#<CR>                       " switch buffers
+"map <C-b> :b#<CR>                       " switch buffers
 command! -nargs=1 Silent execute ':silent !'.<q-args> | execute ':redraw!'
 let g:elite_mode=1                      " enable elite mode, No ARRRROWWS!!!!
 if get(g:, 'elite_mode')
@@ -133,9 +135,12 @@ nmap <leader><F2> :e ~/.config/nvim/.projects<CR>
 
 " fzf config
 map <leader>ff :FZF<CR>
+map <c-f> :FZF<CR>
 map <leader>ft :Tags<CR>
+map <c-t> :Tags<CR>
 map <leader>fm :BTags<CR>
 map <leader>fb :Buffers<CR>
+map <c-b> :FZF<CR>
 map <leader>fs :Ag<CR>
 
 " vim-yoink config
@@ -222,7 +227,7 @@ hi link illuminatedWord Visual
 "let g:gutentags_generate_on_empty_buffer = 0
 
 " neoclide/coc config
-let g:coc_global_extensions = [ 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-phpls', 'coc-html', 'coc-css', 'coc-json', 'coc-python', 'coc-ccls' ]
+let g:coc_global_extensions = [ 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-phpls', 'coc-html', 'coc-css', 'coc-json', 'coc-python' ]
 set nobackup
 set nowritebackup
 " Better display for messages

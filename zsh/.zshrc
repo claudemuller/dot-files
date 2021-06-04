@@ -131,11 +131,11 @@ fi
 export PATH=$PATH:$HOME/.config/composer/vendor/bin:$HOME/.gem/ruby/2.7.0:/usr/lib/ruby/gems/2.7.0:$HOME/.local/bin:/usr/local/lib/node_modules/yarn/bin/:$HOME/.yarn/bin
 
 if [[ "$IS_MAC" == true ]]; then
-    export JAVA_HOME=$(/usr/libexec/java_home -v11)
-    export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
-    export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
-    alias java8='export JAVA_HOME=$JAVA_8_HOME'
-    alias java11='export JAVA_HOME=$JAVA_11_HOME'
+    #export JAVA_HOME=$(/usr/libexec/java_home -v11)
+    #export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
+    #export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
+    #alias java8='export JAVA_HOME=$JAVA_8_HOME'
+    #alias java11='export JAVA_HOME=$JAVA_11_HOME'
 elif [[ "$IS_POP" == true ]]; then
     # use 'sudo update-java-alternatives --set <jdk_loc>'
     #export JAVA_HOME=/usr/lib/jvm/java-1.14.0-openjdk-amd64
