@@ -49,7 +49,8 @@ Plug 'honza/vim-snippets'                        " set of snippets for code plug
 "Plug 'roxma/nvim-yarp'                          " required by ncm2
 Plug 'scrooloose/nerdcommenter'                  " commenting plugin
 Plug 'majutsushi/tagbar'                         " method and class outline/browser plugin
-Plug 'vim-vdebug/vdebug'                         " debugger plugin
+"Plug 'vim-vdebug/vdebug'                         " debugger plugin
+Plug 'puremourning/vimspector'
 Plug 'dense-analysis/ale'                        " code and style syntax and problem checker
 Plug 'tobyS/vmustache'                           " an implementation of the Mustache template system  - required for pdv
 "Plug 'ludovicchabant/vim-gutentags'              " auto ctags handling
@@ -112,6 +113,10 @@ autocmd FileType v setlocal makeprg=vet\ run\ %
 " Set make command for .go
 autocmd FileType go setlocal makeprg=go\ run\ %
 
+map <C-S-M-h> <C-O>
+unmap <C-I>
+noremap <C-S-M-l> <C-I>
+
 
 " +----------------------------------------------------------------------------------------------------------------------------------------------------------+
 " | Plugins Config                                                                                                                                           |
@@ -123,25 +128,30 @@ call pathogen#helptags()
 
 " nerdtree config
 set rtp+=~/nvim/plugged/nerdtree/
-nnoremap <leader>ne :NERDTreeToggle<CR>
+nnoremap <C-n> :NERDTreeToggle<CR>
 "let NERDTreeWinSize=1
 "unmap <leader>ci<CR>
-" vim-project config
-"let g:project_use_nerdtree = 1
-let g:project_enable_welcome = 1
-" load projects config
-"so ~/.config/nvim/.projects
-nmap <leader><F2> :e ~/.config/nvim/.projects<CR>
+au VimEnter *  NERDTree
 
 " fzf config
 map <leader>ff :FZF<CR>
-map <c-f> :FZF<CR>
+map <C-F> :FZF<CR>
 map <leader>ft :Tags<CR>
-map <c-t> :Tags<CR>
+map <C-T> :Tags<CR>
 map <leader>fm :BTags<CR>
 map <leader>fb :Buffers<CR>
-map <c-b> :FZF<CR>
+map <C-B> :Buffers<CR>
 map <leader>fs :Ag<CR>
+
+" vimspector
+let g:vimspector_enable_mappings = 'HUMAN'
+nmap <leader>vl :call vimspector#Launch()<CR>
+nmap <leader>vr :VimspectorReset<CR>
+nmap <leader>ve :VimspectorEval
+nmap <leader>vw :VimspectorWatch
+nmap <leader>vo :VimspectorShowOutput
+nmap <leader>vi <Plug>VimspectorBalloonEval
+xmap <leader>vi <Plug>VimspectorBalloonEvallet g:vimspector_install_gadgets = [ 'vscode-node-debug2' ]
 
 " vim-yoink config
 "nmap <c-n> <plug>(YoinkPostPasteSwapBack)
@@ -265,6 +275,7 @@ inoremap <silent><expr> <c-space> coc#refresh()
 
 " jump to definition
 nmap <silent> <leader>cd <Plug>(coc-definition)
+map <c-d> <Plug>(coc-definition)
 nmap <silent> <leader>ct <Plug>(coc-type-definition)
 nmap <silent> <leader>ci <Plug>(coc-implementation)
 nmap <silent> <leader>cr <Plug>(coc-references)
@@ -479,6 +490,7 @@ function! NtSyncTree()
 endfunction
 
 autocmd BufEnter * call NtSyncTree()
+autocmd VimEnter * wincmd p
 
 function! s:get_visual_selection()
   " Why is this not a built-in Vim script function?!
