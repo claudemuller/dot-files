@@ -114,7 +114,6 @@ autocmd FileType v setlocal makeprg=vet\ run\ %
 autocmd FileType go setlocal makeprg=go\ run\ %
 
 map <C-S-M-h> <C-O>
-unmap <C-I>
 noremap <C-S-M-l> <C-I>
 
 
@@ -275,7 +274,7 @@ inoremap <silent><expr> <c-space> coc#refresh()
 
 " jump to definition
 nmap <silent> <leader>cd <Plug>(coc-definition)
-map <c-d> <Plug>(coc-definition)
+map <c-h> <Plug>(coc-definition)
 nmap <silent> <leader>ct <Plug>(coc-type-definition)
 nmap <silent> <leader>ci <Plug>(coc-implementation)
 nmap <silent> <leader>cr <Plug>(coc-references)
