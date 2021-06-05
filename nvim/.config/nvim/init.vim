@@ -18,8 +18,8 @@ call plug#begin('~/.vim/plugged')
   \ 'do': 'make install'
   \}
   Plug 'lewis6991/gitsigns.nvim'
-  Plug 'mfussenegger/nvim-dap'
-  Plug 'nvim-telescope/telescope-dap.nvim'
+  "Plug 'mfussenegger/nvim-dap'
+  "Plug 'nvim-telescope/telescope-dap.nvim'
   Plug 'theHamsta/nvim-dap-virtual-text'
   Plug 'hoob3rt/lualine.nvim'
   Plug 'kyazdani42/nvim-web-devicons'
@@ -31,6 +31,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'folke/tokyonight.nvim'
 	Plug 'Mofiqul/codedark.nvim'
 	Plug 'habamax/vim-godot'
+	Plug 'terryma/vim-multiple-cursors'              " multiple cursors plugin
+	Plug 'RRethy/vim-illuminate' 			         " autohighlight word matches when hovering on word plugin
 call plug#end()
  
 " default options
@@ -57,6 +59,16 @@ set clipboard=unnamed,unnamedplus
 filetype plugin indent on " enable detection, plugins and indents
 let mapleader = " " " space as leader key
 set encoding=UTF-8
+set cursorline
+
+" Remap navigation commands
+map <C-S-M-h> <C-O>
+noremap <C-S-M-l> <C-I>
+
+map <c-h> :wincmd h<CR>
+map <c-j> :wincmd j<CR>
+map <c-k> :wincmd k<CR>
+map <c-l> :wincmd l<CR>
 
 " themes
 if (has("termguicolors"))
@@ -155,13 +167,14 @@ lua require'lspconfig'.gopls.setup{}
 " require'lspconfig'.nimls.setup{}
 " EOF
 
-nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> gh     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gh    <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gH    <cmd>:Telescope lsp_code_actions<CR>
 nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gR    <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <silent> ge    <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
 
 " 'hrsh7th/nvim-compe'
 lua << EOF
@@ -255,7 +268,7 @@ nnoremap <S-j> :call vimspector#StepOver()<CR>
 nnoremap <leader>d_ :call vimspector#Restart()<CR>
 nnoremap <leader>dn :call vimspector#Continue()<CR>
 nnoremap <leader>drc :call vimspector#RunToCursor()<CR>
-nnoremap <leader>dh :call vimspector#ToggleBreakpoint()<CR>
+nnoremap <leader>db :call vimspector#ToggleBreakpoint()<CR>
 nnoremap <leader>de :call vimspector#ToggleConditionalBreakpoint()<CR>
 let g:vimspector_sign_priority = {
 			\    'vimspectorBP':         998,
@@ -265,12 +278,16 @@ let g:vimspector_sign_priority = {
 			\ }
 
 " janko/vim-test and puremourning/vimspector
-nnoremap <leader>dd :TestNearest -strategy=jest<CR>
 function! JestStrategy(cmd)
   let testName = matchlist(a:cmd, '\v -t ''(.*)''')[1]
   call vimspector#LaunchWithSettings( #{ configuration: 'jest', TestName: testName } )
 endfunction      
-let g:test#custom_strategies = {'jest': function('JestStrategy')}
+function! JestStrategyAll(cmd)
+  call vimspector#LaunchWithSettings( #{ configuration: 'jestAll' } )
+endfunction      
+let g:test#custom_strategies = {'jest': function('JestStrategy'), 'jestAll': function('JestStrategyAll')}
+nnoremap <leader>dd :TestNearest -strategy=jest<CR>
+nnoremap <leader>dh :TestFile -strategy=jestAll<CR>
 
 " CDS
 augroup MyCDSCode
@@ -357,11 +374,11 @@ lua << EOF
 				}
 			}
 		}
-	require('telescope').load_extension('dap')
+	--require('telescope').load_extension('dap')
 EOF
-nnoremap <leader>df :Telescope dap frames<CR>
-nnoremap <leader>dc :Telescope dap commands<CR>
-nnoremap <leader>db :Telescope dap list_breakpoints<CR>
+" nnoremap <leader>df :Telescope dap frames<CR>
+" nnoremap <leader>dc :Telescope dap commands<CR>
+" nnoremap <leader>db :Telescope dap list_breakpoints<CR>
 
 " theHamsta/nvim-dap-virtual-text and mfussenegger/nvim-dap
 let g:dap_virtual_text = v:true
