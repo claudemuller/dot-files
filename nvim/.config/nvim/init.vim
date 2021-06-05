@@ -130,6 +130,7 @@ lua require'lspconfig'.ccls.setup{}
 lua require'lspconfig'.gdscript.setup{}
 lua require'lspconfig'.html.setup{}
 lua require'lspconfig'.yamlls.setup{}
+lua require'lspconfig'.gopls.setup{}
 " lua << EOF
 " local lspconfig = require'lspconfig'
 "   lspconfig.rust_analyzer.setup({

@@ -128,7 +128,7 @@ if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
     startx
 fi
 
-export PATH=$PATH:$HOME/.config/composer/vendor/bin:$HOME/.gem/ruby/2.7.0:/usr/lib/ruby/gems/2.7.0:$HOME/.local/bin:/usr/local/lib/node_modules/yarn/bin/:$HOME/.yarn/bin
+export PATH=$PATH:$HOME/.config/composer/vendor/bin:$HOME/.gem/ruby/2.7.0:/usr/lib/ruby/gems/2.7.0:$HOME/.local/bin:/usr/local/lib/node_modules/yarn/bin/:$HOME/.yarn/bin:$(go env GOPATH)/bin
 
 if [[ "$IS_MAC" == true ]]; then
     #export JAVA_HOME=$(/usr/libexec/java_home -v11)
