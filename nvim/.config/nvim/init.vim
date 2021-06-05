@@ -40,7 +40,7 @@ set splitright " splits to the right
 set splitbelow " splits below
 set tabstop=2 " tab equals 2 spaces
 set shiftwidth=2 " indentation
-set number " show absolute line numbers
+set relativenumber " show absolute line numbers
 set ignorecase " search case insensitive
 set smartcase " search via smartcase
 set incsearch " search incremental
@@ -53,6 +53,7 @@ set shortmess+=c " don't need to press enter so often
 set signcolumn=yes " add a column for sings (e.g. LSP, ...)
 set updatetime=520 " time until update
 set undofile " persists undo tree
+set clipboard=unnamed,unnamedplus
 filetype plugin indent on " enable detection, plugins and indents
 let mapleader = " " " space as leader key
 
