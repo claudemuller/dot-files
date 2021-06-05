@@ -18,11 +18,9 @@ call plug#begin('~/.vim/plugged')
   \ 'do': 'make install'
   \}
   Plug 'lewis6991/gitsigns.nvim'
-  Plug 'folke/tokyonight.nvim'
   Plug 'mfussenegger/nvim-dap'
   Plug 'nvim-telescope/telescope-dap.nvim'
   Plug 'theHamsta/nvim-dap-virtual-text'
-	Plug 'Mofiqul/codedark.nvim'
   Plug 'hoob3rt/lualine.nvim'
   Plug 'kyazdani42/nvim-web-devicons'
   Plug 'ryanoasis/vim-devicons'
@@ -30,7 +28,8 @@ call plug#begin('~/.vim/plugged')
 	Plug 'arcticicestudio/nord-vim'
 	Plug 'joshdick/onedark.vim'
   Plug 'sainnhe/sonokai'
-	Plug 'ghifarit53/tokyonight-vim'
+  Plug 'folke/tokyonight.nvim'
+	Plug 'Mofiqul/codedark.nvim'
 call plug#end()
  
 " default options
@@ -298,8 +297,8 @@ nnoremap <leader>da :lua require'debugHelper'.attach()<CR>
 
 " Plug 'nvim-telescope/telescope-dap.nvim'
 lua << EOF
-require('telescope').setup()
-require('telescope').load_extension('dap')
+	require('telescope').setup()
+	require('telescope').load_extension('dap')
 EOF
 nnoremap <leader>df :Telescope dap frames<CR>
 nnoremap <leader>dc :Telescope dap commands<CR>
