@@ -30,6 +30,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'sainnhe/sonokai'
   Plug 'folke/tokyonight.nvim'
 	Plug 'Mofiqul/codedark.nvim'
+	Plug 'habamax/vim-godot'
 call plug#end()
  
 " default options
@@ -344,7 +345,15 @@ nnoremap <leader>da :lua require'debugHelper'.attach()<CR>
 
 " Plug 'nvim-telescope/telescope-dap.nvim'
 lua << EOF
-	require('telescope').setup()
+	require('telescope').setup {
+		defaults = {
+			file_ignore_patterns = {
+				'node_modules/.*',
+				'.ccls-cache/.*',
+				'.git/.*'
+				}
+			}
+		}
 	require('telescope').load_extension('dap')
 EOF
 nnoremap <leader>df :Telescope dap frames<CR>
