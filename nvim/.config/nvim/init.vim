@@ -56,6 +56,7 @@ set undofile " persists undo tree
 set clipboard=unnamed,unnamedplus
 filetype plugin indent on " enable detection, plugins and indents
 let mapleader = " " " space as leader key
+set encoding=UTF-8
 
 " themes
 if (has("termguicolors"))
