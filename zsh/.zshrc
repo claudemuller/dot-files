@@ -149,6 +149,7 @@ alias pv=protonvpn-cli
 alias tsm='transmission-remote-cli'
 alias dls='watch -n 5 "transmission-remote-cli -tall -l | egrep \"(Downloading|Seeding|Up & Down|Uploading|Idle)\" | sort -k 2 -n -r"'
 alias vim='nvim'
+alias v=vim
 alias cp="cp -iv"
 if [[ "$IS_MAC" == true ]]; then
     alias ls="ls -G"
