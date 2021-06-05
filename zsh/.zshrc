@@ -240,3 +240,5 @@ fi
 # System info
 neofetch
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

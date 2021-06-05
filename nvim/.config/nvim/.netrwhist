@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =2
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/Users/claudemuller/repos/randals'
 let g:netrw_dirhist_2='/Users/span/repos/lib-gdx-scala-template/src/main/scala/rs/dxt/game'
 let g:netrw_dirhist_1='/Users/span/repos/lib-gdx-scala-template/src/main/scala/rs/dxt'
 let g:netrw_dirhist_0='/Users/span/repos/lib-gdx-scala-template/src/main/scala/rs'
@@ -9,4 +10,3 @@ let g:netrw_dirhist_7='/Users/span/repos/lib-gdx-scala-template/src'
 let g:netrw_dirhist_6='/Users/span/repos/lib-gdx-scala-template'
 let g:netrw_dirhist_5='/Users/span/repos/lib-gdx-scala-template/project'
 let g:netrw_dirhist_4='/Users/span/repos/lib-gdx-scala-template'
-let g:netrw_dirhist_3='/Users/span/repos/lib-gdx-scala-template/src'

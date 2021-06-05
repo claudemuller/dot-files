@@ -1,360 +1,323 @@
-" +----------------------------------------------------------------------------------------------------------------------------------------------------------+
-" |                                                                                                                                                          |
-" |    __  __                 __  __                      ____                       ___                                                                     |
-" |   /\ \/\ \               /\ \/\ \  __                /\  _`\                   /'___\ __                                                                 |
-" |   \ \ `\\ \     __    ___\ \ \ \ \/\_\    ___ ___    \ \ \/\_\    ___     ___ /\ \__//\_\     __                                                         |
-" |    \ \ , ` \  /'__`\ / __`\ \ \ \ \/\ \ /' __` __`\   \ \ \/_/_  / __`\ /' _ `\ \ ,__\/\ \  /'_ `\                                                       |
-" |     \ \ \`\ \/\  __//\ \L\ \ \ \_/ \ \ \/\ \/\ \/\ \   \ \ \L\ \/\ \L\ \/\ \/\ \ \ \_/\ \ \/\ \L\ \                                                      |
-" |      \ \_\ \_\ \____\ \____/\ `\___/\ \_\ \_\ \_\ \_\   \ \____/\ \____/\ \_\ \_\ \_\  \ \_\ \____ \                                                     |
-" |       \/_/\/_/\/____/\/___/  `\/__/  \/_/\/_/\/_/\/_/    \/___/  \/___/  \/_/\/_/\/_/   \/_/\/___L\ \                                                    |
-" |                                                                                               /\____/                                                    |
-" |                                                                                               \_/__/                                                     |
-" |                                                                                                                                                          |
-" |                                                                                                                                                          |
-" +----------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-" +----------------------------------------------------------------------------------------------------------------------------------------------------------+
-" | Install Plugins                                                                                                                                          |
-" +----------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-call plug#begin('~/nvim/plugged')
-
-" General Plugins
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind']}  " file explorer plugin
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'tpope/vim-abolish'                         " substitution plugin that handles plurals, case and underscores
-Plug 'junegunn/fzf.vim'                          " fuzzy finder plugin using fzf :req: fzf,ripgrep/silver-searcher
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'wincent/ferret'                            " fuzzy search and multiple file replace plugin
-Plug 'tpope/vim-fugitive'                        " git plugin
-Plug 'mhinz/vim-signify'                         " plugin to show what has changed according to git history
-Plug 'tpope/vim-surround'                        " surround text with char plugin
-Plug 'deviantfero/wpgtk.vim'                     " wpgtk colour scheme for vim
-"Plug '907th/vim-auto-save'                       " auto save plugin
-Plug 'alvan/vim-closetag'                        " autoclose (x)html tags plugin
-Plug 'jiangmiao/auto-pairs'                      " autoclose brackets, quotes and such plugin
-Plug 'terryma/vim-multiple-cursors'              " multiple cursors plugin
-Plug 'RRethy/vim-illuminate' 			         " autohighlight word matches when hovering on word plugin
-Plug 'vim-airline/vim-airline'
-Plug 'robertbasic/vim-hugo-helper'
-
-" Coding plugins
-Plug 'neomake/neomake'                           " plugin to asynchronously make/run code to detect issues
-Plug 'scrooloose/nerdcommenter'                  " commenting plugin
-Plug 'majutsushi/tagbar'                         " method and class outline/browser plugin
-"Plug 'vim-vdebug/vdebug'                         " debugger plugin
-Plug 'puremourning/vimspector'
-Plug 'janko/vim-test'                            " unit testing wrapper
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}  " code completion plugin
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-Plug 'neoclide/coc-tsserver'
-"Plug 'SirVer/ultisnips'                          " snippet plugin
-
-" .js plugins
-Plug 'othree/yajs.vim'                           " .js plugin
-
-" V plugins
-Plug 'ollykel/v-vim'
-
-" Go plugins
-Plug 'fatih/vim-go'
-
+call plug#begin('~/.vim/plugged')
+  Plug 'szw/vim-maximizer'
+  Plug 'kassio/neoterm'
+  Plug 'tpope/vim-commentary'
+  Plug 'sbdchd/neoformat'
+  Plug 'tpope/vim-fugitive'
+  Plug 'neovim/nvim-lspconfig'
+  Plug 'hrsh7th/nvim-compe'
+  Plug 'janko/vim-test'
+  Plug 'puremourning/vimspector'
+  "Plug 'vimwiki/vimwiki'
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'nvim-telescope/telescope.nvim'
+  Plug 'nvim-lua/popup.nvim'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'heavenshell/vim-jsdoc', { 
+  \ 'for': ['javascript', 'javascript.jsx','typescript'], 
+  \ 'do': 'make install'
+  \}
+  Plug 'lewis6991/gitsigns.nvim'
+  Plug 'folke/tokyonight.nvim'
+  Plug 'mfussenegger/nvim-dap'
+  Plug 'nvim-telescope/telescope-dap.nvim'
+  Plug 'theHamsta/nvim-dap-virtual-text'
+	Plug 'Mofiqul/codedark.nvim'
+  Plug 'hoob3rt/lualine.nvim'
+  Plug 'kyazdani42/nvim-web-devicons'
+  Plug 'ryanoasis/vim-devicons'
+	" themes
+	Plug 'arcticicestudio/nord-vim'
+	Plug 'joshdick/onedark.vim'
+  Plug 'sainnhe/sonokai'
+	Plug 'ghifarit53/tokyonight-vim'
 call plug#end()
+ 
+" default options
+set completeopt=menu,menuone,noselect " better autocomplete options
+set mouse=a " if I accidentally use the mouse
+set splitright " splits to the right
+set splitbelow " splits below
+set tabstop=2 " tab equals 2 spaces
+set shiftwidth=2 " indentation
+set number " show absolute line numbers
+set ignorecase " search case insensitive
+set smartcase " search via smartcase
+set incsearch " search incremental
+set diffopt+=vertical " starts diff mode in vertical split
+set hidden " allow hidden buffers
+set nobackup " don't create backup files
+set nowritebackup " don't create backup files
+set cmdheight=1 " only one line for commands
+set shortmess+=c " don't need to press enter so often
+set signcolumn=yes " add a column for sings (e.g. LSP, ...)
+set updatetime=520 " time until update
+set undofile " persists undo tree
+filetype plugin indent on " enable detection, plugins and indents
+let mapleader = " " " space as leader key
 
+" themes
+if (has("termguicolors"))
+  set termguicolors " better colors, but makes it very slow!
+endif
+let g:tokyonight_style = 'storm' " available: night, storm
+let g:tokyonight_enable_italic = 1
+colorscheme tokyonight
 
-" +----------------------------------------------------------------------------------------------------------------------------------------------------------+
-" | User Config                                                                                                                                              |
-" +----------------------------------------------------------------------------------------------------------------------------------------------------------+
+let g:netrw_banner=0 " disable banner in netrw
+let g:netrw_liststyle=3 " tree view in netrw
+let g:markdown_fenced_languages = ['javascript', 'js=javascript', 'json=javascript'] " syntax highlighting in markdown
+nnoremap <leader>v :e $MYVIMRC<CR>
 
-set showmatch                           " show matching brackets.
-set mouse=v                             " middle-click paste with mouse
-set hlsearch                            " highlight search results
-set incsearch                           " incremental search
-set tabstop=4                           " number of columns occupied by a tab character
-set softtabstop=4                       " see multiple spaces as tabstops so <BS> does the right thing
-set expandtab                           " converts tabs to white space
-set shiftwidth=4                        " width for autoindents
-set autoindent                          " indent a new line the same amount as the line just typed
-set number                              " add line numbers
-set relativenumber                      " set relative numbering
-set ruler                               " show line
-set cursorline                          " highlight current line
-set wildmode=longest,list               " get bash-like tab completions
-set cc=160                              " set an 160 column border for good coding style
-filetype plugin indent on               " allows auto-indenting depending on file type
-syntax on         	                    " switch syntax highlighting on
-colorscheme wpgtk                       " set colour scheme to wpgtk - alternative: wpgtkAlt
-hi! Normal ctermbg=NONE
-set clipboard=unnamed,unnamedplus
-let g:airline_powerline_fonts = 1
+" lewis6991/gitsigns.nvim
+lua << EOF
+ require('gitsigns').setup({})
+EOF
 
-let g:mapleader = '\'                   " set leader to ,
-command! -nargs=1 Silent execute ':silent !'.<q-args> | execute ':redraw!'
+" 'hoob3rt/lualine.nvim'
+lua << EOF
+	require('lualine').setup({
+	options = {
+		theme = 'tokyonight'
+		}
+	})
+EOF
 
-let g:elite_mode=1                      " enable elite mode, No ARRRROWWS!!!!
-if get(g:, 'elite_mode')
-    nnoremap <Up>    :resize +2<CR>
-    nnoremap <Down>  :resize -2<CR>
-    nnoremap <Left>  :vertical resize -2<CR>
-    nnoremap <Right> :vertical resize +2<CR>
+" szw/vim-maximizer
+nnoremap <silent> <C-w>m :MaximizerToggle!<CR>
+
+" kassio/neoterm
+let g:neoterm_default_mod = 'vertical'
+" let g:neoterm_size = 100
+let g:neoterm_autoinsert = 1
+let g:neoterm_autoscroll = 1
+let g:neoterm_term_per_tab = 1
+nnoremap <c-y> :Ttoggle<CR>
+inoremap <c-y> <Esc>:Ttoggle<CR>
+tnoremap <c-y> <c-\><c-n>:Ttoggle<CR>
+nnoremap <leader>x :TREPLSendLine<CR>
+vnoremap <leader>x :TREPLSendSelection<CR>
+if has('nvim')
+  au! TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
 endif
 
-" Set make command for .v
-autocmd FileType v setlocal makeprg=vet\ run\ %
-" Set make command for .go
-autocmd FileType go setlocal makeprg=go\ run\ %
+" sbdchd/neoformat
+nnoremap <leader>F :Neoformat prettier<CR>
 
-" Remap navigation commands
-map <C-S-M-h> <C-O>
-noremap <C-S-M-l> <C-I>
+" nvim-telescope/telescope.nvim
+nnoremap <leader><space> :Telescope git_files<CR>
+" nnoremap <leader>ff :Telescope live_grep<CR>
+nnoremap <leader>fn :Telescope find_files<CR>
+nnoremap <leader>fg :Telescope git_branches<CR>
+nnoremap <leader>fb :Telescope buffers<CR>
+nnoremap <leader>fs :Telescope lsp_document_symbols<CR>
+nnoremap <leader>ff :Telescope live_grep<CR>
+nnoremap <leader>FF :Telescope grep_string<CR>
+" nnoremap <leader>ff : lua require'telescope.builtin'.grep_string{ only_sort_text = true, search = vim.fn.input("Grep For >") }<CR>
 
+" tpope/vim-fugitive
+nnoremap <leader>gg :G<cr>
+nnoremap <leader>gd :Gdiff master<cr>
+nnoremap <leader>gl :G log -100<cr>
+nnoremap <leader>gp :G push<cr>
 
-" +----------------------------------------------------------------------------------------------------------------------------------------------------------+
-" | Plugins Config                                                                                                                                           |
-" +----------------------------------------------------------------------------------------------------------------------------------------------------------+
+" neovim/nvim-lspconfig
+lua require'lspconfig'.tsserver.setup{}
+" lua << EOF
+" local lspconfig = require'lspconfig'
+"   lspconfig.rust_analyzer.setup({
+"       settings = {
+"           ["rust-analyzer"] = {
+"               assist = {
+"                   importMergeBehavior = "last",
+"                   importPrefix = "by_self",
+"               },
+"               cargo = {
+"                   loadOutDirsFromCheck = true
+"               },
+"               procMacro = {
+"                   enable = true
+"               },
+"           }
+"       }
+"   })
+" EOF
 
-" pathogen config
-execute pathogen#infect()
-call pathogen#helptags()
+" lua << EOF
+" require'lspconfig'.nimls.setup{}
+" EOF
 
-" nerdtree config
-set rtp+=~/nvim/plugged/nerdtree/
+nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gh     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gH    <cmd>:Telescope lsp_code_actions<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> gR    <cmd>lua vim.lsp.buf.rename()<CR>
 
-" fzf config
-map <leader>ff :FZF<CR>
-map <C-F> :FZF<CR>
-map <leader>ft :Tags<CR>
-map <C-T> :Tags<CR>
-map <leader>fm :BTags<CR>
-map <leader>fb :Buffers<CR>
-map <C-B> :Buffers<CR>
-map <leader>fs :Ag<CR>
+" 'hrsh7th/nvim-compe'
+lua << EOF
+require'compe'.setup {
+  enabled = true;
+  autocomplete = true;
+  source = {
+    path = true;
+    buffer = true;
+    nvim_lsp = true;
+    nvim_lua = true;
+    -- treesitter = true;
+  };
+}
+EOF
+inoremap <silent><expr> <C-Space> compe#complete()
+inoremap <silent><expr> <CR>      compe#confirm('<CR>')
 
-" vim-test
-nmap <silent> t<C-n> :TestNearest<CR>
-nmap <silent> t<C-f> :TestFile<CR>
-nmap <silent> t<C-s> :TestSuite<CR>
-nmap <silent> t<C-l> :TestLast<CR>
-nmap <silent> t<C-g> :TestVisit<CR>
+" janko/vim-test
+nnoremap <silent> tt :TestNearest<CR>
+nnoremap <silent> tf :TestFile<CR>
+nnoremap <silent> ts :TestSuite<CR>
+nnoremap <silent> t_ :TestLast<CR>
+let test#strategy = "neovim"
+let test#neovim#term_position = "vertical"
 
-" vimspector
-let g:vimspector_enable_mappings = 'HUMAN'
-nmap <leader>vl :call vimspector#Launch()<CR>
-nmap <leader>vr :VimspectorReset<CR>
-nmap <leader>ve :VimspectorEval
-nmap <leader>vw :VimspectorWatch
-nmap <leader>vo :VimspectorShowOutput
-nmap <leader>vi <Plug>VimspectorBalloonEval
-xmap <leader>vi <Plug>VimspectorBalloonEvallet g:vimspector_install_gadgets = [ 'vscode-node-debug2' ]
-
-function! JestStrategySingle(cmd)
-    let testName = matchlist(a:cmd, '\v -t ''(.*)''')[1]
-    call vimspector#LaunchWithSettings( { 'configuration': 'jest', 'TestName': testName } )
+" puremourning/vimspector
+fun! GotoWindow(id)
+	:call win_gotoid(a:id)
+endfun
+func! AddToWatch()
+	let word = expand("<cexpr>")
+	call vimspector#AddWatch(word)
 endfunction
-function! JestStrategyAll(cmd)
-    call vimspector#LaunchWithSettings( { 'configuration': 'jestAll' } )
-endfunction
+let g:vimspector_base_dir = expand('$HOME/.config/vimspector-config')
+let g:vimspector_sidebar_width = 60
+nnoremap <leader>da :call vimspector#Launch()<CR>
+nnoremap <leader>dc :call GotoWindow(g:vimspector_session_windows.code)<CR>
+nnoremap <leader>dv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
+nnoremap <leader>dw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
+nnoremap <leader>ds :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
+nnoremap <leader>do :call GotoWindow(g:vimspector_session_windows.output)<CR>
+nnoremap <leader>di :call AddToWatch()<CR>
+nnoremap <leader>dx :call vimspector#Reset()<CR>
+nnoremap <leader>dX :call vimspector#ClearBreakpoints()<CR>
+nnoremap <S-k> :call vimspector#StepOut()<CR>
+nnoremap <S-l> :call vimspector#StepInto()<CR>
+nnoremap <S-j> :call vimspector#StepOver()<CR>
+nnoremap <leader>d_ :call vimspector#Restart()<CR>
+nnoremap <leader>dn :call vimspector#Continue()<CR>
+nnoremap <leader>drc :call vimspector#RunToCursor()<CR>
+nnoremap <leader>dh :call vimspector#ToggleBreakpoint()<CR>
+nnoremap <leader>de :call vimspector#ToggleConditionalBreakpoint()<CR>
+let g:vimspector_sign_priority = {
+			\    'vimspectorBP':         998,
+			\    'vimspectorBPCond':     997,
+			\    'vimspectorBPDisabled': 996,
+			\    'vimspectorPC':         999,
+			\ }
 
-let g:test#custom_strategies = {'jest': function('JestStrategySingle'), 'jestAll': function('JestStrategyAll')}
+" janko/vim-test and puremourning/vimspector
 nnoremap <leader>dd :TestNearest -strategy=jest<CR>
-nnoremap <leader>dh :TestFile -strategy=jestAll<CR>
+function! JestStrategy(cmd)
+  let testName = matchlist(a:cmd, '\v -t ''(.*)''')[1]
+  call vimspector#LaunchWithSettings( #{ configuration: 'jest', TestName: testName } )
+endfunction      
+let g:test#custom_strategies = {'jest': function('JestStrategy')}
 
-" vim-auto-save config
-let g:auto_save = 1
+" CDS
+augroup MyCDSCode
+    autocmd!
+    autocmd BufReadPre,FileReadPre *.cds set ft=cds
+augroup END
+lua << EOF
+  local lspconfig = require'lspconfig'
+  local configs = require'lspconfig/configs'
+  configs.sapcds_lsp = {
+    default_config = {
+      cmd = {vim.fn.expand("$HOME/projects/startcdslsp")};
+      filetypes = {'cds'};
+      root_dir = function(fname)
+        return lspconfig.util.find_git_ancestor(fname) or vim.loop.os_homedir()
+      end;
+      settings = {};
+    };
+  }
+  if lspconfig.sapcds_lsp.setup then
+    lspconfig.sapcds_lsp.setup{ }
+  end
+EOF
 
-" scrooloose/nerdcommenter config
-map <C-_> <leader>c<space>              " remap comment toggle to ctrl forward slash
+" vimwiki/vimwiki
+"nnoremap <Leader>tl <Plug>VimwikiToggleListItem
+"vnoremap <Leader>tl <Plug>VimwikiToggleListItem
+"nnoremap <Leader>wn <Plug>VimwikiNextLink
+"let g:vimwiki_global_ext = 0
+"let wiki = {}
+"let wiki.nested_syntaxes = { 'js': 'javascript' }
+"let g:vimwiki_list = [wiki] 
 
-" rrethy/vim-illustrate config
-hi link illuminatedWord Visual
+" nvim/treesitter
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+  },
+  indent = {
+    enable = true
+  }
+}
+EOF
 
-" neoclide/coc config
-let g:coc_global_extensions = [ 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-phpls', 'coc-html', 'coc-css', 'coc-json', 'coc-python', 'coc-tsserver' ]
-set nobackup
-set nowritebackup
-" Better display for messages
-set cmdheight=2
-" You will have bad experience for diagnostic messages when it's default 4000.
-set updatetime=300
-" Don't give |ins-completion-menu| messages.
-set shortmess+=c
-" Always show signcolumns
-set signcolumn=yes
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+set foldmethod=expr
+setlocal foldlevelstart=99
+set foldexpr=nvim_treesitter#foldexpr()
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+" mfussenegger/nvim-dap
+lua << EOF
+local dap = require('dap')
+dap.adapters.node2 = {
+  type = 'executable',
+  command = 'node',
+  args = {os.getenv('HOME') .. '/apps/vscode-node-debug2/out/src/nodeDebug.js'},
+}
+vim.fn.sign_define('DapBreakpoint', {text='🟥', texthl='', linehl='', numhl=''})
+vim.fn.sign_define('DapStopped', {text='⭐️', texthl='', linehl='', numhl=''})
+EOF
+nnoremap <leader>dh :lua require'dap'.toggle_breakpoint()<CR>
+nnoremap <S-k> :lua require'dap'.step_out()<CR>
+nnoremap <S-l> :lua require'dap'.step_into()<CR>
+nnoremap <S-j> :lua require'dap'.step_over()<CR>
+nnoremap <leader>dn :lua require'dap'.continue()<CR>
+nnoremap <leader>dk :lua require'dap'.up()<CR>
+nnoremap <leader>dj :lua require'dap'.down()<CR>
+nnoremap <leader>d_ :lua require'dap'.run_last()<CR>
+nnoremap <leader>dr :lua require'dap'.repl.open({}, 'vsplit')<CR><C-w>l
+nnoremap <leader>di :lua require'dap.ui.variables'.hover(function () return vim.fn.expand("<cexpr>") end)<CR>
+vnoremap <leader>di :lua require'dap.ui.variables'.visual_hover()<CR>
+nnoremap <leader>d? :lua require'dap.ui.variables'.scopes()<CR>
+nnoremap <leader>de :lua require'dap'.set_exception_breakpoints({"all"})<CR>
+nnoremap <leader>da :lua require'debugHelper'.attach()<CR>
 
-" Use D to show documentation in preview window
-nnoremap <silent> <leader>d :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
+" Plug 'nvim-telescope/telescope-dap.nvim'
+lua << EOF
+require('telescope').setup()
+require('telescope').load_extension('dap')
+EOF
+nnoremap <leader>df :Telescope dap frames<CR>
+nnoremap <leader>dc :Telescope dap commands<CR>
+nnoremap <leader>db :Telescope dap list_breakpoints<CR>
 
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+" theHamsta/nvim-dap-virtual-text and mfussenegger/nvim-dap
+let g:dap_virtual_text = v:true
 
-" jump to definition
-nmap <silent> <leader>cd <Plug>(coc-definition)
-map <c-h> <Plug>(coc-definition)
-nmap <silent> <leader>ct <Plug>(coc-type-definition)
-nmap <silent> <leader>ci <Plug>(coc-implementation)
-nmap <silent> <leader>cr <Plug>(coc-references)
-
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-
-" Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-" Use <tab> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-nmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <S-TAB> <Plug>(coc-range-select-backword)
-
-" Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocAction('format')
-
-" Use `:Fold` to fold current buffer
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" use `:OR` for organize import of current buffer
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-" Add status line support, for integration with other plugin, checkout `:h coc-status`
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-" Using CocList
-" Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-
-" figitive shortcuts
-" conflict resolution
-nnoremap <leader>gd :Gvdiffsplit!<CR>
-nnoremap gdh :diffget //2<CR>
-nnoremap gdl :diffget //3<CR>
-
-" termdebug shortcuts
-"nmap <silent> <leader>dr :Run<CR>
-"nmap <silent> <leader>db :Break<CR>
-"nmap <silent> <leader>dc :Clear<CR>
-"nmap <silent> <leader>ds :Step<CR>
-"nmap <silent> <leader>do :Over<CR>
-"nmap <silent> <leader>df :Finish<CR>
-"nmap <silent> <leader>de :Evaluate<CR>
+" jank/vim-test and mfussenegger/nvim-dap
+nnoremap <leader>dd :TestNearest -strategy=jest<CR>
+function! JestStrategy(cmd)
+  let testName = matchlist(a:cmd, '\v -t ''(.*)''')[1]
+  let fileName = matchlist(a:cmd, '\v'' -- (.*)$')[1]
+  call luaeval("require'debugHelper'.debugJest([[" . testName . "]], [[" . fileName . "]])")
+endfunction      
+let g:test#custom_strategies = {'jest': function('JestStrategy')}
 
 
-" +----------------------------------------------------------------------------------------------------------------------------------------------------------+
-" | Language Configs                                                                                                                                         |
-" +----------------------------------------------------------------------------------------------------------------------------------------------------------+
+" nerdcommenter config
+map <C-_> ggc<space>              " remap comment toggle to ctrl forward slash
 
-" .js config
-autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
-
-" .html config
-autocmd FileType html       setlocal shiftwidth=4 tabstop=4
-
-" .php config
-autocmd FileType html       setlocal shiftwidth=4 tabstop=4
-
-
-" +----------------------------------------------------------------------------------------------------------------------------------------------------------+
-" | Keymappings                                                                                                                                              |
-" | -----------                                                                                                                                              |
-" |                                                                                                                                                          |
-" | nnoremap: normal mode keymapping                                                                                                                         |
-" | inoremap: insert mode keymapping                                                                                                                         |
-" | vnoremap: visual mode keymapping                                                                                                                         |
-" +----------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-" nnoremap <leader>s :set invspell<CR>                      " when invoking an Ex command <CR> is needed to complete command
-" inoremap <leader>d <C-R>=strftime("%Y-%m-%dT%H:%M")<CR>   " <C-R>= is used to insert output at cursor loc
-
-
-function! BuildAndRun()
-  if filereadable("./Makefile")
-    make build_and_run
-  endif
-endfunction
-nmap <silent> <F9> :call BuildAndRun()<CR>
-"nmap <silent> <F9> :make<CR>
-
-function! BuildAndDebug()
-  if filereadable("./Makefile")
-    make debug
-  endif
-endfunction
-"nmap <silent> <F10> :call BuildAndDebug()<CR> :packadd termdebug<CR> :Termdebug game<CR>
-
-
-" +----------------------------------------------------------------------------------------------------------------------------------------------------------+
-" | Autorun commands                                                                                                                                         |
-" +----------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-function! s:get_visual_selection()
-  " Why is this not a built-in Vim script function?!
-  let [lnum1, col1] = getpos("'<")[1:2]
-  let [lnum2, col2] = getpos("'>")[1:2]
-  let lines = getline(lnum1, lnum2)
-  let lines[-1] = lines[-1][: col2 - (&selection == 'inclusive' ? 1 : 2)]
-  let lines[0] = lines[0][col1 - 1:]
-  return join(lines, "\n")
-endfunction
-
-function! GetCommitForSelection(lines)
-    echo lines
-endfunction
-
-command! LESIGH call GetCommitForSelection([s:get_visual_selection()])
-command! WTF :<C-U>GetCommitForSelection<cr>
