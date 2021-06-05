@@ -33,6 +33,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'habamax/vim-godot'
 	Plug 'terryma/vim-multiple-cursors'              " multiple cursors plugin
 	Plug 'RRethy/vim-illuminate' 			         " autohighlight word matches when hovering on word plugin
+	Plug '907th/vim-auto-save'                       " auto save plugin
 call plug#end()
  
 " default options
@@ -83,6 +84,11 @@ let g:netrw_liststyle=3 " tree view in netrw
 let g:markdown_fenced_languages = ['javascript', 'js=javascript', 'json=javascript'] " syntax highlighting in markdown
 nnoremap <leader>v :e $MYVIMRC<CR>
 
+
+" vim-auto-save config
+let g:auto_save = 1
+
+
 " lewis6991/gitsigns.nvim
 lua << EOF
  require('gitsigns').setup({})
@@ -116,11 +122,10 @@ if has('nvim')
 endif
 
 " sbdchd/neoformat
-nnoremap <leader>F :Neoformat prettier<CR>
+nnoremap <leader>F :Neoformat eslint_d<CR>
 
 " nvim-telescope/telescope.nvim
 nnoremap <leader><space> :Telescope git_files<CR>
-" nnoremap <leader>ff :Telescope live_grep<CR>
 nnoremap <leader>fn :Telescope find_files<CR>
 nnoremap <leader>fg :Telescope git_branches<CR>
 nnoremap <leader>fb :Telescope buffers<CR>
@@ -233,6 +238,7 @@ vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 EOF
+inoremap <silent><expr> <CR>      compe#confirm('<CR>')
 
 
 " janko/vim-test
