@@ -99,7 +99,7 @@ function FormatBuffer()
 endfunction
  
 "autocmd BufWritePre *.h,*.hpp,*.c,*.cpp,*.vert,*.frag :call FormatBuffer()
-autocmd Filetype . setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+autocmd Filetype c,cpp setlocal tabstop=4 shiftwidth=4 softtabstop=4
 
 " lewis6991/gitsigns.nvim
 lua << EOF
