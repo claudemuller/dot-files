@@ -41,8 +41,9 @@ set completeopt=menu,menuone,noselect " better autocomplete options
 set mouse=a " if I accidentally use the mouse
 set splitright " splits to the right
 set splitbelow " splits below
-set tabstop=2 " tab equals 2 spaces
-set shiftwidth=2 " indentation
+set tabstop=4 " tab equals 2 spaces
+set shiftwidth=4 " indentation
+set softtabstop=4
 set relativenumber " show absolute line numbers
 set ignorecase " search case insensitive
 set smartcase " search via smartcase
@@ -61,6 +62,8 @@ filetype plugin indent on " enable detection, plugins and indents
 let mapleader = " " " space as leader key
 set encoding=UTF-8
 set cursorline
+
+autocmd Filetype js,ts setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
 " Remap navigation commands
 map <C-S-M-h> <C-O>
@@ -99,7 +102,6 @@ function FormatBuffer()
 endfunction
  
 "autocmd BufWritePre *.h,*.hpp,*.c,*.cpp,*.vert,*.frag :call FormatBuffer()
-autocmd Filetype c,cpp setlocal tabstop=4 shiftwidth=4 softtabstop=4
 
 " lewis6991/gitsigns.nvim
 lua << EOF
