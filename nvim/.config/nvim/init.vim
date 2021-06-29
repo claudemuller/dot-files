@@ -71,6 +71,8 @@ map <c-j> :wincmd j<CR>
 map <c-k> :wincmd k<CR>
 map <c-l> :wincmd l<CR>
 
+noremap <S-l> 
+
 " themes
 if (has("termguicolors"))
   set termguicolors " better colors, but makes it very slow!
@@ -88,6 +90,16 @@ nnoremap <leader>v :e $MYVIMRC<CR>
 " vim-auto-save config
 let g:auto_save = 1
 
+function FormatBuffer()
+  if &modified && !empty(findfile('.clang-format', expand('%:p:h') . ';'))
+    let cursor_pos = getpos('.')
+    :%!clang-format
+    call setpos('.', cursor_pos)
+  endif
+endfunction
+ 
+"autocmd BufWritePre *.h,*.hpp,*.c,*.cpp,*.vert,*.frag :call FormatBuffer()
+autocmd Filetype . setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 
 " lewis6991/gitsigns.nvim
 lua << EOF
@@ -135,10 +147,10 @@ nnoremap <leader>FF :Telescope grep_string<CR>
 " nnoremap <leader>ff : lua require'telescope.builtin'.grep_string{ only_sort_text = true, search = vim.fn.input("Grep For >") }<CR>
 
 " tpope/vim-fugitive
-nnoremap <leader>gg :G<cr>
-nnoremap <leader>gd :Gdiff master<cr>
-nnoremap <leader>gl :G log -100<cr>
-nnoremap <leader>gp :G push<cr>
+nnoremap <leader>fgg :G<cr>
+nnoremap <leader>fgd :Gdiff master<cr>
+nnoremap <leader>fgl :G log -100<cr>
+nnoremap <leader>fgp :G push<cr>
 
 " neovim/nvim-lspconfig
 lua require'lspconfig'.tsserver.setup{}
@@ -212,15 +224,15 @@ end
 --- move to prev/next item in completion menuone
 --- jump to prev/next snippet's placeholder
 _G.tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t "<C-n>"
-  elseif vim.fn.call("vsnip#available", {1}) == 1 then
-    return t "<Plug>(vsnip-expand-or-jump)"
-  elseif check_back_space() then
-    return t "<Tab>"
-  else
-    return vim.fn['compe#complete']()
-  end
+	if vim.fn.pumvisible() == 1 then
+		return t "<C-n>"
+	elseif check_back_space() then
+		return t "<Tab>"
+	elseif vim.fn.call("vsnip#available", {1}) == 1 then
+		return t "<Plug>(vsnip-expand-or-jump)"
+	else
+		return vim.fn['compe#complete']()
+	end
 end
 _G.s_tab_complete = function()
   if vim.fn.pumvisible() == 1 then
@@ -259,6 +271,7 @@ func! AddToWatch()
 endfunction
 let g:vimspector_base_dir = expand('$HOME/.config/vimspector-config')
 let g:vimspector_sidebar_width = 60
+let g:vimspector_enable_mappings = 'HUMAN'
 nnoremap <leader>da :call vimspector#Launch()<CR>
 nnoremap <leader>dc :call GotoWindow(g:vimspector_session_windows.code)<CR>
 nnoremap <leader>dv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
@@ -268,12 +281,12 @@ nnoremap <leader>do :call GotoWindow(g:vimspector_session_windows.output)<CR>
 nnoremap <leader>di :call AddToWatch()<CR>
 nnoremap <leader>dx :call vimspector#Reset()<CR>
 nnoremap <leader>dX :call vimspector#ClearBreakpoints()<CR>
-nnoremap <S-k> :call vimspector#StepOut()<CR>
-nnoremap <S-l> :call vimspector#StepInto()<CR>
-nnoremap <S-j> :call vimspector#StepOver()<CR>
-nnoremap <leader>d_ :call vimspector#Restart()<CR>
-nnoremap <leader>dn :call vimspector#Continue()<CR>
-nnoremap <leader>drc :call vimspector#RunToCursor()<CR>
+"nnoremap <S-k> :call vimspector#StepOut()<CR>
+"nnoremap <S-l> :call vimspector#StepInto()<CR>
+"nnoremap <S-j> :call vimspector#StepOver()<CR>
+"nnoremap <leader>d_ :call vimspector#Restart()<CR>
+"nnoremap <leader>dn :call vimspector#Continue()<CR>
+"nnoremap <leader>drc :call vimspector#RunToCursor()<CR>
 nnoremap <leader>db :call vimspector#ToggleBreakpoint()<CR>
 nnoremap <leader>de :call vimspector#ToggleConditionalBreakpoint()<CR>
 let g:vimspector_sign_priority = {
