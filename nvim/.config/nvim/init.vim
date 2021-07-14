@@ -24,16 +24,17 @@ call plug#begin('~/.vim/plugged')
   Plug 'hoob3rt/lualine.nvim'
   Plug 'kyazdani42/nvim-web-devicons'
   Plug 'ryanoasis/vim-devicons'
+  Plug '907th/vim-auto-save'
 	" themes
-	Plug 'arcticicestudio/nord-vim'
-	Plug 'joshdick/onedark.vim'
+  Plug 'arcticicestudio/nord-vim'
+  Plug 'joshdick/onedark.vim'
   Plug 'sainnhe/sonokai'
   Plug 'folke/tokyonight.nvim'
-	Plug 'Mofiqul/codedark.nvim'
-	Plug 'habamax/vim-godot'
-	Plug 'terryma/vim-multiple-cursors'              " multiple cursors plugin
-	Plug 'RRethy/vim-illuminate' 			         " autohighlight word matches when hovering on word plugin
-	Plug '907th/vim-auto-save'                       " auto save plugin
+  Plug 'Mofiqul/codedark.nvim'
+  Plug 'habamax/vim-godot'
+  Plug 'terryma/vim-multiple-cursors'              " multiple cursors plugin
+  Plug 'RRethy/vim-illuminate' 			         " autohighlight word matches when hovering on word plugin
+  Plug '907th/vim-auto-save'                       " auto save plugin
 call plug#end()
 
  lua << EOF
@@ -62,7 +63,7 @@ set shortmess+=c " don't need to press enter so often
 set signcolumn=yes " add a column for sings (e.g. LSP, ...)
 set updatetime=520 " time until update
 set undofile " persists undo tree
-set clipboard=unnamed,unnamedplus
+set clipboard^=unnamed,unnamedplus
 filetype plugin indent on " enable detection, plugins and indents
 let mapleader = " " " space as leader key
 set encoding=UTF-8
