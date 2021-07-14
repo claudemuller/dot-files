@@ -35,7 +35,11 @@ call plug#begin('~/.vim/plugged')
 	Plug 'RRethy/vim-illuminate' 			         " autohighlight word matches when hovering on word plugin
 	Plug '907th/vim-auto-save'                       " auto save plugin
 call plug#end()
- 
+
+ lua << EOF
+vim.lsp.set_log_level("debug")
+EOF
+
 " default options
 set completeopt=menu,menuone,noselect " better autocomplete options
 set mouse=a " if I accidentally use the mouse
@@ -44,6 +48,7 @@ set splitbelow " splits below
 set tabstop=4 " tab equals 2 spaces
 set shiftwidth=4 " indentation
 set softtabstop=4
+set smarttab
 set relativenumber " show absolute line numbers
 set ignorecase " search case insensitive
 set smartcase " search via smartcase
@@ -64,6 +69,8 @@ set encoding=UTF-8
 set cursorline
 
 autocmd Filetype js,ts setlocal tabstop=2 shiftwidth=2 softtabstop=2
+
+nnoremap <leader>fF :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 
 " Remap navigation commands
 map <C-S-M-h> <C-O>
@@ -157,7 +164,20 @@ nnoremap <leader>fgp :G push<cr>
 " neovim/nvim-lspconfig
 lua require'lspconfig'.tsserver.setup{}
 lua require'lspconfig'.pyright.setup{}
-lua require'lspconfig'.ccls.setup{}
+"lua require'lspconfig'.ccls.setup{
+lua << EOF
+local lspconfig = require'lspconfig'
+  lspconfig.ccls.setup({
+	cmd = { "ccls", "-v=1", "-log-file=/tmp/ccls.log" };
+	init_options = {
+		cache = { directory = "/tmp/ccls-cache" },
+		compilationDatabaseDirectory = "build",
+		client = { snippetSupport = true },
+		clang = { extraArgs = { "-Wno-extra", "-Wno-empty-body" } },
+		completion = { detailedLabel = false, caseSensitivity = 1 },
+	};
+})
+EOF
 lua require'lspconfig'.gdscript.setup{}
 lua require'lspconfig'.html.setup{}
 lua require'lspconfig'.yamlls.setup{}
@@ -273,8 +293,8 @@ func! AddToWatch()
 endfunction
 let g:vimspector_base_dir = expand('$HOME/.config/vimspector-config')
 let g:vimspector_sidebar_width = 60
-let g:vimspector_enable_mappings = 'HUMAN'
-nnoremap <leader>da :call vimspector#Launch()<CR>
+let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
+nnoremap <leader>da :%update <Bar> :make <Bar> :call vimspector#Launch()<CR>
 nnoremap <leader>dc :call GotoWindow(g:vimspector_session_windows.code)<CR>
 nnoremap <leader>dv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
 nnoremap <leader>dw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
@@ -283,10 +303,7 @@ nnoremap <leader>do :call GotoWindow(g:vimspector_session_windows.output)<CR>
 nnoremap <leader>di :call AddToWatch()<CR>
 nnoremap <leader>dx :call vimspector#Reset()<CR>
 nnoremap <leader>dX :call vimspector#ClearBreakpoints()<CR>
-"nnoremap <S-k> :call vimspector#StepOut()<CR>
-"nnoremap <S-l> :call vimspector#StepInto()<CR>
-"nnoremap <S-j> :call vimspector#StepOver()<CR>
-"nnoremap <leader>d_ :call vimspector#Restart()<CR>
+nnoremap <F5> :call vimspector#Stop()<CR>
 "nnoremap <leader>dn :call vimspector#Continue()<CR>
 "nnoremap <leader>drc :call vimspector#RunToCursor()<CR>
 nnoremap <leader>db :call vimspector#ToggleBreakpoint()<CR>
@@ -412,8 +429,3 @@ let g:dap_virtual_text = v:true
 "   call luaeval("require'debugHelper'.debugJest([[" . testName . "]], [[" . fileName . "]])")
 " endfunction      
 " let g:test#custom_strategies = {'jest': function('JestStrategy')}
-
-
-" nerdcommenter config
-map <C-_> <leader>gc<space>              " remap comment toggle to ctrl forward slash
-
