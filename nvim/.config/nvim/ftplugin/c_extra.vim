@@ -5,13 +5,11 @@
 function! SwitchSourceHeader()
   "update!
   if (expand ("%:e") == "cpp")
-	" echo "fdfind '^" . bufname("%"):t:r.h . "$'"
-	" echo system("fdfind '^" . bufname("%"):t:r.h . "$'")
-	" if (system("fdfind '^main.cpp$'"))
-		vs %:t:r.h
-	" endif
+	let filename = trim(expand("%:p"), ".cpp") . ".h"
+	execute 'vs' filename
   else
-	vs %:t:r.cpp
+	let filename = trim(expand("%:p"), ".h") . ".cpp"
+	execute 'vs' filename
   endif
 endfunction
 nmap <leader>ss :call SwitchSourceHeader()<CR>
