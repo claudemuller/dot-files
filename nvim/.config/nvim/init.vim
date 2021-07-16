@@ -219,8 +219,14 @@ nnoremap <silent> gR    <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> ge    <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
 
 " ray-x/lsp_signature
-autocmd BufReadPost,FileReadPost c require "lsp_signature".on_attach()
-autocmd BufReadPost,FileReadPost javascript require "lsp_signature".on_attach()
+lua << EOF
+cfg = {
+  handler_opts = {
+    border = "single"
+  }
+}
+require'lsp_signature'.on_attach(cfg)
+EOF
 
 " 'hrsh7th/nvim-compe'
 lua << EOF

@@ -243,3 +243,5 @@ neofetch
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+source /home/lukefilewalker/.config/broot/launcher/bash/br
