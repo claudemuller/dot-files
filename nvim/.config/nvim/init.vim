@@ -25,6 +25,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'kyazdani42/nvim-web-devicons'
   Plug 'ryanoasis/vim-devicons'
   Plug '907th/vim-auto-save'
+  Plug 'ray-x/lsp_signature.nvim'
 	" themes
   Plug 'arcticicestudio/nord-vim'
   Plug 'joshdick/onedark.vim'
@@ -145,6 +146,7 @@ endif
 
 " sbdchd/neoformat
 nnoremap <leader>F :Neoformat eslint_d<CR>
+let g:neoformat_run_all_formatters = 1
 
 " nvim-telescope/telescope.nvim
 nnoremap <leader><space> :Telescope git_files<CR>
@@ -215,6 +217,10 @@ nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gR    <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> ge    <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
+
+" ray-x/lsp_signature
+autocmd BufReadPost,FileReadPost c require "lsp_signature".on_attach()
+autocmd BufReadPost,FileReadPost javascript require "lsp_signature".on_attach()
 
 " 'hrsh7th/nvim-compe'
 lua << EOF
@@ -304,7 +310,7 @@ nnoremap <leader>do :call GotoWindow(g:vimspector_session_windows.output)<CR>
 nnoremap <leader>di :call AddToWatch()<CR>
 nnoremap <leader>dx :call vimspector#Reset()<CR>
 nnoremap <leader>dX :call vimspector#ClearBreakpoints()<CR>
-nnoremap <F5> :call vimspector#Stop()<CR>
+nnoremap <F3> :call vimspector#Stop()<CR>
 "nnoremap <leader>dn :call vimspector#Continue()<CR>
 "nnoremap <leader>drc :call vimspector#RunToCursor()<CR>
 nnoremap <leader>db :call vimspector#ToggleBreakpoint()<CR>
