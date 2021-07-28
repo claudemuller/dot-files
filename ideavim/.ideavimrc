@@ -9,8 +9,32 @@ set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set expandtab
+set relativenumber " show absolute line numbers
 
 set visualbell
 set noerrorbells
 
+let mapleader = "\<Space>"
 
+map <c-h> :action NextSplitter<CR>
+map <c-l> :action NextSplitter<CR>
+
+map <leader><space> :action SearchEverywhere<CR>
+map <leader>fn :action GotoFile<CR>
+map <leader>fb :action RecentFiles<CR>
+map <leader>fs :action GotoSymbol<CR>
+map <leader>gd :action GotoDeclaration<CR>
+map <leader>gr :action FindUsages<CR>
+map <leader>ge :action ShowErrorDescription<CR>
+map <leader>gcc :action CommentByLineComment<CR>
+map <leader>gc :action CommentByLineComment<CR>
+map <C-k> :action QuickJavaDoc<CR>
+
+map <leader>y :action ActivateTerminalToolWindow<CR>
+
+#map <leader>gg :action ChangesView.ToggleCommitUi<CR>
+
+map <leader>dh :action RunClass<CR>
+map <leader>db :action ToggleLineBreakpoint<CR>
+
+map <leader>ff :action FindInPath<CR>
