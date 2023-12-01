@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+yay -Qqe > "$HOME/dot-files/package-list.txt"

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Background process to allow udev to continue
+
+# Path to lock file
+lock="/tmp/keyboard.lock"
+
+# Lock the file (other atomic alternatives would be "ln" or "mkdir")
+exec 9>"$lock"
+if ! flock -n 9; then
+	notify-send -t 5000 "Keyboard script is already running."
+	exit 1
+fi
+
+/home/lukefilewalker/.local/bin/keyboard &  # If Xorg would not reset settings after udev finished
+echo '' > /tmp/keyboard.lock &
+
+# The lock file will be unlocked when the script ends

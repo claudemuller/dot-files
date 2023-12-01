@@ -1,0 +1,38 @@
+[[language]]
+name = "c"
+auto-format = true
+indent = { tab-width = 4, unit = "    " }
+formatter = { command = "clang-format-17", args = [ "-style=file:/home/lukefilewalker/.clang-format" ] }
+
+[[language]]
+name = "go"
+diagnostic-severity = "Hint"
+# formatter = { command = "goimport", args = [] }
+# language-servers = [ "staticcheck" ]
+
+[language-server.staticcheck]
+command = "staticcheck"
+
+[language-server.staticcheck.config]
+command = ["staticcheck", "-checks", "all", "-f", "json"]
+
+[[language]]
+name = "rust"
+# config = { cargo = { features = [ "some_feature" ] } }
+
+[language-server.rust-analyzer.check]
+command = "clippy -- -W clippy:pedantic"
+
+[language-server.rust-analyzer.config.check]
+command = "clippy -- -W clippy:pedantic"
+
+[[language]]
+name = "sql"
+file-types = ["sql"]
+indent = { tab-width = 4, unit = "\t" }
+
+[language-server.sql]
+command = "sql-language-server"
+args = ["up", "--method", "stdio"]
+environment = {}
+

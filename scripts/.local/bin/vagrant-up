@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+
+cd /home/dief/dxtrs/vbox
+vagrant up && vagrant ssh
+

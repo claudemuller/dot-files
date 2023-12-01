@@ -1,0 +1,49 @@
+--local Hydra = require("hydra")
+---- local dap = require("dap")
+--
+--local hint = [[
+-- _n_: step over   _s_: Continue/Start   _b_: Breakpoint
+-- _i_: step into   _x_: Disconnect       _K_: Hover Variables
+-- _o_: step out    _X_: Quit             _E_: Evaluate
+-- _c_: to cursor   _C_: Close UI         _r_: Toggle Repl
+-- _z_: choose run config
+-- ^
+-- ^ ^              _q_: exit
+--]]
+--
+--local dap_hydra = Hydra({
+--  hint = hint,
+--  config = {
+--    color = "pink",
+--    invoke_on_body = true,
+--    hint = {
+--      position = "bottom",
+--      border = "rounded",
+--    },
+--  },
+--  name = "dap",
+--  mode = { "n", "x" },
+--  body = "<leader>x",
+--  heads = {
+--    { "z", function() require("config.dap.c").dapRunConfigWithArgs() end, { silent = true }},
+--    { "C", "<cmd>lua require('dapui').close()<cr>:DapVirtualTextForceRefresh<cr>", { silent = true } },
+--    { "E", "<cmd>lua require('dapui').eval()<cr>", { silent = true } },
+--    { "K", "<cmd>lua require('dap.ui.widgets').hover()<cr>", { silent = true } },
+--    { "X", function() require("dap").close() end, { silent = true } },
+--    { "b", function() require("dap").toggle_breakpoint() end, { silent = true } },
+--    { "c", function() require("dap").run_to_cursor() end, { silent = true } },
+--    { "i", function() require("dap").step_into() end, { silent = true } },
+--    { "n", function() require("dap").step_over() end, { silent = true } },
+--    { "o", function() require("dap").step_out() end, { silent = true } },
+--    { "r", function() require("dap").repl.toggle() end, { silent = true } },
+--    { "s", function() require("dap").continue() end, { silent = true } },
+--    { "x", "<cmd>lua require'dap'.disconnect({ terminateDebuggee = false })<cr>", { exit = true, silent = true } },
+--    { "q", nil, { exit = true, nowait = true } },
+--  },
+--})
+--
+--Hydra.spawn = function(head)
+--  if head == "dap-hydra" then
+--    dap_hydra:activate()
+--  end
+--end

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+export DISPLAY=:100
+adb forward tcp:6100 tcp:6000
+x2x -east -to :100 -from :0

@@ -1,0 +1,33 @@
+#!/usr/bin/env sh
+
+##############;:...
+# Removes the border from all windows in bspwm and then adds one to the
+# currently focused window
+###########:'''
+
+set_border()
+{
+    window=$1
+    state=$2
+
+    bspc config -n "$window" border_width $state
+}
+
+highlight_active_window()
+{
+    active_window=$1
+
+    set_border "$active_window" 1
+    set_border "$old_active_window" 0
+
+    old_active_window="$active_window"
+}
+
+old_active_window=""
+
+bspc subscribe node_focus | while read msg
+do
+    active_window=$(echo "$msg" | awk '{ print $4}')
+
+    highlight_active_window "$active_window"
+done

@@ -1,0 +1,50 @@
+set clipboard+=unnamed
+set hlsearch
+set surround
+
+" Indenting
+set smartindent
+set autoindent
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+set relativenumber number
+
+set visualbell
+set noerrorbells
+
+let mapleader = "\<Space>"
+
+map <c-h> :action NextSplitter<CR>
+map <c-l> :action NextSplitter<CR>
+
+map ]d :action GotoNextError<CR>
+map [d :action GotoPrevError<CR>
+
+map <leader><space> :action SearchEverywhere<CR>
+map <leader>sf :action GotoFile<CR>
+map <leader><space> :action RecentFiles<CR>
+map <leader>sg :action FindInPath<CR>
+
+map <leader>ds :action GotoSymbol<CR>
+map <leader>gd :action GotoDefinition<CR>
+map <leader>gD :action GotoDeclaration<CR>
+map gr :action FindUsages<CR>
+map <leader>e :action ShowErrorDescription<CR>
+
+map gcc :action CommentByLineComment<CR>
+vmap gc :action CommentByLineComment<CR>
+vmap <s-k> :action MoveLineUp<CR>
+vmap <s-j> :action MoveLineDown<CR>
+
+map <leader>lk :action QuickJavaDoc<CR>
+
+map <leader>y :action ActivateTerminalToolWindow<CR>
+
+#map <leader>gg :action ChangesView.ToggleCommitUi<CR>
+
+map <leader>cr :action RunClass<CR>
+map <leader>db :action ToggleLineBreakpoint<CR>
+
+map <leader>ce :action InsertLiveTemplate<CR>

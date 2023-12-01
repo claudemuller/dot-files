@@ -1,0 +1,24 @@
+#!/bin/bash
+
+msg_header="Network Management"
+
+notify-send -t 1000 -a "$msg_header" "Getting VPNs..."
+
+theme=$HOME/.config/rofi/launchers/type-1/style-5.rasi
+
+chosen_network=$(nmcli con | rg "(wireguard|juniper|vpn)" | rofi -dmenu -i -p "VPN" -no-custom -theme "$theme")
+chosen_network=$(echo $chosen_network | awk '{print $1}')
+if [[ -z $chosen_network ]]
+then
+    exit 1
+fi
+
+active_vpn=$(nmcli con show --active | rg "(wireguard|juniper|vpn)")
+if [[ -z $active_vpn ]]
+then
+    res=$(nmcli connection up id $chosen_network)
+else
+    res=$(nmcli connection down id $chosen_network)
+fi
+
+notify-send -t 1000 -a $msg_header "$(echo $res | sed 's/(.*$//')"

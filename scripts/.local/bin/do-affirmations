@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+
+affirmationList=$(cat "$HOME/personal/documents/affirmations.txt")
+
+for affirmation in $affirmationList
+do
+    affirmations="$affirmations\n$affirmation\n\n"
+done
+
+/home/dief/.local/bin/take-note /home/dief/personal/pictures/icons/positive-mind.png 'Affirmation time!' "It's time to do your affirmations - here they are:\n$affirmations"
+

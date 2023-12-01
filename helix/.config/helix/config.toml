@@ -1,0 +1,97 @@
+theme = "catppuccin_mocha"
+
+[editor]
+line-number = "relative"
+rulers = [100, 120]
+shell = ["zsh", "-c"]
+color-modes = true
+auto-save = true
+completion-replace = true
+
+[editor.soft-wrap]
+enable = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[editor.statusline]
+left = ["mode", "spinner", "version-control", "spacer", "separator", "file-name"]
+right = ["diagnostics", "workspace-diagnostics", "separator", "file-encoding", "file-line-ending", "separator", "file-type", "separator",  "register", "selections", "position", "spacer"]
+separator = "⣿"
+mode.normal = "NOR"
+mode.insert = "INS"
+mode.select = "SEL"
+
+[editor.indent-guides]
+render = true
+character = "┊" # Some characters that work well: "▏", "┆", "┊", "⸽"
+skip-levels = 1
+
+[editor.lsp]
+display-messages = true
+display-inlay-hints = true
+
+[keys.select]
+";" = ["collapse_selection", "normal_mode"]
+y = "yank_to_clipboard"
+d = ["yank_to_clipboard", "delete_selection_noyank"]
+
+[keys.normal]
+esc = ["collapse_selection", "keep_primary_selection"]
+X = ["extend_line_above"]
+D = ["kill_to_line_end"]
+y = "yank_to_clipboard"
+P = "paste_clipboard_before"
+p = "paste_clipboard_after"
+d = ["yank_to_clipboard", "delete_selection_noyank"]
+C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+C-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+
+[keys.normal.m]
+e = ["ensure_selections_forward", "extend_to_line_end"]
+l = ["goto_first_nonwhitespace", "extend_to_line_end"]
+
+[keys.normal.space]
+space = "file_picker"
+h = ":toggle-option lsp.display-inlay-hints"
+
+[keys.normal.space.f]
+d = [":new", ":insert-output lf -selection-path=/dev/stdout", "split_selection_on_newline", "goto_file", "goto_last_modification", "goto_last_modified_file", ":buffer-close!", ":theme nord", ":theme catppuccin_mocha", ":redraw"]
+f = "file_picker_in_current_buffer_directory"
+g = "global_search"
+s = ":w"
+p = ":config-open"
+h = ":log-open"
+w = [
+  "move_prev_word_start",
+  "move_next_word_end",
+  "search_selection",
+  "global_search"
+]
+
+[keys.normal.space.c]
+h = "hover"
+g = ":run-shell-command tmux popup -E -d \"#{pane_current_path}\" 'lazygit'"
+v = ":tree-sitter-scopes"
+
+[keys.normal.space.b]
+b = "buffer_picker"
+x = ":buffer-close"
+n = ":buffer-next"
+p = ":buffer-previous"
+c = ":new"
+r = ":reload-all"
+
+[keys.normal.space.r]
+g = ":run-shell-command tmux popup -d \"#{pane_current_path}\" 'go run cmd/main.go'"
+m = ":run-shell-command tmux popup -d \"#{pane_current_path}\" 'make $(grep -o \"^[^#[:space:]].*:\" Makefile | sed 's/://' | fzf)'"
+r = ":run-shell-command cargo run"
+t = ":run-shell-command tmux popup -d \"#{pane_current_path}\" 'go test -run $(rg -o \"func Test[^ (]*\" | cut -f2 -d\" \" | fzf) ./...'"
+
+[keys.normal.backspace]
+d = ":run-shell-command tmux popup 'read -p \"Enter command: \" user_input && eval \"$user_input\"'"

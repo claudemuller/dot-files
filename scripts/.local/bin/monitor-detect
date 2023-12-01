@@ -1,0 +1,6 @@
+#!/bin/sh
+
+case "${SRANDRD_OUTPUT} ${SRANDRD_EVENT}" in
+  "DP-1 connected") xrandr --output DP-1 --auto --right-of eDP-1;;
+  "DP-1 disconnected") xrandr --output eDP-1 --auto;;
+esac

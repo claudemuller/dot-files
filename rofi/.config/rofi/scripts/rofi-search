@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+export DDG_ARGS='["-n", 10]'
+export ROFI_SEARCH='cse,ddgr'
+
+theme=$HOME/.config/rofi/launchers/type-1/style-5.rasi
+
+rofi -modi blocks -blocks-wrap /usr/bin/rofi-search -show blocks -lines 4 -eh 4 -kb-custom-1 'Control+y' -theme "$theme" 

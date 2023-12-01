@@ -1,0 +1,5 @@
+#!/usr/bin/env sh 
+
+SPECIAL_SPACE=true
+kitty --single-instance
+tmux new-session -s "special_space" -d

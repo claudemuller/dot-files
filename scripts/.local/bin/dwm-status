@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+while true; do
+	date +%a\ %d\ %B\ %H:%M > /tmp/CurTime.tmp
+    findmnt -no used / > /tmp/CurUsedRoot.tmp
+    /home/dief/.local/bin/harvest > /tmp/Harvest.tmp
+
+	sleep 60s
+done &
+
+while true; do
+    HARVEST=$(< /tmp/Harvest.tmp)
+	LOCALTIME=$(< /tmp/CurTime.tmp)
+	USED_ROOT=$(< /tmp/CurUsedRoot.tmp)
+
+    awk '/MemTotal/{t=$2}/MemAvailable/{a=$2}END{printf("%.1f\n",(t-a)/1000000)}' /proc/meminfo > /tmp/CurUsedRam.tmp
+	USED_RAM=$(< /tmp/CurUsedRam.tmp)
+
+    CPU1_T=$(< /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input)
+    CPU2_T=$(< /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp2_input)
+    CPU_TEMP=$(expr "$CPU1_T" + "$CPU2_T")
+    CPU_TEMP=$(expr "$CPU_TEMP" / 2 / 1000)
+
+    R1=$(< /sys/class/net/wlp3s0/statistics/rx_bytes)
+    T1=$(< /sys/class/net/wlp3s0/statistics/tx_bytes)
+    sleep 1s
+    R2=$(< /sys/class/net/wlp3s0/statistics/rx_bytes)
+    T2=$(< /sys/class/net/wlp3s0/statistics/tx_bytes)
+    TBPS=$(expr "$T2" - "$T1")
+    if [ "$TBPS" -gt 1048576 ]; then
+        TKBPS="$(expr "$TBPS" / 1024 / 1024) mB"
+    elif [ "$TBPS" -gt 1024 ]; then
+        TKBPS="$(expr "$TBPS" / 1024) kB"
+    else
+        TKBPS="$(expr "$TBPS") B"
+    fi
+    RBPS=$(expr "$R2" - "$R1")
+    if [ "$RBPS" -gt 1048576 ]; then
+        RKBPS="$(expr "$RBPS" / 1024 / 1024) mB"
+    elif [ "$RBPS" -gt 1024 ]; then
+        RKBPS="$(expr "$RBPS" / 1024) kB"
+    else
+        RKBPS="$(expr "$RBPS") B"
+    fi
+
+    xsetroot -name "${HARVEST} | ${TKBPS}/${RKBPS} | ${CPU_TEMP}°C | ${USED_RAM}GB | ${USED_ROOT}B | ${LOCALTIME}"
+
+	sleep 10s
+done &

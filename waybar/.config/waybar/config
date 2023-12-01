@@ -1,0 +1,314 @@
+// -*- mode: jsonc; -*-
+{
+    // --- GENERAL ---
+    "layer": "top",
+    "position": "top",
+
+
+    // --- LEFT MODULES ---
+    "modules-left": [
+        "hyprland/workspaces",
+        "custom/arrow0",
+        "hyprland/window"
+    ],
+
+    "hyprland/workspaces": {
+        "sort-by-name": true,
+        "format": "{id}",
+        "show-special": true,
+        "persistent_workspaces": {
+            // "1": ["DP-6", "DP-8"],
+            // "2": ["DP-6", "DP-8"],
+            // "3": ["DP-6", "DP-8"],
+            // "4": ["DP-6", "DP-8"],
+            // "5": ["eDP-1"],
+            // "6": ["DP-7", "DP-9"],
+            // "7": ["DP-7", "DP-9"],
+            // "8": ["DP-7", "DP-9"],
+            // "9": ["DP-7", "DP-9"],
+            // "0": ["eDP-1"],
+            // "*": 10
+        },
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "urgent": "",
+            "active": "",
+            "default": ""
+        },
+     },
+
+
+    // --- CENTER MODULES ---
+
+
+    // --- RIGHT MODULES ---
+    "modules-right": [
+        "custom/arrow1",
+        "network",
+		"custom/vpn",
+        "custom/arrow2",
+        "cpu",
+        "custom/arrow3",
+        "memory",
+        "custom/arrow4",
+        "temperature",
+        "custom/arrow5",
+		"cava",
+		// "mpd",
+        "pulseaudio",
+        "custom/arrow6",
+        "battery",
+        "custom/arrow7",
+        "tray",
+        "custom/arrow8",
+        "custom/updates",
+        "custom/dunst",
+        "custom/arrow9",
+        "custom/lock",
+        "custom/power",
+        "custom/arrow10",
+        "clock"
+    ],
+
+    "clock": {
+        "interval": 1,
+        "format": " {:%H:%M %d %b}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+                    "mode"          : "year",
+                    "mode-mon-col"  : 3,
+                    "weeks-pos"     : "right",
+                    "on-scroll"     : 1,
+                    "on-click-right": "mode",
+                    "format": {
+                              "months":     "<span color='#ffead3'><b>{}</b></span>",
+                              "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                              "weeks":      "<span color='#99ffdd'><b>{}</b></span>",
+                              "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                              "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                              }
+                    },
+    },
+
+	"custom/vpn": {
+	    "exec": "~/.config/waybar/scripts/vpn",
+        "on-click": "$HOME/.config/rofi/scripts/vpn-menu",
+	    "restart-interval": 1,
+	},
+	
+    "network": {
+        // "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-wifi": " {bandwidthUpBytes:>}  {bandwidthDownBytes:>}",
+        "tooltip-format-wifi": "{ifname}: {ipaddr}/{cidr}\n{essid} on {frequency}GHz",
+        "format-ethernet": "{ipaddr} ",
+		"interval": 1,
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "on-click": "$HOME/.config/rofi/scripts/wifi-menu",
+    },
+
+    "pulseaudio": { // TODO: replace with wireplumber
+        "format":                 "{volume}% {icon} {format_source}",
+        "format-bluetooth":       "{volume}% {icon}  {format_source}",
+        "format-bluetooth-muted": " {icon}  {format_source}",
+        "format-muted":           " {format_source}",
+        "format-source":          "",
+        "format-source-muted":    "",
+        "format-icons": {
+            "headphone":  "",
+            "hands-free": "",
+            "headset":    "",
+            "phone":      "",
+            "portable":   "",
+            "car":        "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+
+    "cpu": {
+        "interval": 1,
+        // "format": "{usage}% ",
+		"format": "{icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7} {usage:>2}% ",
+		"format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+        "on-click": "kitty htop"
+    },
+
+    "memory": {
+        "interval": 10,
+        "format": "{}% ",
+        "on-click": "kitty htop"
+    },
+
+    "temperature": {
+        "interval": 30,
+        "critical-threshold": 80,
+        "format": "{temperatureC}°C ",
+        "on-click": "kitty htop"
+    },
+
+    "backlight": {
+        "format": "{percent}% {icon}",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+
+    "battery": {
+        "interval": 60,
+        "full-at": 95,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% 󰂄",
+        "format-plugged": "{capacity}% ",
+        "format-icons": ["󱃍", "󱃍", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰁹"],
+        "tooltip-format": "{capacity}%\n{timeTo}\n{power} W"
+    },
+
+    "custom/updates": {
+        "interval": 3600, // every hour
+        "exec": "~/.config/waybar/scripts/get_updates.sh",
+        "return-type": "json",
+        "exec-if": "exit 0",
+        "exec-on-event": false,
+        "on-click": "kitty sh -c ~/.config/waybar/scripts/update.sh",
+        "signal": 8,
+    },
+
+    "custom/dunst": {
+        "exec": "~/.config/waybar/scripts/dunst.sh",
+        "return-type": "json",
+        "on-click": "dunstctl set-paused toggle",
+    },
+
+	"mpd": {
+	    "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
+	    "format-disconnected": "Disconnected ",
+	    "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+	    "interval": 10,
+	    "consume-icons": {
+	        "on": " " // Icon shows only when "consume" is on
+	    },
+	    "random-icons": {
+	        "off": "<span color=\"#f53c3c\"></span> ", // Icon grayed out when "random" is off
+	        "on": " "
+	    },
+	    "repeat-icons": {
+	        "on": " "
+	    },
+	    "single-icons": {
+	        "on": "1 "
+	    },
+	    "state-icons": {
+	        "paused": "",
+	        "playing": ""
+	    },
+	    "tooltip-format": "MPD (connected)",
+	    "tooltip-format-disconnected": "MPD (disconnected)"
+	},
+	
+	"cava": {
+		"cava_config": "$HOME/.config/cava/cava.conf",
+		"framerate": 30,
+		// "autosens": 1,
+		// "sensitivity": 100,
+		"bars": 14,
+		// "lower_cutoff_freq": 50,
+		// "higher_cutoff_freq": 10000,
+		"method": "pulse",
+		// "source": "auto",
+		// "stereo": true,
+		// "reverse": false,
+		// "bar_delimiter": 0,
+		// "monstercat": false,
+		// "waves": false,
+		// "noise_reduction": 0.77,
+		// "input_delay": 2,
+		"format-icons" : ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
+		// "actions": {
+		//    "on-click-right": "mode"
+		// }
+    },
+
+    // ---
+
+    "tray": {
+        "icon-size": 15,
+        "spacing": 10
+    },
+
+    // ---
+
+    "custom/lock": {
+        "tooltip": false,
+        "on-click": "swaylock",
+        "format": "",
+    },
+
+    "custom/power": {
+        "tooltip": false,
+        "on-click": "~/.config/rofi/applets/powermenu.sh",
+        "format": "⏻"
+    },
+
+    "custom/arrow10": {
+		"format": "",
+		"tooltip": false
+	},
+
+    "custom/arrow1": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow2": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow3": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow4": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow5": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow6": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow7": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow8": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow9": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow0": {
+		"format": "",
+		"tooltip": false
+	}
+}

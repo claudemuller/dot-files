@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+
+#nitrogen --restore &
+#dunst &
+#sleep 1; compton -b
+#nm-applet &
+#pasystray &
+#clipit &
+#blueman-applet &
+#cbatticon &
+#/home/dief/.local/share/tresorit/tresorit --hidden &
+
+#setxkbmap -option caps:backspace
+#setxkbmap -option compose:ralt
+
+#amixer set Capture toggle
+
+#~/.local/bin/dwm-status
+
+export QT_QPA_PLATFORMTHEME="qt5ct"
+export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+export BROWSER=/usr/bin/brave
+export VISUAL=vim;
+export EDITOR=vim;
+export PATH=$HOME/.local/bin:/home/dief/.gem/ruby/2.7.0/bin:$PATH

@@ -1,0 +1,218 @@
+#
+# wm independent hotkeys
+#
+
+# terminal emulator
+mod4 + Return
+	/usr/local/bin/st
+
+# make sxhkd reload its configuration files:
+mod4 + Escape
+	pkill -USR1 -x sxhkd
+
+# reload polybar
+mod4 + p
+	killall polybar && /home/dief/.config/polybar/launch.sh
+
+#
+# app shortcuts
+#
+mod4 + F1
+    alacritty -e vim
+
+mod4 + F2
+    alacritty -e ranger
+
+mod4 + shift + F2
+    gksu alacritty ranger
+
+# bindsym $mod+F3 exec ranger
+
+mod4 + F3
+    bspc rule -a \* -o state=floating && alacritty -e quick-note
+
+
+#
+# bspwm hotkeys
+#
+
+# quit/restart bspwm
+mod4 + shift + {e,r}
+    {/home/dief/.local/bin/shutdown,bspc wm -r}
+
+# close and kill
+#mod4 + shift + c
+#   bspc node -c
+
+# close window
+mod4 + shift + c
+	bspc node --close
+
+# alternate between the tiled and monocle layout
+mod4 + shift + space
+	bspc desktop -l next
+
+# send the newest marked node to the newest preselected node
+alt + y
+	bspc node newest.marked.local -n newest.!automatic.local
+
+# swap the current node and the biggest node
+mod4 + g
+	bspc node -s biggest
+
+#
+# state/flags
+#
+
+# set the window state
+mod4 + {t,shift + t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# set the node flags
+mod4 + ctrl + {m,x,y,z}
+	bspc node -g {marked,locked,sticky,private}
+
+#
+# focus/swap
+#
+
+# focus the node in the given direction
+mod4 + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+# focus the node for the given path jump
+mod4 + {p,b,comma,period}
+	bspc node -f @{parent,brother,first,second}
+
+# focus the next/previous node in the current desktop
+mod4 + {_,shift + }n
+	bspc node -f {next,prev}.local
+
+# focus the next/previous desktop in the current monitor
+mod4 + bracket{left,right}
+	bspc desktop -f {prev,next}.local
+
+# focus the last node/desktop
+mod4 + {grave,Tab}
+	bspc {node,desktop} -f last
+
+# cycle through desktops and focus
+ctrl + mod4 + shift + {Down,Up}
+    bspc node -d {next,prev} -f
+
+# focus the older or newer node in the focus history
+mod4 + {o,i}
+	bspc wm -h off; \
+	bspc node {older,newer} -f; \
+	bspc wm -h on
+
+# focus or send to the given desktop
+mod4 + {_,shift + }{1-5}
+	bspc {desktop -f,node -d} '^{1-5}'
+
+mod4 + ctrl + {_,shift + }1
+    bspc {desktop -f,node -d} '^6'
+
+mod4 + ctrl + {_,shift + }2
+    bspc {desktop -f,node -d} '^7'
+
+mod4 + ctrl + {_,shift + }3
+	bspc {desktop -f,node -d} '^8'
+
+mod4 + ctrl + {_,shift + }4
+	bspc {desktop -f,node -d} '^9'
+
+mod4 + {_,shift + }6
+	bspc {desktop -f,node -d} '^10'
+
+mod4 + {_,shift + }7
+	bspc {desktop -f,node -d} '^11'
+
+mod4 + {_,shift + }8
+	bspc {desktop -f,node -d} '^12'
+
+mod4 + {_,shift + }9
+    bspc {desktop -f,node -d} '^13'
+
+mod4 + {_,shift + }0
+    bspc {desktop -f,node -d} '^14'
+
+#
+# preselect
+#
+
+# preselect the direction
+#mod4 + ctrl + shift + {h,j,k,l}
+#	bspc node -p {west,south,north,east}
+
+# preselect the ratio
+mod4 + alt + {1-9}
+	bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused node
+mod4 + ctrl + space
+	bspc node -p cancel
+
+# cancel the preselection for the focused desktop
+mod4 + ctrl + shift + space
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+#
+# move/resize
+#
+
+# expand a window by moving one of its side outward
+mod4 + alt + {h,j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contract a window by moving one of its side inward
+mod4 + alt + shift + {h,j,k,l}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# move a floating window
+mod4 + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+#
+# dmenu scripts (Alt+Ctrl+Key)
+#
+
+# run program launcher
+mod4 + space
+    dmenu_run
+	#rofi -show run
+
+# take a screenshot section
+ctrl + mod4 + F12
+	import ~/temp/screenshot.png
+
+# take a screenshot section
+XF86Display
+	import ~/temp/screenshot.png && notify-send 'Select portion of the screen to capture'
+
+# screen backlight brightness
+XF86MonBrightness{Up,Down}
+    xbacklight {-inc,-dec} 10
+
+# volume level adjustment
+XF86Audio{Raise,Lower}Volume
+    amixer -D pulse sset Master 5%{+,-}
+
+# mute audio
+XF86AudioMute
+    amixer -D pulse sset Master toggle && amixer get Master | grep '\[off\]' && notify-send 'Audio switched OFF' || notify-send 'Audio switched ON'
+
+# mute mic
+XF86AudioMicMute
+    amixer set Capture toggle && amixer get Capture | grep '\[off\]' && notify-send 'Mic switched OFF' || notify-send 'Mic switched ON'
+
+# switch to colemak
+XF86Explorer
+    setxkbmap us -variant colemak
+
+# switch to qwerty
+XF86LaunchA
+    setxkbmap us
+
+#bindsym $mod+Control+space exec --no-startup-id rofi -show window
+#bindsym $mod+Control+Shift+c exec rofi -show calc -modi calc -no-show-match -no-sort

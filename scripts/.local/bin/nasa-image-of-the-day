@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+
+IOTD=$(curl "https://api.nasa.gov/planetary/apod?api_key=$NASA_API_KEY")
+IOTD_URL=$(echo "$IOTD" | jq -r '.hdurl')
+TEMP_IOTD_LOC="$HOME/Pictures/nasa-niotd.jpg\""
+
+curl "$IOTD_URL" > $TEMP_IOTD_LOC
+osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"$TEMP_IOTD_LOC\""
+a=$(defaults read com.apple.desktop | sed s/\"Placement = Crop;\"/\"Placement = SizeToFit;\"/g | sed s/\"Placement = FillScreen;\"/\"Placement = SizeToFit;\"/g | sed s/\"Placement = Centered;\"/\"Placement = SizeToFit;\"/g | sed s/\"Placement = Tiled;\"/\"Placement = SizeToFit;\"/g) ; defaults write com.apple.desktop \"$a\" ; killall Dock"

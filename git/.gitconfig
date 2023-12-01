@@ -1,0 +1,53 @@
+[core]
+	trustctime = false
+	filemode = false
+	preloadindex = true
+	fscache = true
+	autocrlf = input
+    # pager = delta
+[color]
+	ui = auto
+[push]
+	default = current
+[pull]
+	rebase = false
+[alias]
+	last = log -1 --stat
+	cp = cherry-pick
+	co = checkout
+	cl = clone
+	ci = commit
+	cm = commit -m
+	st = status -sb
+	s = status -sb
+	pp = push
+	p = pull
+	a = add
+	br = branch
+	unstage = reset HEAD --
+	dc = diff --cached
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative --all
+	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+	lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+	ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+	bs = for-each-ref --format='%(committerdate) %09 %(authorname) %09 %(refname)'
+	behind-ahead = !sh -c 'git "for-each-ref --format=\"%(refname:short) %(upstream:track)\" refs/heads"'
+	br = !git fetch && git behind-ahead
+    checkconflicts = diff -S "<<<<<<< HEAD" -S "=======" -S ">>>>>>> $(git name-rev --name-only MERGE_HEAD)" HEAD
+	example = !sh -c 'echo "Merge branch ${1} into ${1}"' -
+[user]
+	name = Claude Müller
+	email = claude@dxt.rs
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true    # use n and N to move between diff sections
+    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+[merge]
+    conflictstyle = diff3
+[diff]
+    colorMoved = default
+	tool = nvimdiff
+[credential]
+	helper = store

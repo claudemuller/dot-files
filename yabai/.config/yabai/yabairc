@@ -1,0 +1,43 @@
+# default layout (can be bsp, stack or float)
+yabai -m config layout bsp
+
+# New window spawns to the right if vertical split, or bottom if horizontal split
+yabai -m config window_placement second_child
+
+# padding set to 12px
+yabai -m config top_padding 10
+yabai -m config bottom_padding 10
+yabai -m config left_padding 10
+yabai -m config right_padding 10
+yabai -m config window_gap 10
+
+# center mouse on window with focus
+#yabai -m config mouse_follows_focus on
+
+# modifier for clicking and dragging with mouse
+yabai -m config mouse_modifier alt
+# set modifier + left-click drag to move window
+yabai -m config mouse_action1 move
+# set modifier + right-click drag to resize window
+yabai -m config mouse_action2 resize
+
+
+# when window is dropped in center of another window, swap them (on edges it will split it)
+yabai -m mouse_drop_action swap
+
+# tell yabai which apps to ignore
+yabai -m rule --add app="^System Settings$" manage=off
+yabai -m rule --add app="^System Preferences$" sticky=on layer=above manage=off
+yabai -m rule --add app="^System Information$" sticky=on layer=above manage=off
+yabai -m rule --add app="^Alfred Preferences$" sticky=on layer=above manage=off
+yabai -m rule --add app="^gameengine$" sticky=on layer=above manage=off
+yabai -m rule --add app="^debug$" sticky=on layer=above manage=off
+yabai -m rule --add app="^tyler$" sticky=on layer=above manage=off
+yabai -m rule --add app="^renderer$" sticky=on layer=above manage=off
+yabai -m rule --add app="^Merge Revisions" sticky=on layer=above manage=off
+yabai -m rule --add app="^Breakpoints" sticky=on layer=above manage=off
+yabai -m rule --add app="^Run/Debug Configurations" sticky=on layer=above manage=off
+
+# force apps to specific spaces
+# yabai -m rule --add app="^Firefox$" space=2
+yabai -m rule --add app="^Spotify$" space=9
