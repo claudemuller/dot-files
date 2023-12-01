@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+server_up=$(systemctl status rkvm-server.service | rg Active | awk '{print $2}')
+client_up=$(systemctl status rkvm-client.service | rg Active | awk '{print $2}')
+if [ "$server_up" = "active" ] || [ "$client_up" = "active" ]
+then
+	echo ""
+fi

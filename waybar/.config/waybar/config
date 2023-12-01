@@ -65,6 +65,7 @@
         "custom/arrow7",
         "tray",
         "custom/arrow8",
+		"custom/rkvm",
         "custom/updates",
         "custom/dunst",
         "custom/arrow9",
@@ -244,6 +245,13 @@
     },
 
     // ---
+
+    "custom/rkvm": {
+	    "exec": "~/.config/waybar/scripts/rkvm",
+        "tooltip": false,
+		"restart-interval": 60,
+        "on-click": "",
+    },
 
     "custom/lock": {
         "tooltip": false,

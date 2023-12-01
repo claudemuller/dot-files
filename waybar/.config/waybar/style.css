@@ -88,6 +88,7 @@
 #disk,
 #user,
 #custom-dunst,
+#custom-rkvm,
 #custom-updates,
 #custom-power,
 #custom-lock,
@@ -216,6 +217,7 @@
 }
 
 #custom-updates,
+#custom-rkvm,
 #custom-dunst {
 	background: @notifications;
 	color: @black;
