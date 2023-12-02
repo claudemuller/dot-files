@@ -11,7 +11,7 @@ if status is-interactive
   alias lt='ls -latr'
 
   alias vim=nvim
-  alias v=hx
+  alias v=nvim
   alias bat='bat --theme="Catppuccin-macchiato"'
 
   alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash'
@@ -27,8 +27,8 @@ if status is-interactive
   #################################################################################################
   # Exports
   export GOPATH="$HOME/go"
-  export EDITOR="hx"
-  export VISUAL="hx"
+  export EDITOR="nvim"
+  export VISUAL="nvim"
   export MANPAGER="sh -c 'col -bx | bat -l man -p'"
   export HELIX_RUNTIME=$HOME/repos/3rd-party/helix/runtime
 

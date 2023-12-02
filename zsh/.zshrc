@@ -1,10 +1,10 @@
 if [ "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ] && [ -z "$TMUX" ]
-then 
+then
   echo "<d> for default tmux sesh;"
   echo "<s> for special space;"
   echo "or drop to default shell"
 
-  tmux="TERM=xterm-256colo tmux"
+  tmux="TERM=xterm-256color tmux"
 
   ANS=$(bash -c "read -n 1 c; echo \$c")
   if [ "$ANS" = "d" ]
@@ -55,8 +55,8 @@ fi
 ### EXPORT
 export TERM="xterm-256color"
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
-export EDITOR="hx"
-export VISUAL="hx"
+export EDITOR="nvim"
+export VISUAL="nvim"
 
 # export TODOIST_API_KEY="$(pass Todoist/API)"
 
@@ -230,7 +230,7 @@ up () {
 
 # vim
 alias vim=nvim
-alias v=hx
+alias v=nvim
 
 # bat
 alias bat='bat --theme="Catppuccin-macchiato"'
