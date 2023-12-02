@@ -10,7 +10,6 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = function()
         local actions = require("telescope.actions")
-        print("test")
 
         return {
             defaults = {
@@ -25,29 +24,26 @@ return {
                 },
             },
             on_attach = function(buffer)
-                vim.keymap.set("n", "<leader>?", require("telescope.builtin").oldfiles,
-                    { desc = "Find recently opened files" })
-                vim.keymap.set("n", "<leader><space>", require("telescope.builtin").buffers,
-                    { desc = "Find existing buffers" })
-                vim.keymap.set("n", "<leader>/", function()
-                    -- You can pass additional configuration to telescope to change theme, layout, etc.
-                    require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-                        winblend = 10,
-                        previewer = false,
-                    }))
-                end, { desc = "Fuzzily search in current buffer]" })
-
-                vim.keymap.set("n", "<leader>sf", require("telescope.builtin").find_files, { desc = "Search files" })
-                vim.keymap.set("n", "<leader>sh", require("telescope.builtin").help_tags, { desc = "Search help" })
-                vim.keymap.set("n", "<leader>sw", require("telescope.builtin").grep_string,
-                    { desc = "Search current word" })
-                vim.keymap.set("n", "<leader>sg", require("telescope.builtin").live_grep, { desc = "Search by grep" })
-                vim.keymap.set("n", "<leader>sd", require("telescope.builtin").diagnostics,
-                    { desc = "Search diagnostics" })
-                vim.keymap.set("n", "<leader>sr", require("telescope.builtin").registers, { desc = "Search registers" })
             end,
         }
     end,
+    keys = {
+        { "<leader>?",       "<cmd>Telescope oldfiles<CR>",    { desc = "Find recently opened files" } },
+        { "<leader><space>", "<cmd>Telescope buffers<CR>",     { desc = "Find existing buffers" } },
+        -- {"n", "<leader>/", function()
+        --     -- You can pass additional configuration to telescope to change theme, layout, etc.
+        --     require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
+        --         winblend = 10,
+        --         previewer = false,
+        --     }))
+        -- end, { desc = "Fuzzily search in current buffer]" })
+        { "<leader>ff",      "<cmd>Telescope find_files<CR>",  { desc = "Search files" } },
+        { "<leader>sh",      "<cmd>Telescope help_tags<CR>",   { desc = "Search help" } },
+        { "<leader>sw",      "<cmd>Telescope grep_string<CR>", { desc = "Search current word" } },
+        { "<leader>sg",      "<cmd>Telescope live_grep<CR>",   { desc = "Search by grep" } },
+        { "<leader>sd",      "<cmd>Telescope diagnostics<CR>", { desc = "Search diagnostics" } },
+        { "<leader>sr",      "<cmd>Telescope registers<CR>",   { desc = "Search registers" } },
+    },
     init = function()
         pcall(require("telescope").load_extension, "fzf")
     end,
