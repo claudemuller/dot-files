@@ -1,17 +1,20 @@
+-----------------------------------------------------------------------
+-- [[ Autocmds ]]
+-----------------------------------------------------------------------
+
 local api = vim.api
--- local settings = require("user-conf")
 
 --- Remove all trailing whitespace on save
 local TrimWhiteSpaceGrp = api.nvim_create_augroup("TrimWhiteSpaceGrp", { clear = true })
 api.nvim_create_autocmd("BufWritePre", {
-  command = [[:%s/\s\+$//e]],    
+  command = [[:%s/\s\+$//e]],
   group = TrimWhiteSpaceGrp,
 })
 
--- don't auto comment new line
+-- Don't auto comment new line
 api.nvim_create_autocmd("BufEnter", { command = [[set formatoptions-=cro]] })
 
--- wrap words "softly" (no carriage return) in mail buffer
+-- Wrap words "softly" (no carriage return) in mail buffer
 api.nvim_create_autocmd("Filetype", {
   pattern = "mail",
   callback = function()
@@ -24,39 +27,30 @@ api.nvim_create_autocmd("Filetype", {
   end,
 })
 
--- -- [[ Highlight on yank ]]
--- -- See `:help vim.highlight.on_yank()`
--- local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
--- vim.api.nvim_create_autocmd("TextYankPost", {
---   callback = function()
---     vim.highlight.on_yank()
---   end,
---   group = highlight_group,
---   pattern = "*",
--- })
-
 -- Highlight on yank
 local yankGrp = api.nvim_create_augroup("YankHighlight", { clear = true })
 api.nvim_create_autocmd("TextYankPost", {
   command = "silent! lua vim.highlight.on_yank()",
   group = yankGrp,
 })
--- go to last loc when opening a buffer
+
+-- Go to last loc when opening a buffer
 api.nvim_create_autocmd(
   "BufReadPost",
   { command = [[if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif]] }
 )
--- windows to close with "q"
+
+-- Windows to close with "q"
 api.nvim_create_autocmd("FileType", {
   pattern = { "help", "startuptime", "qf", "lspinfo", "fugitive", "null-ls-info", "dap-float" },
   command = [[nnoremap <buffer><silent> q :close<CR>]],
 })
 api.nvim_create_autocmd("FileType", { pattern = "man", command = [[nnoremap <buffer><silent> q :quit<CR>]] })
 
--- disable list option in certain filetypes
+-- Disable list option in certain filetypes
 api.nvim_create_autocmd("FileType", { pattern = { "NeoGitStatus" }, command = [[setlocal list!]] })
 
--- show cursor line only in active window
+-- Show cursor line only in active window
 local cursorGrp = api.nvim_create_augroup("CursorLine", { clear = true })
 api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
   pattern = "*",
@@ -75,11 +69,19 @@ api.nvim_create_autocmd(
 )
 
 -- Run gofmt + goimport on save
-local format_sync_grp = vim.api.nvim_create_augroup("GoImport", {})
+local format_sync_grp = vim.api.nvim_create_augroup("AutoFormatting", {})
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*.go",
   callback = function()
-   require('go.format').goimport()
+    require('go.format').goimport()
+  end,
+  group = format_sync_grp,
+})
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.lua",
+  callback = function()
+    vim.lsp.buf.format()
   end,
   group = format_sync_grp,
 })
