@@ -9,7 +9,7 @@ return {
   event = "VeryLazy",
   init = function()
     vim.o.timeout = true
-    vim.o.timeoutlen = 300
+    vim.o.timeoutlen = 150
   end,
   opts = {
     plugins = { spelling = true },
@@ -19,6 +19,7 @@ return {
       ["gs"] = { name = "+surround" },
       ["]"] = { name = "+next" },
       ["["] = { name = "+prev" },
+      ["<leader>t"] = { name = "+test" },
       ["<leader><tab>"] = { name = "+tabs" },
       ["<leader>b"] = { name = "+buffer" },
       ["<leader>c"] = { name = "+code" },

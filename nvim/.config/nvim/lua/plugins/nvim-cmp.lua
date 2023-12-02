@@ -6,12 +6,24 @@
 -- See `:help nvime-cmp.txt`
 return {
 	"hrsh7th/nvim-cmp",
-	dependencies = { "hrsh7th/cmp-nvim-lsp", "L3MON4D3/LuaSnip", "saadparwaiz1/cmp_luasnip" },
-	opts = function()
-		vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
+	dependencies = {
+		"hrsh7th/cmp-nvim-lsp",
+		"L3MON4D3/LuaSnip",
+		"saadparwaiz1/cmp_luasnip",
+	},
+	opts = function(_, opts)
+		vim.api.nvim_set_hl(0, "CmpGhostText", {
+			link = "Comment",
+			default = true,
+		})
+
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")
-		local defaults = require("cmp.config.default")()
+		-- local defaults = require("cmp.config.default")()
+
+		-- opts.sources = cmp.config.sources(vim.list_extend(opts.sources, {
+		-- 	{ name = "crates" },
+		-- }))
 
 		return {
 			snippet = {
