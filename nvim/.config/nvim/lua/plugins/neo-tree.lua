@@ -6,7 +6,7 @@
 -- See `:help neotree.txt`
 return {
 	"nvim-neo-tree/neo-tree.nvim",
-	branch = "v3.x",
+	version = "v3.x",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-tree/nvim-web-devicons",
@@ -14,7 +14,7 @@ return {
 		"3rd/image.nvim",
 	},
 	keys = {
-		{ "<leader>nt", ":Neotree<CR>", { desc = "[N]eo[T]ree" } },
+		{ "<leader>nt", ":Neotree<CR>", { desc = "Open Neotree" } },
 	},
 	opts = {
 		-- If a user has a sources list it will replace this one.
