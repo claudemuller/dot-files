@@ -12,7 +12,6 @@ return {
     vim.o.timeoutlen = 150
   end,
   opts = {
-    plugins = { spelling = true },
     defaults = {
       mode = { "n", "v" },
       ["g"] = { name = "+goto" },

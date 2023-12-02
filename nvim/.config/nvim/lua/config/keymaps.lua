@@ -31,8 +31,8 @@ vim.keymap.set("n", "<leader>-", "<cmd>:vertical resize -10<cr>", { desc = "Decr
 -- Diagnostics
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open diagnostics in floating" })
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics in quickfix" })
+vim.keymap.set("n", "<leader>df", vim.diagnostic.open_float, { desc = "Open diagnostics in floating" })
+vim.keymap.set("n", "<leader>dq", vim.diagnostic.setloclist, { desc = "Open diagnostics in quickfix" })
 
 -- C/C++
 vim.keymap.set("n", "<leader>ch", funcs.switch_c_h, { desc = "Go to C/Cpp or H file" })
