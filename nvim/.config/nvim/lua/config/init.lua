@@ -44,3 +44,6 @@ vim.g.maplocalleader = " "
 
 -- Log Level
 vim.lsp.set_log_level("off")
+
+-- Set line length indicators
+vim.opt.colorcolumn = "100,120"

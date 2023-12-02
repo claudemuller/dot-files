@@ -2,6 +2,8 @@
 -- [[ nvim-autopairs config ]]
 -----------------------------------------------------------------------
 
+-- Match up opening and closing pairs
+-- See `:help nvim-autopairs.txt`
 return {
   'windwp/nvim-autopairs',
   event = "InsertEnter",

@@ -1,5 +1,9 @@
+-----------------------------------------------------------------------
+-- [[ vim-sleuth config ]]
+-----------------------------------------------------------------------
 
-	return { -- Detect tabstop and shiftwidth automatically
-		"tpope/vim-sleuth",
-	}
-
+-- Detect tabstop and shiftwidth automatically
+-- See `:help vim-sleuth.txt`
+return {
+	"tpope/vim-sleuth",
+}

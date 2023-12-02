@@ -1,4 +1,10 @@
-return { -- File tree viewer
+-----------------------------------------------------------------------
+-- [[ neo-tree config ]]
+-----------------------------------------------------------------------
+
+-- File tree viewer
+-- See `:help neotree.txt`
+return {
 	"nvim-neo-tree/neo-tree.nvim",
 	branch = "v3.x",
 	dependencies = {
@@ -39,27 +45,27 @@ return { -- File tree viewer
 			max_lines = 10000, -- How many lines of git status results to process. Anything after this will be dropped.
 			-- Anything before this will be used. The last items to be processed are the untracked files.
 		},
-		hide_root_node = false, -- Hide the root node.
+		hide_root_node = false,      -- Hide the root node.
 		retain_hidden_root_indent = false, -- IF the root node is hidden, keep the indentation anyhow.
 		-- This is needed if you use expanders because they render in the indent.
-		log_level = "info", -- "trace", "debug", "info", "warn", "error", "fatal"
-		log_to_file = false, -- true, false, "/path/to/file.log", use :NeoTreeLogs to show the file
+		log_level = "info",          -- "trace", "debug", "info", "warn", "error", "fatal"
+		log_to_file = false,         -- true, false, "/path/to/file.log", use :NeoTreeLogs to show the file
 		open_files_in_last_window = true, -- false = open files in top left window
-		popup_border_style = "NC", -- "double", "none", "rounded", "shadow", "single" or "solid"
+		popup_border_style = "NC",   -- "double", "none", "rounded", "shadow", "single" or "solid"
 		resize_timer_interval = 500, -- in ms, needed for containers to redraw right aligned and faded content
 		-- set to -1 to disable the resize timer entirely
 		-- NOTE: this will speed up to 50 ms for 1 second following a resize
 		sort_case_insensitive = false, -- used when sorting files and directories in the tree
-		sort_function = nil, -- uses a custom function for sorting files and directories in the tree
+		sort_function = nil,     -- uses a custom function for sorting files and directories in the tree
 		use_popups_for_input = true, -- If false, inputs will use vim.ui.input() instead of custom floats.
 		use_default_mappings = true,
 		-- source_selector provides clickable tabs to switch between sources.
 		source_selector = {
-			winbar = true, -- toggle to show selector on winbar
-			statusline = false, -- toggle to show selector on statusline
+			winbar = true,                -- toggle to show selector on winbar
+			statusline = false,           -- toggle to show selector on statusline
 			show_scrolled_off_parent_node = false, -- this will replace the tabs with the parent path
 			-- of the top visible node when scrolled down.
-			tab_labels = { -- falls back to source_name if nil
+			tab_labels = {                -- falls back to source_name if nil
 				filesystem = "  Files ",
 				buffers = "  Buffers ",
 				git_status = "  Git ",
@@ -108,7 +114,7 @@ return { -- File tree viewer
 				padding = 1,
 				-- indent guides
 				with_markers = true,
-				indent_marker = "│",
+				indent_marker = "┊",
 				last_indent_marker = "└",
 				highlight = "NeoTreeIndentMarker",
 				-- expander config, needed for nesting files
@@ -160,13 +166,13 @@ return { -- File tree viewer
 				{
 					"container",
 					content = {
-						{ "name", zindex = 10 },
+						{ "name",        zindex = 10 },
 						-- {
 						--   "symlink_target",
 						--   zindex = 10,
 						--   highlight = "NeoTreeSymbolicLinkTarget",
 						-- },
-						{ "clipboard", zindex = 10 },
+						{ "clipboard",   zindex = 10 },
 						{ "diagnostics", errors_only = true, zindex = 20, align = "right" },
 					},
 				},
@@ -186,17 +192,17 @@ return { -- File tree viewer
 						--   zindex = 10,
 						--   highlight = "NeoTreeSymbolicLinkTarget",
 						-- },
-						{ "clipboard", zindex = 10 },
-						{ "bufnr", zindex = 10 },
-						{ "modified", zindex = 20, align = "right" },
+						{ "clipboard",   zindex = 10 },
+						{ "bufnr",       zindex = 10 },
+						{ "modified",    zindex = 20, align = "right" },
 						{ "diagnostics", zindex = 20, align = "right" },
-						{ "git_status", zindex = 20, align = "right" },
+						{ "git_status",  zindex = 20, align = "right" },
 					},
 				},
 			},
 			message = {
 				{ "indent", with_markers = false },
-				{ "name", highlight = "NeoTreeMessage" },
+				{ "name",   highlight = "NeoTreeMessage" },
 			},
 			terminal = {
 				{ "indent" },
@@ -206,7 +212,7 @@ return { -- File tree viewer
 			},
 		},
 		nesting_rules = {},
-		window = { -- see https://github.com/MunifTanjim/nui.nvim/tree/main/lua/nui/popup for
+		window = {    -- see https://github.com/MunifTanjim/nui.nvim/tree/main/lua/nui/popup for
 			-- possible options. These can also be functions that return these options.
 			position = "left", -- left, right, top, bottom, float, current
 			width = 40, -- applies to left and right positions
@@ -268,11 +274,11 @@ return { -- File tree viewer
 		filesystem = {
 			commands = {
 				-- Override delete to use trash instead of rm
-				delete = function(state)
-					local path = state.tree:get_node().path
-					vim.fn.system({ "trash", vim.fn.fnameescape(path) })
-					require("neo-tree.sources.manager").refresh(state.name)
-				end,
+				-- delete = function(state)
+				-- 	local path = state.tree:get_node().path
+				-- 	vim.fn.system({ "trash", vim.fn.fnameescape(path) })
+				-- 	require("neo-tree.sources.manager").refresh(state.name)
+				-- end,
 				system_open = function(state)
 					local node = state.tree:get_node()
 					local path = node:get_id()
@@ -313,9 +319,9 @@ return { -- File tree viewer
 			--         The first field in each component is the name of the function to call.
 			--         The rest of the fields are passed to the function as the "config" argument.
 			filtered_items = {
-				visible = true, -- when true, they will just be displayed differently than normal items
+				visible = true,            -- when true, they will just be displayed differently than normal items
 				force_visible_in_empty_folder = false, -- when true, hidden files will be shown if the root folder is otherwise empty
-				show_hidden_count = true, -- when true, the number of hidden items in each folder will be shown as the last entry
+				show_hidden_count = true,  -- when true, the number of hidden items in each folder will be shown as the last entry
 				hide_dotfiles = true,
 				hide_gitignored = true,
 				hide_hidden = true, -- only works on Windows for hidden files/directories
@@ -369,9 +375,9 @@ return { -- File tree viewer
 			--  end
 			--  return args
 			--end,
-			group_empty_dirs = false, -- when true, empty folders will be grouped together
-			search_limit = 50, -- max number of search results when using filters
-			follow_current_file = false, -- This will find and focus the file in the active buffer every time
+			group_empty_dirs = false,      -- when true, empty folders will be grouped together
+			search_limit = 50,             -- max number of search results when using filters
+			follow_current_file = false,   -- This will find and focus the file in the active buffer every time
 			-- the current file is changed while the tree is open.
 			hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
 			-- in whatever position is specified in window.position
@@ -411,7 +417,7 @@ return { -- File tree viewer
 			renderers = {
 				custom = {
 					{ "indent" },
-					{ "icon", default = "C" },
+					{ "icon",  default = "C" },
 					{ "custom" },
 					{ "name" },
 				},

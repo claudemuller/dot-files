@@ -1,4 +1,10 @@
-return { -- Indentation guides
+-----------------------------------------------------------------------
+-- [[ indent-blankline config ]]
+-----------------------------------------------------------------------
+
+-- Show Indentation guides
+-- See `:help idl.txt`
+return {
 	"lukas-reineke/indent-blankline.nvim",
 	main = "ibl",
 	opts = {
@@ -9,4 +15,3 @@ return { -- Indentation guides
 		scope = { enabled = false },
 	},
 }
-

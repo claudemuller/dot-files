@@ -1,4 +1,9 @@
- -- Which Key
+-----------------------------------------------------------------------
+-- [[ which-key config ]]
+-----------------------------------------------------------------------
+
+-- Which Key
+-- See `:help vim-sleuth.txt`
 return {
   "folke/which-key.nvim",
   event = "VeryLazy",

@@ -1,9 +1,14 @@
-return { -- Highlight, edit, and navigate code
+-----------------------------------------------------------------------
+-- [[ nvim-treesitter config ]]
+-----------------------------------------------------------------------
+
+-- Highlight, edit, and navigate code
+-- See `:help nvim-treesitter.txt`
+return {
 	"nvim-treesitter/nvim-treesitter",
 	opts = {
 		-- Add languages to be installed here that you want installed for treesitter
 		ensure_installed = { "c", "cpp", "go", "lua", "python", "rust", "typescript", "vim" },
-
 		highlight = { enable = true },
 		indent = { enable = true, disable = { "python" } },
 		incremental_selection = {
@@ -61,9 +66,7 @@ return { -- Highlight, edit, and navigate code
 		},
 
 	},
-	run = function()
+	build = function()
 		pcall(require("nvim-treesitter.install").update({ with_sync = true }))
 	end,
 }
-
-
