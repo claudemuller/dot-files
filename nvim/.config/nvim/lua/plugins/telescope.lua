@@ -10,6 +10,7 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = function()
         local actions = require("telescope.actions")
+        print("test")
 
         return {
             defaults = {

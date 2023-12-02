@@ -2,8 +2,6 @@
 -- [[ Keymaps ]]
 -----------------------------------------------------------------------
 
-local M = {}
-
 local funcs = require("functions")
 
 -- Keymaps for better default experience
@@ -37,4 +35,41 @@ vim.keymap.set("n", "<leader>dq", vim.diagnostic.setloclist, { desc = "Open diag
 -- C/C++
 vim.keymap.set("n", "<leader>ch", funcs.switch_c_h, { desc = "Go to C/Cpp or H file" })
 
-return M
+-- Which Key group names
+local wk = require("which-key")
+
+wk.register({
+  f = {
+    name = "file/find",
+  },
+  b = {
+    name = "buffers",
+  },
+  c = {
+    name = "code",
+  },
+  d = {
+    name = "diagnostics",
+  },
+  g = {
+    name = "git",
+    h = {
+      name = "hunks",
+    }
+  },
+  s = {
+    name = "search",
+  },
+  r = {
+    name = "run",
+  },
+  t = {
+    name = "test",
+  },
+  u = {
+    name = "ui",
+  },
+  w = {
+    name = "windows",
+  },
+}, { prefix = "<leader>" })
