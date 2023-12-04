@@ -14,7 +14,7 @@ return {
 		"3rd/image.nvim",
 	},
 	keys = {
-		{ "<leader>nt", ":Neotree<CR>", { desc = "Open Neotree" } },
+		{ "<leader>ft", ":Neotree<CR>", { desc = "Open Neotree" } },
 	},
 	opts = {
 		-- If a user has a sources list it will replace this one.
