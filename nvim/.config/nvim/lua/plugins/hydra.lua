@@ -5,10 +5,10 @@
 -- Hydra
 -- See `:help hydra.txt`
 return {
-	enabled = false,
+	-- enabled = false,
 	"anuvyklack/hydra.nvim",
-	requires = "anuvyklack/keymap-layer.nvim", -- needed only for pink hydras
-	opts = {},
+	dependencies = { "anuvyklack/keymap-layer.nvim" },
+	-- opts = {},
 	-- config = function()
 	-- 	require("config.hydra")
 	-- end
