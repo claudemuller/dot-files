@@ -11,7 +11,7 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-tree/nvim-web-devicons",
-		-- "MunifTanjim/nui.nvim",
+		"MunifTanjim/nui.nvim",
 		"3rd/image.nvim",
 	},
 	keys = {
@@ -35,6 +35,7 @@ return {
 				diagnostics = " 裂Diagnostics ",
 			},
 		},
+		default_source = "filesystem",
 		hide_root_node = false,
 		retain_hidden_root_indent = false,
 		popup_border_style = "NC", -- "double", "none", "rounded", "shadow", "single" or "solid"
