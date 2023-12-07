@@ -47,3 +47,5 @@ vim.lsp.set_log_level("off")
 
 -- Set line length indicators
 vim.opt.colorcolumn = "100,120"
+
+vim.g.loaded_netrwPlugin = 0
