@@ -120,7 +120,7 @@ return {
 
 		local servers = {
 			clangd = {},
-			codelldb = {},
+			-- codelldb = {},
 			gopls = {},
 			golangci_lint_ls = {},
 			pyright = {},
