@@ -14,7 +14,12 @@ fi
 
 if [[ $chosen_setup = "Home" ]]
 then
-    sed -i 's/monitors\/.*\.conf/monitors\/home\.conf/g' ~/.config/hypr/hyprland.conf
+    if [[ $(hostname) = "shinobi" ]]
+    then
+        sed -i 's/monitors\/.*\.conf/monitors\/home-shinobi\.conf/g' ~/.config/hypr/hyprland.conf
+    else
+        sed -i 's/monitors\/.*\.conf/monitors\/home-work\.conf/g' ~/.config/hypr/hyprland.conf
+    fi
 elif [[ $chosen_setup = "Left" ]]
     sed -i 's/monitors\/.*\.conf/monitors\/hdmi-left\.conf/g' ~/.config/hypr/hyprland.conf
 elif [[ $chosen_setup = "Right" ]]
