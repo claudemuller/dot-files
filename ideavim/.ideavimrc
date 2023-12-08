@@ -1,136 +1,50 @@
-" Must be done first to tell other plugins that this is the leader key
-let mapleader=" "
-
-" https://github.com/JetBrains/ideavim/wiki/IdeaVim-Plugins
 set clipboard+=unnamed
-set clipboard+=ideaput
-set ideajoin
-set idearefactormode=keep
-set incsearch
-" set relativenumber
-set showmode
 set hlsearch
 set surround
-set visualbell  
-set commentary
-set highlightedyank
-set argtextobj
-set matchit
-set multiple-cursors
-" requires easymotion and ace-jump plugins
-set easymotion
-" requires quickscope plugin
-set quickscope
 
-let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+" Indenting
+set smartindent
+set autoindent
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+set relativenumber number
 
-nmap \e :e ~/.ideavimrc<CR>
-nmap \r <Action>(IdeaVim.ReloadVimRc.reload)
+set visualbell
+set noerrorbells
 
-nmap <s-u> <Action>($Redo)
-nmap <c-z> <Action>(ToggleDistractionFreeMode)
-nmap <c-c> <Action>(CommentByLineComment)
-xmap <c-c> <Action>(CommentByLineComment)
+let mapleader = "\<Space>"
 
-nmap <c-t> <Action>(ActivateTerminalToolWindow)
-nmap <leader>t <Action>(Terminal.OpenInTerminal)
+map <c-h> :action NextSplitter<CR>
+map <c-l> :action NextSplitter<CR>
 
-nmap <c-w>v <Action>(SplitVertically)
-nmap <c-w>s <Action>(SplitHorizontally)
-nmap <c-w>W <Action>(MoveEditorToOppositeTabGroup)
+map ]d :action GotoNextError<CR>
+map [d :action GotoPrevError<CR>
 
-nmap <c-w>w <Action>(NextWindow)
-nmap <leader>q <Action>(CloseContent)
-nmap <leader>Q <Action>(CloseAllEditors)
-nmap <leader>x <Action>(HideAllWindows)
+map <leader><space> :action SearchEverywhere<CR>
+map <leader>sf :action GotoFile<CR>
+map <leader><space> :action RecentFiles<CR>
+map <leader>sg :action FindInPath<CR>
 
-nmap ]d <Action>(GotoNextError)
-nmap [d <Action>(GotoPreviousError)
-nmap ]g <Action>(VcsShowNextChangeMarker)
-nmap [g <Action>(VcsShowPrevChangeMarker)
-nmap ]m <Action>(MethodDown)
-nmap [m <Action>(MethodUp)
+map <leader>ds :action GotoSymbol<CR>
+map <leader>gd :action GotoDefinition<CR>
+map <leader>gD :action GotoDeclaration<CR>
+map gr :action FindUsages<CR>
+map <leader>e :action ShowErrorDescription<CR>
 
-nmap <leader>r <Action>(Refactorings.QuickListPopupAction)
-nmap <leader>= <Action>(ReformatCode)
-nmap <leader>j <Action>(RecentLocations)
+map gcc :action CommentByLineComment<CR>
+vmap gc :action CommentByLineComment<CR>
+vmap <s-k> :action MoveLineUp<CR>
+vmap <s-j> :action MoveLineDown<CR>
 
-nmap gr <Action>(FindUsages)
-nmap gi <Action>(GotoImplementation)
-nmap gd <Action>(GotoDeclaration)
-nmap gT <Action>(GotoTest)
-nmap gp <Action>(GotoSuperMethod)
-nmap gy <Action>(GotoTypeDeclaration)
+map <leader>lk :action QuickJavaDoc<CR>
 
-nmap gh 0
-nmap gs ^
-nmap gl $
-nmap ge G
+map <leader>y :action ActivateTerminalToolWindow<CR>
 
-xmap gh 0
-xmap gs ^
-xmap gl $
-xmap ge G
+#map <leader>gg :action ChangesView.ToggleCommitUi<CR>
 
-nnoremap d x<Esc>
-vnoremap d x<Esc>
-nmap x V
+map <leader>cr :action RunClass<CR>
+map <leader>db :action ToggleLineBreakpoint<CR>
 
-nmap <leader>S <Action>(GotoSymbol)
-nmap <leader>s <Action>(FileStructurePopup)
-nmap <leader>F <Action>(FindInPath)
-nmap <leader>f <Action>(GotoFile)
-nmap <c-f> <Action>(ActivateFindToolWindow)
-nmap <leader>e <Action>(SearchEverywhere)
-nmap <leader>o <Action>(ActivateProjectToolWindow)
-
-nmap <leader>a <Action>(ShowIntentionActions)
-nmap <leader>p <Action>(PasteMultiple)
-nmap <leader>z <Action>(ChangeIdeScale)
-
-nmap <leader>g <Action>(Vcs.QuickListPopupAction)
-nmap <leader>b <Action>(RecentChangedFiles)
-nmap <leader>B <Action>(RecentFiles)
-nmap <leader><cr> :nohlsearch<CR>
-
-nmap <c-o> <Action>(Back)
-nmap <c-i> <Action>(Forward)
-nmap <s-k> <Action>(ExpressionTypeInfo)
-nmap <c-k> <Action>(ShowErrorDescription)
-nmap <s-c-k> <Action>(QuickJavaDoc)
-
-nmap <leader>uh <Action>(ToggleInlayHintsGloballyAction)
-nmap <leader>uw <Action>(EditorToggleShowWhitespaces)
-nmap <leader>y <Action>(CopyReferencePopupGroup)
-
-" Remap multiple-cursors shortcuts to match terryma/vim-multiple-cursors
-nmap <C-n> <Plug>NextWholeOccurrence
-" Does not work on column selection mode
-xmap <C-n> <Plug>NextWholeOccurrence
-nmap g<C-n> <Plug>NextOccurrence
-xmap g<C-n> <Plug>NextOccurrence
-nmap <C-x> <Plug>SkipOccurrence
-xmap <C-x> <Plug>SkipOccurrence
-nmap <C-p> <Plug>RemoveOccurrence
-xmap <C-p> <Plug>RemoveOccurrence
-
-" Note that the default <A-n> and g<A-n> shortcuts don't work on Mac due to dead keys.
-" <A-n> is used to enter accented text e.g. ñ
-" Alternatively use the Unicode hex keyboard in macOS
-nmap <S-C-n> <Plug>AllWholeOccurrences
-xmap <S-C-n> <Plug>AllWholeOccurrences
-nmap g<S-C-n> <Plug>AllOccurrences
-xmap g<S-C-n> <Plug>AllOccurrences
-
-
-""" Running and Debugging
-nmap ,r <Action>(ContextRun)
-nmap ,c <Action>(RunClass)
-nmap ,f <Action>(ChooseRunConfiguration)
-nmap ,t <Action>(ActivateRunToolWindow)
-nmap ,u <Action>(Rerun)
-nmap ,f <Action>(RerunFailedTests)
-nmap ,b <Action>(ToggleLineBreakpoint)
-nmap ,d <Action>(ContextDebug)
-nmap ,n <Action>(ActivateDebugToolWindow)
-nmap ,p <Action>(XDebugger.AttachToProcess)
+map <leader>ce :action InsertLiveTemplate<CR>

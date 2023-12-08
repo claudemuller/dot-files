@@ -100,7 +100,7 @@
         "on-click": "$HOME/.config/rofi/scripts/vpn-menu",
 	    "restart-interval": 1,
 	},
-	
+
     "network": {
         // "format-wifi": "{essid} ({signalStrength}%) ",
         "format-wifi": " {bandwidthUpBytes:>}  {bandwidthDownBytes:>}",
@@ -213,7 +213,7 @@
 	    "tooltip-format": "MPD (connected)",
 	    "tooltip-format-disconnected": "MPD (disconnected)"
 	},
-	
+
 	"cava": {
 		"cava_config": "$HOME/.config/cava/cava.conf",
 		"framerate": 30,
@@ -261,7 +261,7 @@
 
     "custom/power": {
         "tooltip": false,
-        "on-click": "~/.config/rofi/applets/powermenu.sh",
+        "on-click": "~/.config/rofi/scripts/powermenu_t1",
         "format": "⏻"
     },
 
