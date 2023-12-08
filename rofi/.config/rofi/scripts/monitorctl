@@ -1,0 +1,26 @@
+#!/bin/bash
+
+msg_header="Monitor Control"
+
+notify-send -t 1000 -a "$msg_header" "Changing monitor output..."
+
+theme=$HOME/.config/rofi/launchers/type-1/style-5.rasi
+
+chosen_setup=$(echo -e "Home\nWork\nLeft HDMI\nRight HDMI" | rofi -dmenu -i -p $msg_header -no-custom -theme "$theme")
+if [[ -z $chosen_setup ]]
+then
+    exit 1
+fi
+
+if [[ $chosen_setup = "Home" ]]
+then
+    sed -i 's/monitors\/.*\.conf/monitors\/home\.conf/g' ~/.config/hypr/hyprland.conf
+elif [[ $chosen_setup = "Left" ]]
+    sed -i 's/monitors\/.*\.conf/monitors\/hdmi-left\.conf/g' ~/.config/hypr/hyprland.conf
+elif [[ $chosen_setup = "Right" ]]
+    sed -i 's/monitors\/.*\.conf/monitors\/hdmi-right\.conf/g' ~/.config/hypr/hyprland.conf
+else
+    sed -i 's/monitors\/.*\.conf/monitors\/work\.conf/g' ~/.config/hypr/hyprland.conf
+fi
+
+notify-send -t 1000 -a $msg_header "Changed monitor setup to $chosen_setup"
