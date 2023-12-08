@@ -44,9 +44,6 @@ else
 fi
 
 export GOPATH=$HOME/go
-# export GOPRIVATE="*.is.comhem.com"
-# export GONOPROXY="*.is.comhem.com"
-# export GONOSUMDB="*.is.comhem.com"
 export PATH=$PATH:$(go env GOPATH)/bin
 if [[ "$IS_MAC" == true ]]; then
   export GOARCH=arm64
