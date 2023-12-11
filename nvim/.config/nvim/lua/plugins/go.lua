@@ -20,5 +20,8 @@ return {
 		"go",
 		"gomod",
 	},
-	build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
+	setup = function()
+		vim.cmd("GoInstallBinaries")
+	end,
+	build = ':lua require("go.install").update_all_sync()'
 }

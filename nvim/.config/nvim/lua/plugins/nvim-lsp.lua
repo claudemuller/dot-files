@@ -22,8 +22,8 @@ return {
 		rust_analyzer = {
 			keys = {
 				{ "K",          "<cmd>RustHoverActions<cr>", desc = "Hover Actions (Rust)" },
-				{ "<leader>cR", "<cmd>RustCodeAction<cr>",   desc = "Code Action (Rust)" },
-				{ "<leader>dr", "<cmd>RustDebuggables<cr>",  desc = "Run Debuggables (Rust)" },
+				{ "<leader>ca", "<cmd>RustCodeAction<cr>",   desc = "Code Action (Rust)" },
+				{ "<leader>Dr", "<cmd>RustDebuggables<cr>",  desc = "Run Debuggables (Rust)" },
 			},
 			settings = {
 				["rust-analyzer"] = {
@@ -90,7 +90,7 @@ return {
 				nmap(keys, func, desc)
 			end
 
-			nmapl("<leader>rn", vim.lsp.buf.rename, "Rename")
+			nmapl("<leader>cr", vim.lsp.buf.rename, "Rename")
 			nmapl("<leader>ca", vim.lsp.buf.code_action, "Code action")
 
 			nmapl("gd", vim.lsp.buf.definition, "Goto definition")
@@ -98,7 +98,7 @@ return {
 			nmapl("gI", vim.lsp.buf.implementation, "Goto implementation")
 			nmapl("<leader>D", vim.lsp.buf.type_definition, "Type definition")
 			nmapl("<leader>ds", require("telescope.builtin").lsp_document_symbols, "Document symbols")
-			nmapl("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace symbols")
+			nmapl("<leader>ds", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace symbols")
 
 			-- See `:help K` for why this keymap
 			nmapl("K", vim.lsp.buf.hover, "Hover documentation")

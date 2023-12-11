@@ -20,20 +20,17 @@ vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- File operations
-vim.keymap.set("n", "<C-S-s>", "<cmd>:update<cr>", { desc = "Save current file" })
+vim.keymap.set("n", "<M-C-s>", "<cmd>:update<cr>", { desc = "Save current file" })
 
 -- Window management
-vim.keymap.set("n", "<leader>+", "<cmd>:vertical resize +10<cr>", { desc = "Increase pane split" })
-vim.keymap.set("n", "<leader>-", "<cmd>:vertical resize -10<cr>", { desc = "Decrease pane split" })
+vim.keymap.set("n", "<leader>w+", "<cmd>:vertical resize +10<cr>", { desc = "Increase pane split" })
+vim.keymap.set("n", "<leader>w-", "<cmd>:vertical resize -10<cr>", { desc = "Decrease pane split" })
 
 -- Diagnostics
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
 vim.keymap.set("n", "<leader>df", vim.diagnostic.open_float, { desc = "Open diagnostics in floating" })
 vim.keymap.set("n", "<leader>dq", vim.diagnostic.setloclist, { desc = "Open diagnostics in quickfix" })
-
--- C/C++
-vim.keymap.set("n", "<leader>ch", funcs.switch_c_h, { desc = "Go to C/Cpp or H file" })
 
 -- Which Key group names
 local wk = require("which-key")
@@ -47,15 +44,29 @@ wk.register({
   },
   c = {
     name = "code",
+    -- s = {
+    --   function()
+    --     local file_type = vim.bo.filetype
+    --     if file_type == 'c' then
+    --       funcs.switch_c_h()
+    --     end
+    --   end,
+    -- },
   },
   d = {
     name = "diagnostics",
   },
-  g = {
+  D = {
+    name = "debug",
+  },
+  G = {
     name = "git",
     h = {
       name = "hunks",
     }
+  },
+  g = {
+    name = "Go to",
   },
   s = {
     name = "search",
