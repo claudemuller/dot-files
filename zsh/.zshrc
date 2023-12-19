@@ -27,13 +27,13 @@ fi
 
 ### ENV CONDITIONS
 if [[ $(uname) == "Darwin" ]]; then
-	IS_MAC=true
+  IS_MAC=true
 elif [[ $(hostname) == "odin" ]]; then
-	IS_ODIN=true
+  IS_ODIN=true
 fi
 
 if [ -f ~/.profile ]; then
-    source ~/.profile
+  source ~/.profile
 fi
 
 if [ "$(uname -n)" = "shinobi" ]
@@ -55,8 +55,6 @@ export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
 export EDITOR="nvim"
 export VISUAL="nvim"
 
-# export TODOIST_API_KEY="$(pass Todoist/API)"
-
 # SSH Agent stuff
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
@@ -74,6 +72,21 @@ HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
 
+# zsh Completion
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh/site-completions:$FPATH
+else
+    FPATH=$HOME/.zsh/completions:$FPATH
+fi
+autoload -Uz compinit
+rm -f ~/.zcompdump
+if [[ "$IS_MAC" == true ]]; then
+    compinit -i | xargs chmod g-w
+else
+    zstyle :compinstall filename "$HOME/.zshrc"
+fi
+compinit
+
 setopt appendhistory nomatch notify
 unsetopt autocd beep extendedglob
 
@@ -86,10 +99,54 @@ export KEYTIMEOUT=1
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+setopt globdots
+
 # Load zsh plugins
-ZSH_AUTO_COMPLETE=/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $HOME/repos/3rd-party/fzf-tab/fzf-tab.plugin.zsh
+source $HOME/repos/3rd-party/fzf-tab-source/fzf-tab-source.plugin.zsh
+
+# disable sort when completing `git checkout`
+zstyle ':completion:*:git-checkout:*' sort false
+
+# set descriptions format to enable group support
+zstyle ':completion:*:descriptions' format '[%d]'
+
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+# preview directory's content with exa when completing cd
+# zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -1 --color=always $realpath'
+# zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+
+# switch group using `,` and `.`
+zstyle ':fzf-tab:*' switch-group ',' '.'
+
+# zstyle ':fzf-tab:complete:*:*' fzf-flags --height=100% --preview-window=right:wrap
+
+zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${(Q)realpath}'
+export LESSOPEN='|~/.lessfilter %s'
+
+# zstyle ':fzf-tab:complete:*:options' fzf-preview
+# zstyle ':fzf-tab:complete:*:argument-1' fzf-preview
+
+# export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
+
+fzf-history-search() {
+  local selected_command
+  selected_command=$(fc -l | awk '{$1=""; print $0}' | fzf --height 50% --reverse --ansi --tac)
+
+  if [ -n "$selected_command" ]; then
+    BUFFER=$selected_command
+    zle reset-prompt
+  fi
+}
+zle -N fzf-history-search
+
+bindkey '^R' fzf-history-search
+bindkey '^[[A' fzf-history-search
+
+ZSH_AUTO_SUGGESTIONS=/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_SYNTAX_HIGHLIGHTING=/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-ZSH_AUTO_SUGGESTIONS=/usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 if [[ "$IS_MAC" == true ]]; then
   ZSH_AUTO_SUGGESTIONS=/opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -107,39 +164,29 @@ if [ -f "$ZSH_SYNTAX_HIGHLIGHTING" ]; then
   source "$ZSH_SYNTAX_HIGHLIGHTING"
 fi
 
-if [ -f "$ZSH_AUTO_COMPLETE" ]; then
-  source "$ZSH_AUTO_COMPLETE"
-  # Select all suggestion instead of top on result only
-  zstyle ':autocomplete:tab:*' insert-unambiguous yes
-  zstyle ':autocomplete:tab:*' widget-style menu-select
-  zstyle ':autocomplete:*' min-input 2
-  # bindkey $key[Up] up-line-or-history
-  # bindkey $key[Down] down-line-or-history
-fi
-
 ### PATH
 if [ -d "$HOME/.luarocks/bin" ] ;
-  then PATH="$HOME/.luarocks/bin:$PATH"
+then PATH="$HOME/.luarocks/bin:$PATH"
 fi
 
 if [ -d "$HOME/.bin" ] ;
-  then PATH="$HOME/.bin:$PATH"
+then PATH="$HOME/.bin:$PATH"
 fi
 
 if [ -d "$HOME/.local/bin" ] ;
-  then PATH="$HOME/.local/bin:$PATH"
+then PATH="$HOME/.local/bin:$PATH"
 fi
 
 if [ -d "$HOME/Applications" ] ;
-  then PATH="$HOME/Applications:$PATH"
+then PATH="$HOME/Applications:$PATH"
 fi
 
 if [ -d "$HOME/.cargo/bin" ] ;
-  then PATH="$HOME/.cargo/bin:$PATH"
+then PATH="$HOME/.cargo/bin:$PATH"
 fi
 
 if [ -d "$HOME/.yarn/bin" ] ;
-  then PATH="$HOME/.yarn/bin:$PATH"
+then PATH="$HOME/.yarn/bin:$PATH"
 fi
 
 export PATH=$PATH:/opt/clang-format-static
@@ -148,7 +195,7 @@ export PATH=$PATH:/opt/clang-format-static
 case ${TERM} in
   xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty|st|konsole*)
     PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
-        ;;
+    ;;
   screen*)
     PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\"'
     ;;
@@ -159,71 +206,49 @@ SAVEIFS=$IFS
 IFS=$(echo -en "\n\b")
 
 function extract {
- if [ -z "$1" ]; then
+  if [ -z "$1" ]; then
     # display usage if no parameters given
     echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
     echo "       extract <path/file_name_1.ext> [path/file_name_2.ext] [path/file_name_3.ext]"
- else
+  else
     for n in "$@"
     do
       if [ -f "$n" ] ; then
-          case "${n%,}" in
-            *.cbt|*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
-                         tar xvf "$n"       ;;
-            *.lzma)      unlzma ./"$n"      ;;
-            *.bz2)       bunzip2 ./"$n"     ;;
-            *.cbr|*.rar)       unrar x -ad ./"$n" ;;
-            *.gz)        gunzip ./"$n"      ;;
-            *.cbz|*.epub|*.zip)       unzip ./"$n"       ;;
-            *.z)         uncompress ./"$n"  ;;
-            *.7z|*.arj|*.cab|*.cb7|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
-                         7z x ./"$n"        ;;
-            *.xz)        unxz ./"$n"        ;;
-            *.exe)       cabextract ./"$n"  ;;
-            *.cpio)      cpio -id < ./"$n"  ;;
-            *.cba|*.ace)      unace x ./"$n"      ;;
-            *)
-                         echo "extract: '$n' - unknown archive method"
-                         return 1
-                         ;;
-          esac
+        case "${n%,}" in
+          *.cbt|*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
+            tar xvf "$n"       ;;
+          *.lzma)      unlzma ./"$n"      ;;
+          *.bz2)       bunzip2 ./"$n"     ;;
+          *.cbr|*.rar)       unrar x -ad ./"$n" ;;
+          *.gz)        gunzip ./"$n"      ;;
+          *.cbz|*.epub|*.zip)       unzip ./"$n"       ;;
+          *.z)         uncompress ./"$n"  ;;
+          *.7z|*.arj|*.cab|*.cb7|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
+            7z x ./"$n"        ;;
+          *.xz)        unxz ./"$n"        ;;
+          *.exe)       cabextract ./"$n"  ;;
+          *.cpio)      cpio -id < ./"$n"  ;;
+          *.cba|*.ace)      unace x ./"$n"      ;;
+          *)
+            echo "extract: '$n' - unknown archive method"
+            return 1
+            ;;
+        esac
       else
-          echo "'$n' - file does not exist"
-          return 1
+        echo "'$n' - file does not exist"
+        return 1
       fi
     done
-fi
+  fi
 }
 
 IFS=$SAVEIFS
-
-### ALIASES ###
 
 # Whereami
 alias wami=hostname
 
 # root privileges
 alias doas="doas --"
-
-# navigation
-up () {
-  local d=""
-  local limit="$1"
-
-  # Default to limit of 1
-  if [ -z "$limit" ] || [ "$limit" -le 0 ]; then
-    limit=1
-  fi
-
-  for ((i=1;i<=limit;i++)); do
-    d="../$d"
-  done
-
-  # perform cd. Show error if cd fails
-  if ! cd "$d"; then
-    echo "Couldn't go up $limit dirs.";
-  fi
-}
 
 # vim
 alias vim=nvim
@@ -241,7 +266,7 @@ alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pac
 # Colorise and enrich ls output
 alias ls='ls --color=auto'
 alias l='ls -lah'
-alias lt='ls -latr'
+alias lt='ls -latrh'
 
 # confirm before overwriting something
 alias cp="cp -i"
@@ -280,21 +305,6 @@ alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/mas
 # Unlock LBRY tips
 alias tips='lbrynet txo spend --type=support --is_not_my_input --blocking'
 
-# zsh Completion
-if type brew &>/dev/null; then
-    FPATH=$(brew --prefix)/share/zsh/site-completions:$FPATH
-else
-    FPATH=$HOME/.zsh/completions:$FPATH
-fi
-autoload -Uz compinit
-rm -f ~/.zcompdump
-if [[ "$IS_MAC" == true ]]; then
-    compinit -i | xargs chmod g-w
-else
-    zstyle :compinstall filename "$HOME/.zshrc"
-fi
-compinit
-
 # AWS cli completions
 #complete -c $(which aws_completer) aws
 
@@ -307,7 +317,6 @@ else
   source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 fi
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 eval "$(/usr/bin/rtx activate zsh)"
@@ -317,5 +326,3 @@ export HELIX_RUNTIME=$HOME/repos/3rd-party/helix/runtime
 neofetch
 
 source $HOME/.config/broot/launcher/bash/br
-
-source /home/lukefilewalker/.config/broot/launcher/bash/br
