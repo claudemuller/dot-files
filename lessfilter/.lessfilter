@@ -52,7 +52,6 @@ with lmdb.open(dirn("$1")) as env, env.begin() as txn:
 EOF
 	fi
 elif [ "$kind" = zip ] && [ "$ext" = pth ]; then
-	echo "zip"
 	python <<EOF
 import torch
 

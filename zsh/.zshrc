@@ -117,6 +117,8 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 # preview directory's content with exa when completing cd
 # zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -1 --color=always $realpath'
 # zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+zstyle ':fzf-tab:complete:(\\|)run-help:*' fzf-preview 'run-help $word'
+zstyle ':fzf-tab:complete:(\\|*/|)man:*' fzf-preview 'man $word'
 
 # switch group using `,` and `.`
 zstyle ':fzf-tab:*' switch-group ',' '.'
@@ -136,8 +138,9 @@ fzf-history-search() {
   selected_command=$(fc -l | awk '{$1=""; print $0}' | fzf --height 50% --reverse --ansi --tac)
 
   if [ -n "$selected_command" ]; then
-    BUFFER=$selected_command
+    BUFFER=$( echo "$selected_command" | xargs)
     zle reset-prompt
+    zle end-of-line
   fi
 }
 zle -N fzf-history-search
