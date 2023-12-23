@@ -135,10 +135,10 @@ export LESSOPEN='|~/.lessfilter %s'
 
 fzf-history-search() {
   local selected_command
-  selected_command=$(fc -l | awk '{$1=""; print $0}' | fzf --height 50% --reverse --ansi --tac)
+  selected_command=$(fc -l | awk '{$1=""; print $0}' | fzf --height 50% --ansi --tac)
 
   if [ -n "$selected_command" ]; then
-    BUFFER=$( echo "$selected_command" | xargs)
+    BUFFER=$( echo "$selected_command" | sed 's/^ //')
     zle reset-prompt
     zle end-of-line
   fi
