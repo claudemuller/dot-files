@@ -1,3 +1,4 @@
+.rtx.toml
 broot/.config/broot/launcher
 .uuid
 nvim/.config/nvim/plugin/packer_compiled.lua
