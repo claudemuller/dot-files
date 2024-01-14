@@ -1,0 +1,89 @@
+#!/usr/bin/env bash
+export $(dbus-launch)
+SCRIPTPATH="$(
+	cd "$(dirname "$0")"
+	pwd -P
+)"
+
+#down the last running theme
+if [ -f "/tmp/leftwm-theme-down" ]; then
+	/tmp/leftwm-theme-down
+	rm /tmp/leftwm-theme-down
+fi
+ln -s $SCRIPTPATH/down /tmp/leftwm-theme-down
+
+# check if dunst is installed and if it is, copy the config
+if [ command -v dunst ]; then
+	DUNSTDIR=$HOME/.config/dunst
+
+	# create the config dir if nonexistant
+	if [ ! -d "$DUNSTDIR" ]; then
+		mkdir -p $DUNSTDIR
+	fi
+
+	DUNSTRCPATH="$DUNSTDIR/dunstrc"
+
+	# check if the rc file exists and move it if it does
+	if [ -f "$DUNSTRCPATH" ]; then
+		mv "$DUNSTRCPATH" "$DUNSTRCPATH.old"
+	fi
+	# Copy the template file to the user config directory
+	cp $SCRIPTPATH/dunstrc.tmpl $DUNSTRCPATH
+
+	# kill previous session and start another in a detached shell to prevent dunst taking the shell
+	bash -c "killall dunst && dunst"
+fi
+
+# Install rofi theme if rofi exists on the system
+if [ command -v rofi ]; then
+	ROFIDIR=$HOME/.config/rofi
+
+	if [ ! -d "$ROFIDIR" ]; then
+		mkdir -p $ROFIDIR
+	fi
+
+	ROFITHEMEPATH="$ROFIDIR/themes"
+
+	if [ ! -d "$ROFITHEMEPATH" ]; then
+		mkdir -p $ROFITHEMEPATH
+	fi
+
+	cp "$SCRIPTPATH/nord.rasi" $ROFITHEMEPATH
+
+	# preserve the old rofi config if there is one
+	if [ -f "$ROFIDIR/config.rasi" ]; then
+		mv "$ROFIDIR/config.rasi" "$ROFIDIR/config.rasi.old"
+	fi
+
+	echo "@theme $HOME/.config/rofi/themes/nord.rasi" >"$ROFIDIR/config.rasi"
+
+fi
+
+#boot compton or picom if it exists
+if [ -x "$(command -v compton)" ]; then
+	compton &>/dev/null &
+elif [ -x "$(command -v picom)" ]; then
+	picom &>/dev/null &
+fi
+
+#set background
+if [ -x "$(command -v feh)" ]; then
+	# feh --bg-fill "$SCRIPTPATH"/wallpaper.png
+	feh --bg-fill "$HOME"/Pictures/wallpapers/Wallpapers_Wallpapers_sombra.png
+fi
+
+#set the theme.toml config
+leftwm-command "LoadTheme $SCRIPTPATH/theme.toml"
+
+#boot polybar based on the number of monitors found
+if [ -x "$(command -v polybar)" ]; then
+	pkill polybar
+	monitors="$(polybar -m | sed s/:.*// | tac)"
+	while read -r display; do
+		MONITOR=$display polybar -c "$SCRIPTPATH/polybar.config" mainbar &>/dev/null &
+	done <<<"$monitors"
+	exit 0
+fi
+
+export XCURSOR_SIZE,16
+export GTK_THEME=Catppuccin-Mocha-Standard-Mauve-Dark

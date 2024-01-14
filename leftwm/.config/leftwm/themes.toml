@@ -46,6 +46,7 @@ current = false
 
 [[repos.themes]]
 name = "Catppuccin"
+directory = "/home/lukefilewalker/.config/leftwm/themes/Catppuccin"
 repository = "https://github.com/di-effe/catppuccin"
 commit = "*"
 version = "0.1.1"
@@ -58,6 +59,14 @@ repository = "https://github.com/lex148/leftwm-coffee/"
 commit = "*"
 version = "0.0.1"
 leftwm_versions = "<0.3.0"
+current = false
+
+[[repos.themes]]
+name = "Dementive"
+repository = "https://github.com/dementive/leftwm-dementive"
+commit = "*"
+version = "0.1"
+leftwm_versions = "^0.4.0"
 current = false
 
 [[repos.themes]]
@@ -142,7 +151,6 @@ current = false
 
 [[repos.themes]]
 name = "Ocean-night"
-directory = "/home/lukefilewalker/.config/leftwm/themes/Ocean-night"
 repository = "https://github.com/TheRoniOne/ocean-night"
 commit = "*"
 version = "0.0.1"
@@ -210,6 +218,7 @@ current = false
 
 [[repos.themes]]
 name = "Sunset"
+directory = "/home/lukefilewalker/.config/leftwm/themes/Sunset"
 repository = "https://github.com/Syudagye/leftwm-sunset"
 commit = "*"
 version = "0.0.1"
@@ -248,14 +257,16 @@ version = "0.0.1"
 leftwm_versions = ">0.3.0"
 current = false
 
+[[repos.themes]]
+name = "Late-Night"
+repository = "https://github.com/JacoMalan1/LateNight"
+commit = "*"
+version = "0.0.2"
+leftwm_versions = ">0.3.0"
+current = false
+
 [[repos]]
 url = "localhost"
 name = "LOCAL"
 definitions_version = 1
-
-[[repos.themes]]
-name = "basic_polybar"
-directory = "/home/lukefilewalker/.config/leftwm/themes/basic_polybar"
-version = "0.0.0"
-leftwm_versions = "*"
-current = false
+themes = []

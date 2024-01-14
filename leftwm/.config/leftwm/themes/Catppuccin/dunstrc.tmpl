@@ -1,0 +1,58 @@
+# DUNST CONFIG TEMPLATE
+# DO NOT MODIFY PLACEHOLDERS
+
+[global]
+
+    # MISC
+    monitor = 0
+    sort = yes
+
+    # DIMENSIONS
+    width = 400
+    height = 100
+    origin = top-right
+    offset = 30x50
+
+    # PADDING
+    padding = 5
+    horizontal_padding = 5
+
+    # BORDERS
+    frame_width = 1
+    separator_height = 1
+    separator_color = frame
+    corner_radius = 0
+
+    # TEXT
+    font = Fira Code 9
+    markup = full
+    format = "<b>%a</b>\n%s\n%b"
+    alignment = left
+    vertical_alignment = center
+    word_wrap = yes
+
+    # ICON
+    max_icon_size = 32
+    icon_position = left
+
+    # OPEN
+    browser = /usr/bin/brave
+
+
+[urgency_low]
+    background = "#434C5E"
+    foreground = "#E5E9F0"
+    frame_color = "#A3BE8C"
+    timeout = 5
+
+[urgency_normal]
+    background = "#434C5E"
+    foreground = "#E5E9F0"
+    frame_color = "#88C0D0"
+    timeout = 5
+
+[urgency_critical]
+    background = "#434C5E"
+    foreground = "#E5E9F0"
+    frame_color = "#BF616A"
+    timeout = 10
