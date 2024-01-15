@@ -111,7 +111,7 @@
         (command: GotoTag, value: "7", modifier: ["modkey"], key: "7"),
         (command: GotoTag, value: "8", modifier: ["modkey"], key: "8"),
         (command: GotoTag, value: "9", modifier: ["modkey"], key: "9"),
-        (command: GotoTag, value: "0", modifier: ["modkey"], key: "0"),
+        (command: GotoTag, value: "10", modifier: ["modkey"], key: "0"),
         (command: MoveToTag, value: "1", modifier: ["modkey", "Shift"], key: "1"),
         (command: MoveToTag, value: "2", modifier: ["modkey", "Shift"], key: "2"),
         (command: MoveToTag, value: "3", modifier: ["modkey", "Shift"], key: "3"),
@@ -121,7 +121,7 @@
         (command: MoveToTag, value: "7", modifier: ["modkey", "Shift"], key: "7"),
         (command: MoveToTag, value: "8", modifier: ["modkey", "Shift"], key: "8"),
         (command: MoveToTag, value: "9", modifier: ["modkey", "Shift"], key: "9"),
-        (command: MoveToTag, value: "0", modifier: ["modkey", "Shift"], key: "0"),
+        (command: MoveToTag, value: "10", modifier: ["modkey", "Shift"], key: "0"),
     ],
     state_path: None,
 )
