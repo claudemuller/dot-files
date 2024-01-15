@@ -1,0 +1,91 @@
+;; ┌────────────────────────────────────────────────────────────┐
+;; │░█▀█░█▀█░█░░░█░█░█▀▄░█▀█░█▀▄░░░░░░░░░█▀▀░█▀█░█░░░█▀█░█▀▄░█▀▀│
+;; │░█▀▀░█░█░█░░░░█░░█▀▄░█▀█░█▀▄░░░░▀░░░░█░░░█░█░█░░░█░█░█▀▄░▀▀█│
+;; │░▀░░░▀▀▀░▀▀▀░░▀░░▀▀░░▀░▀░▀░▀░░░░▀░░░░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀│
+;; └────────────────────────────────────────────────────────────┘
+
+[color]
+background = ${color.base}
+foreground = ${color.text}
+primary = ${color.mauve}
+secondary = ${color.blue}
+alternate = ${color.overlay1}
+
+trans = #00000000
+white = #FFFFFF
+black = #000000
+
+rosewater = #f5e0dc
+flamingo = #f2cdcd
+pink = #f5c2e7
+mauve = #cba6f7
+red = #f38ba8
+maroon = #eba0ac
+peach = #fab387
+yellow = #f9e2af
+green = #a6e3a1
+teal = #94e2d5
+sky = #89dceb
+sapphire = #74c7ec
+blue = #89b4fa
+lavender = #b4befe
+text = #cdd6f4
+subtext1 = #bac2de
+subtext0 = #a6adc8
+overlay2 = #9399b2
+overlay1 = #7f849c
+overlay0 = #6c7086
+surface2 = #585b70
+surface1 = #45475a
+surface0 = #313244
+mantle = #181825
+crust = #11111b
+base = #1e1e2e
+
+
+
+;; Material Colors
+;red = #e53935
+;pink = #d81b60
+purple = #8e24aa
+deep-purple = #5e35b1
+indigo = #3949ab
+;blue = #1e88e5
+light-blue = #039be5
+cyan = #00acc1
+;teal = #00897b
+;green = #43a047
+light-green = #7cb342
+lime = #c0ca33
+; yellow = #fdd835
+amber = #ffb300
+orange = #fb8c00
+deep-orange = #f4511e
+brown = #6d4c41
+grey = #757575
+blue-gray = #546e7a
+
+
+[colors]
+bg = #2e3440
+fg = #e5e9f0
+
+# polar night
+pn-darker = #3b4252
+pn-light = #4c566a
+
+# snow storm
+sn-dark = #d8dee9
+sn-light = #eceff4
+
+# frost
+f-mint = #8fbcbb
+f-bright = #88c0d0
+f-washed = #81a1c1
+f-dark = #5e81ac
+
+# aurora
+a-green = #a3be8c
+a-magenta = #b48ead
+a-orange = #d08770
+a-red = #bf616a

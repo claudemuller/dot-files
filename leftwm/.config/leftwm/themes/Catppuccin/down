@@ -1,11 +1,20 @@
 #!/usr/bin/env bash
 
-SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
+SCRIPTPATH="$(
+	cd "$(dirname "$0")"
+	pwd -P
+)"
+
+# Set background
+if [ -x "$(command -v feh)" ]; then
+	feh --bg-fill $SCRIPTPATH/down.jpg
+fi
 
 leftwm-command "UnloadTheme"
 
 pkill dunst
-pkill polybar
-pkill compton
 pkill picom
 pkill polybar
+pkill nm-applet
+pkill pamac-tray
+pkill xfce4-notifyd

@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 export $(dbus-launch)
 SCRIPTPATH="$(
 	cd "$(dirname "$0")"
@@ -56,20 +57,20 @@ if [ command -v rofi ]; then
 	fi
 
 	echo "@theme $HOME/.config/rofi/themes/nord.rasi" >"$ROFIDIR/config.rasi"
-
 fi
 
 #boot compton or picom if it exists
-if [ -x "$(command -v compton)" ]; then
-	compton &>/dev/null &
-elif [ -x "$(command -v picom)" ]; then
+if [ -x "$(command -v picom)" ]; then
 	picom &>/dev/null &
 fi
 
 #set background
 if [ -x "$(command -v feh)" ]; then
-	# feh --bg-fill "$SCRIPTPATH"/wallpaper.png
-	feh --bg-fill "$HOME"/Pictures/wallpapers/Wallpapers_Wallpapers_sombra.png
+	if [ -f "$SCRIPTPATH"/wallpaper.png ]; then
+		feh --bg-fill "$SCRIPTPATH"/wallpaper.png
+	else
+		feh --bg-fill "$SCRIPTPATH"/wallpaper.jpg
+	fi
 fi
 
 #set the theme.toml config
@@ -85,5 +86,18 @@ if [ -x "$(command -v polybar)" ]; then
 	exit 0
 fi
 
-export XCURSOR_SIZE,16
+# if [ -x "$(command -v polybar)" ]; then
+# 	pkill polybar &
+# 	index=0
+# 	monitor="$(polybar -m | grep +0+0 | sed s/:.*// | tac)"
+# 	leftwm-state -q -n -t $SCRIPTPATH/sizes.liquid | sed -r '/^\s*$/d' |
+# 		while read -r width x y; do
+# 			barname="mainbar$index"
+# 			monitor="$(polybar -m | awk -v i="$((index + 1))" 'NR==i{print}' | sed s/:.*// | tr -d '\n')"
+# 			monitor=$monitor width=$((width - 30)) polybar -c "$SCRIPTPATH"/polybar.config $barname &
+# 			let index=index+1
+# 		done
+# fi
+
+export XCURSOR_SIZE=16
 export GTK_THEME=Catppuccin-Mocha-Standard-Mauve-Dark

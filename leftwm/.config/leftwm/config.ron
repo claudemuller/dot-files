@@ -23,6 +23,7 @@
         "7",
         "8",
         "9",
+        "0",
     ],
     max_window_width: None,
     layouts: [
@@ -58,7 +59,7 @@
     layout_mode: Tag,
     insert_behavior: Bottom,
     scratchpad: [
-        (name: "kitty", value: "kitty", x: 200, y: 100, width: 800, height: 600),
+        (name: "kitty", value: "kitty", x: 200, y: 100, width: 1920, height: 1080),
     ],
     window_rules: [],
     disable_current_tag_swap: false,
@@ -110,6 +111,7 @@
         (command: GotoTag, value: "7", modifier: ["modkey"], key: "7"),
         (command: GotoTag, value: "8", modifier: ["modkey"], key: "8"),
         (command: GotoTag, value: "9", modifier: ["modkey"], key: "9"),
+        (command: GotoTag, value: "10", modifier: ["modkey"], key: "0"),
         (command: MoveToTag, value: "1", modifier: ["modkey", "Shift"], key: "1"),
         (command: MoveToTag, value: "2", modifier: ["modkey", "Shift"], key: "2"),
         (command: MoveToTag, value: "3", modifier: ["modkey", "Shift"], key: "3"),
@@ -119,6 +121,7 @@
         (command: MoveToTag, value: "7", modifier: ["modkey", "Shift"], key: "7"),
         (command: MoveToTag, value: "8", modifier: ["modkey", "Shift"], key: "8"),
         (command: MoveToTag, value: "9", modifier: ["modkey", "Shift"], key: "9"),
+        (command: MoveToTag, value: "10", modifier: ["modkey", "Shift"], key: "0"),
     ],
     state_path: None,
 )
