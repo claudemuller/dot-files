@@ -268,7 +268,8 @@ alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pac
 
 # Colorise and enrich ls output
 alias ls='ls --color=auto'
-alias lt='ls -latrh'
+alias ll='ls -l'
+alias lt='ls -latr'
 
 # confirm before overwriting something
 alias cp="cp -i"

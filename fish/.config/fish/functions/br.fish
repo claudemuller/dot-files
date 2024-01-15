@@ -1,1 +1,1 @@
-/home/lukefilewalker/.local/share/broot/launcher/fish/br.fish
+/home/claude/.local/share/broot/launcher/fish/br.fish

@@ -1,5 +1,4 @@
 #!/bin/bash
 
-setxkbmap dvorak -option caps:backspace -option compose:ralt
-#setxkbmap us
-#notify-send -t 5000 "Keyboard settings applied"
+setxkbmap -layout us -variant dvorak -option caps:backspace -option compose:ralt
+notify-send -t 5000 "Keyboard settings applied"
