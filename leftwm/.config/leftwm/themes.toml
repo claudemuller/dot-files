@@ -21,7 +21,7 @@ current = false
 
 [[repos.themes]]
 name = "Ascent"
-directory = "/home/lukefilewalker/.config/leftwm/themes/Ascent"
+directory = "/home/claude/.config/leftwm/themes/Ascent"
 repository = "https://gitlab.com/mWalrus/ascent"
 commit = "*"
 version = "1.0.0"
