@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+is_dvorak=$(setxkbmap -query | grep dvorak)
+
+if [ -z $is_dvorak ]; then
+	setxkbmap -layout us -variant dvorak -option caps:backspace -option compose:ralt
+	out="dv"
+else
+	setxkbmap -layout us -option caps:backspace -option compose:ralt
+	out="us"
+fi
+
+notify-send -t 5000 "Keyboard layout changed to $out"

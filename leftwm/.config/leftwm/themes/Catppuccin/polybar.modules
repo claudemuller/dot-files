@@ -37,13 +37,13 @@ adapter = AC
 full-at = 100
 
 format-charging = <animation-charging> <label-charging>
-label-charging = "  %percentage%% "
+label-charging = " %percentage%%"
 format-charging-foreground = ${color.foreground}
 format-charging-background = ${color.background}
 ;format-charging-underline = #a3c725
 
 format-discharging = <ramp-capacity> <label-discharging>
-label-discharging = "  %percentage%% "
+label-discharging = " %percentage%%"
 ;format-discharging-underline = #c7ae25
 format-discharging-foreground = ${color.foreground}
 format-discharging-background = ${color.background}
@@ -120,6 +120,10 @@ format-underline =
 format-padding = 1
 
 
+[module/xkeyboard]
+type = internal/xkeyboard
+
+
 ;[module/ewmh]
 ;type = internal/xworkspaces
 ;pin-workspaces = true
@@ -144,7 +148,7 @@ label-empty-foreground = ${colors.foreground}
 
 [module/xwindow]
 type = internal/xwindow
-label = " %title:0:100:...%"
+label = "%title:0:100:...%"
 
 
 [module/layout]
@@ -195,7 +199,7 @@ click-left = $HOME/.config/leftwm/themes/current/rofi/launcher.sh
 [module/mem]
 type = internal/memory
 interval = 2
-label = "  %percentage_used%% "
+label = " %percentage_used%%"
 content-foreground = ${color.background}
 content-background = ${color.primary}
 
@@ -313,13 +317,13 @@ content-padding = 2
 content-foreground = ${color.overlay2}
 content-background = ${color.background}
 label-active-font = 3
-click-left = $HOME/.config/leftwm/themes/current/rofi/powermenu.sh
+click-left = $HOME/.config/leftwm/themes/current/scripts/powermenu.sh
 
 
 [module/pulseaudio]
 type = internal/pulseaudio
 format-volume = <ramp-volume> <label-volume>
-label-volume = " %percentage%% "
+label-volume = "%percentage%%"
 ramp-volume-0 = 奄
 ramp-volume-1 = 奔
 ramp-volume-2 = 墳
@@ -370,8 +374,8 @@ format-warn-underline = ${self.format-underline}
 format-background = ${color.background}
 format-foreground = ${color.foreground}
 
-label = " %temperature-c% "
-label-warn =    %temperature-c%
+label = " %temperature-c%"
+label-warn =  %temperature-c%
 label-warn-foreground = ${color.orange}
 
 
@@ -390,11 +394,11 @@ type = internal/network
 interface = wlp0s20f3
 unknown-as-up = true
 
-label-disconnected = " not connected "
+label-disconnected = "not connected"
 label-disconnected-foreground = ${colors.a-red}
 format-disconnected = <label-disconnected>
 
-label-connected = " %{F#a3be8c}↓ %{F#d8dee9}%downspeed:9%%{F#4c566a} | %{F#88c0d0}↑ %{F#d8dee9}%upspeed:9%%{F-} "
+label-connected = "%{F#a3be8c}↓ %{F#d8dee9}%downspeed:9%%{F#4c566a} | %{F#88c0d0}↑ %{F#d8dee9}%upspeed:9%%{F-}"
 format-connected = <label-connected>
 
 [module/vpn]
@@ -402,11 +406,11 @@ type = internal/network
 interface = "wg-SE-NL-1"
 unknown-as-up = true
 
-label-disconnected = " vpn not connected "
+label-disconnected = "vpn not connected"
 label-disconnected-foreground = ${colors.a-red}
 format-disconnected = <label-disconnected>
 
-label-connected = " vpn connected "
+label-connected = "vpn connected"
 label-connected-foreground = ${colors.a-green}
 format-connected = <label-connected>
 
