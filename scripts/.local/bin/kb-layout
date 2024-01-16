@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+is_dvorak=$(setxkbmap -query | rg dvorak)
+
+if [[ -z "$is_dvorak" ]]; then
+	echo us
+else
+	echo dv
+fi
