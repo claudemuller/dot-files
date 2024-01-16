@@ -2,7 +2,7 @@
 
 is_dvorak=$(setxkbmap -query | grep dvorak)
 
-if [ -z $is_dvorak ]; then
+if [[ -z "$is_dvorak" ]]; then
 	setxkbmap -layout us -variant dvorak -option caps:backspace -option compose:ralt
 	out="dv"
 else

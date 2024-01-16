@@ -122,6 +122,14 @@ format-padding = 1
 
 [module/xkeyboard]
 type = internal/xkeyboard
+label-layout = %variant%
+
+
+[module/kb-switcher]
+type = custom/script
+exec = $HOME/.local/bin/kb-layout
+label = %output%
+click-left = $HOME/.local/bin/kb-layout-switcher
 
 
 ;[module/ewmh]
@@ -403,14 +411,15 @@ format-connected = <label-connected>
 
 [module/vpn]
 type = internal/network
-interface = "wg-SE-NL-1"
+interface = "vpn0"
 unknown-as-up = true
+interface-type = wireless
 
-label-disconnected = "vpn not connected"
+label-disconnected = ""
 label-disconnected-foreground = ${colors.a-red}
 format-disconnected = <label-disconnected>
 
-label-connected = "vpn connected"
+label-connected = %essid%
 label-connected-foreground = ${colors.a-green}
 format-connected = <label-connected>
 
