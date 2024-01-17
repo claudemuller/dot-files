@@ -40,6 +40,7 @@ format-charging-foreground = ${color.foreground}
 format-charging-background = ${color.background}
 format-charging-font = 3
 
+label-discharging = <format-discharging> %percentage%%
 format-discharging = <ramp-capacity>
 format-discharging-foreground = ${color.foreground}
 format-discharging-background = ${color.background}
@@ -50,19 +51,19 @@ format-full-foreground = ${color.foreground}
 format-full-background = ${color.background}
 format-full-font = 3
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
+ramp-capacity-0 = " "
+ramp-capacity-1 = " "
+ramp-capacity-2 = " "
+ramp-capacity-3 = " "
+ramp-capacity-4 = " "
 ramp-capacity-foreground = ${color.foreground}
 ramp-capacity-font = 3
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-3 = 
-animation-charging-4 = 
+animation-charging-0 = " "
+animation-charging-1 = " "
+animation-charging-2 = " "
+animation-charging-3 = " "
+animation-charging-4 = " "
 animation-charging-foreground = ${color.foreground}
 animation-charging-framerate = 750
 animation-charging-font = 3
