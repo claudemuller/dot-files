@@ -122,7 +122,7 @@ format-padding = 0
 [module/kb-switcher]
 type = custom/script
 exec = $HOME/.local/bin/kb-layout
-interval = 2000
+interval = 2
 label = %output%
 click-left = $HOME/.local/bin/kb-layout-switcher
 
