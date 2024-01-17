@@ -24,50 +24,48 @@ click-right = pamac-manager --updates
 
 [module/tray]
 type = internal/tray
-format-margin = 8px
+format-margin = 0
 tray-spacing = 8px
 tray-position = none
 
 
 [module/battery]
-;https://github.com/jaagr/polybar/wiki/Module:-battery
 type = internal/battery
 battery = BAT0
 adapter = AC
-full-at = 100
+full-at = 97
 
-format-charging = <animation-charging> <label-charging>
-label-charging = "  %percentage%%"
+format-charging = <animation-charging>
 format-charging-foreground = ${color.foreground}
 format-charging-background = ${color.background}
-;format-charging-underline = #a3c725
+format-charging-font = 3
 
-format-discharging = <ramp-capacity> <label-discharging>
-label-discharging = "  %percentage%%"
-;format-discharging-underline = #c7ae25
+format-discharging = <ramp-capacity>
 format-discharging-foreground = ${color.foreground}
 format-discharging-background = ${color.background}
+format-discharging-font = 3
 
-format-full-prefix = ""
-format-full-prefix-foreground = #a3c725
-;format-full-underline = #a3c725
+format-full = " "
 format-full-foreground = ${color.foreground}
 format-full-background = ${color.background}
+format-full-font = 3
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
 ramp-capacity-2 = 
 ramp-capacity-3 = 
 ramp-capacity-4 = 
-ramp-capacity-foreground = #c7ae25
+ramp-capacity-foreground = ${color.foreground}
+ramp-capacity-font = 3
 
 animation-charging-0 = 
 animation-charging-1 = 
 animation-charging-2 = 
 animation-charging-3 = 
 animation-charging-4 = 
-animation-charging-foreground = #a3c725
+animation-charging-foreground = ${color.foreground}
 animation-charging-framerate = 750
+animation-charging-font = 3
 
 
 [module/bluetooth]
@@ -95,7 +93,7 @@ type = internal/cpu
 interval = 0.08
 ;format = " <ramp-coreload>"
 format = "<ramp-coreload>"
-format-margin = 1
+format-margin = 0
 ramp-coreload-spacing = 0
 ramp-coreload-0 = ▁
 ramp-coreload-0-foreground = ${color.foreground}
@@ -113,21 +111,17 @@ ramp-coreload-6 = ▇
 ramp-coreload-6-foreground = ${color.foreground}
 ramp-coreload-7 = █
 ramp-coreload-7-foreground = ${color.foreground}
-ramp-coreload-font = 3
+ramp-coreload-font = 1
 format-background = ${color.background}
 format-foreground = ${color.foreground}
 format-underline =
-format-padding = 1
-
-
-[module/xkeyboard]
-type = internal/xkeyboard
-label-layout = %variant%
+format-padding = 0
 
 
 [module/kb-switcher]
 type = custom/script
 exec = $HOME/.local/bin/kb-layout
+interval = 2000
 label = %output%
 click-left = $HOME/.local/bin/kb-layout-switcher
 
@@ -151,7 +145,7 @@ label-urgent = " %name% "
 label-urgent-background = ${color.peach}
 label-urgent-foreground = ${color.red}
 label-empty = " %name% "
-label-empty-foreground = ${colors.foreground}
+label-empty-foreground = ${color.foreground}
 
 
 [module/xwindow]
@@ -215,8 +209,6 @@ content-background = ${color.primary}
 [module/mem-graph]
 type = internal/memory
 
-; Seconds to sleep between updates
-; Default: 1
 interval = 2
 ; Available tags:
 ;   <label> (default)
@@ -248,7 +240,7 @@ ramp-swap-used-4-foreground = ${color.red}
 ramp-swap-used-5-foreground = ${color.red}
 ramp-swap-used-6-foreground = ${color.red}
 ramp-swap-used-7-foreground = ${color.red}
-ramp-swap-used-font = 3
+ramp-swap-used-font = 2
 ;ramp-swap-used-underline = ${color.foreground}
 
 ; Available tokens:
@@ -300,7 +292,7 @@ ramp-used-4-foreground = ${color.yellow}
 ramp-used-5-foreground = ${color.yellow}
 ramp-used-6-foreground = ${color.red}
 ramp-used-7-foreground = ${color.red}
-ramp-used-font = 3
+ramp-used-font = 1
 
 ; Only applies if <ramp-free> is used
 ramp-free-0 = ▁
@@ -320,11 +312,11 @@ format-padding = 1
 
 [module/powermenu]
 type = custom/text
-content = ""
-content-padding = 2
-content-foreground = ${color.overlay2}
-content-background = ${color.background}
-label-active-font = 3
+format = "  "
+format-padding = 0
+format-foreground = ${color.overlay2}
+format-background = ${color.background}
+format-font = 1
 click-left = $HOME/.config/leftwm/themes/Catppuccin/scripts/powermenu.sh
 
 
@@ -332,10 +324,11 @@ click-left = $HOME/.config/leftwm/themes/Catppuccin/scripts/powermenu.sh
 type = internal/pulseaudio
 format-volume = <ramp-volume> <label-volume>
 label-volume = "%percentage%%"
-ramp-volume-0 = 奄
-ramp-volume-1 = 奔
-ramp-volume-2 = 墳
-label-muted = 婢muted
+ramp-volume-font = 2
+ramp-volume-0 = 󰕿
+ramp-volume-1 = 󰖀
+ramp-volume-2 = 󰕾
+label-muted = 󰝟 muted
 label-muted-foreground = ${color.primary}
 click-right = pavucontrol
 
@@ -347,7 +340,6 @@ format-underline = ${colors.cyan}
 label-padding = 0
 label-foreground = ${colors.foreground}
 
-# Icons mixed from Font Awesome 5 and Material Icons
 # You can copy-paste your options for each possible action, which is more
 # trouble-free but repetitive, or apply only the relevant ones (for example
 # --sink-blacklist is only needed for next-sink).
@@ -406,22 +398,19 @@ label-disconnected = "not connected"
 label-disconnected-foreground = ${colors.a-red}
 format-disconnected = <label-disconnected>
 
-label-connected = "%{F#a3be8c}↓ %{F#d8dee9}%downspeed:9%%{F#4c566a} | %{F#88c0d0}↑ %{F#d8dee9}%upspeed:9%%{F-}"
+label-connected = "↓ %downspeed:9%% | ↑ %upspeed:9%%"
 format-connected = <label-connected>
 
 [module/vpn]
-type = internal/network
-interface = "vpn0"
-unknown-as-up = true
-interface-type = wireless
-
-label-disconnected = ""
-label-disconnected-foreground = ${colors.a-red}
-format-disconnected = <label-disconnected>
-
-label-connected = %essid%
-label-connected-foreground = ${colors.a-green}
-format-connected = <label-connected>
+type = custom/script
+exec = $HOME/.config/leftwm/themes/Catppuccin/scripts/vpn
+interval = 2
+label = %output%
+label-font = 1
+format-foreground = ${color.foreground}
+format-background = ${color.background}
+format-prefix-foreground = ${color.foreground}
+click-left = $HOME/.config/leftwm/themes/Catppuccin/scripts/vpn-menu
 
 
 [module/workspace0]
