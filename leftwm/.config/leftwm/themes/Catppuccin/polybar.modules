@@ -37,13 +37,13 @@ adapter = AC
 full-at = 100
 
 format-charging = <animation-charging> <label-charging>
-label-charging = " %percentage%%"
+label-charging = "  %percentage%%"
 format-charging-foreground = ${color.foreground}
 format-charging-background = ${color.background}
 ;format-charging-underline = #a3c725
 
 format-discharging = <ramp-capacity> <label-discharging>
-label-discharging = " %percentage%%"
+label-discharging = "  %percentage%%"
 ;format-discharging-underline = #c7ae25
 format-discharging-foreground = ${color.foreground}
 format-discharging-background = ${color.background}
