@@ -14,25 +14,29 @@ fi
 ln -s $SCRIPTPATH/down /tmp/leftwm-theme-down
 
 # check if dunst is installed and if it is, copy the config
-if [ command -v dunst ]; then
-	DUNSTDIR=$HOME/.config/dunst
-
-	# create the config dir if nonexistant
-	if [ ! -d "$DUNSTDIR" ]; then
-		mkdir -p $DUNSTDIR
-	fi
-
-	DUNSTRCPATH="$DUNSTDIR/dunstrc"
-
-	# check if the rc file exists and move it if it does
-	if [ -f "$DUNSTRCPATH" ]; then
-		mv "$DUNSTRCPATH" "$DUNSTRCPATH.old"
-	fi
-	# Copy the template file to the user config directory
-	cp $SCRIPTPATH/dunstrc.tmpl $DUNSTRCPATH
-
-	# kill previous session and start another in a detached shell to prevent dunst taking the shell
-	bash -c "killall dunst && dunst"
+# if [ command -v dunst ]; then
+# 	DUNSTDIR=$HOME/.config/dunst
+#
+# 	# create the config dir if nonexistant
+# 	if [ ! -d "$DUNSTDIR" ]; then
+# 		mkdir -p $DUNSTDIR
+# 	fi
+#
+# 	DUNSTRCPATH="$DUNSTDIR/dunstrc"
+#
+# 	# check if the rc file exists and move it if it does
+# 	if [ -f "$DUNSTRCPATH" ]; then
+# 		mv "$DUNSTRCPATH" "$DUNSTRCPATH.old"
+# 	fi
+# 	# Copy the template file to the user config directory
+# 	cp $SCRIPTPATH/dunstrc.tmpl $DUNSTRCPATH
+#
+# 	# kill previous session and start another in a detached shell to prevent dunst taking the shell
+# 	bash -c "killall dunst && dunst"
+# fi
+if [ -x "$(command -v dunst)" ]; then
+	pkill dunst
+	dunst -config $HOME/.config/leftwm/themes/current/conf/dunst.config &
 fi
 
 # Install rofi theme if rofi exists on the system
@@ -60,8 +64,12 @@ if [ command -v rofi ]; then
 fi
 
 #boot compton or picom if it exists
+# if [ -x "$(command -v picom)" ]; then
+# 	picom &>/dev/null &
+# fi
+# picom (if it exists)
 if [ -x "$(command -v picom)" ]; then
-	picom &>/dev/null &
+	picom --config $HOME/.config/leftwm/themes/current/conf/picom.config &>/dev/null &
 fi
 
 #set background
