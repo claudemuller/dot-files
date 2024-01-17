@@ -1,3 +1,5 @@
+scripts/.local/bin/mib*
+scripts/.local/bin/snmp*
 leftwm/.config/leftwm/themes/Ascent/
 leftwm/.config/leftwm/themes/Catppuccin.bak/
 .rtx.toml
