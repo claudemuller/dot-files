@@ -12,13 +12,13 @@ format-foreground = ${color.overlay1}
 
 [module/arch-updates]
 type = custom/script
-exec = $HOME/.config/leftwm/themes/current/scripts/check-arch-updates.sh
+exec = $HOME/.config/leftwm/themes/Catppuccin//scripts/check-arch-updates.sh
 interval = 1000
 label = %output%
 format-foreground = ${color.foreground}
 format-background = ${color.background}
 format-prefix-foreground = ${color.foreground}
-click-left = alacritty -e sudo pacman -Syu
+click-left = kitty -e sudo pacman -Syu
 click-right = pamac-manager --updates
 
 
@@ -72,10 +72,10 @@ animation-charging-framerate = 750
 
 [module/bluetooth]
 type = custom/script
-exec = $HOME/.config/leftwm/themes/current/scripts/bluetooth.sh
+exec = $HOME/.config/leftwm/themes/Catppuccin/scripts/bluetooth.sh
 interval = 2
-click-left = blueberry
-click-right = $HOME/.config/leftwm/themes/current/scripts/bluetooth_toggle.sh
+click-left = overskride
+click-right = $HOME/.config/leftwm/themes/Catppuccin/scripts/bluetooth_toggle.sh
 format-padding = 1
 
 
@@ -201,7 +201,7 @@ content = ""
 content-padding = 2
 content-foreground = ${color.background}
 content-background = ${color.primary}
-click-left = $HOME/.config/leftwm/themes/current/rofi/launcher.sh
+click-left = $HOME/.config/leftwm/themes/Catppuccin/rofi/launcher.sh
 
 
 [module/mem]
@@ -325,7 +325,7 @@ content-padding = 2
 content-foreground = ${color.overlay2}
 content-background = ${color.background}
 label-active-font = 3
-click-left = $HOME/.config/leftwm/themes/current/scripts/powermenu.sh
+click-left = $HOME/.config/leftwm/themes/Catppuccin/scripts/powermenu.sh
 
 
 [module/pulseaudio]
@@ -335,7 +335,7 @@ label-volume = "%percentage%%"
 ramp-volume-0 = 奄
 ramp-volume-1 = 奔
 ramp-volume-2 = 墳
-label-muted = 婢 muted
+label-muted = 婢muted
 label-muted-foreground = ${color.primary}
 click-right = pavucontrol
 
@@ -351,12 +351,12 @@ label-foreground = ${colors.foreground}
 # You can copy-paste your options for each possible action, which is more
 # trouble-free but repetitive, or apply only the relevant ones (for example
 # --sink-blacklist is only needed for next-sink).
-exec = $HOME/.config/leftwm/themes/current/scripts/pulseaudio-control.sh --icons-volume " , " --icon-muted " " --sink-nicknames-from "device.description" --sink-nickname "alsa_output.pci-0000_07_00.6.iec958-stereo:蓼 Speakers" --sink-nickname "alsa_output.pci-0000_07_00.6.analog-stereo: Headphones" listen
+exec = $HOME/.config/leftwm/themes/Catppuccin/scripts/pulseaudio-control.sh --icons-volume " , " --icon-muted " " --sink-nicknames-from "device.description" --sink-nickname "alsa_output.pci-0000_07_00.6.iec958-stereo:蓼 Speakers" --sink-nickname "alsa_output.pci-0000_07_00.6.analog-stereo: Headphones" listen
 click-right = exec pavucontrol &
-click-left = $HOME/.config/leftwm/themes/current/scripts/pulseaudio-control.sh togmute
-click-middle = $HOME/.config/leftwm/themes/current/scripts/pulseaudio-control.sh --sink-blacklist "alsa_output.pci-0000_01_00.1.hdmi-stereo-extra2" next-sink
-scroll-up = $HOME/.config/leftwm/themes/current/scripts/pulseaudio-control.sh --volume-max 130 up
-scroll-down = $HOME/.config/leftwm/themes/current/scripts/pulseaudio-control.sh --volume-max 130 down
+click-left = $HOME/.config/leftwm/themes/Catppuccin/scripts/pulseaudio-control.sh togmute
+click-middle = $HOME/.config/leftwm/themes/Catppuccin/scripts/pulseaudio-control.sh --sink-blacklist "alsa_output.pci-0000_01_00.1.hdmi-stereo-extra2" next-sink
+scroll-up = $HOME/.config/leftwm/themes/Catppuccin/scripts/pulseaudio-control.sh --volume-max 130 up
+scroll-down = $HOME/.config/leftwm/themes/Catppuccin/scripts/pulseaudio-control.sh --volume-max 130 down
 
 
 [module/spacer]
