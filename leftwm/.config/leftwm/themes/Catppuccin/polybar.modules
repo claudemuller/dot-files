@@ -33,9 +33,10 @@ tray-position = none
 type = internal/battery
 battery = BAT0
 adapter = AC
-full-at = 97
+full-at = 98
 
-format-charging = <animation-charging>
+label-charging = %percentage%%
+format-charging = <animation-charging> <label-charging>
 format-charging-foreground = ${color.foreground}
 format-charging-background = ${color.background}
 format-charging-font = 3
