@@ -399,7 +399,7 @@ label-disconnected = "not connected"
 label-disconnected-foreground = ${colors.a-red}
 format-disconnected = <label-disconnected>
 
-label-connected = "↓ %downspeed:9%% | ↑ %upspeed:9%%"
+label-connected = "↓ %downspeed:9% | ↑ %upspeed:9%"
 format-connected = <label-connected>
 
 [module/vpn]
