@@ -330,7 +330,8 @@ ramp-volume-font = 2
 ramp-volume-0 = 󰕿
 ramp-volume-1 = 󰖀
 ramp-volume-2 = 󰕾
-label-muted = 󰝟 muted
+label-muted-font = 2
+label-muted = 󰝟
 label-muted-foreground = ${color.primary}
 click-right = pavucontrol
 
