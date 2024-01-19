@@ -12,7 +12,7 @@ format-foreground = ${color.overlay1}
 
 [module/arch-updates]
 type = custom/script
-exec = $HOME/.config/leftwm/themes/Catppuccin//scripts/check-arch-updates.sh
+exec = $HOME/.config/leftwm/themes/Catppuccin//scripts/check-arch-updates
 interval = 1000
 label = %output%
 format-foreground = ${color.foreground}
@@ -413,7 +413,7 @@ label-font = 1
 format-foreground = ${color.foreground}
 format-background = ${color.background}
 format-prefix-foreground = ${color.foreground}
-click-left = $HOME/.config/leftwm/themes/Catppuccin/scripts/vpn-menu
+click-left = $HOME/.config/leftwm/themes/Catppuccin/scripts/vpn-picker
 
 
 [module/workspace0]
