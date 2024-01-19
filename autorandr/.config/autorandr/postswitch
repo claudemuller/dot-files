@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+leftwm-command "SoftReload"
+notify-send -i display "Display profile $AUTORANDR_CURRENT_PROFILE loaded"

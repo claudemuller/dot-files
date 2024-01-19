@@ -1,7 +1,9 @@
 scripts/.local/bin/mib*
 scripts/.local/bin/snmp*
+leftwm/.config/leftwm/themes/current
 leftwm/.config/leftwm/themes/Ascent/
 leftwm/.config/leftwm/themes/Catppuccin.bak/
+leftwm/.config/leftwm/themes/SpaceJelly/
 .rtx.toml
 broot/.config/broot/launcher
 .uuid
