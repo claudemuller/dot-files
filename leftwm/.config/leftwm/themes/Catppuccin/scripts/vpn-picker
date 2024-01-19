@@ -20,11 +20,8 @@ IFS=$' \t\n'
 
 num_nets=$((${#nets[@]} + 1))
 num_lines=$(list_height "$num_nets")
-echo "$num_lines"
 
 theme_str="listview {lines: $(echo "$num_lines" | tr -d '\n');}"
-echo "$theme_str"
-
 chosen_network=$(echo "$networks" | $rofi_cmd -dmenu -theme-str "$theme_str" -p "VPN:")
 chosen_network=$(echo "$chosen_network" | awk '{print $1}')
 

@@ -3,8 +3,6 @@
 LIST_MAX=100
 
 list_height() {
-	echo $1
-
 	local input=$1
 
 	if [ "$input" -lt $LIST_MAX ]; then
