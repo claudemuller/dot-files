@@ -1,5 +1,5 @@
 configuration {
-	modi:                       "drun,run,filebrowser,window";
+	modi:                       "drun,run,window,filebrowser";
     show-icons:                 true;
     display-drun:               "";
     display-run:                "";

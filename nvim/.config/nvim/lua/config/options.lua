@@ -3,3 +3,5 @@
 -- Add any additional options here
 
 vim.opt.colorcolumn = { 100, 120 }
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
