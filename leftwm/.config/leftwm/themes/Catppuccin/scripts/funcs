@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+LIST_MAX=100
+
+list_height() {
+	echo $1
+
+	local input=$1
+
+	if [ "$input" -lt $LIST_MAX ]; then
+		echo "$input"
+	else
+		echo $LIST_MAX
+	fi
+}

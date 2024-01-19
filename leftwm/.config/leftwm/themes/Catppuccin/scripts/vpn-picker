@@ -1,0 +1,45 @@
+#!/bin/bash
+
+source ./funcs
+
+LPATH="$(
+	cd "$(dirname "$0")"
+	pwd -P
+)"
+
+rofi_cmd="rofi -theme $LPATH/rasi/base.rasi"
+
+msg_header="Network Management"
+
+notify-send -t 1000 -a "$msg_header" "Getting VPNs..."
+
+networks=$(nmcli con | rg "(wireguard|juniper|vpn)")
+IFS="\n"
+read -ra nets <<<"$networks"
+IFS=$' \t\n'
+
+num_nets=$((${#nets[@]} + 1))
+num_lines=$(list_height "$num_nets")
+echo "$num_lines"
+
+theme_str="listview {lines: $(echo "$num_lines" | tr -d '\n');}"
+echo "$theme_str"
+
+chosen_network=$(echo "$networks" | $rofi_cmd -dmenu -theme-str "$theme_str" -p "VPN:")
+chosen_network=$(echo "$chosen_network" | awk '{print $1}')
+
+exit 0
+
+if [[ -z $chosen_network ]]; then
+	exit 1
+fi
+
+active_vpn=$(nmcli con show --active | rg "(wireguard|juniper|vpn)")
+
+if [[ -z $active_vpn ]]; then
+	res=$(nmcli connection up id $chosen_network)
+else
+	res=$(nmcli connection down id $chosen_network)
+fi
+
+notify-send -t 1000 -a $msg_header "$(echo $res | sed 's/(.*$//')"
