@@ -1,13 +1,16 @@
 #!/usr/bin/env bash
 
-is_dvorak=$(setxkbmap -query | grep dvorak)
+sleep 1
 
-if [[ -z "$is_dvorak" ]]; then
+DISPLAY=":0"
+HOME=/home/lukefilewalker
+XAUTHORITY=$HOME/.Xauthority
+export DISPLAY XAUTHORITY HOME
+
+variant="us"
+if [ -n "$1" ] && [ "$1" = "dvorak" ]; then
+	variant="dv"
 	setxkbmap -layout us -variant dvorak -option caps:backspace -option compose:ralt
-	out="dv"
 else
 	setxkbmap -layout us -option caps:backspace -option compose:ralt
-	out="us"
 fi
-
-notify-send -t 5000 "Keyboard layout changed to $out"

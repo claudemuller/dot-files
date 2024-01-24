@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+/home/lukefilewalker/.local/bin/kb-layout-switcher dvorak
