@@ -3,7 +3,7 @@
 vpn_connected=$(nmcli con show --active | rg "(wireguard|juniper|vpn)")
 
 if [[ ! -z $vpn_connected ]]; then
-	echo "󰖂 $(echo $vpn_connected | awk '{print $1}')"
+	echo "󱦚 $(echo $vpn_connected | awk '{print $1}')"
 else
-	echo "󰖂"
+	echo "󰦞"
 fi
