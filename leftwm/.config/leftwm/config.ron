@@ -123,6 +123,11 @@
         (command: MoveToTag, value: "8", modifier: ["modkey", "Shift"], key: "8"),
         (command: MoveToTag, value: "9", modifier: ["modkey", "Shift"], key: "9"),
         (command: MoveToTag, value: "10", modifier: ["modkey", "Shift"], key: "0"),
+        (command: Execute, value: "amixer set 'Master' 5%+", modifier: [], key: "XF86AudioRaiseVolume"),
+        (command: Execute, value: "amixer set 'Master' 5%-", modifier: [], key: "XF86AudioLowerVolume"),
+        (command: Execute, value: "amixer set 'Master' toggle", modifier: [], key: "XF86AudioMute"),
+        (command: Execute, value: "light -A 15", modifier: [], key: "XF86MonBrightnessUp"),
+        (command: Execute, value: "light -U 15", modifier: [], key: "XF86MonBrightnessDown"),
     ],
     state_path: None,
 )
