@@ -125,7 +125,7 @@ type = custom/script
 exec = $HOME/.local/bin/kb-layout
 interval = 2
 label = %output%
-click-left = $HOME/.local/bin/kb-layout-switcher
+;click-left = $HOME/.local/bin/kb-layout-switcher
 
 
 ;[module/ewmh]
@@ -409,7 +409,7 @@ type = custom/script
 exec = $HOME/.config/leftwm/themes/Catppuccin/scripts/vpn
 interval = 2
 label = %output%
-label-font = 2
+label-font = 1
 format-foreground = ${color.foreground}
 format-background = ${color.background}
 format-prefix-foreground = ${color.foreground}

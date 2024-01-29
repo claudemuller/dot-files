@@ -1,16 +1,11 @@
 #!/usr/bin/env bash
 
-sleep 1
-
-DISPLAY=":0"
-HOME=/home/lukefilewalker
-XAUTHORITY=$HOME/.Xauthority
-export DISPLAY XAUTHORITY HOME
-
 variant="us"
 if [ -n "$1" ] && [ "$1" = "dvorak" ]; then
 	variant="dv"
+	# loadkeys dvorak
 	setxkbmap -layout us -variant dvorak -option caps:backspace -option compose:ralt
 else
+	# loadkeys us
 	setxkbmap -layout us -option caps:backspace -option compose:ralt
 fi

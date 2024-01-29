@@ -34,12 +34,7 @@
         "EvenVertical",
         "MainAndVertStack",
         "MainAndHorizontalStack",
-        "RightMainAndVertStack",
         "Dwindle",
-        "MainAndDeck",
-        "CenterMain",
-        "CenterMainBalanced",
-        "CenterMainFluid",
     ],
     layout_definitions: [
         (name: "EvenHorizontal", flip: None, rotate: North, reserve: None, columns: (flip: None, rotate: North, main: None, stack: (flip: None, rotate: North, split: Vertical), second_stack: None)),
@@ -60,6 +55,7 @@
     insert_behavior: Bottom,
     scratchpad: [
         (name: "kitty", value: "kitty", x: 200, y: 100, width: 1920, height: 1080),
+        (name: "keybindings", value: "kitty -e glow -p ~/keybindings.md", x: 200, y: 100, width: 1920, height: 1080),
     ],
     window_rules: [],
     disable_current_tag_swap: false,
