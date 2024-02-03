@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-source ./funcs
+source $HOME/.config/leftwm/themes/current/scripts/funcs
 
 LPATH="$(
 	cd "$(dirname "$0")"
