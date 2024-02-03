@@ -120,6 +120,16 @@ format-underline =
 format-padding = 0
 
 
+[module/disk-free]
+type = custom/script
+exec = $HOME/.config/leftwm/themes/Catppuccin/scripts/check-disk-free
+interval = 10
+label = 󰋊 %output%
+format-foreground = ${color.foreground}
+format-background = ${color.background}
+format-prefix-foreground = ${color.foreground}
+
+
 [module/kb-switcher]
 type = custom/script
 exec = $HOME/.local/bin/kb-layout

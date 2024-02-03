@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+df -h | rg "\/dev\/nvme" | rg -v "boot" | tr -s ' ' | cut -d ' ' -f5 | xargs
