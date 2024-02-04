@@ -1,5 +1,5 @@
 -----------------------------------------------------------------------
--- [[ nvim-cmp config ]]
+-- [[ Nvim-Cmp config ]]
 -----------------------------------------------------------------------
 
 -- Autocompletion
@@ -19,11 +19,6 @@ return {
 
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")
-		-- local defaults = require("cmp.config.default")()
-
-		-- opts.sources = cmp.config.sources(vim.list_extend(opts.sources, {
-		-- 	{ name = "crates" },
-		-- }))
 
 		return {
 			snippet = {
@@ -65,3 +60,4 @@ return {
 		}
 	end,
 }
+

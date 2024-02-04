@@ -1,5 +1,5 @@
 -----------------------------------------------------------------------
--- [[ vim-illuminate config ]]
+-- [[ Vim Illuminate config ]]
 -----------------------------------------------------------------------
 
 -- Highlight the current word under cursor
@@ -45,3 +45,4 @@ return {
     vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { link = "Visual" })
   end,
 }
+

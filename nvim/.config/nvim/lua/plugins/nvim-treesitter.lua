@@ -1,9 +1,9 @@
 -----------------------------------------------------------------------
--- [[ nvim-treesitter config ]]
+-- [[ Nvim Treesitter config ]]
 -----------------------------------------------------------------------
 
 -- Highlight, edit, and navigate code
--- See `:help nvim-treesitter.txt`
+-- See `:help treesitter.txt`
 return {
 	"nvim-treesitter/nvim-treesitter",
 	opts = function(_, opts)
@@ -104,3 +104,4 @@ return {
 		pcall(require("nvim-treesitter.install").update({ with_sync = true }))
 	end,
 }
+

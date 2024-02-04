@@ -1,5 +1,5 @@
 -----------------------------------------------------------------------
--- [[ nvim-lsp config ]]
+-- [[ Nvim LSP config ]]
 -----------------------------------------------------------------------
 
 -- LSP Config & Plugins
@@ -7,14 +7,9 @@
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
-		-- Automatically install LSPs to stdpath for neovim
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
-
-		-- Useful status updates for LSP
 		"j-hui/fidget.nvim",
-
-		-- Additional lua configuration
 		"folke/neodev.nvim",
 	},
 	servers = {
@@ -76,47 +71,47 @@ return {
 		local nmap = function(keys, func, desc)
 			vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
 		end
-		local on_attach = function(bufnr)
+		--local on_attach = function(bufnr)
 			-- NOTE: Remember that lua is a real programming language, and as such it is possible
 			-- to define small helper and utility functions so you don't have to repeat yourself
 			-- many times.
 			--
 			-- In this case, we create a function that lets us more easily define mappings specific
 			-- for LSP related items. It sets the mode, buffer and description for us each time.
-			local nmapl = function(keys, func, desc)
-				if desc then
-					desc = "LSP: " .. desc
-				end
-				nmap(keys, func, desc)
-			end
+			-- local nmapl = function(keys, func, desc)
+			-- 	if desc then
+			-- 		desc = "LSP: " .. desc
+			-- 	end
+			-- 	nmap(keys, func, desc)
+			-- end
 
-			nmapl("<leader>cr", vim.lsp.buf.rename, "Rename")
-			nmapl("<leader>ca", vim.lsp.buf.code_action, "Code action")
+			-- nmapl("<leader>cr", vim.lsp.buf.rename, "Rename")
+			-- nmapl("<leader>ca", vim.lsp.buf.code_action, "Code action")
 
-			nmapl("gd", vim.lsp.buf.definition, "Goto definition")
-			nmapl("gr", require("telescope.builtin").lsp_references, "Goto references")
-			nmapl("gI", vim.lsp.buf.implementation, "Goto implementation")
-			nmapl("<leader>D", vim.lsp.buf.type_definition, "Type definition")
-			nmapl("<leader>ds", require("telescope.builtin").lsp_document_symbols, "Document symbols")
-			nmapl("<leader>ds", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace symbols")
+			-- nmapl("gd", vim.lsp.buf.definition, "Goto definition")
+			-- nmapl("gr", require("telescope.builtin").lsp_references, "Goto references")
+			-- nmapl("gI", vim.lsp.buf.implementation, "Goto implementation")
+			-- nmapl("<leader>D", vim.lsp.buf.type_definition, "Type definition")
+			-- nmapl("<leader>ds", require("telescope.builtin").lsp_document_symbols, "Document symbols")
+			-- nmapl("<leader>ds", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace symbols")
 
-			-- See `:help K` for why this keymap
-			nmapl("K", vim.lsp.buf.hover, "Hover documentation")
-			nmapl("<C-k>", vim.lsp.buf.signature_help, "Signature documentation")
+			-- -- See `:help K` for why this keymap
+			-- nmapl("K", vim.lsp.buf.hover, "Hover documentation")
+			-- nmapl("<C-k>", vim.lsp.buf.signature_help, "Signature documentation")
 
-			-- Lesser used LSP functionality
-			nmapl("gD", vim.lsp.buf.declaration, "Goto declaration")
-			nmapl("<leader>wa", vim.lsp.buf.add_workspace_folder, "Workspace add folder")
-			nmapl("<leader>wr", vim.lsp.buf.remove_workspace_folder, "Workspace remove folder")
-			nmapl("<leader>wl", function()
-				print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-			end, "Workspace list folders")
+			-- -- Lesser used LSP functionality
+			-- nmapl("gD", vim.lsp.buf.declaration, "Goto declaration")
+			-- nmapl("<leader>wa", vim.lsp.buf.add_workspace_folder, "Workspace add folder")
+			-- nmapl("<leader>wr", vim.lsp.buf.remove_workspace_folder, "Workspace remove folder")
+			-- nmapl("<leader>wl", function()
+			-- 	print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+			-- end, "Workspace list folders")
 
-			-- Create a command `:Format` local to the LSP buffer
-			vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
-				vim.lsp.buf.format()
-			end, { desc = "Format current buffer with LSP" })
-		end
+			-- -- Create a command `:Format` local to the LSP buffer
+			-- vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
+			-- 	vim.lsp.buf.format()
+			-- end, { desc = "Format current buffer with LSP" })
+		--end
 
 		local servers = {
 			clangd = {},
@@ -154,6 +149,7 @@ return {
 			dockerls = {},
 			docker_compose_language_service = {},
 			jsonls = {},
+			jdtls = {},
 			marksman = {},
 			intelephense = {},
 			ruby_ls = {},
@@ -206,3 +202,4 @@ return {
 		})
 	end,
 }
+

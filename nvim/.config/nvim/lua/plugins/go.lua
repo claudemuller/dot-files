@@ -1,9 +1,9 @@
 -----------------------------------------------------------------------
--- [[ go config ]]
+-- [[ Go config ]]
 -----------------------------------------------------------------------
 
 -- Go stuff
--- See `:help go.txt`
+-- See `:help ??`
 return {
 	'ray-x/go.nvim',
 	dependencies = {
@@ -25,3 +25,4 @@ return {
 	end,
 	build = ':lua require("go.install").update_all_sync()'
 }
+

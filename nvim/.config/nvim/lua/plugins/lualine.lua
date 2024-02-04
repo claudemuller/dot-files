@@ -1,5 +1,5 @@
 -----------------------------------------------------------------------
--- [[ lualine config ]]
+-- [[ Lualine config ]]
 -----------------------------------------------------------------------
 
 -- Set lualine as statusline
@@ -7,10 +7,10 @@
 return {
     "nvim-lualine/lualine.nvim",
     opts = {
-        icons_enabled = false,
-        -- theme = "catppuccin",
+        icons_enabled = true,
         theme = 'tokyonight',
         component_separators = "|",
         section_separators = "",
     },
 }
+

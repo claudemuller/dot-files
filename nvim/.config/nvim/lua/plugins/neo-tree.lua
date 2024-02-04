@@ -1,9 +1,9 @@
 -----------------------------------------------------------------------
--- [[ neo-tree config ]]
+-- [[ NeoTree config ]]
 -----------------------------------------------------------------------
 
 -- File tree viewer
--- See `:help neotree.txt`
+-- See `:help neo-tree.txt`
 return {
 	"nvim-neo-tree/neo-tree.nvim",
 	version = "v3.x",
@@ -15,7 +15,8 @@ return {
 		"3rd/image.nvim",
 	},
 	keys = {
-		{ "<leader>ft", ":Neotree<CR>", { desc = "Open Neotree" } },
+		--{ "<leader>f", desc = "File" },
+		{ "<leader>ft", ":Neotree<CR>", desc = "Open Neotree" },
 	},
 	opts = {
 		sources = {
@@ -66,3 +67,4 @@ return {
 		},
 	}
 }
+
