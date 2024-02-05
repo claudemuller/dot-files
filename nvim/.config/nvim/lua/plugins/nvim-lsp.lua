@@ -151,7 +151,11 @@ return {
 			jsonls = {},
 			jdtls = {},
 			marksman = {},
-			intelephense = {},
+			intelephense = {
+				root_dir = function(fname)
+					return vim.loop.cwd()
+				end
+			},
 			ruby_ls = {},
 			sqlls = {},
 			taplo = {},

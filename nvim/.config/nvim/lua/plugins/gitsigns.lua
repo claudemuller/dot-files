@@ -11,8 +11,6 @@ return {
 		{ "[h", "<cmd>Gitsigns prev_hunk<cr>", desc = "Previous hunk" },
 		{ "ih", "<cmd><C-U>Gitsigns select_hunk<CR>", "Select Hunk", mode = { "o", "x" } },
 
-		{ "<leader>G", desc = "Git" },
-		{ "<leader>Gh", desc = "Hunk" },
 		{ "<leader>Ghs", "<cmd>Gitsigns stage_hunk<cr>", desc = "Stage Hunk", mode = { "n", "v" } },
 		{ "<leader>Ghr", "<cmd>Gitsigns reset_hunk<cr>", desc = "Reset Hunk", mode = { "n", "v" } },
 		{ "<leader>Ghp", "<cmd>Gitsigns preview_hunk<cr>", desc = "Preview hunk" },

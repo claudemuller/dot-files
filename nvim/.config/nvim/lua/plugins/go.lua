@@ -14,15 +14,13 @@ return {
 	init = function()
 		require("go").setup()
 		require("go.format").goimport() -- goimport + gofmt
+		vim.cmd("GoInstallBinaries")
 	end,
 	event = { "CmdlineEnter" },
 	ft = {
 		"go",
 		"gomod",
 	},
-	setup = function()
-		vim.cmd("GoInstallBinaries")
-	end,
 	build = ':lua require("go.install").update_all_sync()'
 }
 

@@ -64,7 +64,22 @@ return {
 			f = {
 				name = "File",
 			},
-		})
+			G = {
+				name = "Git",
+				h = {
+					name = "Hunk",
+				},
+			},
+			d = {
+				name = "Diagnostics",
+			},
+			s = {
+				name = "Search",
+			},
+			r = {
+				name = "Run and Debug",
+			},
+		}, { prefix = "<leader>" })
 	end,
 }
 

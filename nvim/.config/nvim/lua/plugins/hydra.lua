@@ -12,8 +12,8 @@ return {
 	-- 	require("config.hydra")
 	-- end
 	keys = {
-		{ "<leader>db", function() require('hydra').spawn("dap-hydra") end, desc = "Debug" },
-		{ "<leader>r", function() require('hydra').spawn("run-hydra") end, desc = "Run" },
+		{ "<leader>rd", function() require('hydra').spawn("dap-hydra") end, desc = "Debug" },
+		{ "<leader>rr", function() require('hydra').spawn("run-hydra") end, desc = "Run" },
 	},
 }
 

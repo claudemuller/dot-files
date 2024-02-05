@@ -32,11 +32,3 @@ vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
 vim.keymap.set("n", "<leader>df", vim.diagnostic.open_float, { desc = "Open diagnostics in floating" })
 vim.keymap.set("n", "<leader>dq", vim.diagnostic.setloclist, { desc = "Open diagnostics in quickfix" })
 
--- Which Key group names
-local wk = require("which-key")
-
-wk.register({
-  f = {
-    name = "file/find",
-  },
-})
