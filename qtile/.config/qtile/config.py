@@ -232,7 +232,7 @@ widget_opts = [
         # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
         # widget.StatusNotifier(),
         # widget.OpenWeather(location="Stockholm", format='{location_city}: {icon} {main_temp}'),
-        widget.Wttr(location={'Kungsaengen': 'Home', 'Kista': 'Work'}),
+        widget.Wttr(format='2', location={'Kungsaengen': 'Home', 'Kista': 'Work'}),
         widget.TextBox(foreground=colours[3], fmt="", fontsize=14),
         widget.MemoryGraph(graph_color=colours[2], fill_color=colours[4], border_width=1, border_color=colours[4]),
         widget.TextBox(foreground=colours[3], fmt="", fontsize=14),
