@@ -90,20 +90,26 @@ keys = [
 normal_groups = [Group(i) for i in "1234567890"]
 groups = [
     ScratchPad("scratchpad", [
-        DropDown("special", terminal + " -e echo tes", opacity=0.8, desc="Kitty"),
+        DropDown(
+            "special",
+            terminal + " -e " + home + "/.local/bin/run-tmux specialspace",
+            opacity=1,
+            height=0.9,
+            desc="Kitty",
+            ),
         DropDown(
             "notes",
             terminal + " -e " + conf_dir + "/scripts/notes",
-            opacity=0.8,
-            height=0.8,
+            opacity=1,
+            height=0.9,
             on_focus_lost_hide=False,
             desc="Obsidian notes",
             ),
         DropDown(
             "cheatsheet",
             terminal + " -e " + conf_dir + "/scripts/cheatsheet",
-            opacity=0.8,
-            height=0.8,
+            opacity=1,
+            height=0.9,
             on_focus_lost_hide=False,
             desc="Keybindings cheatsheet",
             ),
