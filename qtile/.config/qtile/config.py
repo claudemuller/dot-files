@@ -95,6 +95,7 @@ groups = [
             terminal + " -e " + home + "/.local/bin/run-tmux specialspace",
             opacity=1,
             height=0.9,
+            on_focus_lost_hide=False,
             desc="Kitty",
             ),
         DropDown(
@@ -171,6 +172,30 @@ layouts = [
         # layout.VerticalTile(),
         # layout.Zoomy(),
         ]
+
+
+#-------------------------------------------------------------------------------------------------#
+#                                       Window Rules                                              #
+#-------------------------------------------------------------------------------------------------#
+
+floating_layout = layout.Floating(
+        border_normal=colours[1],
+        border_focus=colours[6],
+        border_width=1,
+        float_rules=[
+            # Run the utility of `xprop` to see the wm class and name of an X client.
+            *layout.Floating.default_float_rules,
+            Match(wm_class="confirmreset"),  # gitk
+            Match(wm_class="makebranch"),  # gitk
+            Match(wm_class="maketag"),  # gitk
+            Match(wm_class="ssh-askpass"),  # ssh-askpass
+            Match(wm_class="burp-StartBurp"),
+            Match(title="branchdialog"),  # gitk
+            Match(title="pinentry"),  # GPG key password entry
+            Match(title="Android Emulator.*"),
+            Match(title="Burp Suite Pro Loader & Keygen"),
+            ]
+        )
 
 
 #-------------------------------------------------------------------------------------------------#
@@ -275,27 +300,6 @@ mouse = [
         Drag([mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
         Click([mod], "Button2", lazy.window.bring_to_front()),
         ]
-
-
-#-------------------------------------------------------------------------------------------------#
-#                                       Window Rules                                              #
-#-------------------------------------------------------------------------------------------------#
-
-floating_layout = layout.Floating(
-        float_rules=[
-            # Run the utility of `xprop` to see the wm class and name of an X client.
-            *layout.Floating.default_float_rules,
-            Match(wm_class="confirmreset"),  # gitk
-            Match(wm_class="makebranch"),  # gitk
-            Match(wm_class="maketag"),  # gitk
-            Match(wm_class="ssh-askpass"),  # ssh-askpass
-            Match(wm_class="burp-StartBurp"),
-            Match(title="branchdialog"),  # gitk
-            Match(title="pinentry"),  # GPG key password entry
-            Match(title="Android Emulator.*"),
-            Match(title="Burp Suite Pro Loader & Keygen"),
-            ]
-        )
 
 
 #-------------------------------------------------------------------------------------------------#
