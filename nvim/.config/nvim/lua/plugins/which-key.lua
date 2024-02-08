@@ -73,6 +73,9 @@ return {
 			d = {
 				name = "Diagnostics",
 			},
+			o = {
+				name = "Obsidian",
+			},
 			s = {
 				name = "Search",
 			},

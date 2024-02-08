@@ -61,7 +61,7 @@ keys = [
 
         # Executables
         Key([mod], "Return", lazy.spawn(terminal + " -e " + home + "/.local/bin/run-tmux"), desc="Launch terminal"),
-        Key([mod], "space", lazy.spawn(home + "/.config/leftwm/themes/current/scripts/launcher"), desc="Launch Rofi"),
+        Key([mod], "space", lazy.spawn(home + "/.config/qtile/scripts/launcher"), desc="Launch Rofi"),
 
         # Scratchpads
         Key([mod], 'grave', lazy.group['scratchpad'].dropdown_toggle('special')),
@@ -180,9 +180,17 @@ widget_defaults = dict(
 extension_defaults = widget_defaults.copy()
 
 widget_opts = [
-        widget.GroupBox(),
+        widget.GroupBox(
+            highlight_method='block',
+            border_width=1,
+            active=colours[1],
+            foreground=colours[1],
+            rounded=False,
+            this_current_screen_border='ff0000',
+            this_screen_border=colours[3],
+            ),
         widget.CurrentLayout(),
-        widget.Prompt(),
+        # widget.Prompt(),
         widget.WindowName(),
         widget.Chord(
             chords_colors={
@@ -192,18 +200,23 @@ widget_opts = [
             ),
         # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
         # widget.StatusNotifier(),
-        widget.TextBox(fmt=""),
+        widget.OpenWeather(location="Stockholm", format='{location_city}: {icon} {main_temp}'),
+        widget.TextBox(foreground=colours[3], fmt="", fontsize=14),
         widget.MemoryGraph(graph_color=colours[2], fill_color=colours[4], border_width=1, border_color=colours[4]),
-        widget.TextBox(fmt=""),
+        widget.TextBox(foreground=colours[3], fmt="", fontsize=14),
         widget.CPUGraph(graph_color=colours[2], fill_color=colours[4], border_width=1, border_color=colours[4]),
         widget.Wlan(interface="wlp0s20f3"),
-        widget.TextBox(fmt="↓↑"),
+        widget.TextBox(foreground=colours[3], fmt="󰛳", fontsize=14),
         widget.NetGraph(graph_color=colours[2], fill_color=colours[4], border_width=1, border_color=colours[4]),
+        widget.TextBox(foreground=colours[3], fmt="󰕾", fontsize=14),
         widget.PulseVolume(),
         # widget.Volume(),
         widget.Spacer(length=1, background=colours[5]),
-        widget.ThermalSensor(),
-        widget.BatteryIcon(),
+        widget.TextBox(foreground=colours[3], fmt="󱃂", fontsize=14),
+        widget.ThermalSensor(format='{temp:.1f}{unit}'),
+        widget.Bluetooth(),
+        widget.TextBox(foreground=colours[3], fmt="", fontsize=14),
+        widget.Battery(),
         widget.CheckUpdates(distro="Arch", no_update_string="", display_format=" {updates}"),
         widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
         # widget.QuickExit(),
@@ -238,7 +251,7 @@ def new_screen(b):
 
 sec_screen = new_screen(new_bar(widget_opts))
 
-ter_screen = new_screen(new_bar(widget_opts))
+ter_screen = new_screen(new_bar(widget_opts[:]))
 
 prim_widget_opts = widget_opts[:-2] + [widget.Systray()] + widget_opts[-2:]
 prim_screen = new_screen(new_bar(prim_widget_opts))

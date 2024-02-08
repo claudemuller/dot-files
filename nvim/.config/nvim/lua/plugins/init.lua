@@ -20,4 +20,5 @@ return {
 		dependencies = { "nvim-treesitter" },
 	},
 	"MunifTanjim/nui.nvim",
+	"pocco81/auto-save.nvim",
 }
