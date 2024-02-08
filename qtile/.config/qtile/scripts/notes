@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+cd $HOME/repos/notes
+nvim README.md

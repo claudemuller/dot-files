@@ -1,22 +1,30 @@
-if [ "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ] && [ -z "$TMUX" ]
-then
-  echo "<d> for default tmux sesh;"
-  echo "<s> for special space;"
-  echo "or drop to default shell"
-
-  tmux="TERM=xterm-256color tmux"
-
-  ANS=$(bash -c "read -n 1 c; echo \$c")
-  if [ "$ANS" = "d" ]
-  then
-    exec tmux new-session -A -s default
-  elif [ "$ANS" = "s" ]
-  then
-    exec tmux new-session -A -s specialspace
-  else
-    # nothing
-  fi
-fi
+# if [ "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ] && [ -z "$TMUX" ]
+# then
+#   echo "<d> for default tmux sesh;"
+#   echo "<s> for special space;"
+#   echo "<k> for keybindings;"
+#   echo "<n> for notes;"
+#   echo "or drop to default shell"
+#
+#   tmux="TERM=xterm-256color tmux"
+#
+#   ANS=$(bash -c "read -n 1 c; echo \$c")
+#   if [ "$ANS" = "d" ]
+#   then
+#     exec tmux new-session -A -s default
+#   elif [ "$ANS" = "k" ]
+#   then
+#     exec glow -p ~/repos/notes/cheatsheets/keybindings.md
+#   elif [ "$ANS" = "n" ]
+#   then
+#     exec nvim ~/repos/notes/README.md
+#   elif [ "$ANS" = "s" ]
+#   then
+#     exec tmux new-session -A -s specialspace
+#   else
+#     # nothing
+#   fi
+# fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -146,7 +154,7 @@ fzf-history-search() {
 zle -N fzf-history-search
 
 bindkey '^R' fzf-history-search
-bindkey '^[[A' fzf-history-search
+# bindkey '^[[A' fzf-history-search
 
 ZSH_AUTO_SUGGESTIONS=/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_SYNTAX_HIGHLIGHTING=/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

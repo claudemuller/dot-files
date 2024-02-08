@@ -93,7 +93,7 @@ label = CPU %percentage:2%%
 [module/cpu-graph]
 type = internal/cpu
 interval = 0.08
-;format = " <ramp-coreload>"
+;format = " <ramp-coreload>"
 format = "<ramp-coreload>"
 format-margin = 0
 ramp-coreload-spacing = 0
