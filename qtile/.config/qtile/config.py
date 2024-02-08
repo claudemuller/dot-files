@@ -186,7 +186,7 @@ widget_opts = [
             active=colours[1],
             foreground=colours[1],
             rounded=False,
-            this_current_screen_border='ff0000',
+            this_current_screen_border=colours[3],
             this_screen_border=colours[3],
             ),
         widget.CurrentLayout(),
