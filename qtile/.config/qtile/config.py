@@ -215,37 +215,33 @@ bar_size = 24
 #                                            Screens                                              #
 #-------------------------------------------------------------------------------------------------#
 
-sec_screen = Screen(
-        top=bar.Bar(
+def new_bar(widget_opts, bar_size=bar_size):
+    return bar.Bar(
             widget_opts,
             bar_size,
+            margin=[0, 0, 5, 0]
             # border_width=bar_border,
             # border_color=bar_border_colour,
-            ),
+            )
+
+def new_screen(b):
+    return Screen(
+        top=b,
+        left=bar.Gap(5),
+        right=bar.Gap(5),
+        bottom=bar.Gap(5),
         # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
         # By default we handle these events delayed to already improve performance, however your system might still be struggling
         # This variable is set to None (no cap) by default, but you can set it to 60 to indicate that you limit it to 60 events per second
         # x11_drag_polling_rate = 60,
         )
 
-ter_screen = Screen(
-        top=bar.Bar(
-            [
-                widget.GroupBox(),
-                widget.WindowName(),
-                widget.Clock()
-                ],
-            bar_size,
-            ),
-        )
+sec_screen = new_screen(new_bar(widget_opts))
+
+ter_screen = new_screen(new_bar(widget_opts))
 
 prim_widget_opts = widget_opts[:-2] + [widget.Systray()] + widget_opts[-2:]
-prim_screen = Screen(
-        top=bar.Bar(
-            prim_widget_opts,
-            bar_size,
-            ),
-        )
+prim_screen = new_screen(new_bar(prim_widget_opts))
 
 screens = [prim_screen, sec_screen, ter_screen]
 

@@ -1,3 +1,5 @@
+qtile/.config/qtile/__pycache__
+qtile/.config/qtile/wallpaper.png
 scripts/.local/bin/mib*
 scripts/.local/bin/snmp*
 leftwm/.config/leftwm/themes/current
