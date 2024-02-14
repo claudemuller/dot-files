@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 
-leftwm-command "SoftReload"
+qtile cmd-obj -o cmd -f reload_config
+feh --bg-fill "$HOME"/.config/qtile/wallpaper.png
 notify-send -i display "Display profile $AUTORANDR_CURRENT_PROFILE loaded"
