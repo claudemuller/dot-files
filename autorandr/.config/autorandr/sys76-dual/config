@@ -31,7 +31,7 @@ x-prop-non_desktop 0
 output eDP-1
 crtc 0
 mode 1920x1080
-pos 2920x1440
+pos 2880x1440
 primary
 rate 60.01
 x-prop-broadcast_rgb Automatic
