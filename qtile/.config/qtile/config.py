@@ -4,8 +4,6 @@ from libqtile import bar, layout, hook, widget
 from libqtile.config import Click, Drag, DropDown, Group, Key, Match, Screen, ScratchPad
 from libqtile.lazy import lazy
 import colours
-from keybindings import get_keys
-from bar import get_bar_widgets, new_bar
 
 
 #-------------------------------------------------------------------------------------------------#
@@ -23,7 +21,67 @@ colours = colours.TokyoNight
 #                                             Keys                                                #
 #-------------------------------------------------------------------------------------------------#
 
-keys = get_keys(dict(mod=mod, home=home, term=terminal))
+keys = [
+        # Switch between windows
+        Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
+        Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
+        Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
+        Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
+        # Key([mod], "w", lazy.layout.next(), desc="Move window focus to other window"),
+
+        # Move windows between left/right columns or move up/down in current stack. Moving out of range in Columns 
+        # layout will create new column.
+        Key([mod, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
+        Key([mod, "shift"], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
+        Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
+        Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
+
+        # Grow windows. If current window is on the edge of screen and direction will be to screen edge - window
+        # would shrink.
+        Key([mod, "control"], "h", lazy.layout.grow_left(), desc="Grow window to the left"),
+        Key([mod, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
+        Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
+        Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
+        Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
+
+        # Toggle between split and unsplit sides of stack.
+        # Split = all windows displayed
+        # Unsplit = 1 window displayed, like Max layout, but still with
+        # multiple stack panes
+        Key([mod, "shift"], "Return", lazy.layout.toggle_split(), desc="Toggle between split and unsplit sides of stack"),
+
+        # Toggle between different layouts as defined below
+        Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
+        Key([mod], "c", lazy.window.kill(), desc="Kill focused window"),
+        Key([mod], "f", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen on the focused window"),
+        Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
+        Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
+        Key([mod, "control"], "l", lazy.spawn("betterlockscreen -l dim"), desc="Lock screen"),
+        Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+        Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+
+        # Executables
+        Key([mod], "Return", lazy.spawn(terminal + " -e " + home + "/.local/bin/run-tmux"), desc="Launch terminal"),
+        Key([mod], "space", lazy.spawn(home + "/.config/qtile/scripts/launcher"), desc="Launch Rofi"),
+
+        # Scratchpads
+        Key([mod], 'grave', lazy.group['scratchpad'].dropdown_toggle('special')),
+        Key([mod, "control"], 'n', lazy.group['scratchpad'].dropdown_toggle('notes')),
+        Key([mod, "control"], 'c', lazy.group['scratchpad'].dropdown_toggle('cheatsheet')),
+        ]
+
+# Add key bindings to switch VTs in Wayland.
+# We can't check qtile.core.name in default config as it is loaded before qtile is started
+# We therefore defer the check until the key binding is run by using .when(func=...)
+# for vt in range(1, 8):
+#     keys.append(
+#         Key(
+#             ["control", "mod1"],
+#             f"f{vt}",
+#             lazy.core.change_vt(vt).when(func=lambda: qtile.core.name == "wayland"),
+#             desc=f"Switch to VT{vt}",
+#         )
+#     )
 
 
 #-------------------------------------------------------------------------------------------------#
@@ -32,37 +90,37 @@ keys = get_keys(dict(mod=mod, home=home, term=terminal))
 
 normal_groups = [Group(i) for i in "1234567890"]
 groups = [
-        ScratchPad("scratchpad", [
-            DropDown(
-                "special",
-                terminal + " -e " + home + "/.local/bin/run-tmux specialspace",
-                opacity=1,
-                height=0.9,
-                on_focus_lost_hide=False,
-                desc="Kitty",
-                ),
-            DropDown(
-                "notes",
-                terminal + " -e " + conf_dir + "/scripts/notes",
-                opacity=1,
-                height=0.9,
-                on_focus_lost_hide=False,
-                desc="Obsidian notes",
-                ),
-            DropDown(
-                "cheatsheet",
-                terminal + " -e " + conf_dir + "/scripts/cheatsheet",
-                opacity=1,
-                height=0.9,
-                on_focus_lost_hide=False,
-                desc="Keybindings cheatsheet",
-                ),
-            # # define another terminal exclusively for ``qtile shell` at different position
-            # DropDown("qtile shell", "urxvt -hold -e 'qtile shell'",
-            #          x=0.05, y=0.4, width=0.9, height=0.6, opacity=0.9,
-            #          on_focus_lost_hide=True) ]),
-            ]),
-        ]
+    ScratchPad("scratchpad", [
+        DropDown(
+            "special",
+            terminal + " -e " + home + "/.local/bin/run-tmux specialspace",
+            opacity=1,
+            height=0.9,
+            on_focus_lost_hide=False,
+            desc="Kitty",
+            ),
+        DropDown(
+            "notes",
+            terminal + " -e " + conf_dir + "/scripts/notes",
+            opacity=1,
+            height=0.9,
+            on_focus_lost_hide=False,
+            desc="Obsidian notes",
+            ),
+        DropDown(
+            "cheatsheet",
+            terminal + " -e " + conf_dir + "/scripts/cheatsheet",
+            opacity=1,
+            height=0.9,
+            on_focus_lost_hide=False,
+            desc="Keybindings cheatsheet",
+            ),
+        # # define another terminal exclusively for ``qtile shell` at different position
+        # DropDown("qtile shell", "urxvt -hold -e 'qtile shell'",
+        #          x=0.05, y=0.4, width=0.9, height=0.6, opacity=0.9,
+        #          on_focus_lost_hide=True) ]),
+    ]),
+]
 groups = normal_groups + groups
 
 for i in normal_groups:
@@ -153,24 +211,76 @@ widget_defaults = dict(
         )
 extension_defaults = widget_defaults.copy()
 
-(widget_opts, bar_size) = get_bar_widgets(dict(colours=colours))
+widget_opts = [
+        widget.GroupBox(
+            highlight_method='block',
+            border_width=1,
+            active=colours[1],
+            foreground=colours[1],
+            rounded=False,
+            this_current_screen_border=colours[3],
+            this_screen_border=colours[3],
+            ),
+        widget.CurrentLayout(),
+        # widget.Prompt(),
+        widget.WindowName(),
+        widget.Chord(
+            chords_colors={
+                "launch": ("#ff0000", "#ffffff"),
+                },
+            name_transform=lambda name: name.upper(),
+            ),
+        # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
+        # widget.StatusNotifier(),
+        # widget.OpenWeather(location="Stockholm", format='{location_city}: {icon} {main_temp}'),
+        widget.Wttr(format='2', location={'Kungsaengen': 'Home', 'Kista': 'Work'}),
+        widget.TextBox(foreground=colours[3], fmt="", fontsize=14),
+        widget.MemoryGraph(graph_color=colours[2], fill_color=colours[4], border_width=1, border_color=colours[4]),
+        widget.TextBox(foreground=colours[3], fmt="", fontsize=14),
+        widget.CPUGraph(graph_color=colours[2], fill_color=colours[4], border_width=1, border_color=colours[4]),
+        widget.Wlan(interface="wlp0s20f3"),
+        widget.TextBox(foreground=colours[3], fmt="󰛳", fontsize=14),
+        widget.NetGraph(graph_color=colours[2], fill_color=colours[4], border_width=1, border_color=colours[4]),
+        widget.TextBox(foreground=colours[3], fmt="󰕾", fontsize=14),
+        widget.PulseVolume(),
+        # widget.Volume(),
+        widget.Spacer(length=1, background=colours[5]),
+        widget.TextBox(foreground=colours[3], fmt="󱃂", fontsize=14),
+        widget.ThermalSensor(format='{temp:.1f}{unit}'),
+        widget.Bluetooth(),
+        widget.TextBox(foreground=colours[3], fmt="", fontsize=14),
+        widget.Battery(),
+        widget.CheckUpdates(distro="Arch", no_update_string="", display_format=" {updates}"),
+        widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
+        # widget.QuickExit(),
+        ]
+bar_size = 24
 
 
 #-------------------------------------------------------------------------------------------------#
 #                                            Screens                                              #
 #-------------------------------------------------------------------------------------------------#
 
+def new_bar(widget_opts, bar_size=bar_size):
+    return bar.Bar(
+            widget_opts,
+            bar_size,
+            margin=[0, 0, 5, 0]
+            # border_width=bar_border,
+            # border_color=bar_border_colour,
+            )
+
 def new_screen(b):
     return Screen(
-            top=b,
-            left=bar.Gap(5),
-            right=bar.Gap(5),
-            bottom=bar.Gap(5),
-            # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
-            # By default we handle these events delayed to already improve performance, however your system might still be struggling
-            # This variable is set to None (no cap) by default, but you can set it to 60 to indicate that you limit it to 60 events per second
-            # x11_drag_polling_rate = 60,
-            )
+        top=b,
+        left=bar.Gap(5),
+        right=bar.Gap(5),
+        bottom=bar.Gap(5),
+        # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
+        # By default we handle these events delayed to already improve performance, however your system might still be struggling
+        # This variable is set to None (no cap) by default, but you can set it to 60 to indicate that you limit it to 60 events per second
+        # x11_drag_polling_rate = 60,
+        )
 
 sec_screen = new_screen(new_bar(widget_opts))
 
