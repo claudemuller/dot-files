@@ -68,6 +68,16 @@ keys = [
         Key([mod], 'grave', lazy.group['scratchpad'].dropdown_toggle('special')),
         Key([mod, "control"], 'n', lazy.group['scratchpad'].dropdown_toggle('notes')),
         Key([mod, "control"], 'c', lazy.group['scratchpad'].dropdown_toggle('cheatsheet')),
+
+        # Media Keys
+        Key([], 'XF86AudioRaiseVolume', lazy.spawn("amixer set 'Master' 5%+"), desc='Increase volume'),
+        Key([], 'XF86AudioLowerVolume', lazy.spawn("amixer set 'Master' 5%-"), desc='Decrease volume'),
+        Key([], 'XF86AudioMute', lazy.spawn("amixer set 'Master' toggle"), desc='Mute volume'),
+        Key([], 'XF86AudioMicMute', lazy.spawn("amixer set Capture toggle"), desc='Mute microphone'),
+        Key([], 'XF86MonBrightnessUp', lazy.spawn('light -A 15'), desc='Increase screen brightness'),
+        Key([], 'XF86MonBrightnessDown', lazy.spawn('light -U 15'), desc='Decrease screen brightness'),
+        Key([], 'Print', lazy.spawn('flameshot gui'), desc='Printscreen'),
+        # Key([], 'FunnyKeys', lazy.spawn(''), desc='Decrease screen brightness'),
         ]
 
 # Add key bindings to switch VTs in Wayland.
