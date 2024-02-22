@@ -1,4 +1,4 @@
-from libqtile.config import Key
+from libqtile.config import Key, KeyChord
 from libqtile.lazy import lazy
 
 # Add key bindings to switch VTs in Wayland.
@@ -15,7 +15,9 @@ from libqtile.lazy import lazy
 #     )
 
 def get_keys(opts):
-    (mod, home, term) = opts
+    mod = opts["mod"]
+    home = opts["home"]
+    term = opts["term"]
 
     return [
             # Switch between windows
@@ -23,7 +25,6 @@ def get_keys(opts):
             Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
             Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
             Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
-            # Key([mod], "w", lazy.layout.next(), desc="Move window focus to other window"),
 
             # Move windows between left/right columns or move up/down in current stack. Moving out of range in Columns 
             # layout will create new column.
@@ -32,8 +33,10 @@ def get_keys(opts):
             Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
             Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
 
-            # Move between screens
-            Key([mod], 'period', lazy.next_screen(), desc='Next monitor'),
+            # Move focus between windows, screens, layouts
+            Key([mod], "Tab", lazy.layout.next(), desc="Move window focus to other window"),
+            Key([mod], 'semicolon', lazy.next_screen(), desc='Next monitor'),
+            Key([mod, "Shift"], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
 
             # Grow windows. If current window is on the edge of screen and direction will be to screen edge - window
             # would shrink.
@@ -49,8 +52,7 @@ def get_keys(opts):
             # multiple stack panes
             Key([mod, "shift"], "Return", lazy.layout.toggle_split(), desc="Toggle between split and unsplit sides of stack"),
 
-            # Toggle between different layouts as defined below
-            Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
+            # Window and session control
             Key([mod], "c", lazy.window.kill(), desc="Kill focused window"),
             Key([mod], "f", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen on the focused window"),
             Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
@@ -63,7 +65,9 @@ def get_keys(opts):
             Key([mod], "space", lazy.spawn(home + "/.config/qtile/scripts/launcher"), desc="Launch Rofi"),
 
             # Scratchpads
-            Key([mod], 'grave', lazy.group['scratchpad'].dropdown_toggle('special')),
-            Key([mod, "control"], 'n', lazy.group['scratchpad'].dropdown_toggle('notes')),
-            Key([mod, "control"], 'c', lazy.group['scratchpad'].dropdown_toggle('cheatsheet')),
+            KeyChord([mod], 'grave', [
+                Key([], 'grave', lazy.group['scratchpad'].dropdown_toggle('special')),
+                Key([], 'n', lazy.group['scratchpad'].dropdown_toggle('notes')),
+                Key([], 'c', lazy.group['scratchpad'].dropdown_toggle('cheatsheet')),
+            ]),
             ]

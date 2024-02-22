@@ -100,60 +100,41 @@ keys = [
 
 normal_groups = [Group(i) for i in "1234567890"]
 groups = [
-    ScratchPad("scratchpad", [
-        DropDown(
-            "special",
-            terminal + " -e " + home + "/.local/bin/run-tmux specialspace",
-            opacity=1,
-            height=0.9,
-            on_focus_lost_hide=False,
-            desc="Kitty",
-            ),
-        DropDown(
-            "notes",
-            terminal + " -e " + conf_dir + "/scripts/notes",
-            opacity=1,
-            height=0.9,
-            on_focus_lost_hide=False,
-            desc="Obsidian notes",
-            ),
-        DropDown(
-            "cheatsheet",
-            terminal + " -e " + conf_dir + "/scripts/cheatsheet",
-            opacity=1,
-            height=0.9,
-            on_focus_lost_hide=False,
-            desc="Keybindings cheatsheet",
-            ),
-        # # define another terminal exclusively for ``qtile shell` at different position
-        # DropDown("qtile shell", "urxvt -hold -e 'qtile shell'",
-        #          x=0.05, y=0.4, width=0.9, height=0.6, opacity=0.9,
-        #          on_focus_lost_hide=True) ]),
-    ]),
-]
+        ScratchPad("scratchpad", [
+            DropDown(
+                "special",
+                terminal + " -e " + home + "/.local/bin/run-tmux specialspace",
+                opacity=1,
+                height=0.9,
+                on_focus_lost_hide=False,
+                desc="Kitty",
+                ),
+            DropDown(
+                "notes",
+                terminal + " -e " + conf_dir + "/scripts/notes",
+                opacity=1,
+                height=0.9,
+                on_focus_lost_hide=False,
+                desc="Obsidian notes",
+                ),
+            DropDown(
+                "cheatsheet",
+                terminal + " -e " + conf_dir + "/scripts/cheatsheet",
+                opacity=1,
+                height=0.9,
+                on_focus_lost_hide=False,
+                desc="Keybindings cheatsheet",
+                ),
+            ]),
+        ]
 groups = normal_groups + groups
 
 for i in normal_groups:
     keys.extend(
             [
-                # mod1 + group number = switch to group
-                Key(
-                    [mod],
-                    i.name,
-                    lazy.group[i.name].toscreen(),
-                    desc="Switch to group {}".format(i.name),
-                    ),
-                # mod1 + shift + group number = switch to & move focused window to group
-                Key(
-                    [mod, "shift"],
-                    i.name,
-                    lazy.window.togroup(i.name, switch_group=True),
-                    desc="Switch to & move focused window to group {}".format(i.name),
-                    ),
-                # Or, use below if you prefer not to switch to that group.
-                # # mod1 + shift + group number = move focused window to group
-                # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
-                #     desc="move focused window to group {}".format(i.name)),
+                Key([mod], i.name, lazy.group[i.name].toscreen(), desc="Switch to group {}".format(i.name)),
+                Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
+                    desc="Switch to & move focused window to group {}".format(i.name)),
                 ]
             )
 
@@ -162,21 +143,26 @@ for i in normal_groups:
 #                                           Layouts                                               #
 #-------------------------------------------------------------------------------------------------#
 
-layouts = [
-        layout.Columns(
-            margin=[5,5,5,5],
-            border_normal=colours[1],
-            border_focus=colours[6],
-            border_width=1,
-            border_on_single=True),
-        layout.Max(),
+layout_theme = dict(
+        margin=[5,5,5,5],
+        border_normal=colours[1],
+        border_focus=colours[6],
+        border_width=1,
+        border_on_single=True,
+        )
 
-        # Try more layouts by unleashing below layouts.
+layouts = [
+        layout.Columns(**layout_theme),
+        layout.MonadTall(**layout_theme),
+        layout.MonadWide(**layout_theme),
+        layout.Max(
+            border_width = 0,
+            margin = 0,
+            ),
+
         # layout.Bsp(),
         # layout.Stack(num_stacks=2),
         # layout.Matrix(),
-        # layout.MonadTall(),
-        # layout.MonadWide(),
         # layout.RatioTile(),
         # layout.Tile(),
         # layout.TreeTab(),
@@ -190,11 +176,8 @@ layouts = [
 #-------------------------------------------------------------------------------------------------#
 
 floating_layout = layout.Floating(
-        border_normal=colours[1],
-        border_focus=colours[6],
-        border_width=1,
+        **layout_theme,
         float_rules=[
-            # Run the utility of `xprop` to see the wm class and name of an X client.
             *layout.Floating.default_float_rules,
             Match(wm_class="confirmreset"),  # gitk
             Match(wm_class="makebranch"),  # gitk
@@ -267,9 +250,59 @@ widget_opts = [
 bar_size = 24
 
 
-#-------------------------------------------------------------------------------------------------#
-#                                            Screens                                              #
-#-------------------------------------------------------------------------------------------------#
+widget_opts = [
+        widget.GroupBox(
+            highlight_method='block',
+            border_width=1,
+            active=colours[1],
+            foreground=colours[1],
+            rounded=False,
+            this_current_screen_border=colours[3],
+            this_screen_border=colours[3],
+            ),
+        widget.CurrentLayout(),
+        # widget.Prompt(),
+        widget.WindowName(),
+        widget.Chord(
+            chords_colors={
+                "launch": ("#ff0000", "#ffffff"),
+                },
+            name_transform=lambda name: name.upper(),
+            ),
+        # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
+        # widget.StatusNotifier(),
+        # widget.OpenWeather(location="Stockholm", format='{location_city}: {icon} {main_temp}'),
+        widget.Wttr(format='2', location={'Kungsaengen': 'Home', 'Kista': 'Work'}),
+        widget.TextBox(foreground=colours[3], fmt="", fontsize=14),
+        widget.MemoryGraph(graph_color=colours[2], fill_color=colours[4], border_width=1, border_color=colours[4]),
+        widget.TextBox(foreground=colours[3], fmt="", fontsize=14),
+        widget.CPUGraph(graph_color=colours[2], fill_color=colours[4], border_width=1, border_color=colours[4]),
+        widget.Wlan(interface="wlp0s20f3"),
+        widget.TextBox(foreground=colours[3], fmt="󰛳", fontsize=14),
+        widget.NetGraph(graph_color=colours[2], fill_color=colours[4], border_width=1, border_color=colours[4]),
+        widget.TextBox(foreground=colours[3], fmt="󰕾", fontsize=14),
+        widget.PulseVolume(),
+        # widget.Volume(),
+        widget.Spacer(length=1, background=colours[5]),
+        widget.TextBox(foreground=colours[3], fmt="󱃂", fontsize=14),
+        widget.ThermalSensor(format='{temp:.1f}{unit}'),
+        widget.Bluetooth(),
+        widget.TextBox(foreground=colours[3], fmt="", fontsize=14),
+        widget.Battery(),
+        widget.CheckUpdates(distro="Arch", no_update_string="", display_format=" {updates}"),
+        widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
+        # widget.QuickExit(),
+        ]
+bar_size = 24
+
+def new_bar(widget_opts, bar_size=bar_size):
+    return bar.Bar(
+            widget_opts,
+            bar_size,
+            margin=[0, 0, 5, 0]
+            # border_width=bar_border,
+            # border_color=bar_border_colour,
+            )
 
 def new_bar(widget_opts, bar_size=bar_size):
     return bar.Bar(
@@ -300,6 +333,34 @@ prim_widget_opts = widget_opts[:-2] + [widget.Systray()] + widget_opts[-2:]
 prim_screen = new_screen(new_bar(prim_widget_opts))
 
 screens = [prim_screen, sec_screen, ter_screen]
+
+
+#-------------------------------------------------------------------------------------------------#
+#                                            Screens                                              #
+#-------------------------------------------------------------------------------------------------#
+
+window_gaps = 5
+
+# screens = [
+#         Screen(
+#             # top=new_bar(colours, primary=True),
+#             left=bar.Gap(window_gaps),
+#             right=bar.Gap(window_gaps),
+#             bottom=bar.Gap(window_gaps),
+#             ),
+#         Screen(
+#             # top=new_bar(colours),
+#             left=bar.Gap(window_gaps),
+#             right=bar.Gap(window_gaps),
+#             bottom=bar.Gap(window_gaps),
+#             ),
+#         Screen(
+#             top=new_bar(colours, primary=True),
+#             left=bar.Gap(window_gaps),
+#             right=bar.Gap(window_gaps),
+#             bottom=bar.Gap(window_gaps),
+#             ),
+#         ]
 
 
 #-------------------------------------------------------------------------------------------------#
