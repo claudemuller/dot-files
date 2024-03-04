@@ -1,3 +1,5 @@
+nvim/.config/nvim.vanilla
+nvim/.config/nvim.lazy
 qtile/.config/qtile/__pycache__
 qtile/.config/qtile/wallpaper.png
 scripts/.local/bin/mib*

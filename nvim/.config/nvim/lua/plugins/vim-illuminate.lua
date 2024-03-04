@@ -3,16 +3,16 @@
 -----------------------------------------------------------------------
 
 -- Highlight the current word under cursor
--- See `:help illuminate.txt`
+-- See `:help illuminate`
 return {
-  "RRethy/vim-illuminate",
+  'RRethy/vim-illuminate',
   config = function()
-    require("illuminate").configure({
+    require('illuminate').configure {
       -- providers: provider used to get references in the buffer, ordered by priority
       providers = {
-        "lsp",
-        "treesitter",
-        "regex",
+        'lsp',
+        'treesitter',
+        'regex',
       },
       -- delay: delay in milliseconds
       delay = 500,
@@ -21,7 +21,7 @@ return {
       -- supports the same keys passed to .configure except for filetypes_denylist and filetypes_allowlist
       filetype_overrides = {},
       -- filetypes_denylist: filetypes to not illuminate, this overrides filetypes_allowlist
-      filetypes_denylist = { "Neotree", "alpha", "packer", "qf", "Outline", "fugitive" },
+      filetypes_denylist = { 'Neotree', 'alpha', 'packer', 'qf', 'Outline', 'fugitive' },
       -- filetypes_allowlist: filetypes to illuminate, this is overridden by filetypes_denylist
       filetypes_allowlist = {},
       -- modes_denylist: modes to not illuminate, this overrides modes_allowlist
@@ -38,11 +38,10 @@ return {
       providers_regex_syntax_allowlist = {},
       -- under_cursor: whether or not to illuminate under the cursor
       under_cursor = true,
-    })
+    }
 
-    vim.api.nvim_set_hl(0, "IlluminatedWordText", { link = "Visual" })
-    vim.api.nvim_set_hl(0, "IlluminatedWordRead", { link = "Visual" })
-    vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { link = "Visual" })
+    vim.api.nvim_set_hl(0, 'IlluminatedWordText', { link = 'Visual' })
+    vim.api.nvim_set_hl(0, 'IlluminatedWordRead', { link = 'Visual' })
+    vim.api.nvim_set_hl(0, 'IlluminatedWordWrite', { link = 'Visual' })
   end,
 }
-

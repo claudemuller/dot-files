@@ -3,30 +3,83 @@
 -----------------------------------------------------------------------
 
 -- Debugger
--- See `:help nvim-dap.txt`
+-- See `:help nvim-dap`
 return {
-	"mfussenegger/nvim-dap",
-	event = "BufReadPre",
-	dependencies = {
-		"theHamsta/nvim-dap-virtual-text",
-		"rcarriga/nvim-dap-ui",
-		"nvim-telescope/telescope-dap.nvim",
-		"leoluz/nvim-dap-go",
-		"jbyuki/one-small-step-for-vimkind",
-	},
-	init = function()
-		local on_attach = function(bufnr)
-			vim.keymap.set("n", "<leader>Dr", function() require 'dap'.continue() end, { desc = "Debug run" })
-			vim.keymap.set("n", "<F10>", function() require 'dap'.step_over() end, { desc = "Debug step over" })
-			vim.keymap.set("n", "<F11>", function() require 'dap'.step_into() end, { desc = "Debug step into" })
-			vim.keymap.set("n", "<F12>", function() require 'dap'.step_out() end, { desc = "Debug step out" })
-			vim.keymap.set("n", "<leader>Dl", function() require("dap").run_last() end, { desc = "Debug run last" })
-			vim.keymap.set("n", "<leader>Db", function() require("dap").toggle_breakpoint() end,
-				{ desc = "Debug toggle breakpoint" })
-		end
-	end,
-	config = function()
+  -- NOTE: Yes, you can install new plugins here!
+  'mfussenegger/nvim-dap',
+  -- NOTE: And you can specify dependencies as well
+  dependencies = {
+    -- Creates a beautiful debugger UI
+    'rcarriga/nvim-dap-ui',
 
-	end,
+    -- Installs the debug adapters for you
+    'williamboman/mason.nvim',
+    'jay-babu/mason-nvim-dap.nvim',
+
+    -- Add your own debuggers here
+    'leoluz/nvim-dap-go',
+  },
+  config = function()
+    local dap = require 'dap'
+    local dapui = require 'dapui'
+
+    require('mason-nvim-dap').setup {
+      -- Makes a best effort to setup the various debuggers with
+      -- reasonable debug configurations
+      automatic_setup = true,
+
+      -- You can provide additional configuration to the handlers,
+      -- see mason-nvim-dap README for more information
+      handlers = {},
+
+      -- You'll need to check that you have the required things installed
+      -- online, please don't ask me how to install them :)
+      ensure_installed = {
+        -- Update this to ensure that you have the debuggers for the langs you want
+        'delve',
+      },
+    }
+
+    -- Basic debugging keymaps, feel free to change to your liking!
+    vim.keymap.set('n', '<leader>Dc', dap.continue, { desc = '[D]ebug: Start/[C]ontinue' })
+    vim.keymap.set('n', '<leader>Di', dap.step_into, { desc = '[D]ebug: Step [I]nto' })
+    vim.keymap.set('n', '<leader>Do', dap.step_over, { desc = '[D]ebug: Step [o]ver' })
+    vim.keymap.set('n', '<leader>DO', dap.step_out, { desc = '[D]ebug: Step [O]ut' })
+    vim.keymap.set('n', '<leader>Db', dap.toggle_breakpoint, { desc = 'Debug: Toggle [b]reakpoint' })
+    vim.keymap.set('n', '<leader>DB', function()
+      dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
+    end, { desc = '[D]ebug: Set [B]reakpoint' })
+
+    -- Dap UI setup
+    -- For more information, see |:help nvim-dap-ui|
+    dapui.setup {
+      -- Set icons to characters that are more likely to work in every terminal.
+      --    Feel free to remove or use ones that you like more! :)
+      --    Don't feel like these are good choices.
+      icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
+      controls = {
+        icons = {
+          pause = '⏸',
+          play = '▶',
+          step_into = '⏎',
+          step_over = '⏭',
+          step_out = '⏮',
+          step_back = 'b',
+          run_last = '▶▶',
+          terminate = '⏹',
+          disconnect = '⏏',
+        },
+      },
+    }
+
+    -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
+    vim.keymap.set('n', '<leader>Ds', dapui.toggle, { desc = '[D]ebug: See last [s]ession result.' })
+
+    dap.listeners.after.event_iniTialized['dapui_config'] = dapui.open
+    dap.listeners.before.event_teRminated['dapui_config'] = dapui.close
+    dap.listeners.before.event_exIted['dapui_config'] = dapui.close
+
+    -- Install golang specific config
+    require('dap-go').setup()
+  end,
 }
-

@@ -2,51 +2,80 @@
 -- [[ [n]vim config ]]
 -----------------------------------------------------------------------
 
--- Set highlight on search
-vim.o.hlsearch = true
+-- Set <space> as the leader key
+-- See `:help mapleader`
+--  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
--- Make line numbers default
-vim.wo.number = true
-vim.wo.relativenumber = true
+-- [[ Setting options ]]
+-- See `:help vim.opt`
+-- NOTE: You can change these options as you wish!
+--  For more options, you can see `:help option-list`
 
--- Enable mouse mode
-vim.o.mouse = "a"
+-- Line numbers
+vim.opt.number = true
+-- Relative line numbers
+vim.opt.relativenumber = true
 
--- Enable break indent
-vim.o.breakindent = true
+-- Enable mouse mode, can be useful for resizing splits for example!
+vim.opt.mouse = 'a'
 
--- Save undo history
-vim.o.undofile = true
+-- Don't show the mode, since it's already in status line
+vim.opt.showmode = false
 
--- Case insensitive searching UNLESS /C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
-
--- Decrease update time
-vim.o.updatetime = 250
-vim.wo.signcolumn = "yes"
-
--- Set colorscheme
-vim.o.termguicolors = true
-
--- Set completeopt to have a better completion experience
-vim.o.completeopt = "menuone,noselect"
-
--- Link up system clipboard
-vim.opt.clipboard = "unnamedplus"
+-- Sync clipboard between OS and Neovim.
+--  See `:help 'clipboard'`
+vim.opt.clipboard = 'unnamedplus'
 
 -- Setup default tabstop and shiftwidth
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 
--- Mapleader
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+-- Set completeopt to have a better completion experience
+vim.o.completeopt = 'menuone,noselect'
 
--- Log Level
-vim.lsp.set_log_level("off")
+-- Set highlight on search
+vim.o.hlsearch = true
+
+-- Enable break indent
+vim.opt.breakindent = true
+
+-- Save undo history
+vim.opt.undofile = true
+
+-- Case-insensitive searching UNLESS \C or capital in search
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
+-- Keep signcolumn on by default
+vim.opt.signcolumn = 'yes'
+
+-- Decrease update time
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300
+
+-- Configure how new splits should be opened
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+
+-- Sets how neovim will display certain whitespace in the editor.
+--  See `:help 'list'`
+--  and `:help 'listchars'`
+-- vim.opt.list = true
+-- vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+
+-- Preview substitutions live, as you type!
+vim.opt.inccommand = 'split'
+
+-- Show which line your cursor is on
+vim.opt.cursorline = true
 
 -- Set line length indicators
-vim.opt.colorcolumn = "100,120"
+vim.opt.colorcolumn = '100,120'
 
-vim.g.loaded_netrwPlugin = 0
+-- Minimal number of screen lines to keep above and below the cursor.
+vim.opt.scrolloff = 10
+
+-- Log Level
+-- vim.lsp.set_log_level 'off'
