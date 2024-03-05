@@ -75,7 +75,7 @@ vim.opt.cursorline = true
 vim.opt.colorcolumn = '100,120'
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 5
 
 -- Log Level
 -- vim.lsp.set_log_level 'off'

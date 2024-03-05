@@ -99,6 +99,8 @@ keys = [
     Key([mod], "grave", lazy.group["scratchpad"].dropdown_toggle("special")),
     Key([mod, "control"], "n", lazy.group["scratchpad"].dropdown_toggle("notes")),
     Key([mod, "control"], "k", lazy.group["scratchpad"].dropdown_toggle("cheatsheet")),
+    Key([mod, "control"], "s", lazy.group["scratchpad"].dropdown_toggle("spotify")),
+    Key([mod, "control"], "q", lazy.group["scratchpad"].dropdown_toggle("qutebrowser")),
     # Media Keys
     Key(
         [],
@@ -186,6 +188,22 @@ groups = [
                 height=0.9,
                 on_focus_lost_hide=False,
                 desc="Keybindings cheatsheet",
+            ),
+            DropDown(
+                "spotify",
+                "spotify",
+                opacity=1,
+                height=0.9,
+                on_focus_lost_hide=False,
+                desc="Spotify",
+            ),
+            DropDown(
+                "qutebrowser",
+                "qutebrowser",
+                opacity=1,
+                height=0.9,
+                on_focus_lost_hide=False,
+                desc="Qute browser",
             ),
         ],
     ),
