@@ -6,79 +6,120 @@ from libqtile.lazy import lazy
 import colours
 
 
-#-------------------------------------------------------------------------------------------------#
+# -------------------------------------------------------------------------------------------------#
 #                                             Vars                                                #
-#-------------------------------------------------------------------------------------------------#
+# -------------------------------------------------------------------------------------------------#
 
 mod = "mod4"
 terminal = "kitty"
-home = os.path.expanduser('~')
+home = os.path.expanduser("~")
 conf_dir = os.path.dirname(os.path.abspath(__file__))
 colours = colours.TokyoNight
 
 
-#-------------------------------------------------------------------------------------------------#
+# -------------------------------------------------------------------------------------------------#
 #                                             Keys                                                #
-#-------------------------------------------------------------------------------------------------#
+# -------------------------------------------------------------------------------------------------#
 
 keys = [
-        # Switch between windows
-        Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
-        Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
-        Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
-        Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
-        # Key([mod], "w", lazy.layout.next(), desc="Move window focus to other window"),
-
-        # Move windows between left/right columns or move up/down in current stack. Moving out of range in Columns 
-        # layout will create new column.
-        Key([mod, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
-        Key([mod, "shift"], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
-        Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
-        Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
-
-        # Grow windows. If current window is on the edge of screen and direction will be to screen edge - window
-        # would shrink.
-        Key([mod, "control"], "h", lazy.layout.grow_left(), desc="Grow window to the left"),
-        Key([mod, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
-        Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
-        Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
-        Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
-
-        # Toggle between split and unsplit sides of stack.
-        # Split = all windows displayed
-        # Unsplit = 1 window displayed, like Max layout, but still with
-        # multiple stack panes
-        Key([mod, "shift"], "Return", lazy.layout.toggle_split(), desc="Toggle between split and unsplit sides of stack"),
-
-        # Toggle between different layouts as defined below
-        Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
-        Key([mod], "c", lazy.window.kill(), desc="Kill focused window"),
-        Key([mod], "f", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen on the focused window"),
-        Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
-        Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
-        Key([mod, "control"], "l", lazy.spawn("betterlockscreen -l dim"), desc="Lock screen"),
-        Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-        Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
-
-        # Executables
-        Key([mod], "Return", lazy.spawn(terminal + " -e " + home + "/.local/bin/run-tmux"), desc="Launch terminal"),
-        Key([mod], "space", lazy.spawn(home + "/.config/qtile/scripts/launcher"), desc="Launch Rofi"),
-
-        # Scratchpads
-        Key([mod], 'grave', lazy.group['scratchpad'].dropdown_toggle('special')),
-        Key([mod, "control"], 'n', lazy.group['scratchpad'].dropdown_toggle('notes')),
-        Key([mod, "control"], 'c', lazy.group['scratchpad'].dropdown_toggle('cheatsheet')),
-
-        # Media Keys
-        Key([], 'XF86AudioRaiseVolume', lazy.spawn("amixer set 'Master' 5%+"), desc='Increase volume'),
-        Key([], 'XF86AudioLowerVolume', lazy.spawn("amixer set 'Master' 5%-"), desc='Decrease volume'),
-        Key([], 'XF86AudioMute', lazy.spawn("amixer set 'Master' toggle"), desc='Mute volume'),
-        Key([], 'XF86AudioMicMute', lazy.spawn("amixer set Capture toggle"), desc='Mute microphone'),
-        Key([], 'XF86MonBrightnessUp', lazy.spawn('lux -a 15%'), desc='Increase screen brightness'),
-        Key([], 'XF86MonBrightnessDown', lazy.spawn('lux -s 15%'), desc='Decrease screen brightness'),
-        Key([], 'Print', lazy.spawn('flameshot gui'), desc='Printscreen'),
-        # Key([], 'FunnyKeys', lazy.spawn(''), desc='Decrease screen brightness'),
-        ]
+    # Switch between windows
+    Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
+    Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
+    Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
+    Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
+    # Key([mod], "w", lazy.layout.next(), desc="Move window focus to other window"),
+    # Move windows between left/right columns or move up/down in current stack. Moving out of range in Columns
+    # layout will create new column.
+    Key([mod, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
+    Key([mod, "shift"], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
+    Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
+    Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
+    # Grow windows. If current window is on the edge of screen and direction will be to screen edge - window
+    # would shrink.
+    Key([mod, "control"], "h", lazy.layout.grow_left(), desc="Grow window to the left"),
+    Key([mod, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
+    Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
+    Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
+    Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
+    # Switch focus to next/previous monitor
+    Key([mod, "control"], "n", lazy.next_screen(), desc="Next monitor"),
+    Key([mod, "control"], "p", lazy.prev_screen(), desc="Previous monitor"),
+    # Toggle between split and unsplit sides of stack.
+    # Split = all windows displayed
+    # Unsplit = 1 window displayed, like Max layout, but still with
+    # multiple stack panes
+    Key(
+        [mod, "shift"],
+        "Return",
+        lazy.layout.toggle_split(),
+        desc="Toggle between split and unsplit sides of stack",
+    ),
+    # Toggle between different layouts as defined below
+    Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
+    Key([mod], "c", lazy.window.kill(), desc="Kill focused window"),
+    Key([mod], "f", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen on the focused window"),
+    Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
+    Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
+    Key([mod, "control"], "l", lazy.spawn("betterlockscreen -l dim"), desc="Lock screen"),
+    Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+    Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    # Executables
+    Key(
+        [mod],
+        "Return",
+        lazy.spawn(terminal + " -e " + home + "/.local/bin/run-tmux"),
+        desc="Launch terminal",
+    ),
+    Key(
+        [mod],
+        "space",
+        lazy.spawn(home + "/.config/qtile/scripts/launcher"),
+        desc="Launch Rofi",
+    ),
+    # Scratchpads
+    Key([mod], "grave", lazy.group["scratchpad"].dropdown_toggle("special")),
+    Key([mod, "control"], "n", lazy.group["scratchpad"].dropdown_toggle("notes")),
+    Key([mod, "control"], "c", lazy.group["scratchpad"].dropdown_toggle("cheatsheet")),
+    # Media Keys
+    Key(
+        [],
+        "XF86AudioRaiseVolume",
+        lazy.spawn("amixer set 'Master' 5%+"),
+        desc="Increase volume",
+    ),
+    Key(
+        [],
+        "XF86AudioLowerVolume",
+        lazy.spawn("amixer set 'Master' 5%-"),
+        desc="Decrease volume",
+    ),
+    Key(
+        [],
+        "XF86AudioMute",
+        lazy.spawn("amixer set 'Master' toggle"),
+        desc="Mute volume",
+    ),
+    Key(
+        [],
+        "XF86AudioMicMute",
+        lazy.spawn("amixer set Capture toggle"),
+        desc="Mute microphone",
+    ),
+    Key(
+        [],
+        "XF86MonBrightnessUp",
+        lazy.spawn("lux -a 15%"),
+        desc="Increase screen brightness",
+    ),
+    Key(
+        [],
+        "XF86MonBrightnessDown",
+        lazy.spawn("lux -s 15%"),
+        desc="Decrease screen brightness",
+    ),
+    Key([], "Print", lazy.spawn("flameshot gui"), desc="Printscreen"),
+    # Key([], 'FunnyKeys', lazy.spawn(''), desc='Decrease screen brightness'),
+]
 
 # Add key bindings to switch VTs in Wayland.
 # We can't check qtile.core.name in default config as it is loaded before qtile is started
@@ -94,13 +135,15 @@ keys = [
 #     )
 
 
-#-------------------------------------------------------------------------------------------------#
+# -------------------------------------------------------------------------------------------------#
 #                                            Groups                                               #
-#-------------------------------------------------------------------------------------------------#
+# -------------------------------------------------------------------------------------------------#
 
 normal_groups = [Group(i) for i in "1234567890"]
 groups = [
-        ScratchPad("scratchpad", [
+    ScratchPad(
+        "scratchpad",
+        [
             DropDown(
                 "special",
                 terminal + " -e " + home + "/.local/bin/run-tmux specialspace",
@@ -108,7 +151,7 @@ groups = [
                 height=0.9,
                 on_focus_lost_hide=False,
                 desc="Kitty",
-                ),
+            ),
             DropDown(
                 "notes",
                 terminal + " -e " + conf_dir + "/scripts/notes",
@@ -116,7 +159,7 @@ groups = [
                 height=0.9,
                 on_focus_lost_hide=False,
                 desc="Obsidian notes",
-                ),
+            ),
             DropDown(
                 "cheatsheet",
                 terminal + " -e " + conf_dir + "/scripts/cheatsheet",
@@ -124,194 +167,236 @@ groups = [
                 height=0.9,
                 on_focus_lost_hide=False,
                 desc="Keybindings cheatsheet",
-                ),
-            ]),
-        ]
+            ),
+        ],
+    ),
+]
 groups = normal_groups + groups
 
 for i in normal_groups:
     keys.extend(
-            [
-                Key([mod], i.name, lazy.group[i.name].toscreen(), desc="Switch to group {}".format(i.name)),
-                Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
-                    desc="Switch to & move focused window to group {}".format(i.name)),
-                ]
-            )
+        [
+            Key(
+                [mod],
+                i.name,
+                lazy.group[i.name].toscreen(),
+                desc="Switch to group {}".format(i.name),
+            ),
+            Key(
+                [mod, "shift"],
+                i.name,
+                lazy.window.togroup(i.name),
+                desc="Switch to & move focused window to group {}".format(i.name),
+            ),
+        ]
+    )
 
 
-#-------------------------------------------------------------------------------------------------#
+# -------------------------------------------------------------------------------------------------#
 #                                           Layouts                                               #
-#-------------------------------------------------------------------------------------------------#
+# -------------------------------------------------------------------------------------------------#
 
 layout_theme = dict(
-        margin=[5,5,5,5],
-        border_normal=colours[1],
-        border_focus=colours[6],
-        border_width=1,
-        border_on_single=True,
-        )
+    margin=[5, 5, 5, 5],
+    border_normal=colours[1],
+    border_focus=colours[6],
+    border_width=1,
+    border_on_single=True,
+)
 
 layouts = [
-        layout.Columns(**layout_theme),
-        layout.MonadTall(**layout_theme),
-        layout.MonadWide(**layout_theme),
-        layout.Max(
-            border_width = 0,
-            margin = 0,
-            ),
+    layout.Columns(**layout_theme),
+    layout.MonadTall(**layout_theme),
+    layout.MonadWide(**layout_theme),
+    layout.Max(
+        border_width=0,
+        margin=0,
+    ),
+    # layout.Bsp(),
+    # layout.Stack(num_stacks=2),
+    # layout.Matrix(),
+    # layout.RatioTile(),
+    # layout.Tile(),
+    # layout.TreeTab(),
+    # layout.VerticalTile(),
+    # layout.Zoomy(),
+]
 
-        # layout.Bsp(),
-        # layout.Stack(num_stacks=2),
-        # layout.Matrix(),
-        # layout.RatioTile(),
-        # layout.Tile(),
-        # layout.TreeTab(),
-        # layout.VerticalTile(),
-        # layout.Zoomy(),
-        ]
 
-
-#-------------------------------------------------------------------------------------------------#
+# -------------------------------------------------------------------------------------------------#
 #                                       Window Rules                                              #
-#-------------------------------------------------------------------------------------------------#
+# -------------------------------------------------------------------------------------------------#
 
 floating_layout = layout.Floating(
-        **layout_theme,
-        float_rules=[
-            *layout.Floating.default_float_rules,
-            Match(wm_class="confirmreset"),  # gitk
-            Match(wm_class="makebranch"),  # gitk
-            Match(wm_class="maketag"),  # gitk
-            Match(wm_class="ssh-askpass"),  # ssh-askpass
-            Match(wm_class="burp-StartBurp"),
-            Match(title="branchdialog"),  # gitk
-            Match(title="pinentry"),  # GPG key password entry
-            Match(title="Android Emulator.*"),
-            Match(title="Burp Suite Pro Loader & Keygen"),
-            ]
-        )
+    **layout_theme,
+    float_rules=[
+        *layout.Floating.default_float_rules,
+        Match(wm_class="confirmreset"),  # gitk
+        Match(wm_class="makebranch"),  # gitk
+        Match(wm_class="maketag"),  # gitk
+        Match(wm_class="ssh-askpass"),  # ssh-askpass
+        Match(wm_class="burp-StartBurp"),
+        Match(title="branchdialog"),  # gitk
+        Match(title="pinentry"),  # GPG key password entry
+        Match(title="Android Emulator.*"),
+        Match(title="Burp Suite Pro Loader & Keygen"),
+    ]
+)
 
 
-#-------------------------------------------------------------------------------------------------#
+# -------------------------------------------------------------------------------------------------#
 #                                             Bars                                                #
-#-------------------------------------------------------------------------------------------------#
+# -------------------------------------------------------------------------------------------------#
 
 widget_defaults = dict(
-        font="Hack Nerd Font",
-        fontsize=10,
-        padding=5,
-        background=colours[1],
-        )
+    font="Hack Nerd Font",
+    fontsize=10,
+    padding=5,
+    background=colours[1],
+)
 extension_defaults = widget_defaults.copy()
 
 widget_opts = [
-        widget.GroupBox(
-            highlight_method='block',
-            border_width=1,
-            active=colours[1],
-            foreground=colours[1],
-            rounded=False,
-            this_current_screen_border=colours[3],
-            this_screen_border=colours[3],
-            ),
-        widget.CurrentLayout(),
-        # widget.Prompt(),
-        widget.WindowName(),
-        widget.Chord(
-            chords_colors={
-                "launch": ("#ff0000", "#ffffff"),
-                },
-            name_transform=lambda name: name.upper(),
-            ),
-        # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
-        # widget.StatusNotifier(),
-        # widget.OpenWeather(location="Stockholm", format='{location_city}: {icon} {main_temp}'),
-        # widget.Wttr(format='2', location={'Kungsaengen': 'Home', 'Kista': 'Work'}),
-        widget.TextBox(foreground=colours[3], fmt="", fontsize=14),
-        widget.MemoryGraph(graph_color=colours[2], fill_color=colours[4], border_width=1, border_color=colours[4]),
-        widget.TextBox(foreground=colours[3], fmt="", fontsize=14),
-        widget.CPUGraph(graph_color=colours[2], fill_color=colours[4], border_width=1, border_color=colours[4]),
-        # widget.Wlan(interface="wlp0s20f3"),
-        widget.TextBox(foreground=colours[3], fmt="󰛳", fontsize=14),
-        widget.NetGraph(graph_color=colours[2], fill_color=colours[4], border_width=1, border_color=colours[4]),
-        widget.TextBox(foreground=colours[3], fmt="󰕾", fontsize=14),
-        widget.PulseVolume(),
-        # widget.Volume(),
-        widget.Spacer(length=1, background=colours[5]),
-        widget.TextBox(foreground=colours[3], fmt="󱃂", fontsize=14),
-        widget.ThermalSensor(format='{temp:.1f}{unit}'),
-        # widget.Bluetooth(),
-        widget.TextBox(foreground=colours[3], fmt="", fontsize=14),
-        widget.Battery(),
-        widget.CheckUpdates(distro="Arch", no_update_string="", display_format=" {updates}"),
-        widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
-        # widget.QuickExit(),
-        ]
+    widget.GroupBox(
+        highlight_method="block",
+        border_width=1,
+        active=colours[1],
+        foreground=colours[1],
+        rounded=False,
+        this_current_screen_border=colours[3],
+        this_screen_border=colours[3],
+    ),
+    widget.CurrentLayout(),
+    # widget.Prompt(),
+    widget.WindowName(),
+    widget.Chord(
+        chords_colors={
+            "launch": ("#ff0000", "#ffffff"),
+        },
+        name_transform=lambda name: name.upper(),
+    ),
+    # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
+    # widget.StatusNotifier(),
+    # widget.OpenWeather(location="Stockholm", format='{location_city}: {icon} {main_temp}'),
+    # widget.Wttr(format='2', location={'Kungsaengen': 'Home', 'Kista': 'Work'}),
+    widget.TextBox(foreground=colours[3], fmt="", fontsize=14),
+    widget.MemoryGraph(
+        graph_color=colours[2],
+        fill_color=colours[4],
+        border_width=1,
+        border_color=colours[4],
+    ),
+    widget.TextBox(foreground=colours[3], fmt="", fontsize=14),
+    widget.CPUGraph(
+        graph_color=colours[2],
+        fill_color=colours[4],
+        border_width=1,
+        border_color=colours[4],
+    ),
+    # widget.Wlan(interface="wlp0s20f3"),
+    widget.TextBox(foreground=colours[3], fmt="󰛳", fontsize=14),
+    widget.NetGraph(
+        graph_color=colours[2],
+        fill_color=colours[4],
+        border_width=1,
+        border_color=colours[4],
+    ),
+    widget.TextBox(foreground=colours[3], fmt="󰕾", fontsize=14),
+    widget.PulseVolume(),
+    # widget.Volume(),
+    widget.Spacer(length=1, background=colours[5]),
+    widget.TextBox(foreground=colours[3], fmt="󱃂", fontsize=14),
+    widget.ThermalSensor(format="{temp:.1f}{unit}"),
+    # widget.Bluetooth(),
+    widget.TextBox(foreground=colours[3], fmt="", fontsize=14),
+    widget.Battery(),
+    widget.CheckUpdates(distro="Arch", no_update_string="", display_format=" {updates}"),
+    widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
+    # widget.QuickExit(),
+]
 bar_size = 24
 
 
 widget_opts = [
-        widget.GroupBox(
-            highlight_method='block',
-            border_width=1,
-            active=colours[1],
-            foreground=colours[1],
-            rounded=False,
-            this_current_screen_border=colours[3],
-            this_screen_border=colours[3],
-            ),
-        widget.CurrentLayout(),
-        # widget.Prompt(),
-        widget.WindowName(),
-        widget.Chord(
-            chords_colors={
-                "launch": ("#ff0000", "#ffffff"),
-                },
-            name_transform=lambda name: name.upper(),
-            ),
-        # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
-        # widget.StatusNotifier(),
-        # widget.OpenWeather(location="Stockholm", format='{location_city}: {icon} {main_temp}'),
-        # widget.Wttr(format='2', location={'Kungsaengen': 'Home', 'Kista': 'Work'}),
-        widget.TextBox(foreground=colours[3], fmt="", fontsize=14),
-        widget.MemoryGraph(graph_color=colours[2], fill_color=colours[4], border_width=1, border_color=colours[4]),
-        widget.TextBox(foreground=colours[3], fmt="", fontsize=14),
-        widget.CPUGraph(graph_color=colours[2], fill_color=colours[4], border_width=1, border_color=colours[4]),
-        # widget.Wlan(interface="wlp0s20f3"),
-        widget.TextBox(foreground=colours[3], fmt="󰛳", fontsize=14),
-        widget.NetGraph(graph_color=colours[2], fill_color=colours[4], border_width=1, border_color=colours[4]),
-        widget.TextBox(foreground=colours[3], fmt="󰕾", fontsize=14),
-        widget.PulseVolume(),
-        # widget.Volume(),
-        widget.Spacer(length=1, background=colours[5]),
-        widget.TextBox(foreground=colours[3], fmt="󱃂", fontsize=14),
-        widget.ThermalSensor(format='{temp:.1f}{unit}'),
-        # widget.Bluetooth(),
-        widget.TextBox(foreground=colours[3], fmt="", fontsize=14),
-        widget.Battery(),
-        widget.CheckUpdates(distro="Arch", no_update_string="", display_format=" {updates}"),
-        widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
-        # widget.QuickExit(),
-        ]
+    widget.GroupBox(
+        highlight_method="block",
+        border_width=1,
+        active=colours[1],
+        foreground=colours[1],
+        rounded=False,
+        this_current_screen_border=colours[3],
+        this_screen_border=colours[3],
+    ),
+    widget.CurrentLayout(),
+    # widget.Prompt(),
+    widget.WindowName(),
+    widget.Chord(
+        chords_colors={
+            "launch": ("#ff0000", "#ffffff"),
+        },
+        name_transform=lambda name: name.upper(),
+    ),
+    # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
+    # widget.StatusNotifier(),
+    # widget.OpenWeather(location="Stockholm", format='{location_city}: {icon} {main_temp}'),
+    # widget.Wttr(format='2', location={'Kungsaengen': 'Home', 'Kista': 'Work'}),
+    widget.TextBox(foreground=colours[3], fmt="", fontsize=14),
+    widget.MemoryGraph(
+        graph_color=colours[2],
+        fill_color=colours[4],
+        border_width=1,
+        border_color=colours[4],
+    ),
+    widget.TextBox(foreground=colours[3], fmt="", fontsize=14),
+    widget.CPUGraph(
+        graph_color=colours[2],
+        fill_color=colours[4],
+        border_width=1,
+        border_color=colours[4],
+    ),
+    # widget.Wlan(interface="wlp0s20f3"),
+    widget.TextBox(foreground=colours[3], fmt="󰛳", fontsize=14),
+    widget.NetGraph(
+        graph_color=colours[2],
+        fill_color=colours[4],
+        border_width=1,
+        border_color=colours[4],
+    ),
+    widget.TextBox(foreground=colours[3], fmt="󰕾", fontsize=14),
+    widget.PulseVolume(),
+    # widget.Volume(),
+    widget.Spacer(length=1, background=colours[5]),
+    widget.TextBox(foreground=colours[3], fmt="󱃂", fontsize=14),
+    widget.ThermalSensor(format="{temp:.1f}{unit}"),
+    # widget.Bluetooth(),
+    widget.TextBox(foreground=colours[3], fmt="", fontsize=14),
+    widget.Battery(),
+    widget.CheckUpdates(distro="Arch", no_update_string="", display_format=" {updates}"),
+    widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
+    # widget.QuickExit(),
+]
 bar_size = 24
 
-def new_bar(widget_opts, bar_size=bar_size):
-    return bar.Bar(
-            widget_opts,
-            bar_size,
-            margin=[0, 0, 5, 0]
-            # border_width=bar_border,
-            # border_color=bar_border_colour,
-            )
 
 def new_bar(widget_opts, bar_size=bar_size):
     return bar.Bar(
-            widget_opts,
-            bar_size,
-            margin=[0, 0, 5, 0]
-            # border_width=bar_border,
-            # border_color=bar_border_colour,
-            )
+        widget_opts,
+        bar_size,
+        margin=[0, 0, 5, 0],
+        # border_width=bar_border,
+        # border_color=bar_border_colour,
+    )
+
+
+def new_bar(widget_opts, bar_size=bar_size):
+    return bar.Bar(
+        widget_opts,
+        bar_size,
+        margin=[0, 0, 5, 0],
+        # border_width=bar_border,
+        # border_color=bar_border_colour,
+    )
+
 
 def new_screen(b):
     return Screen(
@@ -323,7 +408,8 @@ def new_screen(b):
         # By default we handle these events delayed to already improve performance, however your system might still be struggling
         # This variable is set to None (no cap) by default, but you can set it to 60 to indicate that you limit it to 60 events per second
         # x11_drag_polling_rate = 60,
-        )
+    )
+
 
 sec_screen = new_screen(new_bar(widget_opts))
 
@@ -335,9 +421,9 @@ prim_screen = new_screen(new_bar(prim_widget_opts))
 screens = [prim_screen, sec_screen, ter_screen]
 
 
-#-------------------------------------------------------------------------------------------------#
+# -------------------------------------------------------------------------------------------------#
 #                                            Screens                                              #
-#-------------------------------------------------------------------------------------------------#
+# -------------------------------------------------------------------------------------------------#
 
 window_gaps = 5
 
@@ -363,21 +449,26 @@ window_gaps = 5
 #         ]
 
 
-#-------------------------------------------------------------------------------------------------#
+# -------------------------------------------------------------------------------------------------#
 #                                            Mouse                                                #
-#-------------------------------------------------------------------------------------------------#
+# -------------------------------------------------------------------------------------------------#
 
 # Drag floating layouts.
 mouse = [
-        Drag([mod], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
-        Drag([mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
-        Click([mod], "Button2", lazy.window.bring_to_front()),
-        ]
+    Drag(
+        [mod],
+        "Button1",
+        lazy.window.set_position_floating(),
+        start=lazy.window.get_position(),
+    ),
+    Drag([mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
+    Click([mod], "Button2", lazy.window.bring_to_front()),
+]
 
 
-#-------------------------------------------------------------------------------------------------#
+# -------------------------------------------------------------------------------------------------#
 #                                             Misc                                                #
-#-------------------------------------------------------------------------------------------------#
+# -------------------------------------------------------------------------------------------------#
 
 dgroups_key_binder = None
 dgroups_app_rules = []  # type: list
@@ -396,9 +487,11 @@ auto_minimize = True
 # When using the Wayland backend, this can be used to configure input devices.
 wl_input_rules = None
 
+
 @hook.subscribe.startup_once
 def start_once():
-    home = os.path.expanduser('~')
-    subprocess.call([home + '/.config/qtile/autostart.sh'])
+    home = os.path.expanduser("~")
+    subprocess.call([home + "/.config/qtile/autostart.sh"])
+
 
 wmname = "LG3D"
