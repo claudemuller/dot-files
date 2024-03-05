@@ -19,3 +19,8 @@ if [ -x "$(command -v nm-applet)" ]; then
 	pkill nm-applet
 	nm-applet &
 fi
+
+if [ -x "$(command -v greenclip)" ]; then
+	pkill greenclip
+	greenclip daemon &
+fi

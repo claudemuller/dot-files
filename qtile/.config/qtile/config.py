@@ -76,10 +76,23 @@ keys = [
         lazy.spawn(home + "/.config/qtile/scripts/launcher"),
         desc="Launch Rofi",
     ),
+    Key(
+        [mod, "control"],
+        "p",
+        lazy.spawn(home + "/.config/qtile/scripts/pass"),
+        desc="Launch password manager",
+    ),
+    Key(
+        [mod, "control"],
+        "c",
+        lazy.spawn(home + "/.config/qtile/scripts/clipboard"),
+        desc="Launch clipboard manager",
+    ),
+    #
     # Scratchpads
     Key([mod], "grave", lazy.group["scratchpad"].dropdown_toggle("special")),
     Key([mod, "control"], "n", lazy.group["scratchpad"].dropdown_toggle("notes")),
-    Key([mod, "control"], "c", lazy.group["scratchpad"].dropdown_toggle("cheatsheet")),
+    Key([mod, "control"], "k", lazy.group["scratchpad"].dropdown_toggle("cheatsheet")),
     # Media Keys
     Key(
         [],
