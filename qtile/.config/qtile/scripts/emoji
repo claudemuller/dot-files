@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+LPATH="$(
+	cd "$(dirname "$0")"
+	pwd -P
+)"
+
+rofi_cmd="rofi -theme $LPATH/rasi/wide.rasi"
+
+$rofi_cmd -modi emoji -show emoji
