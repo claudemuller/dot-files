@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &	# Graphical authentication agent
+/usr/lib/polkit-kde-authentication-agent-1 &	# Graphical authentication agent
 
 if [ -x "$(command -v dunst)" ]; then
 	pkill dunst
