@@ -88,6 +88,12 @@ keys = [
         lazy.spawn(home + "/.config/qtile/scripts/clipboard"),
         desc="Launch clipboard manager",
     ),
+    Key(
+        [mod, "control"],
+        "e",
+        lazy.spawn(home + "/.config/qtile/scripts/emoji"),
+        desc="Launch emoji manager",
+    ),
     #
     # Scratchpads
     Key([mod], "grave", lazy.group["scratchpad"].dropdown_toggle("special")),
