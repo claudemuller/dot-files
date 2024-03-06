@@ -16,7 +16,7 @@ return {
   },
   keys = {
     --{ "<leader>f", desc = "File" },
-    { '<leader>N', ':Neotree<CR>', desc = '[N]eotree' },
+    { '<leader>N', ':Neotree toggle<CR>', desc = '[N]eotree' },
   },
   opts = {
     sources = {

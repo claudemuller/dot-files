@@ -25,4 +25,18 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = { signs = false },
   },
+
+  --	{
+  --		"nvim-treesitter/nvim-treesitter-textobjects",
+  --		dependencies = { "nvim-treesitter" },
+  --	},
+  -- "MunifTanjim/nui.nvim",
+
+  {
+    'sindrets/diffview.nvim',
+    keys = {
+      { '<leader>fd', ':DiffthisOpen HEAD~2<CR>', desc = 'Diffthis with last commit', mode = { 'n', 'v' } },
+      { '<leader>fu', ':DiffthisOpen<CR>', desc = 'Diffthis with unstaged files', mode = { 'n', 'v' } },
+    },
+  },
 }

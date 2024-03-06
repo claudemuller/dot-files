@@ -21,6 +21,23 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
+-- Remap for dealing with word wrap
+vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
+-- File operations
+vim.keymap.set("n", "<M-C-s>", "<cmd>:update<cr>", { desc = "Save current file" })
+
+-- Window management
+-- vim.keymap.set("n", "<leader>w+", "<cmd>:vertical resize +10<cr>", { desc = "Increase pane split" })
+-- vim.keymap.set("n", "<leader>w-", "<cmd>:vertical resize -10<cr>", { desc = "Decrease pane split" })
+
+-- Diagnostics
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
+vim.keymap.set("n", "<leader>df", vim.diagnostic.open_float, { desc = "Open diagnostics in floating" })
+vim.keymap.set("n", "<leader>dq", vim.diagnostic.setloclist, { desc = "Open diagnostics in quickfix" })
+
 vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
 vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
 vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
@@ -33,3 +50,12 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+-- Git
+-- vim.keymap.set('n', '<leader>Gg', ':Git commit and push<CR>', { desc = 'Move focus to the upper window' })
+vim.keymap.set('n', '<leader>GP', ':Git push<CR>', { desc = 'Git push' })
+vim.keymap.set('n', '<leader>Gp', ':Git pull<CR>', { desc = 'Git pull' })
+vim.keymap.set('n', '<leader>Gc', ':Git commit<CR>', { desc = 'Git commit' })
+vim.keymap.set('n', '<leader>Gl', ':Telescope git_commits<CR>', { desc = 'Git log' })
+vim.keymap.set('n', '<leader>GS', ':Telescope git_status<CR>', { desc = 'Git status' })
+vim.keymap.set('n', '<leader>Gt', ':Telescope git_stash<CR>', { desc = 'Git stash' })
