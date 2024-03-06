@@ -34,20 +34,21 @@
 	bs = for-each-ref --format='%(committerdate) %09 %(authorname) %09 %(refname)'
 	behind-ahead = !sh -c 'git "for-each-ref --format=\"%(refname:short) %(upstream:track)\" refs/heads"'
 	br = !git fetch && git behind-ahead
-    checkconflicts = diff -S "<<<<<<< HEAD" -S "=======" -S ">>>>>>> $(git name-rev --name-only MERGE_HEAD)" HEAD
+	checkconflicts = diff -S "<<<<<<< HEAD" -S "=======" -S ">>>>>>> $(git name-rev --name-only MERGE_HEAD)" HEAD
 	example = !sh -c 'echo "Merge branch ${1} into ${1}"' -
 [user]
 	name = Claude Müller
 	email = claude@dxt.rs
 [interactive]
-    diffFilter = delta --color-only
+	diffFilter = delta --color-only
 [delta]
-    navigate = true    # use n and N to move between diff sections
-    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+	navigate = true    # use n and N to move between diff sections
+	light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
 [merge]
-    conflictstyle = diff3
+	conflictstyle = diff3
+	tool = nvim -c ":DiffviewOpen"
 [diff]
-    colorMoved = default
-	tool = nvim
+	colorMoved = default
+	tool = nvim -c ":DiffviewOpen"
 [credential]
 	helper = store
