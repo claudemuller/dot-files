@@ -35,8 +35,8 @@ return {
   {
     'sindrets/diffview.nvim',
     keys = {
-      { '<leader>fd', ':DiffthisOpen HEAD~2<CR>', desc = 'Diffthis with last commit', mode = { 'n', 'v' } },
-      { '<leader>fu', ':DiffthisOpen<CR>', desc = 'Diffthis with unstaged files', mode = { 'n', 'v' } },
+      { '<leader>fd', ':DiffviewOpen HEAD~2<CR>', desc = 'Diffthis with last commit', mode = { 'n', 'v' } },
+      { '<leader>fu', ':DiffviewOpen<CR>', desc = 'Diffthis with unstaged files', mode = { 'n', 'v' } },
     },
   },
 }
