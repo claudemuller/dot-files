@@ -12,7 +12,20 @@ return {
     },
   },
 
-  'pocco81/auto-save.nvim',
+  -- {
+  --   'pocco81/auto-save.nvim',
+  --   config = function()
+  --     require('auto-save').setup {
+  --       execution_message = {
+  --         message = function() -- message to print on save
+  --           return ''
+  --         end,
+  --         dim = 0.18, -- dim the color of `message`
+  --         cleaning_interval = 1250, -- (milliseconds) automatically clean MsgArea after displaying `message`. See :h MsgArea
+  --       },
+  --     }
+  --   end,
+  -- },
 
   -- `opts = {}` is equivalent to:
   --    require('Comment').setup({})
@@ -35,8 +48,8 @@ return {
   {
     'sindrets/diffview.nvim',
     keys = {
-      { '<leader>fd', ':DiffviewOpen HEAD~2<CR>', desc = 'Diffthis with last commit', mode = { 'n', 'v' } },
-      { '<leader>fu', ':DiffviewOpen<CR>', desc = 'Diffthis with unstaged files', mode = { 'n', 'v' } },
+      { '<leader>fd', ':DiffviewOpen HEAD~2<CR>', desc = 'Diffview with last commit', mode = { 'n', 'v' } },
+      { '<leader>fu', ':DiffviewOpen<CR>', desc = 'Diffview with unstaged files', mode = { 'n', 'v' } },
     },
   },
 }
