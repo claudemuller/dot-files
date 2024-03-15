@@ -25,6 +25,9 @@ return {
       black = {
         prepend_args = { '-l', 120 },
       },
+      prettier = {
+        prepend_args = { '--print-width ', 120 },
+      },
     },
   },
 }

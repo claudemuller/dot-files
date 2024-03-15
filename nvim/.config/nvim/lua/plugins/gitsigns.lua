@@ -6,6 +6,7 @@
 -- See `:help gitsigns`
 return {
   'lewis6991/gitsigns.nvim',
+  event = { 'BufEnter', 'BufCreate' },
   keys = {
     { ']h', '<cmd>Gitsigns next_hunk<cr>', desc = 'Next hunk' },
     { '[h', '<cmd>Gitsigns prev_hunk<cr>', desc = 'Previous hunk' },
@@ -21,11 +22,12 @@ return {
     { '<leader>Gd', '<cmd>Gitsigns diffthis<cr>', desc = 'Diff This', mode = { 'n', 'v' } },
     { '<leader>GD', '<cmd>Gitsigns diffthis ~<cr>', desc = 'Diff This ~' },
   },
-  opts = {
+  config = {
     signs = {
       add = { text = '✚' },
       change = { text = '' },
       delete = { text = '✖' },
+      test = 'test',
       topdelete = { text = '✖' },
       changedelete = { text = '' },
     },
