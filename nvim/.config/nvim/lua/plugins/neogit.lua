@@ -21,7 +21,26 @@ return {
   -- vim.keymap.set('n', '<leader>GS', ':Telescope git_status<CR>', { desc = 'Git status' })
   -- vim.keymap.set('n', '<leader>Gt', ':Telescope git_stash<CR>', { desc = 'Git stash' })
   keys = {
-    { '<leader>Gt', ':Neogit<CR>', desc = 'Toggle [N]eogit' },
+    {
+      '<leader>Gt',
+      function()
+        require('neogit').open { kind = 'floating' }
+      end,
+      desc = 'Toggle Neo[G]it',
+    },
+    {
+      '<leader>Gc',
+      function()
+        require('neogit').open { 'commit' }
+      end,
+      desc = '[G]it [c]ommit dialog',
+    },
   },
   config = true,
+  opts = {
+    integrations = {
+      telescope = true,
+      diffview = true,
+    },
+  },
 }

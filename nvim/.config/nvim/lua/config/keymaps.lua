@@ -26,7 +26,7 @@ vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- File operations
-vim.keymap.set('n', '<M-C-s>', '<cmd>:update<cr>', { desc = 'Save current file' })
+vim.keymap.set('n', '<C-S-s>', '<cmd>:update<cr>', { desc = 'Save current file' })
 
 -- Window management
 -- vim.keymap.set("n", "<leader>w+", "<cmd>:vertical resize +10<cr>", { desc = "Increase pane split" })
