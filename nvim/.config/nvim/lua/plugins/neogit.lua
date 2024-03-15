@@ -24,7 +24,7 @@ return {
     {
       '<leader>Gt',
       function()
-        require('neogit').open { kind = 'floating' }
+        require('neogit').open { kind = 'split' }
       end,
       desc = 'Toggle Neo[G]it',
     },
