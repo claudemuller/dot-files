@@ -7,10 +7,13 @@
 return {
   'hrsh7th/nvim-cmp',
   event = 'InsertEnter',
+  lazy = false,
   dependencies = {
     -- Snippet Engine & its associated nvim-cmp source
     {
       'L3MON4D3/LuaSnip',
+      version = 'v2.*', -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+      -- dependencies = { 'saadparwaiz1/cmp_luasnip' },
       build = (function()
         -- Build Step is needed for regex support in snippets
         -- This step is not supported in many windows environments
@@ -20,6 +23,9 @@ return {
         end
         return 'make install_jsregexp'
       end)(),
+      config = function()
+        require('luasnip.loaders.from_lua').load { paths = '~/.snippets' }
+      end,
     },
     'saadparwaiz1/cmp_luasnip',
 
@@ -28,18 +34,24 @@ return {
     --  into multiple repos for maintenance purposes.
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-cmdline',
+    'hrsh7th/cmp-nvim-lua',
+    'hrsh7th/cmp-nvim-lsp-signature-help',
 
     -- If you want to add a bunch of pre-configured snippets,
     --    you can use this plugin to help you. It even has snippets
     --    for various frameworks/libraries/etc. but you will have to
     --    set up the ones that are useful for you.
-    -- 'rafamadriz/friendly-snippets',
+    'rafamadriz/friendly-snippets',
   },
   config = function()
     -- See `:help cmp`
     local cmp = require 'cmp'
     local luasnip = require 'luasnip'
     luasnip.config.setup {}
+
+    require('luasnip.loaders.from_vscode').lazy_load()
 
     cmp.setup {
       snippet = {
@@ -88,11 +100,20 @@ return {
           end
         end, { 'i', 's' }),
       },
-      sources = {
-        { name = 'nvim_lsp' },
+      -- sources = {
+      --   { name = 'nvim_lsp' },
+      --   { name = 'luasnip' },
+      --   { name = 'path' },
+      -- },
+      sources = cmp.config.sources({
+        { name = 'nvim_lsp', keyword_length = 1 },
+        { name = 'nvim_lsp_signature_help' },
         { name = 'luasnip' },
         { name = 'path' },
-      },
+        { name = 'nvim_lua' },
+      }, {
+        { name = 'buffer' },
+      }),
     }
   end,
 }

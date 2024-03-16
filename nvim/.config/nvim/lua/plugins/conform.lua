@@ -4,10 +4,13 @@
 -- See `:help confirm`
 return {
   'stevearc/conform.nvim',
+  event = { 'BufWritePre' },
+  cmd = { 'ConformInfo' },
+  -- Everything in opts will be passed to setup()
   opts = {
-    notify_on_error = false,
+    notify_on_error = true,
     format_on_save = {
-      timeout_ms = 1000,
+      timeout_ms = 500,
       lsp_fallback = true,
     },
     formatters_by_ft = {
@@ -17,6 +20,7 @@ return {
       python = { 'isort', 'black' },
       -- Use a sub-list to run only the first available formatter
       javascript = { { 'prettierd', 'prettier' } },
+      yaml = { 'yamlfmt' },
     },
     lang_to_formatters = {
       json = { 'jq' },
