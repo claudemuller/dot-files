@@ -16,11 +16,11 @@ return {
   --   { '<leader>TF', ':GoTestFile<CR>', desc = '[T]est [F]ile' },
   --   { '<leader>Tp', ':GoTestPkg<CR>', desc = '[T]est [p]ackage' },
   -- },
-  init = function()
-    require('go').setup()
-    require('go.format').goimport() -- goimport + gofmt
-    vim.cmd 'GoInstallBinaries'
-  end,
+  -- init = function()
+  -- require('go').setup()
+  -- require('go.format').goimport() -- goimport + gofmt
+  -- vim.cmd 'GoInstallBinaries'
+  -- end,
   event = { 'CmdlineEnter' },
   ft = {
     'go',
