@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+pandoc -t beamer -o ~/repos/notes/cheatsheets/keybindings.pdf  --variable=geometry:"paperwidth=8.5in, paperheight=11in, margin=1in" --variable=fontsize:12pt ~/repos/notes/cheatsheets/keybindings.md
+zathura ~/repos/notes/cheatsheets/keybindings.pdf

@@ -183,7 +183,7 @@ groups = [
             ),
             DropDown(
                 "cheatsheet",
-                terminal + " -e " + conf_dir + "/scripts/cheatsheet",
+                "qutebrowser " + home + "/repos/notes/cheatsheets/keybindings.html",
                 opacity=1,
                 height=0.9,
                 on_focus_lost_hide=False,
