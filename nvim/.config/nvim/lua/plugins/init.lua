@@ -52,4 +52,12 @@ return {
       { '<leader>fu', ':DiffviewOpen<CR>', desc = 'Diffview with unstaged files', mode = { 'n', 'v' } },
     },
   },
+
+  {
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    config = true,
+    -- use opts = {} for passing setup options
+    -- this is equalent to setup({}
+  },
 }
