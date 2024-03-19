@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+scrot /tmp/lock.png
+convert /tmp/lock.png /tmp/lock.jpg
+file=/tmp/lock.jpg
+finalfile=/tmp/lock.jpg
+
+magick=/usr/bin/convert
+
+pixamount="0.5"
+amount=$(echo "1.001 - $pixamount" | bc -l)
+
+coeff1=$(echo "100 * $amount" | bc -l)
+coeff2=$(echo "100 / $amount" | bc -l)
+
+$magick -scale $coeff1% -scale $coeff2% $file $finalfile
+
+betterlockscreen -u "$finalfile" --lock

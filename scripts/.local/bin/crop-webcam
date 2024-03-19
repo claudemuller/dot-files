@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+#sudo modprobe v4l2loopback video_nr=5
+width=400
+height=400
+x=140
+y=80
+ffmpeg -i /dev/video0 -f v4l2 -pix_fmt yuv420p -filter:v "hflip,crop=$width:$height:$x:$y" /dev/video5
