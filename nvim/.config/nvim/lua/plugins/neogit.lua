@@ -35,6 +35,21 @@ return {
       end,
       desc = '[G]it [c]ommit dialog',
     },
+    {
+      '<leader>Gp',
+      ':Git pull<CR>',
+      desc = '[G]it [p]ull',
+    },
+    {
+      '<leader>GP',
+      ':Git push<CR>',
+      desc = '[G]it [P]ush',
+    },
+    {
+      '<leader>GB',
+      ':Telescope git_branches<CR>',
+      desc = '[G]it [B]ranches',
+    },
   },
   config = true,
   opts = {
