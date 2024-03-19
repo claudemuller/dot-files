@@ -60,9 +60,9 @@ keys = [
     Key([mod], "f", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen on the focused window"),
     Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
-    Key([mod, "control"], "l", lazy.spawn("betterlockscreen -l dim"), desc="Lock screen"),
+    Key([mod, "control"], "q", lazy.spawn("betterlockscreen -l dim"), desc="Lock screen"),
     # Key([mod, "control"], "l", lazy.spawn(home + "/.local/bin/lockscreen"), desc="Lock screen"),
-    Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+    Key([mod, "control", "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     # Executables
     Key(
@@ -101,7 +101,7 @@ keys = [
     Key([mod, "control"], "n", lazy.group["scratchpad"].dropdown_toggle("notes")),
     Key([mod, "control"], "k", lazy.group["scratchpad"].dropdown_toggle("cheatsheet")),
     Key([mod, "control"], "s", lazy.group["scratchpad"].dropdown_toggle("spotify")),
-    Key([mod, "control"], "q", lazy.group["scratchpad"].dropdown_toggle("qutebrowser")),
+    Key([mod, "control"], "b", lazy.group["scratchpad"].dropdown_toggle("browser")),
     # Media Keys
     Key(
         [],
@@ -199,7 +199,7 @@ groups = [
                 desc="Spotify",
             ),
             DropDown(
-                "qutebrowser",
+                "browser",
                 "qutebrowser",
                 opacity=1,
                 height=0.9,
