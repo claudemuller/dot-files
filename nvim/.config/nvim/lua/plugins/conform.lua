@@ -20,6 +20,7 @@ return {
       python = { 'isort', 'black' },
       -- Use a sub-list to run only the first available formatter
       javascript = { { 'prettierd', 'prettier' } },
+      typescript = { { 'prettierd', 'prettier' } },
       yaml = { 'yamlfmt' },
     },
     lang_to_formatters = {
@@ -30,7 +31,7 @@ return {
         prepend_args = { '-l', 120 },
       },
       prettier = {
-        prepend_args = { '--print-width ', 120 },
+        prepend_args = { '--print-width ', 120, '--tab-width', 4 },
       },
     },
   },
