@@ -79,5 +79,8 @@ vim.opt.colorcolumn = '100,120'
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 5
 
+-- Obsidian checkbox rendering thing
+vim.opt_local.conceallevel = 1
+
 -- Log Level
 -- vim.lsp.set_log_level 'off'

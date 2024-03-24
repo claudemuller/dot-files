@@ -13,11 +13,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 vim.api.nvim_create_autocmd('FileType', {
   desc = 'Spell check markdown files',
-  pattern = '*.md',
+  pattern = 'markdown',
   group = vim.api.nvim_create_augroup('markdown-group', { clear = true }),
   callback = function()
     vim.opt.spell = true
-    vim.opt.spelllang = 'en_uk'
+    vim.opt.spelllang = 'en_gb'
   end,
 })
 

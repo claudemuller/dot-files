@@ -31,7 +31,14 @@ return {
         prepend_args = { '-l', 120 },
       },
       prettier = {
-        prepend_args = { '--print-width ', 120, '--tab-width', 4 },
+        prepend_args = {
+          '--print-width ',
+          120,
+          '--tab-width',
+          4,
+          '--arrow-parens',
+          'avoid',
+        },
       },
     },
   },

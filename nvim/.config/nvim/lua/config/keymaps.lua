@@ -25,6 +25,9 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
+-- Redo
+vim.keymap.set('n', '<S-u>', ':redo<CR>', { silent = true })
+
 -- File operations
 vim.keymap.set('n', '<C-S-s>', '<cmd>:update<CR>', { noremap = true, desc = 'Save current file' })
 -- vim.api.nvim_set_keymap('n', '<C-S-s>', ':w<CR>', { noremap = true })
@@ -51,6 +54,12 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+-- Diagnostics
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+-- vim.keymap.set('n', '<leader>df', vim.diagnostic.open_float, { desc = 'Open diagnostics in floating' })
+-- vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'Open diagnostics in quickfix' })
 
 -- Git
 -- vim.keymap.set('n', '<leader>Gg', ':Git commit and push<CR>', { desc = 'Move focus to the upper window' })
