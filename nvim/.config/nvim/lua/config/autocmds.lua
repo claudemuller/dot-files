@@ -51,3 +51,11 @@ vim.api.nvim_create_autocmd('BufWritePost', {
     vim.fn.jobstart(job_cmd, job_opts)
   end,
 })
+
+vim.api.nvim_create_autocmd('FocusLost', {
+  desc = 'Auto save all buffers when Vim loses focus',
+  group = vim.api.nvim_create_augroup('saving-group', { clear = true }),
+  callback = function()
+    vim.cmd 'wall'
+  end,
+})
