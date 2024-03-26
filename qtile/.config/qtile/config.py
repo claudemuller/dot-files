@@ -95,6 +95,12 @@ keys = [
         lazy.spawn(home + "/.config/qtile/scripts/emoji"),
         desc="Launch emoji manager",
     ),
+    Key(
+        [mod, "control"],
+        "i",
+        lazy.spawn(home + "/.config/qtile/scripts/add-to-inbox"),
+        desc="Add note to inbox",
+    ),
     #
     # Scratchpads
     Key([mod], "grave", lazy.group["scratchpad"].dropdown_toggle("special")),
@@ -349,6 +355,7 @@ widget_opts = [
     widget.TextBox(foreground=colours[3], fmt="", fontsize=14),
     widget.Battery(notify_below=0.1),
     widget.CheckUpdates(distro="Arch", no_update_string="", display_format=" {updates}"),
+    widget.Pomodoro(prefix_inactive="", color_inactive=colours[3]),
     widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
     # widget.QuickExit(),
 ]
