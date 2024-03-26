@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 
-note=$(rofi -dmenu -p "Note to add: ")
+LPATH="$(
+	cd "$(dirname "$0")"
+	pwd -P
+)"
+
+note=$(rofi -theme "$LPATH/rasi/wide.rasi" -dmenu -p "Note to add:")
 
 if [ -n "$note" ]; then
 	token=$(cat ~/.obs-tok)
