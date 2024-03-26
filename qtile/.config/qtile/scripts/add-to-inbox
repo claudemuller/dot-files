@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+note=$(rofi -dmenu -p "Note to add: ")
+
+if [ -n "$note" ]; then
+	token=$(cat ~/.obs-tok)
+	curl -k \
+		-H "Content-Type: text/markdown" \
+		-H "Authorization: Bearer $token" \
+		-X POST "https://localhost:27124/vault/inbox.md" \
+		--data "- $note"
+fi
+

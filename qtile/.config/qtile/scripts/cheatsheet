@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-glow $HOME/repos/notes/cheatsheets/keybindings.md
-read
