@@ -56,11 +56,16 @@ return {
       -- You can put your default mappings / updates / etc. in here
       --  All the info you're looking for is in `:help telescope.setup()`
       --
-      -- defaults = {
-      --   mappings = {
-      --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-      --   },
-      -- },
+      defaults = {
+        mappings = {
+          i = {
+            -- ['<c-enter>'] = 'to_fuzzy_refine'
+            -- Disable up and down keys to get used to c-n and c-p
+            ['<up>'] = false,
+            ['<down>'] = false,
+          },
+        },
+      },
       -- pickers = {}
       extensions = {
         ['ui-select'] = {
