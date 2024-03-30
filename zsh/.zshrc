@@ -340,3 +340,5 @@ export HELIX_RUNTIME=$HOME/repos/3rd-party/helix/runtime
 neofetch
 
 source $HOME/.config/broot/launcher/bash/br
+
+source /home/claude/.config/broot/launcher/bash/br

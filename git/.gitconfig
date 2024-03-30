@@ -38,7 +38,7 @@
 	example = !sh -c 'echo "Merge branch ${1} into ${1}"' -
 [user]
 	name = Claude Müller
-	email = claude@dxt.rs
+	email = claude.myller@tele2.com
 [interactive]
 	diffFilter = delta --color-only
 [delta]
