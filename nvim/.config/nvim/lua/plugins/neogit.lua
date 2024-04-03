@@ -21,7 +21,7 @@ return {
     {
       '<leader>Gt',
       function()
-        require('neogit').open { kind = 'split' }
+        require('neogit').open { kind = 'tab' }
       end,
       desc = 'Toggle Neo[G]it',
     },
