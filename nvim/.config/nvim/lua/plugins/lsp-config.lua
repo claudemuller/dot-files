@@ -183,6 +183,13 @@ return {
       ruby_ls = {},
       sqlls = {},
       taplo = {},
+      ltex = {
+        settings = {
+          filetypes = { 'markdown', 'text' },
+          flags = { debounce_text_changes = 300 },
+          language = 'en-GB',
+        },
+      },
       lemminx = {},
       yamlls = {},
       lua_ls = {

@@ -29,8 +29,19 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 vim.keymap.set('n', '<S-u>', ':redo<CR>', { silent = true })
 
 -- File operations
-vim.keymap.set('n', '<C-S-s>', '<cmd>:update<CR>', { noremap = true, desc = 'Save current file' })
--- vim.api.nvim_set_keymap('n', '<C-S-s>', ':w<CR>', { noremap = true })
+vim.keymap.set('n', '<C-S-s>', '<cmd>:update<CR>', { noremap = true, desc = 'Save current buffer' })
+local function save_all_buffers()
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    -- Check if buffer is valid and is not a terminal buffer
+    if vim.api.nvim_buf_is_valid(buf) and not vim.api.nvim_buf_get_option(buf, 'buftype') == 'terminal' then
+      vim.api.nvim_buf_call(buf, function()
+        vim.cmd ':update'
+      end)
+    end
+  end
+end
+-- check here - https://vi.stackexchange.com/questions/38848/how-can-i-map-ctrl-alt-letter-mappings-in-vim
+vim.keymap.set('n', '<C-S-A-s>', save_all_buffers, { noremap = true, desc = 'Save all open buffers' })
 
 -- Window management
 -- vim.keymap.set("n", "<leader>w+", "<cmd>:vertical resize +10<cr>", { desc = "Increase pane split" })

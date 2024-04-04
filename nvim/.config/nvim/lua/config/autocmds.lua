@@ -59,3 +59,11 @@ vim.api.nvim_create_autocmd('FocusLost', {
     vim.cmd 'wall'
   end,
 })
+
+-- vim.api.nvim_create_autocmd('CursorMovedI', { -- CursorMoved for all cursor movements
+--   desc = '',
+--   group = vim.api.nvim_create_augroup('typing-group', { clear = true }),
+--   callback = function()
+--     vim.fn.jobstart 'ffplay -v 0 -nodisp -autoexit ~/temp/typewriter-key.mp3'
+--   end,
+-- })
