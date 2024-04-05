@@ -79,6 +79,9 @@ vim.opt.colorcolumn = '100,120'
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 5
 
+-- Set backspace to "normal" behaviour
+-- vim.opt.backspace = 'indent,eol,start'
+
 -- Obsidian checkbox rendering thing
 vim.opt_local.conceallevel = 1
 

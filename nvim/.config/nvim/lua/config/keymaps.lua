@@ -28,6 +28,11 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 -- Redo
 vim.keymap.set('n', '<S-u>', ':redo<CR>', { silent = true })
 
+-- Ctrl+Backspace to delete whole words in normal mode
+-- vim.keymap.set('i', '<C-h>', '<Esc>dd', { noremap = true })
+-- vim.keymap.set('i', '<C-H>', '<C-W>', { noremap = true })
+-- vim.keymap.set('i', '<C-BS>', '<C-w>', { noremap = true })
+
 -- File operations
 vim.keymap.set('n', '<C-S-s>', '<cmd>:update<CR>', { noremap = true, desc = 'Save current buffer' })
 local function save_all_buffers()
