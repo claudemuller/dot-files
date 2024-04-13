@@ -1,6 +1,8 @@
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
+local fn = require 'functions'
+
 -- Highlight when yanking (copying) text
 --  See `:help vim.highlight.on_yank()`
 vim.api.nvim_create_autocmd('TextYankPost', {
@@ -55,9 +57,7 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 vim.api.nvim_create_autocmd('FocusLost', {
   desc = 'Auto save all buffers when Vim loses focus',
   group = vim.api.nvim_create_augroup('saving-group', { clear = true }),
-  callback = function()
-    vim.cmd 'wall'
-  end,
+  callback = fn.save_all_buffers,
 })
 
 -- vim.api.nvim_create_autocmd('CursorMovedI', { -- CursorMoved for all cursor movements

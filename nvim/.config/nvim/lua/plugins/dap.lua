@@ -18,6 +18,7 @@ return {
 
     -- Add your own debuggers here
     'leoluz/nvim-dap-go',
+    'theHamsta/nvim-dap-virtual-text',
   },
   config = function()
     local dap = require 'dap'
@@ -40,6 +41,30 @@ return {
       },
     }
 
+    local dap_breakpoint = {
+      error = {
+        text = '🟥',
+        texthl = 'LspDiagnosticsSignError',
+        linehl = '',
+        numhl = '',
+      },
+      rejected = {
+        text = '',
+        texthl = 'LspDiagnosticsSignHint',
+        linehl = '',
+        numhl = '',
+      },
+      stopped = {
+        text = '⭐️',
+        texthl = 'LspDiagnosticsSignInformation',
+        linehl = 'DiagnosticUnderlineInfo',
+        numhl = 'LspDiagnosticsSignInformation',
+      },
+    }
+    vim.fn.sign_define('DapBreakpoint', dap_breakpoint.error)
+    vim.fn.sign_define('DapStopped', dap_breakpoint.stopped)
+    vim.fn.sign_define('DapBreakpointRejected', dap_breakpoint.rejected)
+
     -- Basic debugging keymaps, feel free to change to your liking!
     vim.keymap.set('n', '<leader>Dc', dap.continue, { desc = '[D]ebug: Start/[C]ontinue' })
     vim.keymap.set('n', '<leader>Di', dap.step_into, { desc = '[D]ebug: Step [I]nto' })
@@ -50,6 +75,10 @@ return {
     vim.keymap.set('n', '<leader>DB', function()
       dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
     end, { desc = '[D]ebug: Set [B]reakpoint' })
+
+    require('nvim-dap-virtual-text').setup {
+      commented = true,
+    }
 
     -- For more information, see |:help nvim-dap-ui|
     dapui.setup {
@@ -75,11 +104,17 @@ return {
     -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
     vim.keymap.set('n', '<leader>Ds', dapui.toggle, { desc = '[D]ebug: See last [s]ession result.' })
 
-    dap.listeners.after.event_iniTialized['dapui_config'] = dapui.open
-    dap.listeners.before.event_teRminated['dapui_config'] = dapui.close
-    dap.listeners.before.event_exIted['dapui_config'] = dapui.close
+    dap.listeners.after.event_initialized['dapui_config'] = dapui.open
+    dap.listeners.before.event_terminated['dapui_config'] = dapui.close
+    dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
     -- Install golang specific config
-    require('dap-go').setup()
+    -- require('dap-go').setup()
+
+    -- Custom lang setups
+    -- require('config.dap.python').setup()
+    -- require('config.dap.lua').setup()
+    require('config.dap.go').setup()
+    -- require('config.dap.c').setup()
   end,
 }
