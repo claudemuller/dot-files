@@ -5,11 +5,8 @@
 -- Debugger
 -- See `:help nvim-dap`
 return {
-  -- NOTE: Yes, you can install new plugins here!
   'mfussenegger/nvim-dap',
-  -- NOTE: And you can specify dependencies as well
   dependencies = {
-    -- Creates a beautiful debugger UI
     {
       'rcarriga/nvim-dap-ui',
       dependencies = 'nvim-neotest/nvim-nio',
@@ -48,12 +45,12 @@ return {
     vim.keymap.set('n', '<leader>Di', dap.step_into, { desc = '[D]ebug: Step [I]nto' })
     vim.keymap.set('n', '<leader>Do', dap.step_over, { desc = '[D]ebug: Step [o]ver' })
     vim.keymap.set('n', '<leader>DO', dap.step_out, { desc = '[D]ebug: Step [O]ut' })
-    vim.keymap.set('n', '<leader>Db', dap.toggle_breakpoint, { desc = 'Debug: Toggle [b]reakpoint' })
+    vim.keymap.set('n', '<leader>Db', dap.toggle_breakpoint, { desc = '[D]ebug: Toggle [b]reakpoint' })
+    vim.keymap.set('n', '<leader>DT', dap.terminate, { desc = '[D]ebug: [T]erminate' })
     vim.keymap.set('n', '<leader>DB', function()
       dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
     end, { desc = '[D]ebug: Set [B]reakpoint' })
 
-    -- Dap UI setup
     -- For more information, see |:help nvim-dap-ui|
     dapui.setup {
       -- Set icons to characters that are more likely to work in every terminal.
