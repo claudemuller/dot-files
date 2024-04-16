@@ -113,7 +113,7 @@ return {
 
     -- Custom lang setups
     -- require('config.dap.python').setup()
-    -- require('config.dap.lua').setup()
+    require('config.dap.lua').setup()
     require('config.dap.go').setup()
     -- require('config.dap.c').setup()
   end,
