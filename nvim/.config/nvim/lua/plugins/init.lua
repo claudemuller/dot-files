@@ -10,6 +10,13 @@ return {
     dependencies = {
       'tpope/vim-rhubarb',
     },
+    keys = {
+      { '<leader>gs', ':Git<cr>', desc = '[G]it [S]tatus', mode = { 'n' } },
+      { '<leader>gc', ':Git commit<cr>', desc = '[G]it [C]ommit', mode = { 'n' } },
+      { '<leader>gp', ':Git pull<cr>', desc = '[G]it [P]ull', mode = { 'n' } },
+      { '<leader>gP', ':Git push<cr>', desc = '[G]it [P]ush', mode = { 'n' } },
+      { '<leader>gb', ':Telescope git_branches<cr>', desc = '[G]it [B]ranches', mode = { 'n' } },
+    },
   },
 
   -- `opts = {}` is equivalent to:

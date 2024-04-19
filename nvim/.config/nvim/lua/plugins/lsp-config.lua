@@ -180,7 +180,7 @@ return {
           return vim.loop.cwd()
         end,
       },
-      ruby_ls = {},
+      -- ruby_ls = {},
       sqlls = {},
       taplo = {},
       ltex = {
