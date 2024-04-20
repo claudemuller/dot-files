@@ -80,13 +80,14 @@ return {
 
     -- See `:help telescope.builtin`
     local builtin = require 'telescope.builtin'
+
     vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
     vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
     vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
     vim.keymap.set('n', '<leader>sF', function()
       builtin.find_files { cwd = vim.fn.input 'Start dir: ' }
     end, { desc = '[S]earch [F]iles in dir' })
-    vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
+    vim.keymap.set('n', '<leader>st', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
     vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
     vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
     vim.keymap.set('n', '<leader>sG', function()
@@ -119,5 +120,13 @@ return {
     vim.keymap.set('n', '<leader>sn', function()
       builtin.find_files { cwd = vim.fn.stdpath 'config' }
     end, { desc = '[S]earch [N]eovim files' })
+
+    -- Git shortcuts
+    vim.keymap.set('n', '<leader>gL', ':Telescope git_commits<cr>', { desc = '[G]it [L]og in Telescope' })
+    vim.keymap.set('n', '<leader>gS', ':Telescope git_status<cr>', { desc = '[G]it [S]tatus in Telescope' })
+    vim.keymap.set('n', '<leader>gt', ':Telescope git_stash<cr>', { desc = '[G]it s[T]ash in Telescope' })
+    vim.keymap.set('n', '<leader>gb', ':Telescope git_branches<cr>', { desc = '[G]it [B]ranches in Telescope' })
+    vim.keymap.set('n', '<leader>glC', ':Telescope git_commits<cr>', { desc = '[G]it [L]og [C]ommits in Telescope' })
+    vim.keymap.set('n', '<leader>glc', ':Telescope git_bcommits<cr>', { desc = '[G]it [L]og buffer [C]ommits in Telescope' })
   end,
 }

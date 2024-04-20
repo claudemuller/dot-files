@@ -16,7 +16,7 @@ return {
     { '<leader>ghr', '<cmd>Gitsigns reset_hunk<cr>', desc = '[G]it [H]unk [R]eset', mode = { 'n', 'v' } },
     { '<leader>ghp', '<cmd>Gitsigns preview_hunk<cr>', desc = '[G]it [H]unk [P]review' },
     { '<leader>ghu', '<cmd>Gitsigns undo_stage_hunk<cr>', desc = '[G]it [H]unk [U]ndo Staged' },
-    { '<leader>gS', '<cmd>Gitsigns stage_buffer<cr>', desc = '[G]it [S]tage Buffer' },
+    { '<leader>ga', '<cmd>Gitsigns stage_buffer<cr>', desc = '[G]it Stage Buffer' },
     { '<leader>gr', '<cmd>Gitsigns reset_buffer<cr>', desc = '[G]it [R]eset Buffer' },
     { '<leader>gtb', '<cmd>Gitsigns blame_line<cr>', desc = '[G]it [T]oggle [B]lame Line' },
     { '<leader>gtd', '<cmd>Gitsigns toggle_deleted<cr>', desc = '[G]it [T]oggle [D]eleted' },
