@@ -15,7 +15,10 @@ return {
       { '<leader>gc', ':Git commit<cr>', desc = '[G]it [C]ommit', mode = { 'n' } },
       { '<leader>gp', ':Git pull<cr>', desc = '[G]it [P]ull', mode = { 'n' } },
       { '<leader>gP', ':Git push<cr>', desc = '[G]it [P]ush', mode = { 'n' } },
+      { '<leader>gl', ':Gllog<cr>', desc = '[G]it [L]og', mode = { 'n' } },
+      { '<leader>gr', ':Gvdiffsplit!<cr>', desc = '[G]it [R]esolve conflict', mode = { 'n' } },
       { '<leader>gb', ':Telescope git_branches<cr>', desc = '[G]it [B]ranches', mode = { 'n' } },
+      { '<leader>gP', ':Git push<cr>', desc = '[G]it [P]ush', mode = { 'n' } },
     },
   },
 
@@ -29,11 +32,6 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = { signs = false },
   },
-
-  --	{
-  --		"nvim-treesitter/nvim-treesitter-textobjects",
-  --		dependencies = { "nvim-treesitter" },
-  --	},
 
   {
     'sindrets/diffview.nvim',
