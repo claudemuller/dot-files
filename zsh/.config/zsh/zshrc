@@ -1,0 +1,76 @@
+#!/usr/bin/env sh
+
+# Zsh options (man zshoptions)
+setopt autocd extendedglob nomatch menucomplete
+setopt interactive_comments
+stty stop undef		# Disable ctrl-s to freeze terminal.
+# zle_highlight=('paste:none')
+
+# Beeping is annoying
+unsetopt BEEP
+
+# Completions
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+# zstyle ':completion::complete:lsof:*' menu yes select
+zmodload zsh/complist
+# compinit
+_comp_options+=(globdots)		# Include hidden files.
+
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
+# Colors
+autoload -Uz colors && colors
+
+# Useful Functions
+source "$ZDOTDIR/zsh-functions"
+
+# Normal files to source
+zsh_add_file "zsh-exports"
+zsh_add_file "zsh-vim-mode"
+zsh_add_file "zsh-aliases"
+zsh_add_file "zsh-prompt"
+
+# Plugins
+zsh_add_plugin "zsh-users/zsh-autosuggestions"
+zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
+zsh_add_plugin "romkatv/powerlevel10k"
+zsh_add_plugin "zap-zsh/fzf"
+# zsh_add_plugin "Aloxaf/fzf-tab"
+# zsh_add_plugin "Freed-Wu/fzf-tab-source"
+# zsh_add_plugin ""
+
+# Completions
+zsh_add_completion "esc/conda-zsh-completion" false
+# For more plugins: https://github.com/unixorn/awesome-zsh-plugins
+# More completions https://github.com/zsh-users/zsh-completions
+
+# Key-bindings
+bindkey -s '^o' 'ranger^M'
+bindkey -s '^s' 'ncdu^M'
+# bindkey -s '^n' 'nvim $(fzf)^M'
+# bindkey -s '^v' 'nvim\n'
+bindkey '^[[P' delete-char
+bindkey "^p" up-line-or-beginning-search # Up
+bindkey "^n" down-line-or-beginning-search # Down
+bindkey "^k" up-line-or-beginning-search # Up
+bindkey "^j" down-line-or-beginning-search # Down
+bindkey -r "^u"
+bindkey -r "^d"
+
+### Change title of terminals
+case ${TERM} in
+  xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty|st|kitty|konsole*)
+    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
+    ;;
+  screen*)
+    PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\"'
+    ;;
+esac
+
+# Edit line in vim with ctrl-e:
+autoload edit-command-line; zle -N edit-command-line
+# bindkey '^e' edit-command-line

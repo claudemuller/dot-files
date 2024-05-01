@@ -89,4 +89,12 @@ return {
       }
     end,
   },
+
+  {
+    'leoluz/nvim-dap-go',
+    keys = {
+      { '<leader>Dn', '::lua require("dap-go").debug_test()<cr>', desc = '[D]ebug [N]earest Test', mode = { 'n' } },
+      { '<leader>Dl', '::lua require("dap-go").debug_last_test()<cr>', desc = '[D]ebug [L]ast Test', mode = { 'n' } },
+    },
+  },
 }

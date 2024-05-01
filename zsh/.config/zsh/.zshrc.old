@@ -125,6 +125,8 @@ zstyle ':completion:*:descriptions' format '[%d]'
 # set list-colors to enable filename colorizing
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
+zstyle ':completion:*' menu no
+
 # preview directory's content with exa when completing cd
 # zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -1 --color=always $realpath'
 # zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
@@ -205,9 +207,9 @@ fi
 
 export PATH=$PATH:/opt/clang-format-static
 
-### CHANGE TITLE OF TERMINALS
+### Change title of terminals
 case ${TERM} in
-  xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty|st|konsole*)
+  xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty|st|kitty|konsole*)
     PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
     ;;
   screen*)
@@ -340,5 +342,3 @@ export HELIX_RUNTIME=$HOME/repos/3rd-party/helix/runtime
 neofetch
 
 source $HOME/.config/broot/launcher/bash/br
-
-source /home/claude/.config/broot/launcher/bash/br
