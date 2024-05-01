@@ -6,14 +6,16 @@ alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git
 alias vim=nvim
 alias v=nvim
 
-# Bat
-alias bat='bat --theme="Catppuccin-macchiato"'
-
-# Get fastest mirrors
+# Get fastest mirrors in Arch
 alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
 alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
 alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
 alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
+# In Manjaro
+alias update="sudo pacman-mirrors -f 5 && sudo pacman -Syyu"
+
+# For when keys break
+alias archlinx-fix-keys="sudo pacman-key --init && sudo pacman-key --populate archlinux && sudo pacman-key --refresh-keys"
 
 # Confirm before overwriting something
 alias cp="cp -i"
@@ -27,10 +29,8 @@ alias lynx='lynx -cfg=~/.lynx/lynx.cfg -lss=~/.lynx/lynx.lss -vikeys'
 alias vifm='./.config/vifm/scripts/vifmrun'
 alias ncmpcpp='ncmpcpp ncmpcpp_directory=$HOME/.config/ncmpcpp/'
 alias mocp='mocp -M "$XDG_CONFIG_HOME"/moc -O MOCDir="$XDG_CONFIG_HOME"/moc'
+alias bat='bat --theme="base16-256"'
 
-# Get error messages from journalctl
-alias jctl="journalctl -p 3 -xb"
-#
 # GPG encryption
 # Verify signature for isos
 alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
@@ -45,13 +45,17 @@ alias fgrep='fgrep --color=auto'
 # Get top process eating memory
 alias psmem='ps auxf | sort -nr -k 4 | head -5'
 
-# Get top process eating cpu ##
+# Get top process eating cpu 
+alias psa="ps auxf"
+alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
+alias psmem='ps auxf | sort -nr -k 4'
 alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 
-# For when keys break
-alias archlinx-fix-keys="sudo pacman-key --init && sudo pacman-key --populate archlinux && sudo pacman-key --refresh-keys"
+# Get error messages from journalctl
+alias jctl="journalctl -p 3 -xb"
 
 alias ll="ls -lah"
+alias lt='ls -latrh'
 
 case "$(uname -s)" in
 Darwin)

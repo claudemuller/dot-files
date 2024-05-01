@@ -9,18 +9,27 @@ source "$ZDOTDIR/zsh-functions"
 zsh_add_file "zsh-prompt"
 
 # Zsh options (man zshoptions)
-setopt autocd extendedglob nomatch menucomplete
+setopt autocd extendedglob nomatch complete_in_word appendhistory #menucomplete
 setopt interactive_comments
 stty stop undef		# Disable ctrl-s to freeze terminal.
 # zle_highlight=('paste:none')
 
 # Beeping is annoying
 unsetopt BEEP
+unsetopt beep
 
 # Completions
-autoload -Uz compinit
+autoload -Uz compinit; compinit
+setopt AUTO_MENU
+zstyle ':completion:*' completer _extensions _complete _approximate
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/.zcompcache"
 zstyle ':completion:*' menu select
 # zstyle ':completion::complete:lsof:*' menu yes select
+# Set descriptions format to enable group support
+zstyle ':completion:*:descriptions' format '[%d]'
+# Set list-colors to enable filename colorizing
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zmodload zsh/complist
 # compinit
 _comp_options+=(globdots)		# Include hidden files.
@@ -43,6 +52,7 @@ zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "romkatv/powerlevel10k"
 zsh_add_plugin "zap-zsh/fzf"
+zsh_add_plugin "zsh-users/zsh-completions"
 # zsh_add_plugin "Aloxaf/fzf-tab"
 # zsh_add_plugin "Freed-Wu/fzf-tab-source"
 
@@ -52,6 +62,7 @@ zsh_add_completion "esc/conda-zsh-completion" false
 # More completions https://github.com/zsh-users/zsh-completions
 
 # Key-bindings
+bindkey '\t' complete-word
 bindkey -s '^o' 'ranger^M'
 bindkey -s '^s' 'ncdu^M'
 # bindkey -s '^n' 'nvim $(fzf)^M'
@@ -63,6 +74,11 @@ bindkey "^k" up-line-or-beginning-search # Up
 bindkey "^j" down-line-or-beginning-search # Down
 bindkey -r "^u"
 bindkey -r "^d"
+# bindkey -M menuselect 'h' vi-backward-char
+# bindkey -M menuselect 'k' vi-up-line-or-history
+# bindkey -M menuselect 'j' vi-down-line-or-history
+# bindkey -M menuselect 'l' vi-forward-char
+# bindkey -M menuselect '^xi' vi-insert
 
 ### Change title of terminals
 case ${TERM} in
@@ -77,3 +93,5 @@ esac
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
 # bindkey '^e' edit-command-line
+
+neofetch
