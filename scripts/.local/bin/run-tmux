@@ -7,7 +7,7 @@ then
 
   tmux="TERM=xterm-256color tmux"
 
-  if [ $1 = "specialspace" ]; then
+  if [ $# -ge 1 ] && [ "$1" = "specialspace" ]; then
     if [ -z "$is_special" ]; then
       exec tmux new-session -A -s specialspace
     else
