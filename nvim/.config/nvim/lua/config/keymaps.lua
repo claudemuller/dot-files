@@ -40,6 +40,11 @@ vim.keymap.set('n', '<C-W><C-l>', '<cmd>:vertical resize +10<cr>', { desc = 'Inc
 vim.keymap.set('n', '<C-W><C-h>', '<cmd>:vertical resize -10<cr>', { desc = 'Decrease pane split' })
 vim.keymap.set('n', 'q', ':q<cr>', { desc = 'Close current pane' })
 
+vim.keymap.set('n', '<C-n>', ':m +1<cr>', { desc = 'Move line down' })
+vim.keymap.set('v', '<C-n>', ':m +1<cr>', { desc = 'Move line down' })
+vim.keymap.set('n', '<C-p>', ':m -2<cr>', { desc = 'Move line up' })
+vim.keymap.set('v', '<C-p>', ':m -2<cr>', { desc = 'Move line up' })
+
 -- Diagnostics
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
