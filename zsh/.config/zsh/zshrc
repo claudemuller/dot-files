@@ -1,38 +1,50 @@
 #!/usr/bin/env sh
 
-# Useful Functions
+# --------------------------------------------------------------------------------------- Functions
 source "$ZDOTDIR/zsh-functions"
 
+# ----------------------------------------------------------------------------------- Powerlevel10k
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 zsh_add_file "zsh-prompt"
 
-# Zsh options (man zshoptions)
+# -------------------------------------------------------------------- Zsh options (man zshoptions)
 setopt autocd extendedglob nomatch complete_in_word appendhistory #menucomplete
 setopt interactive_comments
-stty stop undef		# Disable ctrl-s to freeze terminal.
+stty stop undef		       # Disable ctrl-s to freeze terminal.
 # zle_highlight=('paste:none')
 
-# Beeping is annoying
+setopt AUTO_PUSHD              # Push the current directory visited on the stack
+setopt PUSHD_IGNORE_DUPS       # Do not store duplicates in the stack
+setopt PUSHD_SILENT            # Do not print the directory stack after pushd or popd
+
 unsetopt BEEP
 unsetopt beep
 
-# Completions
-autoload -Uz compinit; compinit
-setopt AUTO_MENU
-zstyle ':completion:*' completer _extensions _complete _approximate
+# ------------------------------------------------------------------------------------- Completions
+zmodload zsh/complist
+# Load the compinit function from the compinit file in Zsh search path; then call it; 
+# The function is lazy-loaded
+#   -U - don't expand aliases
+autoload -U compinit; compinit
+
+# setopt AUTO_MENU
+# zstyle ':completion:*' completer _extensions _complete _approximate
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/.zcompcache"
-zstyle ':completion:*' menu select
+# zstyle ':completion:*' menu select
 # zstyle ':completion::complete:lsof:*' menu yes select
 # Set descriptions format to enable group support
-zstyle ':completion:*:descriptions' format '[%d]'
+# zstyle ':completion:*:descriptions' format '[%d]'
 # Set list-colors to enable filename colorizing
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-zmodload zsh/complist
-# compinit
-_comp_options+=(globdots)		# Include hidden files.
+# zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+# source /path/to/zsh/completion.zsh
+_comp_options+=(globdots) # Include hidden files
+
+zsh_add_completion "esc/conda-zsh-completion" false
+# For more plugins: https://github.com/unixorn/awesome-zsh-plugins
+# More completions https://github.com/zsh-users/zsh-completions
 
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
@@ -42,32 +54,30 @@ zle -N down-line-or-beginning-search
 # Colors
 autoload -Uz colors && colors
 
-# Normal files to source
-zsh_add_file "zsh-exports"
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
+
+# ----------------------------------------------------------------------------------------- Imports
 zsh_add_file "zsh-vim-mode"
 zsh_add_file "zsh-aliases"
 zsh_add_file "zsh-private"
 
-# Plugins
+# ----------------------------------------------------------------------------------------- Plugins
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "romkatv/powerlevel10k"
 zsh_add_plugin "zap-zsh/fzf"
 zsh_add_plugin "zsh-users/zsh-completions"
+# zsh_add_plugin "Tarrasch/zsh-bd"
 # zsh_add_plugin "Aloxaf/fzf-tab"
 # zsh_add_plugin "Freed-Wu/fzf-tab-source"
 
-# Completions
-zsh_add_completion "esc/conda-zsh-completion" false
-# For more plugins: https://github.com/unixorn/awesome-zsh-plugins
-# More completions https://github.com/zsh-users/zsh-completions
-
-# Key-bindings
+# ------------------------------------------------------------------------------------ Key-bindings
 bindkey '\t' complete-word
 bindkey -s '^o' 'ranger^M'
 bindkey -s '^s' 'ncdu^M'
-# bindkey -s '^n' 'nvim $(fzf)^M'
-# bindkey -s '^v' 'nvim\n'
+bindkey -s '^v' 'nvim $(fzf)^M'
 bindkey '^[[P' delete-char
 bindkey "^p" up-line-or-beginning-search # Up
 bindkey "^n" down-line-or-beginning-search # Down
@@ -83,12 +93,12 @@ bindkey -r "^d"
 
 ### Change title of terminals
 case ${TERM} in
-  xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty|st|kitty|konsole*)
-    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
-    ;;
-  screen*)
-    PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\"'
-    ;;
+    xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty|st|kitty|konsole*)
+        PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
+        ;;
+    screen*)
+        PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\"'
+        ;;
 esac
 
 # Edit line in vim with ctrl-e:
@@ -96,7 +106,7 @@ autoload edit-command-line; zle -N edit-command-line
 # bindkey '^e' edit-command-line
 
 if pacman -Qs "fastfetch" > /dev/null ; then
-  fastfetch
+    fastfetch
 else
-  yay -S fastfetch
+    yay -S fastfetch
 fi

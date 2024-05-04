@@ -22,6 +22,10 @@ alias cp="cp -i"
 alias mv='mv -i'
 alias rm='rm -i'
 
+# Access Zsh's dir stack
+alias d='dirs -v'
+for index ({1..9}) alias "$index"="cd +${index}"; unset index
+
 # Adding flags
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
@@ -58,18 +62,18 @@ alias ll="ls -lah"
 alias lt='ls -latrh'
 
 case "$(uname -s)" in
-Darwin)
-	alias ls='ls -G'
-	;;
+    Darwin)
+        alias ls='ls -G'
+        ;;
 
-Linux)
-	alias ls='ls --color=auto'
-	;;
+    Linux)
+        alias ls='ls --color=auto'
+        ;;
 
-CYGWIN* | MINGW32* | MSYS* | MINGW*)
-	# 'MS Windows'
-	;;
-*)
-	# 'Other OS'
-	;;
+    CYGWIN* | MINGW32* | MSYS* | MINGW*)
+        # 'MS Windows'
+        ;;
+    *)
+        # 'Other OS'
+        ;;
 esac
