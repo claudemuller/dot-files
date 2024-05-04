@@ -3,12 +3,6 @@
 # --------------------------------------------------------------------------------------- Functions
 source "$ZDOTDIR/zsh-functions"
 
-# ----------------------------------------------------------------------------------- Powerlevel10k
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-zsh_add_file "zsh-prompt"
-
 # -------------------------------------------------------------------- Zsh options (man zshoptions)
 setopt autocd extendedglob nomatch complete_in_word appendhistory #menucomplete
 setopt interactive_comments
@@ -99,3 +93,6 @@ autoload edit-command-line; zle -N edit-command-line
 # bindkey '^e' edit-command-line
 
 run_cmd "fastfetch"
+
+# ----------------------------------------------------------------------------------- Powerlevel10k
+source "$ZDOTDIR/zsh-prompt"
