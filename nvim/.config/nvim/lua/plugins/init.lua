@@ -97,4 +97,14 @@ return {
       { '<leader>Dl', '::lua require("dap-go").debug_last_test()<cr>', desc = '[D]ebug [L]ast Test', mode = { 'n' } },
     },
   },
+
+  {
+    'stevearc/aerial.nvim',
+    opts = {},
+    -- Optional dependencies
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-tree/nvim-web-devicons',
+    },
+  },
 }
