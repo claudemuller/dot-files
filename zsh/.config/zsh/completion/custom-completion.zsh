@@ -10,7 +10,7 @@ zstyle ':completion:*' file-list all
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' complete-options true
 
-zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+# zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 zstyle ':fzf-tab:complete:cd:*' disabled-on any
 # zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 
