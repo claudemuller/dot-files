@@ -33,7 +33,7 @@ function zsh_add_completion() {
     fi
     completion_file="$(basename "${completion_file_path}")"
     if [ "$2" = true ] && compinit "${completion_file:1}"
-    }
+}
 
 ### Function extract for common file formats ###
 SAVEIFS=$IFS
@@ -77,3 +77,19 @@ function extract {
 }
 
 IFS=$SAVEIFS
+
+function run_cmd() {
+    if command -v yay &>/dev/null; then
+        if ! yay -Qs "$1" > /dev/null ; then
+            yay -S $1
+        fi
+    fi
+
+    if command -v brew &>/dev/null; then
+        if ! brew list "$1" > /dev/null ; then
+            brew install $1
+        fi
+    fi
+
+    $1
+}

@@ -27,21 +27,14 @@ zmodload zsh/complist
 # Load the compinit function from the compinit file in Zsh search path; then call it; 
 # The function is lazy-loaded
 #   -U - don't expand aliases
-autoload -U compinit; compinit
-
-# setopt AUTO_MENU
-# zstyle ':completion:*' completer _extensions _complete _approximate
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/.zcompcache"
-# zstyle ':completion:*' menu select
-# zstyle ':completion::complete:lsof:*' menu yes select
-# Set descriptions format to enable group support
-# zstyle ':completion:*:descriptions' format '[%d]'
-# Set list-colors to enable filename colorizing
-# zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-# source /path/to/zsh/completion.zsh
+autoload -Uz compinit; compinit
 _comp_options+=(globdots) # Include hidden files
 
+# needs to be loaded after compinit, but before plugins which will wrap widgets,
+# such as zsh-autosuggestions or fast-syntax-highlighting
+zsh_add_plugin "Aloxaf/fzf-tab"
+
+source "$ZDOTDIR/completion/custom-completion.zsh"
 zsh_add_completion "esc/conda-zsh-completion" false
 # For more plugins: https://github.com/unixorn/awesome-zsh-plugins
 # More completions https://github.com/zsh-users/zsh-completions
@@ -54,9 +47,10 @@ zle -N down-line-or-beginning-search
 # Colors
 autoload -Uz colors && colors
 
-autoload -Uz edit-command-line
-zle -N edit-command-line
-bindkey -M vicmd v edit-command-line
+# Edit command in editor with "v" in Vim normal mode
+# autoload -Uz edit-command-line
+# zle -N edit-command-line
+# bindkey -M vicmd v edit-command-line
 
 # ----------------------------------------------------------------------------------------- Imports
 zsh_add_file "zsh-vim-mode"
@@ -70,14 +64,12 @@ zsh_add_plugin "romkatv/powerlevel10k"
 zsh_add_plugin "zap-zsh/fzf"
 zsh_add_plugin "zsh-users/zsh-completions"
 # zsh_add_plugin "Tarrasch/zsh-bd"
-# zsh_add_plugin "Aloxaf/fzf-tab"
 # zsh_add_plugin "Freed-Wu/fzf-tab-source"
 
 # ------------------------------------------------------------------------------------ Key-bindings
-bindkey '\t' complete-word
 bindkey -s '^o' 'ranger^M'
 bindkey -s '^s' 'ncdu^M'
-bindkey -s '^v' 'nvim $(fzf)^M'
+# bindkey -s '^v' 'nvim $(fzf)^M'
 bindkey '^[[P' delete-char
 bindkey "^p" up-line-or-beginning-search # Up
 bindkey "^n" down-line-or-beginning-search # Down
@@ -85,11 +77,12 @@ bindkey "^k" up-line-or-beginning-search # Up
 bindkey "^j" down-line-or-beginning-search # Down
 bindkey -r "^u"
 bindkey -r "^d"
-# bindkey -M menuselect 'h' vi-backward-char
-# bindkey -M menuselect 'k' vi-up-line-or-history
-# bindkey -M menuselect 'j' vi-down-line-or-history
-# bindkey -M menuselect 'l' vi-forward-char
-# bindkey -M menuselect '^xi' vi-insert
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect '^xi' vi-insert
+# bindkey -M menuselect '^xx' vi-cmd-mode
 
 ### Change title of terminals
 case ${TERM} in
@@ -105,8 +98,4 @@ esac
 autoload edit-command-line; zle -N edit-command-line
 # bindkey '^e' edit-command-line
 
-if pacman -Qs "fastfetch" > /dev/null ; then
-    fastfetch
-else
-    yay -S fastfetch
-fi
+run_cmd "fastfetch"

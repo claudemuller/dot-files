@@ -70,6 +70,7 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 # fzf
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_COMPLETION_DIR_COMMANDS="cd pushd rmdir tree"
 
 FZF_COLORS="bg+:-1,\
 fg:gray,\
