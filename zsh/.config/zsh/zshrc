@@ -92,7 +92,7 @@ esac
 autoload edit-command-line; zle -N edit-command-line
 # bindkey '^e' edit-command-line
 
-run_cmd "fastfetch"
+run_cmd "fastfetch" "-l" "$HOME/.config/fastfetch/hackers.png"
 
 # ----------------------------------------------------------------------------------- Powerlevel10k
 source "$ZDOTDIR/zsh-prompt"
