@@ -7,6 +7,7 @@
 return {
   'nvim-neotest/neotest',
   dependencies = {
+    'nvim-neotest/nvim-nio',
     'nvim-lua/plenary.nvim',
     'antoinemadec/FixCursorHold.nvim',
     'nvim-treesitter/nvim-treesitter',
@@ -38,6 +39,20 @@ return {
         require('neotest').run.run()
       end,
       desc = '[T]est Nea[r]est',
+    },
+    {
+      '<leader>Tl',
+      function()
+        require('neotest').run.run_last()
+      end,
+      desc = '[T]est [L]ast',
+    },
+    {
+      '<leader>Td',
+      function()
+        require('neotest').run.run { strategy = 'dap' }
+      end,
+      desc = '[T]est [D]ebug',
     },
     -- ['<leader>td'] = { "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>", 'Debug Test' },
     {
@@ -83,6 +98,17 @@ return {
     },
   },
   config = function()
+    -- get neotest namespace (api call creates or returns namespace)
+    local neotest_ns = vim.api.nvim_create_namespace 'neotest'
+    vim.diagnostic.config({
+      virtual_text = {
+        format = function(diagnostic)
+          local message = diagnostic.message:gsub('\n', ' '):gsub('\t', ' '):gsub('%s+', ' '):gsub('^%s+', '')
+          return message
+        end,
+      },
+    }, neotest_ns)
+
     require('neotest').setup {
       adapters = {
         require 'neotest-python' {
@@ -93,7 +119,7 @@ return {
         require 'neotest-go',
         -- require 'neotest-rust',
         require 'neotest-vim-test' {
-          ignore_file_types = { 'python', 'vim', 'lua' },
+          ignore_file_types = { 'python', 'vim', 'lua', 'go', 'typescript', 'jest' },
         },
       },
     }
