@@ -85,6 +85,12 @@ function run_cmd() {
         fi
     fi
 
+    if command -v apt &>/dev/null; then
+        if ! dpkg-query -W -f='${Status}' "$1" 2>/dev/null | rg installed ; then
+            sudo apt install $1
+        fi
+    fi
+
     if command -v brew &>/dev/null; then
         if ! brew list "$1" > /dev/null ; then
             brew install $1
