@@ -25,7 +25,7 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 vim.keymap.set('n', '<S-u>', ':redo<CR>', { silent = true })
 
 -- File operations
-vim.keymap.set('n', '<C-S-s>', '<cmd>:update<CR>', { noremap = true, desc = 'Save current buffer' })
+vim.keymap.set('n', '<C-S-s>', '<cmd>:w<CR>', { noremap = true, desc = 'Save current buffer' })
 -- check here - https://vi.stackexchange.com/questions/38848/how-can-i-map-ctrl-alt-letter-mappings-in-vim
 vim.keymap.set('n', '<C-S-A-s>', fn.save_all_buffers, { noremap = true, desc = 'Save all open buffers' })
 
