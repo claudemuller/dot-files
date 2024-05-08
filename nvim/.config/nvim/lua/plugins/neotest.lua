@@ -14,8 +14,9 @@ return {
     'nvim-neotest/neotest-python',
     'nvim-neotest/neotest-plenary',
     'nvim-neotest/neotest-jest',
-    -- 'nvim-neotest/neotest-go',
-    '~/repos/3rd-party/neotest-go/',
+    {
+      dir = '~/repos/3rd-party/neotest-go/',
+    },
     -- 'nvim-neotest/neotest-rust',
     'nvim-neotest/neotest-vim-test',
   },
@@ -123,19 +124,19 @@ return {
           ignore_file_types = { 'python', 'vim', 'lua', 'go', 'typescript', 'jest' },
         },
       },
-      icons = {
-        expanded = '',
-        child_prefix = '',
-        child_indent = '',
-        final_child_prefix = '',
-        non_collapsible = '',
-        collapsed = '',
-
-        passed = '',
-        running = '',
-        failed = '',
-        unknown = '',
-      },
+      -- icons = {
+      --   expanded = '',
+      --   child_prefix = '',
+      --   child_indent = '',
+      --   final_child_prefix = '',
+      --   non_collapsible = '',
+      --   collapsed = '',
+      --
+      --   passed = '',
+      --   running = '',
+      --   failed = '',
+      --   unknown = '',
+      -- },
     }
   end,
 }
