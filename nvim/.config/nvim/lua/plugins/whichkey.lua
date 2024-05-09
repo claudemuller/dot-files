@@ -16,6 +16,7 @@ return {
       ['<leader>d'] = { name = '[D]iagnostics', _ = 'which_key_ignore' },
       ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
       ['<leader>O'] = { name = '[O]bsidian', _ = 'which_key_ignore' },
+      ['<leader>f'] = { name = 'DiffView', _ = 'which_key_ignore' },
 
       ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
       ['<leader>ss'] = { name = '[S]ymbols', _ = 'which_key_ignore' },
@@ -26,7 +27,9 @@ return {
       ['<leader>gd'] = { name = '[D]iff', _ = 'which_key_ignore' },
       ['<leader>gl'] = { name = '[L]og', _ = 'which_key_ignore' },
 
-      ['<leader>T'] = { name = '[T]est', _ = 'which_key_ignore' },
+      ['<leader>p'] = { name = 'Swap [P]revious', _ = 'which_key_ignore' },
+      ['<leader>n'] = { name = 'Swap [N]ext', _ = 'which_key_ignore' },
+      ['<leader>t'] = { name = '[T]est', _ = 'which_key_ignore' },
       ['<leader>D'] = { name = '[D]ebug', _ = 'which_key_ignore' },
     }
   end,

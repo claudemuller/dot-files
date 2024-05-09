@@ -14,43 +14,44 @@ return {
     'nvim-neotest/neotest-python',
     'nvim-neotest/neotest-plenary',
     'nvim-neotest/neotest-jest',
-    {
-      dir = '~/repos/3rd-party/neotest-go/',
-    },
+    'nvim-neotest/neotest-go',
+    -- {
+    --   dir = '~/repos/3rd-party/neotest-go/',
+    -- },
     -- 'nvim-neotest/neotest-rust',
     'nvim-neotest/neotest-vim-test',
   },
   keys = {
     {
-      '<leader>Tf',
+      '<leader>tf',
       function()
         require('neotest').run.run(vim.fn.expand '%')
       end,
       desc = '[T]est File',
     },
     {
-      '<leader>TT',
+      '<leader>tt',
       function()
         require('neotest').run.run(vim.loop.cwd())
       end,
       desc = 'Run All [T]est Files',
     },
     {
-      '<leader>Tr',
+      '<leader>tr',
       function()
         require('neotest').run.run()
       end,
       desc = '[T]est Nea[r]est',
     },
     {
-      '<leader>Tl',
+      '<leader>tl',
       function()
         require('neotest').run.run_last()
       end,
       desc = '[T]est [L]ast',
     },
     {
-      '<leader>Td',
+      '<leader>td',
       function()
         require('neotest').run.run { strategy = 'dap' }
       end,
@@ -58,28 +59,28 @@ return {
     },
     -- ['<leader>td'] = { "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>", 'Debug Test' },
     {
-      '<leader>Ts',
+      '<leader>ts',
       function()
         require('neotest').summary.toggle()
       end,
       desc = 'Toggle [T]est [s]ummary',
     },
     {
-      '<leader>To',
+      '<leader>to',
       function()
         require('neotest').output.open { enter = true, auto_close = true }
       end,
       desc = 'Show [T]est [o]utput',
     },
     {
-      '<leader>TO',
+      '<leader>tO',
       function()
         require('neotest').output_panel.toggle()
       end,
       desc = 'Toggle [T]est [O]utput Panel',
     },
     {
-      '<leader>TS',
+      '<leader>tS',
       function()
         require('neotest').run.stop()
       end,
