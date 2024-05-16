@@ -23,7 +23,7 @@ alias mv='mv -i'
 alias rm='rm -i'
 
 # Access Zsh's dir stack
-alias d='dirs -v'
+alias d='. dirstack'
 for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
 # Adding flags

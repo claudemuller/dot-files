@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+sel=$(dirs -v | fzf | awk '{print $1}')
+eval "$sel"
