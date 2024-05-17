@@ -16,11 +16,12 @@ return {
   },
   keys = {
     --{ "<leader>f", desc = "File" },
-    { '<leader>N', ':Neotree toggle<CR>', desc = '[N]eotree' },
+    { '<leader>fn', ':Neotree toggle<CR>', desc = '[N]eotree' },
   },
   opts = {
     sources = {
       'filesystem',
+      'document_symbols',
       -- 'buffers',
       -- 'git_status',
     },
@@ -44,6 +45,14 @@ return {
       indent = {
         indent_marker = '┊',
         last_indent_marker = '└',
+      },
+    },
+    window = {
+      mappings = {
+        ['<space>'] = {
+          'toggle_node',
+          nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
+        },
       },
     },
     filesystem = {
