@@ -107,6 +107,12 @@ keys = [
         lazy.spawn(home + "/.local/bin/vpn-picker"),
         desc="VPN picker",
     ),
+    Key(
+        [mod, "control", "shift"],
+        "c",
+        lazy.spawn(home + "/.config/qtile/scripts/calc"),
+        desc="VPN picker",
+    ),
     #
     # Scratchpads
     Key([mod], "grave", lazy.group["scratchpad"].dropdown_toggle("special")),
