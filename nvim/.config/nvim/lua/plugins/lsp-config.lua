@@ -140,7 +140,21 @@ return {
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
       clangd = {},
       -- codelldb = {},
-      gopls = {},
+      gopls = {
+        -- settings = {
+        --   gopls = {
+        --     hints = {
+        --       assignVariableTypes = true,
+        --       compositeLiteralFields = true,
+        --       compositeLiteralTypes = true,
+        --       constantValues = true,
+        --       functionTypeParameters = true,
+        --       parameterNames = true,
+        --       rangeVariableTypes = true,
+        --     },
+        --   },
+        -- },
+      },
       golangci_lint_ls = {},
       pyright = {},
       rust_analyzer = {
