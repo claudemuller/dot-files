@@ -78,9 +78,9 @@ return {
 
   {
     'tris203/precognition.nvim',
-    keys = {
-      { '<leader>htp', ':lua require("precognition").toggle()<cr>', desc = '[H]ints Toggle [P]recognition', mode = { 'n' } },
-    },
+    -- keys = {
+    --   { '<leader>htp', ':lua require("precognition").toggle()<cr>', desc = '[H]ints Toggle [P]recognition', mode = { 'n' } },
+    -- },
     config = {
       -- startVisible = true,
       -- showBlankVirtLine = true,
