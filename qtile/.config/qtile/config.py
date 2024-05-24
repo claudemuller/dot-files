@@ -108,6 +108,12 @@ keys = [
         desc="VPN picker",
     ),
     Key(
+        [mod, "control"],
+        "f",
+        lazy.spawn(terminal + " -e yazi"),
+        desc="Yazy File Browser",
+    ),
+    Key(
         [mod, "control", "shift"],
         "c",
         lazy.spawn(home + "/.config/qtile/scripts/calc"),
