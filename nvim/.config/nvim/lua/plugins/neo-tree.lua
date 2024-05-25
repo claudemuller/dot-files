@@ -17,6 +17,7 @@ return {
   keys = {
     --{ "<leader>f", desc = "File" },
     { '<leader>fn', ':Neotree toggle<CR>', desc = '[N]eotree' },
+    { '<leader>fts', ':Neotree document_symbols<CR>', desc = '[S]ymbol View' },
   },
   config = function()
     -- If you want icons for diagnostic errors, you'll need to define them somewhere:
@@ -58,6 +59,7 @@ return {
       window = {
         mappings = {
           ['<space>'] = false,
+          ['<tab>'] = 'toggle_node',
           ['v'] = 'open_vsplit',
         },
       },
