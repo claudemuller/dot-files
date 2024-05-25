@@ -59,6 +59,7 @@ alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 alias jctl="journalctl -p 3 -xb"
 
 # Better ls
+alias ls="eza --icons --git" #ls
 alias ll="eza -l --icons --git -a" #ls -lah"
 alias lt="eza -l --sort=modified --icons --git -a" #ls -latrh"
 
@@ -74,7 +75,7 @@ case "$(uname -s)" in
         ;;
 
     Linux)
-        alias ls='ls --color=auto'
+        # alias ls='ls --color=auto'
         ;;
 
     CYGWIN* | MINGW32* | MSYS* | MINGW*)
