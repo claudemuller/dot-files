@@ -119,6 +119,12 @@ keys = [
         lazy.spawn(home + "/.config/qtile/scripts/calc"),
         desc="VPN picker",
     ),
+    Key(
+        [mod, "control", "shift"],
+        "p",
+        lazy.spawn("flameshot gui"),
+        desc="Take a screenshot",
+    ),
     #
     # Scratchpads
     Key([mod], "grave", lazy.group["scratchpad"].dropdown_toggle("special")),
