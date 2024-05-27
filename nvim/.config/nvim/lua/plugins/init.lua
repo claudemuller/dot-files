@@ -18,6 +18,7 @@ return {
       { '<leader>gll', ':Gllog<cr>', desc = '[G]it [L]og', mode = { 'n' } },
       { '<leader>gr', ':Gvdiffsplit!<cr>', desc = '[G]it [R]esolve conflict', mode = { 'n' } },
       { '<leader>gP', ':Git push<cr>', desc = '[G]it [P]ush', mode = { 'n' } },
+      { '<leader>gdh', ':Gdiff :0<cr>', desc = '[G]it [D]iff [H]unk', mode = { 'n' } },
     },
   },
 

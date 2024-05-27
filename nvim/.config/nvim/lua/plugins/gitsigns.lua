@@ -20,8 +20,8 @@ return {
     { '<leader>gr', '<cmd>Gitsigns reset_buffer<cr>', desc = '[G]it [R]eset Buffer' },
     { '<leader>gtb', '<cmd>Gitsigns blame_line<cr>', desc = '[G]it [T]oggle [B]lame Line' },
     { '<leader>gtd', '<cmd>Gitsigns toggle_deleted<cr>', desc = '[G]it [T]oggle [D]eleted' },
-    { '<leader>gdt', '<cmd>Gitsigns diffthis<cr>', desc = '[G]it [D]iff This', mode = { 'n', 'v' } },
-    { '<leader>gdd', '<cmd>Gitsigns diffthis ~<cr>', desc = '[G]it [D]iff This ~' },
+    { '<leader>gdt', '<cmd>Gitsigns diffthis<cr>', desc = '[G]it [D]iff File with Index', mode = { 'n', 'v' } },
+    { '<leader>gdd', '<cmd>Gitsigns diffthis ~<cr>', desc = '[G]it [D]iff File with ~' },
     { '<leader>gdb', '', desc = '[G]it [D]iff [B]ranch', mode = { 'n' } },
   },
   config = {
