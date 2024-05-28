@@ -99,3 +99,18 @@ function run_cmd() {
 
     "$@"
 }
+
+tm_k9s () (
+    # Bash strict mode
+    set -euo pipefail
+    sess="$(tmux list-sessions -F "#{session_name}" 2>/dev/null | fzf)"
+    tmux send-keys -t "$sess" " k9s --context hgd-ga-dev" Enter
+    tmux split-window -h -t"$sess"
+    tmux send-keys -t "$sess" " k9s --context jfa-ga-dev" Enter
+    tmux split-window -v -l "50%" -t "$sess"
+    tmux send-keys -t "$sess" " k9s --context jfa-ga-prod" Enter
+    tmux select-pane -t 0
+    tmux split-window -v -l "50%" -t "$sess"
+    tmux send-keys -t "$sess" " k9s --context hgd-ga-prod" Enter
+    tmux select-pane -t 0
+)
