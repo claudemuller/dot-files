@@ -380,7 +380,7 @@ widget_opts = [
     widget.Battery(full_char="", charge_char="↑", discharge_char="↓", low_percentage=0.12, notify_below=12, max_chars=5),
     widget.CheckUpdates(distro="Arch", no_update_string="", display_format=" {updates}"),
     widget.Pomodoro(prefix_inactive="", color_inactive=colours[3]),
-    widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
+    widget.Clock(format="%Y-%m-%d %a %H:%M %p"),
     # widget.QuickExit(),
 ]
 
