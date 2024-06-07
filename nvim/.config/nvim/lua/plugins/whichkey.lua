@@ -16,6 +16,7 @@ return {
       ['<leader>d'] = { name = '[D]iagnostics', _ = 'which_key_ignore' },
       ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
       ['<leader>O'] = { name = '[O]bsidian', _ = 'which_key_ignore' },
+      ['<leader>l'] = { name = '[L]SP', _ = 'which_key_ignore' },
 
       ['<leader>f'] = { name = '[F]ile', _ = 'which_key_ignore' },
       ['<leader>ft'] = { name = '[T]oggle', _ = 'which_key_ignore' },

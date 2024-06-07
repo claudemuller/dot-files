@@ -147,5 +147,7 @@ return {
     vim.keymap.set('n', '<leader>gb', ':Telescope git_branches<cr>', { desc = '[G]it [B]ranches in Telescope' })
     vim.keymap.set('n', '<leader>glC', ':Telescope git_commits<cr>', { desc = '[G]it [L]og [C]ommits in Telescope' })
     vim.keymap.set('n', '<leader>glc', ':Telescope git_bcommits<cr>', { desc = '[G]it [L]og buffer [C]ommits in Telescope' })
+
+    builtin.diagnostics { severity_sort = true }
   end,
 }
