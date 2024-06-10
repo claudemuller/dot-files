@@ -57,3 +57,7 @@ vim.keymap.set('n', '<leader>df', vim.diagnostic.open_float, { desc = '[D]iagnos
 -- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
 -- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 -- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+
+-- Obsidian
+vim.keymap.set('n', '<leader>Odn', fn.obsidian.create_new_day, { desc = '[N]ew' })
+vim.keymap.set('n', '<leader>Odc', fn.obsidian.copy_this_day, { desc = '[C]opy' })
