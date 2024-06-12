@@ -27,7 +27,6 @@ return {
     vim.fn.sign_define('DiagnosticSignHint', { text = '󰌵', texthl = 'DiagnosticSignHint' })
 
     require('neo-tree').setup {
-      -- opts = {
       sources = {
         'filesystem',
         'document_symbols',
@@ -74,6 +73,7 @@ return {
           hide_by_name = {
             '.DS_Store',
             'thumbs.db',
+            '.git',
             --"node_modules",
           },
         },
@@ -83,7 +83,6 @@ return {
           leave_dirs_open = true,
         },
       },
-      -- },
     }
   end,
 }
