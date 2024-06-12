@@ -4,14 +4,14 @@ return {
   cmd = 'Trouble',
   keys = {
     {
-      '<leader>xx',
+      '<leader>dd',
       '<cmd>Trouble diagnostics toggle<cr>',
-      desc = 'Diagnostics (Trouble)',
+      desc = '[D]iagnostics (Trouble)',
     },
     {
-      '<leader>xX',
+      '<leader>dD',
       '<cmd>Trouble diagnostics toggle filter.buf=0<cr>',
-      desc = 'Buffer Diagnostics (Trouble)',
+      desc = 'Buffer [D]iagnostics (Trouble)',
     },
     {
       '<leader>cs',
@@ -24,12 +24,12 @@ return {
       desc = 'LSP Definitions / references / ... (Trouble)',
     },
     {
-      '<leader>xL',
+      '<leader>dL',
       '<cmd>Trouble loclist toggle<cr>',
       desc = 'Location List (Trouble)',
     },
     {
-      '<leader>xQ',
+      '<leader>dQ',
       '<cmd>Trouble qflist toggle<cr>',
       desc = 'Quickfix List (Trouble)',
     },
