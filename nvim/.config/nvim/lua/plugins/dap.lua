@@ -66,6 +66,7 @@ return {
     vim.fn.sign_define('DapBreakpointRejected', dap_breakpoint.rejected)
 
     -- Basic debugging keymaps, feel free to change to your liking!
+    vim.keymap.set('n', '<leader>Dt', dapui.toggle, { desc = '[D]ebug: [T]oggle UI' })
     vim.keymap.set('n', '<leader>Dc', dap.continue, { desc = '[D]ebug: Start/[C]ontinue' })
     vim.keymap.set('n', '<leader>Di', dap.step_into, { desc = '[D]ebug: Step [I]nto' })
     vim.keymap.set('n', '<leader>Do', dap.step_over, { desc = '[D]ebug: Step [o]ver' })

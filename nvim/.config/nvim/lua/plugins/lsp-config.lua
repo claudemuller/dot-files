@@ -73,11 +73,6 @@ return {
         --  Useful when your language has ways of declaring types without an actual implementation.
         map('gI', builtin.lsp_implementations, '[G]oto [I]mplementation')
 
-        -- Jump to the type of the word under your cursor.
-        --  Useful when you're not sure what type a variable is and you want to see
-        --  the definition of its *type*, not where it was *defined*.
-        map('<leader>D', builtin.lsp_type_definitions, 'Type [D]efinition')
-
         -- Fuzzy find all the symbols in your current document.
         --  Symbols are things like variables, functions, types, etc.
         map('<leader>ssd', builtin.lsp_document_symbols, '[S]earch [D]ocument [S]ymbols')
@@ -90,11 +85,16 @@ return {
 
         -- Rename the variable under your cursor
         --  Most Language Servers support renaming across files, etc.
-        map('<leader>rn', vim.lsp.buf.rename, '[R]e[N]ame')
+        map('<leader>cr', vim.lsp.buf.rename, '[R]e[N]ame')
 
         -- Execute a code action, usually your cursor needs to be on top of an error
         -- or a suggestion from your LSP for this to activate.
         map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+
+        -- Jump to the type of the word under your cursor.
+        --  Useful when you're not sure what type a variable is and you want to see
+        --  the definition of its *type*, not where it was *defined*.
+        map('<leader>cd', builtin.lsp_type_definitions, 'Type [D]efinition')
 
         -- Opens a popup that displays documentation about the word under your cursor
         --  See `:help K` for why this keymap
