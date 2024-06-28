@@ -371,7 +371,7 @@ widget_opts = [
     ),
     widget.TextBox(foreground=colours[3], fmt="󰕾", fontsize=14),
     # widget.PulseVolume(),
-    widget.Volume(),
+    widget.Volume(channel='Master'),
     widget.Spacer(length=1, background=colours[5]),
     widget.TextBox(foreground=colours[3], fmt="󱃂", fontsize=14),
     widget.ThermalSensor(format="{temp:.1f}{unit}"),
