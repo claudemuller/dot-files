@@ -24,7 +24,7 @@ return {
     { '<leader>gdd', '<cmd>Gitsigns diffthis ~<cr>', desc = '[G]it [D]iff File with ~' },
     { '<leader>gdb', '', desc = '[G]it [D]iff [B]ranch', mode = { 'n' } },
   },
-  config = {
+  opts = {
     signs = {
       add = { text = '✚' },
       change = { text = '' },
