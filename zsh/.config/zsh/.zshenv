@@ -14,6 +14,7 @@ export SAVEHIST=1000000
 # ------------------------------------------------------------------------------------------- Paths
 if [ -d "$HOME/go" ]; then
   export GOPATH=$HOME/go
+  export GOBIN=$GOPATH/bin
   PATH="$(go env GOPATH)/bin:$PATH"
 fi
 
