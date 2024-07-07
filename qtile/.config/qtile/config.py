@@ -132,6 +132,7 @@ keys = [
     Key([mod, "control"], "k", lazy.group["scratchpad"].dropdown_toggle("cheatsheet")),
     Key([mod, "control"], "s", lazy.group["scratchpad"].dropdown_toggle("spotify")),
     Key([mod, "control"], "b", lazy.group["scratchpad"].dropdown_toggle("browser")),
+    Key([mod, "control"], "o", lazy.group["scratchpad"].dropdown_toggle("obsidian")),
     # Media Keys
     Key(
         [],
@@ -235,6 +236,16 @@ groups = [
                 height=0.9,
                 on_focus_lost_hide=False,
                 desc="Qute browser",
+            ),
+            DropDown(
+                "obsidian",
+                "obsidian",
+                opacity=1,
+                height=0.95,
+                width=0.95,
+                x=0.02,
+                on_focus_lost_hide=False,
+                desc="Obsidian",
             ),
         ],
     ),
