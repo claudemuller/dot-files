@@ -385,7 +385,7 @@ widget_opts = [
     widget.Volume(channel='Master'),
     widget.Spacer(length=1, background=colours[5]),
     widget.TextBox(foreground=colours[3], fmt="󱃂", fontsize=14),
-    widget.ThermalSensor(format="{temp:.1f}{unit}"),
+    widget.ThermalSensor(tag_sensor='Package id 0', format="{temp:.1f}{unit}"),
     # widget.Bluetooth(),
     widget.TextBox(foreground=colours[3], fmt="", fontsize=14),
     widget.Battery(full_char="", charge_char="↑", discharge_char="↓", low_percentage=0.12, notify_below=12, max_chars=5),
