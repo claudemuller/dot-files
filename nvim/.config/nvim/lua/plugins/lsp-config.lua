@@ -40,8 +40,8 @@ return {
     -- Neovim. This is where `mason` and related plugins come into play.
     --
     -- If you're wondering about lsp vs treesitter, you can check out the wonderfully
-    -- and elegantly composed help section, `:help lsp-vs-treesitter`
 
+    -- and elegantly composed help section, `:help lsp-vs-treesitter`
     --  This function gets run when an LSP attaches to a particular buffer.
     --    That is to say, every time a new file is opened that is associated with
     --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
@@ -104,6 +104,10 @@ return {
         --  For example, in C this would take you to the header
         map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
+        map('lh', function()
+          vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { 0 })
+        end, 'Inlay [H]ints')
+
         -- The following two autocommands are used to highlight references of the
         -- word under your cursor when your cursor rests there for a little while.
         --    See `:help CursorHold` for information about when this is executed
@@ -120,6 +124,10 @@ return {
             buffer = event.buf,
             callback = vim.lsp.buf.clear_references,
           })
+        end
+
+        if vim.lsp.inlay_hint then
+          vim.lsp.inlay_hint.enable(true, { 0 })
         end
       end,
     })
@@ -145,23 +153,49 @@ return {
       clangd = {},
       -- codelldb = {},
       gopls = {
-        -- settings = {
-        --   gopls = {
-        --     hints = {
-        --       assignVariableTypes = true,
-        --       compositeLiteralFields = true,
-        --       compositeLiteralTypes = true,
-        --       constantValues = true,
-        --       functionTypeParameters = true,
-        --       parameterNames = true,
-        --       rangeVariableTypes = true,
-        --     },
-        --   },
-        -- },
+        settings = {
+          gopls = {
+            gofumpt = true,
+            codelenses = {
+              gc_details = false,
+              generate = true,
+              regenerate_cgo = true,
+              run_govulncheck = true,
+              test = true,
+              tidy = true,
+              upgrade_dependency = true,
+              vendor = true,
+            },
+            hints = {
+              assignVariableTypes = true,
+              compositeLiteralFields = true,
+              compositeLiteralTypes = true,
+              constantValues = true,
+              functionTypeParameters = true,
+              parameterNames = true,
+              rangeVariableTypes = true,
+            },
+            analyses = {
+              fieldalignment = true,
+              nilness = true,
+              unusedparams = true,
+              unusedwrite = true,
+              useany = true,
+            },
+            usePlaceholders = true,
+            completeUnimported = true,
+            staticcheck = true,
+            directoryFilters = { '-.git', '-.vscode', '-.idea', '-.vscode-test', '-node_modules' },
+            semanticTokens = true,
+          },
+        },
       },
       golangci_lint_ls = {},
       pyright = {},
       rust_analyzer = {
+        diagnostics = {
+          enable = true,
+        },
         cargo = {
           allFeatures = true,
           loadOutDirsFromCheck = true,
@@ -262,6 +296,7 @@ return {
           -- by the server configuration above. Useful when disabling
           -- certain features of an LSP (for example, turning off formatting for tsserver)
           server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+
           require('lspconfig')[server_name].setup(server)
         end,
       },
