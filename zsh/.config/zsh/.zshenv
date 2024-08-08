@@ -54,8 +54,8 @@ export VISUAL="nvim"
 export EDITOR="nvim"
 export TERMINAL="kitty"
 
-# export MANPAGER='nvim +Man!'
-export MANPAGER="sh -c 'col -bx | bat --theme=\"base16-256\" -l man -p'"
+export MANPAGER='nvim +Man!'
+# export MANPAGER="sh -c 'col -bx | bat --theme=\"base16-256\" -l man -p'"
 export MANWIDTH=999
 
 export TERM="xterm-256color"

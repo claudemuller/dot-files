@@ -8,35 +8,36 @@ return {
   'folke/which-key.nvim',
   event = 'VimEnter',
   config = function() -- This is the function that runs, AFTER loading
-    require('which-key').setup()
+    local wk = require 'which-key'
 
-    -- Document existing key chains
-    require('which-key').register {
-      ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-      ['<leader>d'] = { name = '[D]iagnostics', _ = 'which_key_ignore' },
-      ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-      ['<leader>l'] = { name = '[L]SP', _ = 'which_key_ignore' },
-      ['<leader>lh'] = { name = '[H]ints', _ = 'which_key_ignore' },
+    wk.add {
+      { '<leader>c', group = '[C]ode' },
+      { '<leader>d', group = '[D]iagnostics' },
+      { '<leader>r', group = '[R]ename' },
+      { '<leader>l', group = '[L]SP' },
 
-      ['<leader>O'] = { name = '[O]bsidian', _ = 'which_key_ignore' },
-      ['<leader>Od'] = { name = '[O]bsidian [D]aily', _ = 'which_key_ignore' },
+      { '<leader>O', group = '[O]bsidian' },
+      { '<leader>Od', group = '[O]bsidian [D]aily' },
 
-      ['<leader>f'] = { name = '[F]ile', _ = 'which_key_ignore' },
-      ['<leader>ft'] = { name = '[T]oggle', _ = 'which_key_ignore' },
+      { '<leader>f', group = '[F]ile' },
+      { '<leader>ft', group = '[T]oggle' },
 
-      ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-      ['<leader>ss'] = { name = '[S]ymbols', _ = 'which_key_ignore' },
+      { '<leader>h', group = '[H]ints' },
+      { '<leader>ht', group = '[T]oggle' },
 
-      ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
-      ['<leader>gh'] = { name = '[H]unk', _ = 'which_key_ignore' },
-      ['<leader>gt'] = { name = '[T]oggle', _ = 'which_key_ignore' },
-      ['<leader>gd'] = { name = '[D]iff', _ = 'which_key_ignore' },
-      ['<leader>gl'] = { name = '[L]og', _ = 'which_key_ignore' },
+      { '<leader>s', group = '[S]earch' },
+      { '<leader>ss', group = '[S]ymbols' },
 
-      ['<leader>p'] = { name = 'Swap [P]revious', _ = 'which_key_ignore' },
-      ['<leader>n'] = { name = 'Swap [N]ext', _ = 'which_key_ignore' },
-      ['<leader>t'] = { name = '[T]est', _ = 'which_key_ignore' },
-      ['<leader>D'] = { name = '[D]ebug', _ = 'which_key_ignore' },
+      { '<leader>g', group = '[G]it' },
+      { '<leader>gh', group = '[H]unk' },
+      { '<leader>gt', group = '[T]oggle' },
+      { '<leader>gd', group = '[D]iff' },
+      { '<leader>gl', group = '[L]og' },
+
+      { '<leader>p', group = 'Swap [P]revious' },
+      { '<leader>n', group = 'Swap [N]ext' },
+      { '<leader>t', group = '[T]est' },
+      { '<leader>D', group = '[D]ebug' },
     }
   end,
 }
