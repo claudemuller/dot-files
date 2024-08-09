@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 export DDG_ARGS='["-n", 10]'
-export ROFI_SEARCH='cse,ddgr'
+export ROFI_SEARCH='ddgr' #cse,
 
 theme=$HOME/.config/rofi/launchers/type-1/style-5.rasi
 

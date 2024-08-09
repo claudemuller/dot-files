@@ -104,7 +104,7 @@ return {
         --  For example, in C this would take you to the header
         map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
-        map('lh', function()
+        map('<leader>lh', function()
           vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { 0 })
         end, 'Inlay [H]ints')
 
