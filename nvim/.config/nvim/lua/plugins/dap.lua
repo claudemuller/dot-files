@@ -24,6 +24,12 @@ return {
     local dap = require 'dap'
     local dapui = require 'dapui'
 
+    dap.adapters.delve = {
+      type = 'executable',
+      command = os.getenv 'GOBIN' .. '/dlv',
+      args = {},
+    }
+
     require('mason-nvim-dap').setup {
       -- Makes a best effort to setup the various debuggers with
       -- reasonable debug configurations
@@ -37,7 +43,7 @@ return {
       -- online, please don't ask me how to install them :)
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
-        'delve',
+        -- 'delve',
       },
     }
 
@@ -108,9 +114,6 @@ return {
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
-
-    -- Install golang specific config
-    -- require('dap-go').setup()
 
     -- Custom lang setups
     -- require('config.dap.python').setup()
