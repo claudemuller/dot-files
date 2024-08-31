@@ -1,3 +1,5 @@
+yazi/.config/yazi/flavors
+yazi/.config/yazi/plugins
 nvim/.config/nvim.vanilla
 nvim/.config/nvim.lazy
 qtile/.config/qtile/__pycache__
