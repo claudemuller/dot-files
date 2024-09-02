@@ -20,8 +20,28 @@ select = "underline"
 hidden = false
 
 [editor.statusline]
-left = ["mode", "spinner", "version-control", "spacer", "separator", "file-name"]
-right = ["diagnostics", "workspace-diagnostics", "separator", "file-encoding", "file-line-ending", "separator", "file-type", "separator",  "register", "selections", "position", "spacer"]
+left = [
+  "mode",
+  "spinner",
+  "version-control",
+  "spacer",
+  "separator",
+  "file-name",
+]
+right = [
+  "diagnostics",
+  "workspace-diagnostics",
+  "separator",
+  "file-encoding",
+  "file-line-ending",
+  "separator",
+  "file-type",
+  "separator",
+  "register",
+  "selections",
+  "position",
+  "spacer",
+]
 separator = "⣿"
 mode.normal = "NOR"
 mode.insert = "INS"
@@ -50,7 +70,13 @@ P = "paste_clipboard_before"
 p = "paste_clipboard_after"
 d = ["yank_to_clipboard", "delete_selection_noyank"]
 C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
-C-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+C-k = [
+  "extend_to_line_bounds",
+  "delete_selection",
+  "move_line_up",
+  "paste_before",
+]
+C-y = ":sh zellij run -f -x 10% -y 10% --width 80% --height 80% -- bash ~/.config/helix/yazi-picker.sh"
 
 [keys.normal.m]
 e = ["ensure_selections_forward", "extend_to_line_end"]
@@ -61,7 +87,18 @@ space = "file_picker"
 h = ":toggle-option lsp.display-inlay-hints"
 
 [keys.normal.space.f]
-d = [":new", ":insert-output lf -selection-path=/dev/stdout", "split_selection_on_newline", "goto_file", "goto_last_modification", "goto_last_modified_file", ":buffer-close!", ":theme nord", ":theme catppuccin_mocha", ":redraw"]
+d = [
+  ":new",
+  ":insert-output lf -selection-path=/dev/stdout",
+  "split_selection_on_newline",
+  "goto_file",
+  "goto_last_modification",
+  "goto_last_modified_file",
+  ":buffer-close!",
+  ":theme nord",
+  ":theme catppuccin_mocha",
+  ":redraw",
+]
 f = "file_picker_in_current_buffer_directory"
 g = "global_search"
 s = ":w"
@@ -71,7 +108,7 @@ w = [
   "move_prev_word_start",
   "move_next_word_end",
   "search_selection",
-  "global_search"
+  "global_search",
 ]
 
 [keys.normal.space.c]
