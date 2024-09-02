@@ -95,6 +95,8 @@ export FZF_DEFAULT_OPTS="--height 60% \
 --marker ⇒"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -n 10'"
 
+export GIT_AUTHOR_EMAIL="claude@dxt.rs"
+
 case "$(uname -s)" in
 Darwin)
     export GOARCH=arm64
