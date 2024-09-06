@@ -19,6 +19,7 @@ return {
       { '<leader>gr', ':Gvdiffsplit!<cr>', desc = '[G]it [R]esolve conflict', mode = { 'n' } },
       { '<leader>gP', ':Git push<cr>', desc = '[G]it [P]ush', mode = { 'n' } },
       { '<leader>gdh', ':Gdiff :0<cr>', desc = '[G]it [D]iff [H]unk', mode = { 'n' } },
+      { '<leader>gdm', ':Gvdiffsplit master<cr>', desc = '[G]it [D]iff with [M]aster', mode = { 'n' } },
     },
   },
 
