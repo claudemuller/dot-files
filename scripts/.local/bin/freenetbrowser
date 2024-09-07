@@ -1,0 +1,258 @@
+#!/usr/bin/env bash
+
+# freenetbrowser --- easy, secured Freenet usage without the NIH
+
+# Copyright (C) 2022 Draketo
+
+# Author: Draketo
+
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 3
+# of the License, or (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+# Requirements
+# - curl
+# - wget
+# - gnupg for installing
+# - Java openjdk 9 or later
+# - icecat, waterfox or firefox
+
+# "/home/lukefilewalker/.local/share/freenetbrowser" will be replaced with the data directory
+# (i.e. /usr/share/freenetbrowser) by autotools
+# Use freenetbrowser_DATA in Makefile.am to select files to install.
+
+# first extract the script filename and command
+PROG="${0}"
+
+# parse commandline options per command, thanks to Adam Katz (2015):
+# http://stackoverflow.com/a/28466267/7666
+while getopts hid:-: arg; do
+  case $arg in
+    h )  ARG_HELP=true ;;
+    d )  ARG_DIRECTORY="$OPTARG" ;;
+    i )  ARG_INSTALL=true ;;
+    - )  LONG_OPTARG="${OPTARG#*=}"
+         case $OPTARG in
+           freenet-directory=?* )  ARG_DIRECTORY="$LONG_OPTARG" ;;
+           freenet-directory*   )  echo "No arg for --$OPTARG option" >&2; exit 2 ;;
+           install  )  ARG_INSTALL=true ;;
+           help  )  ARG_HELP=true ;;
+           help* | install* )
+                       echo "No arg allowed for --$OPTARG option" >&2; exit 2 ;;
+           '' )        break ;; # "--" terminates argument processing
+           * )         echo "Illegal option --$OPTARG" >&2; exit 2 ;;
+         esac ;;
+    \? ) exit 2 ;;  # getopts already reported the illegal option
+  esac
+done
+shift $((OPTIND-1)) # remove parsed options and args from $@ list
+
+function help () {
+    cat <<EOF
+${PROG} [--help | [options]] [url]"
+
+options:
+    -i | --install      		install Freenet, if needed; replaces proxy setup (with backup) if FOLDER sset
+    -d | --directory FOLDER		use FOLDER as Freenet FOLDER. Default: ~/Freenet
+
+examples:
+
+${PROG} http://127.0.0.1:8888/USK@.../foo/17
+        open url http://127.0.0.1:8888/USK@.../foo/17
+        with existing proxy settings; if there are none, create them for ~/Freenet
+${PROG} USK@.../foo/17
+        open url http://freenet:local/USK@.../foo/17
+        (you can also use SSK and CHK)
+${PROG} -i ~/FreenetFolder
+        install freenet to ~/FreenetFolder
+${PROG} -d ~/FreenetFolder USK@.../foo/17
+        open USK@.../foo/17 with proxy settings for ~/FreenetFolder
+EOF
+}
+
+if test x"$ARG_HELP" = x"true"; then
+    help
+    exit 0
+fi
+
+if test -z "$ARG_DIRECTORY"; then
+    DIRECTORY=~/Freenet
+else
+    DIRECTORY=$ARG_DIRECTORY
+fi
+
+PROFILE_DIR=~/.config/freenet/firefox-profile
+# if the directory was given, but does not exist, ask to add --install
+if ! test -z ${ARG_DIRECTORY} && ! test -d $DIRECTORY && test -z $ARG_INSTALL; then
+    echo Freenet folder $DIRECTORY does not exist.
+    echo To Install Freenet, add --install
+    exit 1
+fi
+# if neither profile nor directory exist exist, ask to add --install
+if ! test -d ${PROFILE_DIR} && ! test -d $DIRECTORY && test -z $ARG_INSTALL; then
+    echo Freenet folder $DIRECTORY does not exist.
+    echo To Install Freenet, add --install
+    exit 1
+fi
+# if --install, but folder does not exist, install it
+if ! test -d $DIRECTORY && ! test -z $ARG_INSTALL; then
+    # get the latest release
+    LATEST_RELEASE_URL="`curl -w "%{url_effective}\n" -I -L -s -S https://github.com/freenet/fred/releases/latest -o /dev/null`"
+    LATEST_TAG="`echo ${LATEST_RELEASE_URL} | sed s,.*/,,`"
+    LATEST_VERSION_NUMBER=${LATEST_TAG:6:4}
+    LATEST_DOWNLOAD_URL="https://github.com/freenet/fred/releases/download/${LATEST_TAG}/new_installer_offline_${LATEST_VERSION_NUMBER}.jar"
+    wget -N -O new_installer_offline.jar.sig "${LATEST_DOWNLOAD_URL}".sig || curl -q -f -L -o new_installer_offline.jar.sig "${LATEST_DOWNLOAD_URL}".sig
+    wget -N -O new_installer_offline.jar "${LATEST_DOWNLOAD_URL}" || curl -q -f -L -o new_installer_offline.jar "${LATEST_DOWNLOAD_URL}"
+    # check the release against Freenet dev keys, because we do not trust github
+    TMPDIR=$(mktemp -d)
+    wget https://freenetproject.org/assets/keyring.gpg -O ${TMPDIR}/keyring.gpg && gpg --homedir=${TMPDIR} --import ${TMPDIR}/keyring.gpg
+    if ! gpg --homedir=${TMPDIR} --verify new_installer_offline.jar.sig; then
+        echo Freenet installer signature new_installer_offline.jar.sig fails to verify. Please check the error above.
+        read -p "Continue? [yN] " yn
+        case $yn in
+            [Yy] ) echo continuing;;
+            * ) rm -r "${TMPDIR}"; echo exiting; exit 1;;
+        esac
+    fi
+    rm -r "${TMPDIR}"
+    # install Freenet
+    echo $DIRECTORY | java -jar new_installer_offline.jar -console;
+    # set random IP and Port for safety
+    (cd $DIRECTORY && ./run.sh stop)
+    # port between 5001 and 32768
+    PORT=$((5001 + ($RANDOM % 27766)))
+    # ip 127.x.y.z with x and y 0-255 and z 1-254.
+    IP=127.$(($RANDOM % 256)).$(($RANDOM % 256)).$((1 + ($RANDOM % 253)))
+    (echo fproxy.bindTo=$IP
+     echo fproxy.port=$PORT
+     echo fproxy.hasCompletedWizard=true
+     echo node.opennet.enabled=true
+     echo node.outputBandwidthLimit=65536
+     echo security-levels.networkThreatLevel=NORMAL
+     echo 'pluginmanager.loadplugin=Freereader;KeyUtils;UPnP;Sharesite;KeepAlive'
+    ) > ${DIRECTORY}/freenet.ini
+    (cd $DIRECTORY && ./run.sh start)
+fi
+
+# if the directory was given, use its port to identify a custom profile
+if ! test -z ${ARG_DIRECTORY}; then
+    # get the IP and PORT from the Freenet directory; the IP is only the first configured one (split at ,)
+    IP=$(grep fproxy.bindTo ${DIRECTORY}/freenet.ini | sed s/.*=// | sed s/,.*//)
+    PORT=$(grep fproxy.port ${DIRECTORY}/freenet.ini | sed s/.*=//)
+    PROFILE_DIR=${PROFILE_DIR}-${PORT}
+# otherwise get IP and PORT from the profile dir
+elif test -d "${PROFILE_DIR}"; then
+    IP=$(grep 'user_pref("network.proxy.http", ' "${PROFILE_DIR}/prefs.js" | sed 's/^.*, "//;s,".*$,,');
+    PORT=$(grep 'user_pref("network.proxy.http_port", ' "${PROFILE_DIR}/prefs.js" | sed 's/^.*, //;s,).*$,,');
+fi
+
+# Default IP and PORT as fallback
+if test -z $IP; then
+    IP=127.0.0.1;
+fi
+if test -z $PORT; then
+    PORT=8888
+fi
+
+# lengthen possible shortened port
+PORT=$(echo $PORT | sed 's/k/000/')
+
+# ensure that Freenet is running, if the directory exists and the
+# detected IP and PORT do not yield the freenet diagnostics page
+if test -d ${DIRECTORY}; then
+    if ! curl -s http://$IP:$PORT/diagnostic/ | grep "Freenet Version" -q; then
+        if ! curl -s https://$IP:$PORT/diagnostic/ | grep "Freenet Version" -q; then
+            (cd "${DIRECTORY}" && (./run.sh status 2>/dev/null >/dev/null || ./run.sh start))
+        fi
+    fi
+fi
+
+# if the profile does not exist yet, create it
+if ! test -d ${PROFILE_DIR}; then
+    mkdir -p ${PROFILE_DIR}
+    # setup freenet as proxy and optimize settings
+    cat > ${PROFILE_DIR}/prefs.js <<EOF
+//Firefox Default Settings
+//set proxy server settings
+user_pref("network.proxy.http", "$IP");
+user_pref("network.proxy.http_port", $PORT);
+user_pref("network.proxy.ssl", "$IP");
+user_pref("network.proxy.ssl_port", $PORT);
+user_pref("network.proxy.gopher", "$IP");
+user_pref("network.proxy.gopher_port", $PORT);
+user_pref("network.proxy.ftp", "$IP");
+user_pref("network.proxy.ftp_port", $PORT);
+user_pref("network.proxy.socks", "$IP");
+user_pref("network.proxy.socks_port", $PORT);
+user_pref("network.proxy.no_proxies_on", "127.0.0.1:8080"); // allow FMS
+user_pref("network.proxy.type", 1);
+user_pref("network.proxy.socks_remote_dns", true);
+// optimize settings for Freenet
+user_pref("browser.urlbar.showSearchSuggestionsFirst", false);
+user_pref("network.http.max-persistent-connections-per-proxy", 640);
+user_pref("network.http.max-persistent-connections-per-server", 240);
+user_pref("network.http.max-urgent-start-excessive-connections-per-host", 100);
+user_pref("network.http.tcp_keepalive.long_lived_connections", false);
+user_pref("network.http.tcp_keepalive.short_lived_connections", false);
+user_pref("network.proxy.share_proxy_settings", true);
+EOF
+fi
+
+BROWSER=$(command -v icecat || command -v waterfox || command -v firefox)
+
+# install a URI scheme handler if it is not installed yet
+APPLICATIONS_FOLDER="$HOME/.local/share/applications"
+DESKTOPFILENAME="freenetbrowser.desktop"
+if ! test -e "$APPLICATIONS_FOLDER/$DESKTOPFILENAME"; then
+    mkdir -p "$APPLICATIONS_FOLDER" 2>/dev/null
+    cat > "$APPLICATIONS_FOLDER/$DESKTOPFILENAME" <<EOF
+[Desktop Entry]
+Version=0.1
+Type=Application
+Name=Freenet Browser handler
+Exec=freenetbrowser %u
+StartupNotify=false
+MimeType=x-scheme-handler/ext+freenet;x-scheme-handler/ext+hypha;x-scheme-handler/ext+hyphanet;x-scheme-handler/web+freenet;x-scheme-handler/web+hypha;x-scheme-handler/web+hyphanet;x-scheme-handler/freenet;x-scheme-handler/hypha;x-scheme-handler/hyphanet
+Comment=Launch in a a custom browser profile with a secured Freenet / Hyphanet proxy
+EOF
+    xdg-mime default freenetbrowser.desktop x-scheme-handler/web+freenet
+    xdg-mime default freenetbrowser.desktop x-scheme-handler/web+hypha
+    update-desktop-database "$APPLICATIONS_FOLDER"
+fi
+
+function is-freenet-prefix () {
+    for i in USK KSK CHK SSK; do
+        if test x"${1:0:4}" = x"${i}@" \
+                || test x"${1:0:12}" = x"freenet:${i}@" \
+                || test x"${1:0:16}" = x"web+freenet:${i}@" \
+                || test x"${1:0:16}" = x"ext+freenet:${i}@" \
+                || test x"${1:0:10}" = x"hypha:${i}@" \
+                || test x"${1:0:14}" = x"web+hypha:${i}@" \
+                || test x"${1:0:14}" = x"ext+hypha:${i}@" \
+                || test x"${1:0:13}" = x"hyphanet:${i}@" \
+                || test x"${1:0:17}" = x"web+hyphanet:${i}@" \
+                || test x"${1:0:17}" = x"ext+hyphanet:${i}@"; then
+            return 0
+        fi
+    done
+    return 1
+}
+
+# actually start the browser
+# if the first argument is zero, start the default page.
+if test -z $@; then
+    $BROWSER --profile ${PROFILE_DIR} --no-remote --new-instance http://freenet.local
+elif is-freenet-prefix "$1"; then
+    $BROWSER --profile ${PROFILE_DIR} --no-remote --new-instance http://freenet.local/"$1"
+else
+    $BROWSER --profile ${PROFILE_DIR} --no-remote --new-instance $@
+fi

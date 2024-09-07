@@ -3,15 +3,15 @@
 if [ "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ] && [ -z "$TMUX" ]
 then
   is_default=$(tmux ls | rg default)
-  is_special=$(tmux ls | rg special)
+  is_special=$(tmux ls | rg "$1")
 
   tmux="TERM=xterm-256color tmux"
 
-  if [ $# -ge 1 ] && [ "$1" = "specialspace" ]; then
+  if [ $# -ge 1 ]; then
     if [ -z "$is_special" ]; then
-      exec tmux new-session -A -s specialspace
+      exec tmux new-session -A -s "$1"
     else
-      exec tmux attach-session -t specialspace
+      exec tmux attach-session -t "$1"
     fi
   else
     if [ -z "$is_default" ]; then

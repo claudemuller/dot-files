@@ -1,0 +1,24 @@
+#!/bin/bash
+
+LPATH="$(
+	cd "$(dirname "$0")"
+	pwd -P
+)"
+
+msg_header="TMUX"
+
+notify-send -t 1000 -a "$msg_header" "Getting TMUX sessions..."
+
+rofi_cmd="rofi -theme $LPATH/rasi/wide.rasi"
+
+sessions=$(tmux ls)
+session=$(echo -e "${sessions}" | $rofi_cmd -dmenu -i -p "$msg_header [search or new]: ")
+session=$(echo $session | awk '{print $1}' | tr -d ':')
+exit_code=$?
+
+if [ $exit_code -eq 1 ] || [ -z "$session" ]; then
+    exit 0
+fi
+
+notify-send -t 1000 -a "$msg_header" "Starting $session TMUX session..."
+kitty -e "$HOME/.local/bin/run-tmux" $session

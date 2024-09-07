@@ -91,6 +91,12 @@ keys = [
     ),
     Key(
         [mod, "control"],
+        "t",
+        lazy.spawn(home + "/.config/qtile/scripts/tmuxer"),
+        desc="Launch TMUX manager",
+    ),
+    Key(
+        [mod, "control"],
         "e",
         lazy.spawn(home + "/.config/qtile/scripts/emoji"),
         desc="Launch emoji manager",
