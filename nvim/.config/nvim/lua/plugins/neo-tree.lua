@@ -76,6 +76,9 @@ return {
             '.git',
             --"node_modules",
           },
+          never_show = {
+            '.git',
+          },
         },
         hijack_netrw_behavior = 'open_current',
         follow_current_file = {
