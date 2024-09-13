@@ -13,9 +13,9 @@ return {
       desc = 'Buffer [D]iagnostics (Trouble)',
     },
     {
-      '<leader>sst',
+      '<leader>cs',
       '<cmd>Trouble symbols toggle focus=false<cr>',
-      desc = '[Toggle] Symbols (Trouble)',
+      desc = 'Toggle [S]ymbols (Trouble)',
     },
     {
       '<leader>cl',

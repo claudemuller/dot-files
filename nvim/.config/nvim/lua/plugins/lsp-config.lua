@@ -58,7 +58,7 @@ return {
         -- In this case, we create a function that lets us more easily define mappings specific
         -- for LSP related items. It sets the mode, buffer and description for us each time.
         local map = function(keys, func, desc)
-          vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+          vim.keymap.set('n', keys, func, { buffer = event.buf, desc = desc .. '(LSP)' })
         end
 
         -- Jump to the definition of the word under your cursor.
@@ -73,13 +73,22 @@ return {
         --  Useful when your language has ways of declaring types without an actual implementation.
         map('gI', builtin.lsp_implementations, '[G]oto [I]mplementation')
 
+        -- Search the workspace for a symbol that is prompted for or the string under the cursor.
+        map('<leader>sz', function()
+          local symbol = vim.fn.input 'Symbol (default: under cursor): '
+          if symbol == '' or symbol == nil then
+            symbol = vim.fn.expand '<cword>'
+          end
+          builtin.lsp_workspace_symbols { query = symbol }
+        end, '')
+
         -- Fuzzy find all the symbols in your current document.
         --  Symbols are things like variables, functions, types, etc.
-        map('<leader>ssd', builtin.lsp_document_symbols, '[S]earch [D]ocument [S]ymbols')
+        map('<leader>ss', builtin.lsp_document_symbols, '[S]earch Document [S]ymbols')
 
         -- Fuzzy find all the symbols in your current workspace
         --  Similar to document symbols, except searches over your whole project.
-        map('<leader>ssw', builtin.lsp_dynamic_workspace_symbols, '[S]earch [W]orkspace [S]ymbols')
+        map('<leader>sS', builtin.lsp_dynamic_workspace_symbols, '[S]earch Workspace [S]ymbols')
 
         map('<leader>lr', ':LspRestart<cr>', '[R]estart')
 
