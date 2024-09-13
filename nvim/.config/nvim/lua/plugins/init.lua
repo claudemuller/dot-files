@@ -11,15 +11,15 @@ return {
       'tpope/vim-rhubarb',
     },
     keys = {
-      { '<leader>gs', ':Git<cr>', desc = '[G]it [S]tatus', mode = { 'n' } },
-      { '<leader>gc', ':Git commit<cr>', desc = '[G]it [C]ommit', mode = { 'n' } },
-      { '<leader>gp', ':Git pull<cr>', desc = '[G]it [P]ull', mode = { 'n' } },
-      { '<leader>gP', ':Git push<cr>', desc = '[G]it [P]ush', mode = { 'n' } },
-      { '<leader>gll', ':Gllog<cr>', desc = '[G]it [L]og', mode = { 'n' } },
-      { '<leader>gr', ':Gvdiffsplit!<cr>', desc = '[G]it [R]esolve conflict', mode = { 'n' } },
-      { '<leader>gP', ':Git push<cr>', desc = '[G]it [P]ush', mode = { 'n' } },
-      { '<leader>gdh', ':Gdiff :0<cr>', desc = '[G]it [D]iff [H]unk', mode = { 'n' } },
-      { '<leader>gdm', ':Gvdiffsplit master<cr>', desc = '[G]it [D]iff with [M]aster', mode = { 'n' } },
+      { '<leader>gs', ':Git<cr>', desc = '[G]it [S]tatus', mode = { 'n', 'v' } },
+      { '<leader>gc', ':Git commit<cr>', desc = '[G]it [C]ommit', mode = { 'n', 'v' } },
+      { '<leader>gp', ':Git pull<cr>', desc = '[G]it [P]ull', mode = { 'n', 'v' } },
+      { '<leader>gP', ':Git push<cr>', desc = '[G]it [P]ush', mode = { 'n', 'v' } },
+      { '<leader>gll', ':Gllog<cr>', desc = '[G]it [L]og', mode = { 'n', 'v' } },
+      { '<leader>gr', ':Gvdiffsplit!<cr>', desc = '[G]it [R]esolve conflict', mode = { 'n', 'v' } },
+      { '<leader>gP', ':Git push<cr>', desc = '[G]it [P]ush', mode = { 'n', 'v' } },
+      { '<leader>gdh', ':Gdiff :0<cr>', desc = '[G]it [D]iff [H]unk', mode = { 'n', 'v' } },
+      { '<leader>gdm', ':Gvdiffsplit master<cr>', desc = '[G]it [D]iff with [M]aster', mode = { 'n', 'v' } },
     },
   },
 
@@ -37,8 +37,8 @@ return {
   {
     'sindrets/diffview.nvim',
     keys = {
-      { '<leader>fd', ':DiffviewOpen HEAD~2<CR>', desc = 'Diffview with last commit', mode = { 'n', 'v' } },
-      { '<leader>fu', ':DiffviewOpen<CR>', desc = 'Diffview with unstaged files', mode = { 'n', 'v' } },
+      { '<leader>gdl', ':DiffviewOpen HEAD~2<CR>', desc = '[G]it [D]iff with [L]ast commit', mode = { 'n', 'v' } },
+      { '<leader>gdu', ':DiffviewOpen<CR>', desc = '[G]it [D]iff with [U]nstaged files', mode = { 'n', 'v' } },
     },
   },
 
