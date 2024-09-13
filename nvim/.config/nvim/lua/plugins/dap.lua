@@ -73,6 +73,9 @@ return {
 
     -- Basic debugging keymaps, feel free to change to your liking!
     vim.keymap.set('n', '<leader>Dt', dapui.toggle, { desc = '[D]ebug: [T]oggle UI' })
+    vim.keymap.set('n', '<leader>Dr', function()
+      dapui.open { reset = true }
+    end, { desc = '[D]ebug: [R]eset UI' })
     vim.keymap.set('n', '<leader>Dc', dap.continue, { desc = '[D]ebug: Start/[C]ontinue' })
     vim.keymap.set('n', '<F7>', dap.continue, { desc = '[D]ebug: Start/[C]ontinue' })
     vim.keymap.set('n', '<S-F7>', dap.run_last, { desc = '[D]ebug: Run Last' })
@@ -94,10 +97,10 @@ return {
     end, { desc = '[D]ebug: Set Conditional [B]reakpoint' })
     vim.keymap.set({ 'n', 'v' }, '<leader>Dh', function()
       require('dap.ui.widgets').hover()
-    end)
+    end, { desc = '[D]ebug: Hover (UI)' })
     vim.keymap.set({ 'n', 'v' }, '<leader>Dp', function()
       require('dap.ui.widgets').preview()
-    end)
+    end, { desc = '[D]ebug: Preview (UI)' })
     vim.keymap.set('n', '<F11>', dap.run_to_cursor, { desc = '[D]ebug: Run To Cursor' })
 
     require('nvim-dap-virtual-text').setup {
