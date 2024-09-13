@@ -27,7 +27,38 @@ return {
       function()
         require('neotest').run.run(vim.fn.expand '%')
       end,
-      desc = '[T]est File',
+      desc = 'Run [T]ests in This File',
+    },
+    {
+      '<leader>tF',
+      function()
+        local current_file = vim.fn.expand '%:t:r' -- Get filename without extension
+        local search_pattern = current_file .. '.*test.*'
+        local current_dir = vim.fn.expand '%:p:h'
+
+        local function find_matching_files(dir, pattern)
+          local matches = {}
+          local files = vim.fn.globpath(dir, '*', false, true)
+
+          for _, file in ipairs(files) do
+            local filename = vim.fn.fnamemodify(file, ':t') -- Get the base name of the file
+            if filename:match(pattern) then
+              table.insert(matches, current_dir .. '/' .. filename)
+            end
+          end
+
+          return matches
+        end
+
+        local matching_files = find_matching_files(current_dir, search_pattern)
+
+        if #matching_files > 0 then
+          vim.cmd('vsplit ' .. vim.fn.fnameescape(matching_files[1]))
+        else
+          print 'No matching files found.'
+        end
+      end,
+      desc = 'Open Matching Test [F]ile',
     },
     {
       '<leader>tt',
