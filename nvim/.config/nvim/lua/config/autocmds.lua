@@ -69,14 +69,14 @@ vim.api.nvim_create_autocmd('FocusLost', {
 -- })
 
 -- Go formatting
-local format_sync_grp = vim.api.nvim_create_augroup('goimports', {})
-vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = '*.go',
-  callback = function()
-    require('go.format').goimports()
-    vim.defer_fn(function()
-      vim.cmd 'GoToggleInlay'
-    end, 100)
-  end,
-  group = format_sync_grp,
-})
+-- local format_sync_grp = vim.api.nvim_create_augroup('goimports', {})
+-- vim.api.nvim_create_autocmd('BufWritePre', {
+--   pattern = '*.go',
+--   callback = function()
+--     require('go.format').goimports()
+--     vim.defer_fn(function()
+--       vim.cmd 'GoToggleInlay'
+--     end, 100)
+--   end,
+--   group = format_sync_grp,
+-- })
