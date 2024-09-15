@@ -15,7 +15,7 @@ return {
     },
     formatters_by_ft = {
       lua = { 'stylua' },
-      -- go = {},
+      -- go = { 'imports' },
       rust = { 'rustfmt', lsp_format = 'fallback' },
       -- Conform will run multiple formatters sequentially
       python = { 'isort', 'black' },

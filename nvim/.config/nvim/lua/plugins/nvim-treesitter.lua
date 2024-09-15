@@ -22,6 +22,7 @@ return {
         'gomod',
         'gowork',
         'gosum',
+        'gotmpl',
         'html',
         'javascript',
         'jsdoc',
