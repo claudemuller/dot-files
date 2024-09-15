@@ -227,7 +227,7 @@ return {
       },
       ts_ls = {},
       html = {},
-      asm_lsp = {},
+      -- asm_lsp = {},
       bashls = {},
       cssls = {},
       cucumber_language_server = {},
