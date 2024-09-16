@@ -19,7 +19,7 @@ return {
       { '<leader>gP', ':Git push<cr>', desc = '[G]it [P]ush', mode = { 'n', 'v' } },
       { '<leader>gdh', ':Gdiff :0<cr>', desc = '[G]it [D]iff [H]unk', mode = { 'n', 'v' } },
       { '<leader>gdm', ':Gvdiffsplit master<cr>', desc = '[G]it [D]iff with [M]aster', mode = { 'n', 'v' } },
-      { '<leader>gC', ':Get mergetool<cr>', desc = '[G]it Show Merge [C]onflicts', mode = { 'n', 'v' } },
+      { '<leader>gC', ':Git mergetool<cr>', desc = '[G]it Show Merge [C]onflicts', mode = { 'n', 'v' } },
       { '<leader>gR', ':Gvdiffsplit!<cr>', desc = '[G]it [R]esolve Conflicts', mode = { 'n', 'v' } },
       { 'gdt', ':diffget //3<cr>', desc = '[G]it [D]iff Get Theirs', mode = { 'n', 'v' } },
       { 'gdm', ':diffget //2<cr>', desc = '[G]it [D]iff Get Mine', mode = { 'n', 'v' } },
