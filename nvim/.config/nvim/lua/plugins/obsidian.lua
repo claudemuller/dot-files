@@ -12,7 +12,9 @@ return {
     -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
     -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
     -- "BufReadPre" .. vim.fn.expand "~" .. "repos/notes/**.md",
-    'BufNewFile /home/lukefilewalker/repos/notes/**.md',
+    'BufNewFile'
+      .. vim.fn.expand '~'
+      .. 'repos/notes/**.md',
   },
   dependencies = {
     'nvim-lua/plenary.nvim',
@@ -32,5 +34,6 @@ return {
       -- 	path = "~/vaults/work",
       -- },
     },
+    ui = { enable = false },
   },
 }
