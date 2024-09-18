@@ -115,7 +115,7 @@ return {
 
         map('<leader>lh', function()
           vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { 0 })
-        end, 'Inlay [H]ints')
+        end, 'Toggle Inlay [H]ints')
 
         -- The following two autocommands are used to highlight references of the
         -- word under your cursor when your cursor rests there for a little while.
