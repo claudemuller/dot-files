@@ -66,9 +66,10 @@ alias lt="eza -l --sort=modified --icons --git -a" #ls -latrh"
 # Git
 alias ga="git add"
 alias gs="git s"
-alias gc="git cm"
-alias gp="git p"
-alias gpp="git pp"
+alias gm="git commit -m"
+alias gc="git checkout"
+alias gp="git pull"
+alias gpp="git push"
 
 case "$(uname -s)" in
     Darwin)
