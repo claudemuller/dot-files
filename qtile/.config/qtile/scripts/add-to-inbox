@@ -7,6 +7,23 @@ LPATH="$(
 
 inbox_file="$HOME/repos/notes/inbox.md"
 note=$(rofi -theme "$LPATH/rasi/wide.rasi" -dmenu -p "Note to add:")
+notes_dir="$HOME/repos/notes"
+calendar_dir="$notes_dir/calendar"
+daily_tmpl="$notes_dir/templates/Daily_tmpl.md"
+filename=$(LC_TIME=en_US.UTF-8 date +"%Y-%m-%d %A.md")
+path="$calendar_dir/$filename"
+
+if [ ! -e "$path" ]; then
+	cp $daily_tmpl $path
+fi
+
+# Add extra new line if needed
+# if grep -Pzq "# Inbox\n\n# Notes" "$path"; then
+# 	sed -i "/# Inbox/a\\\n" "$path"
+# fi
+sed -i "/# Inbox/a\\- [ ] $note" "$path"
+
+exit 0
 
 if [ -n "$note" ]; then
 	echo "- [ ] $note ($(date))" >> $HOME/repos/notes/inbox.md
