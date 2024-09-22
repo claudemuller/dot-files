@@ -5,14 +5,10 @@ LPATH="$(
 	pwd -P
 )"
 
+inbox_file="$HOME/repos/notes/inbox.md"
 note=$(rofi -theme "$LPATH/rasi/wide.rasi" -dmenu -p "Note to add:")
 
 if [ -n "$note" ]; then
-	token=$(cat ~/.obs-tok)
-	curl -k \
-		-H "Content-Type: text/markdown" \
-		-H "Authorization: Bearer $token" \
-		-X POST "https://localhost:27124/vault/inbox.md" \
-		--data "- $note"
+	echo "- [ ] $note ($(date))" >> $HOME/repos/notes/inbox.md
 fi
 
