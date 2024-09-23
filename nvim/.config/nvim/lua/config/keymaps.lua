@@ -61,5 +61,3 @@ vim.keymap.set('n', '<leader>df', vim.diagnostic.open_float, { desc = '[D]iagnos
 -- Obsidian
 vim.keymap.set('n', '<leader>Odn', fn.obsidian.create_new_day, { desc = '[N]ew' })
 vim.keymap.set('n', '<leader>Odc', fn.obsidian.copy_this_day, { desc = '[C]opy' })
-
-vim.keymap.set('n', '<leader>b', '<cmd>:b#<cr>', { desc = 'Switch to last most recent [B]uffer' })
