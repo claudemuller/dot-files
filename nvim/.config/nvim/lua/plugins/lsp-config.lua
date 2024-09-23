@@ -227,7 +227,18 @@ return {
       },
       ts_ls = {},
       html = {},
-      -- asm_lsp = {},
+      helm_ls = {
+        filetypes = { 'helm' },
+        cmd = { 'helm_ls', 'serve' },
+        settings = {
+          ['helm-ls'] = {
+            yamlls = {
+              path = 'yaml-language-server',
+            },
+          },
+        },
+      },
+      asm_lsp = {},
       bashls = {},
       cssls = {},
       cucumber_language_server = {},

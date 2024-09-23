@@ -81,6 +81,8 @@ return {
 
   { 'folke/neodev.nvim', opts = {} },
 
+  { 'towolf/vim-helm' },
+
   -- {
   --   'tris203/precognition.nvim',
   --   -- keys = {
