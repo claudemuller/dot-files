@@ -65,6 +65,11 @@ return {
         --  This is where a variable was first declared, or where a function is defined, etc.
         --  To jump back, press <C-T>.
         map('gd', builtin.lsp_definitions, '[G]oto [D]efinition')
+        map('gz', function()
+          vim.cmd 'vsplit'
+          vim.lsp.buf.definition()
+          vim.cmd 'zt'
+        end, '[G]oto [D]efinition in Vertical Split')
 
         -- Find references for the word under your cursor.
         map('gr', builtin.lsp_references, '[G]oto [R]eferences')
