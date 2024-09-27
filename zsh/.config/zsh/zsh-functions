@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+# --------------------------------------------------------------------------------------- Functions
+
 # Function to source files if they exist
 function zsh_add_file() {
     [ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
@@ -108,3 +110,15 @@ function yy() {
 	fi
 	rm -f -- "$tmp"
 }
+
+function fzf_dirs() {
+    fd -H --type d . | fzf
+}
+
+# ------------------------------------------------------------------------------------- Zsh Widgets
+fzf_dirs_widget() {
+    zle -I
+    fzf_dirs
+    zle reset-prompt
+}
+

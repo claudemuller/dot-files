@@ -37,6 +37,7 @@ autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
+zle -N fzf_dirs_widget
 
 # Colors
 autoload -Uz colors && colors
@@ -77,6 +78,7 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect '^xi' vi-insert
 # bindkey -M menuselect '^xx' vi-cmd-mode
+bindkey '\e[1;6T' fzf_dirs_widget
 
 ### Change title of terminals
 case ${TERM} in
