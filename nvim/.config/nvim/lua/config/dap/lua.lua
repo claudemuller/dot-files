@@ -2,6 +2,7 @@ local M = {}
 
 function M.setup()
   local dap = require 'dap'
+
   dap.configurations.lua = {
     {
       type = 'nlua',

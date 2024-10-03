@@ -24,11 +24,7 @@ return {
     local dap = require 'dap'
     local dapui = require 'dapui'
 
-    dap.adapters.delve = {
-      type = 'executable',
-      command = os.getenv 'GOBIN' .. '/dlv',
-      args = {},
-    }
+    dap.set_log_level 'TRACE'
 
     require('mason-nvim-dap').setup {
       -- Makes a best effort to setup the various debuggers with
@@ -77,22 +73,24 @@ return {
       dapui.open { reset = true }
     end, { desc = '[D]ebug: [R]eset UI' })
     vim.keymap.set('n', '<leader>Dc', dap.continue, { desc = '[D]ebug: Start/[C]ontinue' })
-    vim.keymap.set('n', '<F7>', dap.continue, { desc = '[D]ebug: Start/[C]ontinue' })
-    vim.keymap.set('n', '<S-F7>', dap.run_last, { desc = '[D]ebug: Run Last' })
+    vim.keymap.set('n', '<F1>', dap.continue, { desc = '[D]ebug: Start/[C]ontinue' })
+    vim.keymap.set('n', '<S-F1>', dap.run_last, { desc = '[D]ebug: Run Last' })
     vim.keymap.set('n', '<leader>DT', dap.terminate, { desc = '[D]ebug: [T]erminate' })
     vim.keymap.set('n', '<F12>', dap.terminate, { desc = '[D]ebug: [T]erminate' })
     vim.keymap.set('n', '<leader>Do', dap.step_over, { desc = '[D]ebug: Step [o]ver' })
-    vim.keymap.set('n', '<F8>', dap.step_over, { desc = '[D]ebug: Step [o]ver' })
+    vim.keymap.set('n', '<F3>', dap.step_over, { desc = '[D]ebug: Step [o]ver' })
     vim.keymap.set('n', '<leader>Di', dap.step_into, { desc = '[D]ebug: Step [I]nto' })
-    vim.keymap.set('n', '<F9>', dap.step_into, { desc = '[D]ebug: Step [I]nto' })
+    vim.keymap.set('n', '<F2>', dap.step_into, { desc = '[D]ebug: Step [I]nto' })
     vim.keymap.set('n', '<leader>DO', dap.step_out, { desc = '[D]ebug: Step [O]ut' })
-    vim.keymap.set('n', '<S-F9>', dap.step_out, { desc = '[D]ebug: Step [O]ut' })
+    vim.keymap.set('n', '<F4>', dap.step_out, { desc = '[D]ebug: Step [O]ut' })
+    vim.keymap.set('n', '<leader>DB', dap.step_back, { desc = '[D]ebug: Step [B]ack' })
+    vim.keymap.set('n', '<F5>', dap.step_back, { desc = '[D]ebug: Step [B]ack' })
     vim.keymap.set('n', '<leader>Db', dap.toggle_breakpoint, { desc = '[D]ebug: Toggle [b]reakpoint' })
-    vim.keymap.set('n', '<F10>', dap.toggle_breakpoint, { desc = '[D]ebug: Toggle [b]reakpoint' })
+    vim.keymap.set('n', '<F6>', dap.toggle_breakpoint, { desc = '[D]ebug: Toggle [b]reakpoint' })
     vim.keymap.set('n', '<leader>DB', function()
       dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
     end, { desc = '[D]ebug: Set Conditional [B]reakpoint' })
-    vim.keymap.set('n', '<S-F10>', function()
+    vim.keymap.set('n', '<S-F6>', function()
       dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
     end, { desc = '[D]ebug: Set Conditional [B]reakpoint' })
     vim.keymap.set({ 'n', 'v' }, '<leader>Dh', function()
@@ -101,7 +99,10 @@ return {
     vim.keymap.set({ 'n', 'v' }, '<leader>Dp', function()
       require('dap.ui.widgets').preview()
     end, { desc = '[D]ebug: Preview (UI)' })
-    vim.keymap.set('n', '<F11>', dap.run_to_cursor, { desc = '[D]ebug: Run To Cursor' })
+    vim.keymap.set('n', '<F7>', dap.run_to_cursor, { desc = '[D]ebug: Run To Cursor' })
+    vim.keymap.set({ 'n', 'v' }, '<F8>', function()
+      dapui.eval(nil, { enter = true })
+    end, { desc = '[D]ebug: Evaluate Under Cursor' })
 
     require('nvim-dap-virtual-text').setup {
       commented = true,
@@ -115,15 +116,15 @@ return {
       icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
       controls = {
         icons = {
-          pause = '⏸',
-          play = '▶',
-          step_into = '⏎',
-          step_over = '⏭',
-          step_out = '⏮',
-          step_back = 'b',
-          run_last = '▶▶',
-          terminate = '⏹',
-          disconnect = '⏏',
+          pause = '',
+          play = 'F1 ',
+          step_into = 'F2 󰆹',
+          step_over = 'F3 ',
+          step_out = 'F4 󰆸',
+          step_back = 'F5 ',
+          run_last = 'SF1 ',
+          terminate = 'F12 ',
+          disconnect = '󰇪',
         },
       },
     }
@@ -132,6 +133,9 @@ return {
     vim.keymap.set('n', '<leader>Ds', dapui.toggle, { desc = '[D]ebug: See last [s]ession result.' })
 
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
+    -- dap.listeners.before.launch['dapui_config'] = dapui.open
+    -- dap.listeners.before.attach['dapui_config'] = dapui.open
+
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
