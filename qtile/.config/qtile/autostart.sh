@@ -24,3 +24,5 @@ if [ -x "$(command -v greenclip)" ]; then
 	pkill greenclip
 	greenclip daemon &
 fi
+
+autorandr --change
