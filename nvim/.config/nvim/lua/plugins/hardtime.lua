@@ -29,6 +29,7 @@ return {
       'qf',
       'oil',
       'undotree',
+      'fugitive',
     },
     disabled_keys = {
       ['<Up>'] = { '', 'i' },
