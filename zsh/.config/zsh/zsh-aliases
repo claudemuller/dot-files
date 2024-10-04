@@ -64,12 +64,17 @@ alias ll="eza -l --icons --git -a" #ls -lah"
 alias lt="eza -l --sort=modified --icons --git -a" #ls -latrh"
 
 # Git
-alias ga="git add"
+alias ga="git a"
 alias gs="git s"
-alias gm="git commit -m"
-alias gc="git checkout"
-alias gp="git pull"
-alias gpp="git push"
+alias gls="git ls"
+alias glg="git lg"
+alias gll="git ll"
+alias gld="git ld"
+alias glds="git lds"
+alias gcm="git cm"
+alias gco="git co"
+alias gp="git p"
+alias gpp="git pp"
 
 case "$(uname -s)" in
     Darwin)
