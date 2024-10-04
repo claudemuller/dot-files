@@ -40,7 +40,7 @@ M.save_all_buffers = function()
   end
 end
 
-M.dump = function(o)
+local function dump(o)
   if type(o) == 'table' then
     local s = '{ '
     for k, v in pairs(o) do
@@ -54,6 +54,7 @@ M.dump = function(o)
     return tostring(o)
   end
 end
+M.dump = dump
 
 local daily_filename = function()
   local day_lookup = {}
