@@ -14,7 +14,17 @@ return { -- Collection of various small independent plugins/modules
     -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
     -- - sd'   - [S]urround [D]elete [']quotes
     -- - sr)'  - [S]urround [R]eplace [)] [']
-    require('mini.surround').setup()
+    require('mini.surround').setup {
+      mappings = {
+        add = 's', -- Add surrounding
+        delete = 'ds', -- Delete surrounding
+        find = 'fs', -- Find surrounding (to the right)
+        find_left = 'Fs', -- Find surrounding (to the left)
+        highlight = 'hs', -- Highlight surrounding
+        replace = 'cs', -- Change surrounding
+        update_n_lines = 'sn', -- Update `n_lines`
+      },
+    }
 
     -- Simple and easy statusline.
     --  You could remove this setup call if you don't like it,
