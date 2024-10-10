@@ -55,7 +55,14 @@
   "nvim-web-devicons": { "branch": "master", "commit": "56f17def81478e406e3a8ec4aa727558e79786f3" },
   "obsidian.nvim": { "branch": "main", "commit": "ae1f76a75c7ce36866e1d9342a8f6f5b9c2caf9b" },
   "plenary.nvim": { "branch": "master", "commit": "2d9b06177a975543726ce5c73fca176cedbffe9d" },
+<<<<<<< Updated upstream
   "render-markdown.nvim": { "branch": "main", "commit": "9b9acba56ba43f8119c5be168b249203e2d378d0" },
+||||||| Stash base
+  "render-markdown.nvim": { "branch": "main", "commit": "bdf03ef2a87082ef48bb1b471d102c295e97602c" },
+=======
+  "render-markdown.nvim": { "branch": "main", "commit": "bdf03ef2a87082ef48bb1b471d102c295e97602c" },
+  "rustaceanvim": { "branch": "master", "commit": "29f42cc149f915d771c550b6dfe7c788d856cf04" },
+>>>>>>> Stashed changes
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "cf48d4dfce44e0b9a2e19a008d6ec6ea6f01a83b" },
   "telescope-ui-select.nvim": { "branch": "master", "commit": "6e51d7da30bd139a6950adf2a47fda6df9fa06d2" },
   "telescope.nvim": { "branch": "0.1.x", "commit": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026" },

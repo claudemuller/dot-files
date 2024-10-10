@@ -20,3 +20,4 @@ claude)
 
 *) ;;
 esac
+. "/home/lukefilewalker/.deno/env"
