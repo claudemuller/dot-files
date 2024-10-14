@@ -15,6 +15,7 @@ return {
     },
     formatters_by_ft = {
       lua = { 'stylua' },
+      cpp = { 'clang-format' },
       go = { 'gofmt', 'goimports' },
       rust = { 'rustfmt', lsp_format = 'fallback' },
       -- Conform will run multiple formatters sequentially

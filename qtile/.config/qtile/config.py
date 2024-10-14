@@ -68,7 +68,7 @@ keys = [
     Key(
         [mod],
         "Return",
-        lazy.spawn(terminal + " -e " + home + "/.local/bin/run-tmux"),
+        lazy.spawn(terminal + "-c ~/.config/kitty/kitty.conf -e " + home + "/.local/bin/run-tmux"),
         desc="Launch terminal",
     ),
     Key(
