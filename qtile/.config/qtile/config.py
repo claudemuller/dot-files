@@ -68,7 +68,7 @@ keys = [
     Key(
         [mod],
         "Return",
-        lazy.spawn(terminal + "-c ~/.config/kitty/kitty.conf -e " + home + "/.local/bin/run-tmux"),
+        lazy.spawn(terminal + "-c ~/.config/kitty/kitty.conf"),
         desc="Launch terminal",
     ),
     Key(
@@ -321,6 +321,7 @@ floating_layout = layout.Floating(
         Match(wm_class="maketag"),  # gitk
         Match(wm_class="ssh-askpass"),  # ssh-askpass
         Match(wm_class="burp-StartBurp"),
+        Match(wm_class="Godot_Engine"),
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
         Match(title="Android Emulator.*"),
