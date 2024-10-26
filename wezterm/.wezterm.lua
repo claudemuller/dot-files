@@ -1,43 +1,55 @@
 local wezterm = require("wezterm")
 
-return {
-	default_profile = "tmux-default",
-	profiles = {
-		["tmux-default"] = {
-			-- Default TMUX profile
-			-- default_prog = {
-			-- 	"run-tmux",
-			-- },
-			set_environment_variables = {},
-		},
-		["VSDev"] = {
-			-- Visual Studio Developer Command Prompt profile
-			-- default_prog = {
-			-- 	"cmd.exe",
-			-- 	"/k",
-			-- 	"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\Tools\\VsDevCmd.bat",
-			-- },
-			set_environment_variables = {},
-		},
-		["WSL"] = {
-			-- WSL profile
-			-- default_prog = {
-			-- 	"wsl.exe",
-			-- 	"-u",
-			-- 	"dief",
-			-- 	"-d",
-			-- 	"Manjaro",
-			-- },
-			set_environment_variables = {},
-		},
-	},
+local function mergeTables(t1, t2)
+	for k, v in pairs(t2) do
+		if type(v) == "table" and type(t1[k]) == "table" then
+			mergeTables(t1[k], v)
+		else
+			t1[k] = v
+		end
+	end
+	return t1
+end
 
+local profiles = {
+	tmux = {
+		-- Default TMUX profile
+		-- default_prog = {
+		-- 	"run-tmux",
+		-- },
+		set_environment_variables = {},
+		font = wezterm.font("JetBrainsMono Nerd Font"),
+	},
+	vsdev = {
+		-- Visual Studio Developer Command Prompt profile
+		default_prog = {
+			"cmd.exe",
+			"/k",
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\Tools\\VsDevCmd.bat",
+		},
+		set_environment_variables = {},
+		font = wezterm.font("JetBrainsMono NF"),
+	},
+	manjaro = {
+		-- Manjaro in WSL profile
+		default_prog = {
+			"wsl.exe",
+			"-u",
+			"dief",
+			"-d",
+			"Manjaro",
+		},
+		set_environment_variables = {},
+		font = wezterm.font("JetBrainsMono Nerd Font"),
+	},
+}
+
+return mergeTables(profiles.vsdev, {
 	-- Appearance
-	font = wezterm.font("JetBrainsMono Nerd Font"),
-	font_size = 9,
+	font_size = 9.5,
 	line_height = 1.2,
 	harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
-	color_scheme = "Catppuccin Mocha",
+	color_scheme = "Omni (Gogh)",
 	hide_tab_bar_if_only_one_tab = true,
 
 	-- Layout
@@ -56,4 +68,4 @@ return {
 			action = wezterm.action.SendString("\x1b:w\n"), -- Sends the ":w" command to save
 		},
 	},
-}
+})
