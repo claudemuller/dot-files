@@ -44,7 +44,9 @@ local profiles = {
 	},
 }
 
-return mergeTables(profiles.vsdev, {
+local profile = os.getenv("WEZTERM_PROFILE") or "tmux"
+
+return mergeTables(profiles[profile], {
 	-- Appearance
 	font_size = 9.5,
 	line_height = 1.2,

@@ -68,7 +68,8 @@ keys = [
     Key(
         [mod],
         "Return",
-        lazy.spawn(terminal + "-c ~/.config/kitty/kitty.conf"),
+        lazy.spawn("wezterm --profile tmux-default"),
+        # lazy.spawn(terminal + "-c ~/.config/kitty/kitty.conf"),
         desc="Launch terminal",
     ),
     Key(
