@@ -26,7 +26,7 @@ return {
   },
   opts = {
     signs = {
-      add = { text = '✚' },
+      add = { text = '┃' },
       change = { text = '' },
       delete = { text = '✖' },
       test = 'test',
