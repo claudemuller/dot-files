@@ -27,8 +27,8 @@ return {
   opts = {
     signs = {
       add = { text = '┃' },
-      change = { text = '' },
-      delete = { text = '✖' },
+      change = { text = '│' },
+      delete = { text = '┃' },
       test = 'test',
       topdelete = { text = '✖' },
       changedelete = { text = '' },
