@@ -24,21 +24,24 @@ return {
     { '<leader>gdd', '<cmd>Gitsigns diffthis ~<cr>', desc = '[G]it [D]iff File with ~' },
     { '<leader>gdb', '', desc = '[G]it [D]iff [B]ranch', mode = { 'n' } },
   },
-  opts = {
-    signs = {
-      add = { text = '┃' },
-      change = { text = '│' },
-      delete = { text = '┃' },
-      test = 'test',
-      topdelete = { text = '✖' },
-      changedelete = { text = '' },
-    },
-    current_line_blame = true,
-    current_line_blame_opts = {
-      virt_text = true,
-      virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
-      delay = 100,
-      ignore_whitespace = false,
-    },
-  },
+  config = function()
+    require('gitsigns').setup {
+      signs = {
+        add = { text = '█' },
+        change = { text = '█' },
+        delete = { text = '█' },
+        test = 'test',
+        topdelete = { text = '✖' },
+        changedelete = { text = '' },
+      },
+      current_line_blame = true,
+      current_line_blame_opts = {
+        virt_text = true,
+        virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+        delay = 100,
+        ignore_whitespace = false,
+      },
+    }
+    -- vim.api.nvim_set_hl(0, 'GitSignsChange', { fg = '#000000' })
+  end,
 }
