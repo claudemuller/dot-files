@@ -29,6 +29,9 @@ local profiles = {
 		},
 		set_environment_variables = {},
 		font = wezterm.font("JetBrainsMono NF"),
+
+		-- TMUX leader
+		leader = { key = "b", mods = "CTRL", timeout_milliseconds = 2001 },
 	},
 	-- Manjaro in WSL profile
 	manjaro = {
@@ -44,14 +47,15 @@ local profiles = {
 	},
 }
 
-local profile = os.getenv("WEZTERM_PROFILE")
-	or function()
-		local is_windows = package.config:sub(1, 1) == "\\"
-		if is_windows then
-			return "vsdev"
-		end
-		return "tmux"
+local default_profile = function()
+	local is_windows = package.config:sub(1, 1) == "\\"
+	print(is_windows)
+	if is_windows then
+		return "vsdev"
 	end
+	return "tmux"
+end
+local profile = os.getenv("WEZTERM_PROFILE") or default_profile()
 
 return mergeTables(profiles[profile], {
 	-- Appearance
@@ -72,26 +76,23 @@ return mergeTables(profiles[profile], {
 	-- Key overrides
 	keys = {
 		-- Passthrough keys
-		{
-			key = "S",
-			mods = "CTRL|SHIFT",
-			action = wezterm.action.SendString("\x1b:w\n"), -- Sends the ":w" command to save
-		},
+		{ key = "S", mods = "CTRL|SHIFT", action = wezterm.action.SendString("\x1b:w\n") },
 
 		-- TMUX emulation
-		-- First key combo (Ctrl+b)
 		{
-			key = "b",
-			mods = "CTRL",
-			action = function(window, pane) -- noop
-				return nil
-			end,
+			key = '"',
+			mods = "LEADER|SHIFT",
+			action = wezterm.action({ SplitVertical = { domain = "CurrentPaneDomain" } }),
 		},
-
-		-- Second key combo (Ctrl+%) to split the pane
-		{ key = "%", mods = "CTRL", action = wezterm.action({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) },
-
-		-- Optional: For splitting vertically (mimicking Ctrl+b then Ctrl+")
-		{ key = '"', mods = "CTRL", action = wezterm.action({ SplitVertical = { domain = "CurrentPaneDomain" } }) },
+		{
+			key = "%",
+			mods = "LEADER|SHIFT",
+			action = wezterm.action({ SplitHorizontal = { domain = "CurrentPaneDomain" } }),
+		},
+		{ key = "x", mods = "LEADER", action = wezterm.action({ CloseCurrentPane = { confirm = false } }) },
+		{ key = "h", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Left" }) },
+		{ key = "l", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Right" }) },
+		{ key = "k", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Up" }) },
+		{ key = "j", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Down" }) },
 	},
 })
