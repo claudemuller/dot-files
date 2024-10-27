@@ -27,9 +27,10 @@ return {
   config = function()
     require('gitsigns').setup {
       signs = {
+        -- █▓▒░
         add = { text = '█' },
-        change = { text = '█' },
-        delete = { text = '█' },
+        change = { text = '▓' },
+        delete = { text = '▒' },
         test = 'test',
         topdelete = { text = '✖' },
         changedelete = { text = '' },
@@ -42,6 +43,5 @@ return {
         ignore_whitespace = false,
       },
     }
-    -- vim.api.nvim_set_hl(0, 'GitSignsChange', { fg = '#000000' })
   end,
 }
