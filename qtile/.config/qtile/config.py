@@ -11,7 +11,7 @@ import colours
 # -------------------------------------------------------------------------------------------------#
 
 mod = "mod4"
-terminal = "kitty"
+terminal = "wezterm"
 home = os.path.expanduser("~")
 conf_dir = os.path.dirname(os.path.abspath(__file__))
 colours = colours.TokyoNight
@@ -68,8 +68,7 @@ keys = [
     Key(
         [mod],
         "Return",
-        lazy.spawn("wezterm --profile tmux-default"),
-        # lazy.spawn(terminal + "-c ~/.config/kitty/kitty.conf"),
+        lazy.spawn("WEZTERM_PROFILE=tmux " + terminal),
         desc="Launch terminal",
     ),
     Key(
