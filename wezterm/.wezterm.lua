@@ -77,6 +77,13 @@ return mergeTables(profiles[profile], {
 	keys = {
 		-- Passthrough keys
 		{ key = "S", mods = "CTRL|SHIFT", action = wezterm.action.SendString("\x1b:w\n") },
+		-- TODO: fix this ...
+		{
+			key = "7",
+			mods = "CTRL",
+			action = wezterm.action.SendString("\x1b:lua require('functions').switch_c_h()\n"),
+		},
+		-- { key = "7", mods = "CTRL", action = wezterm.action.SendString("\x1b[31;7~") },
 
 		-- TMUX emulation
 		{
@@ -94,5 +101,6 @@ return mergeTables(profiles[profile], {
 		{ key = "l", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Right" }) },
 		{ key = "k", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Up" }) },
 		{ key = "j", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Down" }) },
+		{ key = "c", mods = "LEADER", action = wezterm.action({ SpawnTab = "CurrentPaneDomain" }) },
 	},
 })

@@ -29,6 +29,9 @@ vim.keymap.set('n', '<C-S-s>', '<cmd>:w<CR>', { noremap = true, desc = 'Save cur
 -- check here - https://vi.stackexchange.com/questions/38848/how-can-i-map-ctrl-alt-letter-mappings-in-vim
 vim.keymap.set('n', '<C-S-A-s>', fn.save_all_buffers, { noremap = true, desc = 'Save all open buffers' })
 
+-- Switch between .c and .h files
+vim.keymap.set('n', '<C-7>', fn.switch_c_h, { noremap = true, desc = 'Switch between .c/.c++ and .h files' })
+
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --  See `:help wincmd` for a list of all window commands
