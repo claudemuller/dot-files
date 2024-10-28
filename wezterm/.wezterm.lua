@@ -59,8 +59,8 @@ local profile = os.getenv("WEZTERM_PROFILE") or default_profile()
 
 return mergeTables(profiles[profile], {
 	-- Appearance
-	font_size = 9.5,
-	line_height = 1.2,
+	font_size = 9,
+	line_height = 1.1,
 	harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
 	color_scheme = "Catppuccin Mocha",
 	hide_tab_bar_if_only_one_tab = true,
@@ -70,7 +70,7 @@ return mergeTables(profiles[profile], {
 		left = 5,
 		right = 5,
 		top = 5,
-		bottom = 4,
+		bottom = 0,
 	},
 
 	-- Key overrides
