@@ -145,7 +145,7 @@ return {
     require('config.dap.go').setup()
     require('config.dap.rust').setup()
     -- require('config.dap.java').setup()
-    -- require('config.dap.c').setup()
+    require('config.dap.c').setup()
 
     vim.api.nvim_create_autocmd('DirChanged', {
       pattern = '*',
