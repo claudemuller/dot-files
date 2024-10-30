@@ -21,4 +21,4 @@ if [ $exit_code -eq 1 ] || [ -z "$session" ]; then
 fi
 
 notify-send -t 1000 -a "$msg_header" "Starting $session TMUX session..."
-kitty -e "$HOME/.local/bin/run-tmux" $session
+wezterm -e "$HOME/.local/bin/run-tmux" $session
