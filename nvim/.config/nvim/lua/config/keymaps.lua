@@ -66,3 +66,8 @@ vim.keymap.set('n', '<leader>df', vim.diagnostic.open_float, { desc = '[D]iagnos
 -- Obsidian
 vim.keymap.set('n', '<leader>Odn', fn.obsidian.create_new_day, { desc = '[N]ew' })
 vim.keymap.set('n', '<leader>Odc', fn.obsidian.copy_this_day, { desc = '[C]opy' })
+
+-- Code Notes
+vim.keymap.set('n', '<leader>Na', fn.code_notes.add_note, { desc = '[A]dd a new [N]ote at cursor' })
+-- vim.api.nvim_set_keymap('n', '<leader>Nd', delete_note, { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>Nt', fn.code_notes.toggel_notes, { desc = '[T]oggle [N]otes' })
