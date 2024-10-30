@@ -180,10 +180,14 @@ M.code_notes = {
     local cur_line = cur_pos[1] -- Line num
     local cur_char = cur_pos[2] -- Char num
     local cur_loc = 'L' .. cur_line .. ':' .. cur_char
-    local note = vim.fn.input('Note at ' .. cur_loc)
-    local final_note = cur_loc .. ' ' .. note .. ' [' .. os.date '%Y-%m-%d %H:%M:%S' .. ']'
+    local note = vim.fn.input('Note at ' .. cur_loc) .. ' [' .. os.date '%Y-%m-%d %H:%M:%S' .. ']'
+    local final_note = cur_loc .. ' ' .. note
 
     M.code_notes.show_note(cur_line, cur_char, note)
+
+    if M.code_notes.are_notes_showing() then
+      M.code_notes.show_notes()
+    end
 
     local filename, _ = chop_filename(vim.fn.expand '%')
     local out_file = filename .. '.md'
