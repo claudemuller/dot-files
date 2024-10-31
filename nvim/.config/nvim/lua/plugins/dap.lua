@@ -57,7 +57,7 @@ return {
         numhl = '',
       },
       stopped = {
-        text = '😴',
+        text = '⏸',
         texthl = 'LspDiagnosticsSignInformation',
         linehl = 'DiagnosticUnderlineInfo',
         numhl = 'LspDiagnosticsSignInformation',
