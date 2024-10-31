@@ -39,17 +39,21 @@ return {
     'hrsh7th/cmp-nvim-lua',
     'hrsh7th/cmp-nvim-lsp-signature-help',
 
-    -- If you want to add a bunch of pre-configured snippets,
-    --    you can use this plugin to help you. It even has snippets
-    --    for various frameworks/libraries/etc. but you will have to
-    --    set up the ones that are useful for you.
     'rafamadriz/friendly-snippets',
   },
   config = function()
     -- See `:help cmp`
     local cmp = require 'cmp'
     local luasnip = require 'luasnip'
-    luasnip.config.setup {}
+    luasnip.config.setup {
+      -- Extend with framework snippets
+      -- luasnip.filetype_extend('ruby', { 'rails' }),
+
+      -- will exclude all javascript snippets
+      -- require('luasnip.loaders.from_vscode').load {
+      --   exclude = { 'javascript' },
+      -- },
+    }
 
     require('luasnip.loaders.from_vscode').lazy_load()
 

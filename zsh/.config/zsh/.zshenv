@@ -46,6 +46,10 @@ if [ -d "$HOME/.yarn/bin" ]; then
   PATH="/opt/clang-format-static:$PATH"
 fi
 
+if [ -d "$HOME/.deno/bin" ]; then
+    . "$HOME/.deno/env"
+fi
+
 export PATH=$PATH
 
 # --------------------------------------------------------------------------------------------- Env

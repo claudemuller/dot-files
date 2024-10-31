@@ -151,6 +151,26 @@ return {
     vim.keymap.set('n', '<leader>glC', ':Telescope git_commits<cr>', { desc = '[G]it [L]og [C]ommits in Telescope' })
     vim.keymap.set('n', '<leader>glc', ':Telescope git_bcommits<cr>', { desc = '[G]it [L]og buffer [C]ommits in Telescope' })
 
+    -- Search search
+    local grep_snippets = function()
+      local filetype = vim.bo.filetype
+      local path = vim.fn.expand '~/.local/share/nvim/lazy/friendly-snippets/snippets/' .. filetype
+      local json_path = path .. '.json'
+
+      if vim.fn.filereadable(json_path) == 1 then
+        builtin.live_grep {
+          search_dirs = { json_path },
+          prompt_title = 'Grepping Snippets: ' .. filetype .. '.json',
+        }
+      else
+        builtin.live_grep {
+          cwd = path,
+          prompt_title = 'Grepping Snippets: ' .. filetype,
+        }
+      end
+    end
+    vim.keymap.set('n', '<leader>sX', grep_snippets, { desc = 'Grep [S]nippets' })
+
     builtin.diagnostics { severity_sort = true }
   end,
 }

@@ -32,6 +32,7 @@ source "$ZDOTDIR/completion/custom-completion.zsh"
 zsh_add_completion "esc/conda-zsh-completion" false
 # For more plugins: https://github.com/unixorn/awesome-zsh-plugins
 # More completions https://github.com/zsh-users/zsh-completions
+if [[ ":$FPATH:" != *":/home/lukefilewalker/.config/zsh/completions:"* ]]; then export FPATH="/home/lukefilewalker/.config/zsh/completions:$FPATH"; fi
 
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
