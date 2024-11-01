@@ -25,7 +25,9 @@ local profiles = {
 		default_prog = {
 			"cmd.exe",
 			"/k",
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\Tools\\VsDevCmd.bat",
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\Build\\vcvarsall.bat",
+			"x64",
+			-- "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\Tools\\VsDevCmd.bat",
 		},
 		set_environment_variables = {},
 		font = wezterm.font("JetBrainsMono NF"),
