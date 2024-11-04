@@ -2,6 +2,25 @@
 -- [[ Telescope config ]]
 -----------------------------------------------------------------------
 
+local grep_buffer_for_text = function(builtin)
+  local mode = vim.fn.mode()
+  if mode ~= 'v' and mode ~= 'V' and mode ~= '' then
+    builtin.current_buffer_fuzzy_find()
+  else
+    -- TODO: this stuff is wonky :/ fix
+    local start_line, start_col = unpack(vim.fn.getpos "'<", 2, 3)
+    local end_line, end_col = unpack(vim.fn.getpos "'>", 2, 3)
+    if start_line ~= end_line then
+      print 'Selection spans multiple lines, no go sailor :('
+      return nil
+    end
+
+    local line_text = vim.api.nvim_buf_get_lines(0, start_line - 1, start_line, false)[1]
+    local selected_text = string.sub(line_text, start_col, end_col)
+    builtin.current_buffer_fuzzy_find { default_text = selected_text }
+  end
+end
+
 -- Fuzzy Finder (files, lsp, etc)
 -- See `:help telescope`
 return {
@@ -132,9 +151,9 @@ return {
     vim.keymap.set('n', '<leader>sm', builtin.marks, { desc = '[S]earch [M]arks' })
     vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
     vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
-
-    -- Slightly advanced example of overriding default behavior and theme
-    vim.keymap.set('n', '<leader>/', builtin.current_buffer_fuzzy_find, { desc = '[/] Fuzzily search in current buffer' })
+    vim.keymap.set({ 'n', 'v' }, '<leader>/', function()
+      grep_buffer_for_text(builtin)
+    end, { desc = '[/] Fuzzily search in current buffer' })
 
     -- Also possible to pass additional configuration options.
     --  See `:help telescope.builtin.live_grep()` for information about particular keys
