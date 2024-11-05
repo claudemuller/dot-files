@@ -38,7 +38,7 @@
 	example = !sh -c 'echo "Merge branch ${1} into ${1}"' -
 [user]
 	name = Claude Müller
-	email = ${GIT_AUTHOR_EMAL}
+	email = ${GIT_AUTHOR_EMAIL}
 [interactive]
 	diffFilter = delta --color-only
 [delta]
