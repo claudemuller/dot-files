@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
 qtile cmd-obj -o cmd -f reload_config
+pkill picom; picom --config $HOME/.config/qtile/conf/picom.config &>/dev/null &
 feh --bg-fill "$HOME"/.config/qtile/wallpaper.png
 notify-send -i display "Display profile $AUTORANDR_CURRENT_PROFILE loaded"

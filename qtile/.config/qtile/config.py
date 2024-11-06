@@ -510,5 +510,9 @@ def start_once():
     home = os.path.expanduser("~")
     subprocess.call([home + "/.config/qtile/autostart.sh"])
 
+@hook.subscribe.screen_change
+def restart_on_randr(qtile, ev):
+    qtile.cmd_reconfigure_screens()
+    qtile.cmd_restart()
 
 wmname = "LG3D"
