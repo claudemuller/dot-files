@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-# qtile cmd-obj -o cmd -f reload_config
 qtile cmd-obj -o cmd -f restart
 pkill picom; picom --config $HOME/.config/qtile/conf/picom.config &>/dev/null &
 feh --bg-fill "$HOME"/.config/qtile/wallpaper.png
