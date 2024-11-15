@@ -63,6 +63,7 @@ keys = [
     Key([mod, "control"], "q", lazy.spawn("betterlockscreen -l dim"), desc="Lock screen"),
     # Key([mod, "control"], "l", lazy.spawn(home + "/.local/bin/lockscreen"), desc="Lock screen"),
     Key([mod, "control", "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+    Key([mod, "control", "shift"], "r", lazy.spawn("autorandr --force && qtile cmd-obj -o cmd -f restart")),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     # Executables
     Key(
@@ -322,6 +323,8 @@ floating_layout = layout.Floating(
         Match(wm_class="ssh-askpass"),  # ssh-askpass
         Match(wm_class="burp-StartBurp"),
         Match(wm_class="Godot_Engine"),
+        Match(wm_class="xup.class"),
+        Match(title="game"),
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
         Match(title="Android Emulator.*"),
@@ -510,5 +513,9 @@ def start_once():
     home = os.path.expanduser("~")
     subprocess.call([home + "/.config/qtile/autostart.sh"])
 
+# @hook.subscribe.screen_change
+# def restart_on_randr(qtile, ev):
+#     qtile.cmd_reconfigure_screens()
+#     qtile.cmd_restart()
 
 wmname = "LG3D"
