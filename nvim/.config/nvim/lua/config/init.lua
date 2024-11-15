@@ -85,5 +85,9 @@ vim.opt.scrolloff = 5
 -- Obsidian checkbox rendering thing
 vim.opt_local.conceallevel = 1
 
+-- Enable loading of local configs
+vim.opt.exrc = true
+vim.opt.secure = true
+
 -- Log Level
 -- vim.lsp.set_log_level 'off'

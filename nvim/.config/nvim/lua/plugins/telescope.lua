@@ -170,12 +170,13 @@ return {
     end, { desc = '[S]earch [N]eovim files' })
 
     -- Git shortcuts
-    vim.keymap.set('n', '<leader>gL', ':Telescope git_commits<cr>', { desc = '[G]it [L]og in Telescope' })
-    vim.keymap.set('n', '<leader>gS', ':Telescope git_status<cr>', { desc = '[G]it [S]tatus in Telescope' })
-    vim.keymap.set('n', '<leader>gt', ':Telescope git_stash<cr>', { desc = '[G]it s[T]ash in Telescope' })
-    vim.keymap.set('n', '<leader>gb', ':Telescope git_branches<cr>', { desc = '[G]it [B]ranches in Telescope' })
-    vim.keymap.set('n', '<leader>glC', ':Telescope git_commits<cr>', { desc = '[G]it [L]og [C]ommits in Telescope' })
-    vim.keymap.set('n', '<leader>glc', ':Telescope git_bcommits<cr>', { desc = '[G]it [L]og buffer [C]ommits in Telescope' })
+    vim.keymap.set('n', '<leader>gS', builtin.git_status, { desc = '[G]it [S]tatus in Telescope' })
+    vim.keymap.set('n', '<leader>gt', builtin.git_stash, { desc = '[G]it s[T]ash in Telescope' })
+    vim.keymap.set('n', '<leader>gb', builtin.git_branches, { desc = '[G]it [B]ranches in Telescope' })
+    vim.keymap.set('n', '<leader>glC', builtin.git_commits, { desc = '[G]it [L]og [C]ommits in Telescope' })
+    vim.keymap.set('n', '<leader>glc', builtin.git_bcommits, { desc = '[G]it [L]og buffer [C]ommits in Telescope' })
+
+    vim.keymap.set('i', '<C-R>', builtin.registers, { desc = 'Search Registers' })
 
     -- Search search
     local grep_snippets = function()
