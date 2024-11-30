@@ -233,6 +233,7 @@ return {
       --     },
       --   },
       -- },
+      starlark_rust = {},
       ts_ls = {},
       html = {},
       helm_ls = {
