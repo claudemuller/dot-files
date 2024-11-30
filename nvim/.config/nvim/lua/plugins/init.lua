@@ -11,18 +11,20 @@ return {
       'tpope/vim-rhubarb',
     },
     keys = {
-      { '<leader>gs', ':Git<cr>', desc = '[G]it [S]tatus', mode = { 'n', 'v' } },
-      { '<leader>gc', ':Git commit<cr>', desc = '[G]it [C]ommit', mode = { 'n', 'v' } },
-      { '<leader>gp', ':Git pull<cr>', desc = '[G]it [P]ull', mode = { 'n', 'v' } },
-      { '<leader>gP', ':Git push<cr>', desc = '[G]it [P]ush', mode = { 'n', 'v' } },
-      { '<leader>gll', ':Gllog<cr>', desc = '[G]it [L]og', mode = { 'n', 'v' } },
-      { '<leader>gP', ':Git push<cr>', desc = '[G]it [P]ush', mode = { 'n', 'v' } },
-      { '<leader>gdh', ':Gdiff :0<cr>', desc = '[G]it [D]iff [H]unk', mode = { 'n', 'v' } },
-      { '<leader>gdm', ':Gvdiffsplit master<cr>', desc = '[G]it [D]iff with [M]aster', mode = { 'n', 'v' } },
-      { '<leader>gC', ':Git mergetool<cr>', desc = '[G]it Show Merge [C]onflicts', mode = { 'n', 'v' } },
-      { '<leader>gR', ':Gvdiffsplit!<cr>', desc = '[G]it [R]esolve Conflicts', mode = { 'n', 'v' } },
-      { '<leader>gdT', ':diffget //3<cr>', desc = '[G]it [D]iff Get Theirs', mode = { 'n', 'v' } },
-      { '<leader>gdM', ':diffget //2<cr>', desc = '[G]it [D]iff Get Mine', mode = { 'n', 'v' } },
+      { '<leader>gs', ':Git<cr>', desc = 'Status', mode = { 'n', 'v' } },
+      { '<leader>gc', ':Git commit<cr>', desc = 'Commit', mode = { 'n', 'v' } },
+      { '<leader>gp', ':Git pull<cr>', desc = 'Pull', mode = { 'n', 'v' } },
+      { '<leader>gP', ':Git push<cr>', desc = 'Push', mode = { 'n', 'v' } },
+      { '<leader>gll', ':Gllog<cr>', desc = 'Log', mode = { 'n', 'v' } },
+
+      { '<leader>gdh', ':Gdiff :0<cr>', desc = 'Hunk', mode = { 'n', 'v' } },
+      { '<leader>gdm', ':Gvdiffsplit master<cr>', desc = 'With master', mode = { 'n', 'v' } },
+
+      { '<leader>gC', ':Git mergetool<cr>', desc = 'Show merge conflicts', mode = { 'n', 'v' } },
+      { '<leader>gR', ':Gvdiffsplit!<cr>', desc = 'Resolve conflicts', mode = { 'n', 'v' } },
+
+      { '<leader>gdT', ':diffget //3<cr>', desc = 'Accept theirs', mode = { 'n', 'v' } },
+      { '<leader>gdM', ':diffget //2<cr>', desc = 'Accept mine', mode = { 'n', 'v' } },
     },
   },
 
@@ -40,8 +42,8 @@ return {
   {
     'sindrets/diffview.nvim',
     keys = {
-      { '<leader>gdl', ':DiffviewOpen HEAD~2<CR>', desc = '[G]it [D]iff with [L]ast commit', mode = { 'n', 'v' } },
-      { '<leader>gdu', ':DiffviewOpen<CR>', desc = '[G]it [D]iff with [U]nstaged files', mode = { 'n', 'v' } },
+      { '<leader>gdl', ':DiffviewOpen HEAD~2<CR>', desc = 'With last commit', mode = { 'n', 'v' } },
+      { '<leader>gdu', ':DiffviewOpen<CR>', desc = 'With unstaged files', mode = { 'n', 'v' } },
     },
   },
 
@@ -64,8 +66,8 @@ return {
   {
     'leoluz/nvim-dap-go',
     keys = {
-      { '<leader>Dn', ':lua require("dap-go").debug_test()<cr>', desc = '[D]ebug [N]earest Test', mode = { 'n' } },
-      { '<leader>Dl', ':lua require("dap-go").debug_last_test()<cr>', desc = '[D]ebug [L]ast Test', mode = { 'n' } },
+      { '<leader>Dn', ':lua require("dap-go").debug_test()<cr>', desc = 'Nearest test', mode = { 'n' } },
+      { '<leader>Dl', ':lua require("dap-go").debug_last_test()<cr>', desc = 'Last test', mode = { 'n' } },
     },
   },
 

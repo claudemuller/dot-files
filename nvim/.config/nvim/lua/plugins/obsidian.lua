@@ -20,8 +20,8 @@ return {
     'nvim-lua/plenary.nvim',
   },
   keys = {
-    { '<leader>Oo', '<cmd>ObsidianOpen<cr>', desc = '[O]pen [O]bsidian' },
-    { '<leader>so', '<cmd>ObsidianSearch<cr>', desc = '[S]earch [O]bsidian notes' },
+    { '<leader>Oo', '<cmd>ObsidianOpen<cr>', desc = 'Open' },
+    { '<leader>so', '<cmd>ObsidianSearch<cr>', desc = 'Search obsidian notes' },
   },
   opts = {
     workspaces = {
@@ -29,10 +29,6 @@ return {
         name = 'personal',
         path = '~/repos/notes',
       },
-      -- {
-      -- 	name = "work",
-      -- 	path = "~/vaults/work",
-      -- },
     },
     ui = { enable = false },
   },

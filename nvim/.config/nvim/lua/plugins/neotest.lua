@@ -27,7 +27,7 @@ return {
       function()
         require('neotest').run.run(vim.fn.expand '%')
       end,
-      desc = 'Run [T]ests in This File',
+      desc = 'Run Tests in current file',
     },
     {
       '<leader>tF',
@@ -58,35 +58,35 @@ return {
           print 'No matching files found.'
         end
       end,
-      desc = 'Open Matching Test [F]ile',
+      desc = 'Open Matching Test File',
     },
     {
       '<leader>tt',
       function()
         require('neotest').run.run(vim.loop.cwd())
       end,
-      desc = 'Run All [T]est Files',
+      desc = 'Run all test files',
     },
     {
       '<leader>tr',
       function()
         require('neotest').run.run()
       end,
-      desc = '[T]est Nea[r]est',
+      desc = 'Run nearest',
     },
     {
       '<leader>tl',
       function()
         require('neotest').run.run_last()
       end,
-      desc = '[T]est [L]ast',
+      desc = 'Run last',
     },
     {
       '<leader>td',
       function()
         require('neotest').run.run { strategy = 'dap' }
       end,
-      desc = '[T]est [D]ebug',
+      desc = 'Debug test',
     },
     -- ['<leader>td'] = { "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>", 'Debug Test' },
     {
@@ -94,28 +94,28 @@ return {
       function()
         require('neotest').summary.toggle()
       end,
-      desc = 'Toggle [T]est [s]ummary',
+      desc = 'Toggle test summary',
     },
     {
       '<leader>to',
       function()
         require('neotest').output.open { enter = true, auto_close = true }
       end,
-      desc = 'Show [T]est [o]utput',
+      desc = 'Show test output',
     },
     {
       '<leader>tO',
       function()
         require('neotest').output_panel.toggle()
       end,
-      desc = 'Toggle [T]est [O]utput Panel',
+      desc = 'Toggle test output panel',
     },
     {
       '<leader>tS',
       function()
         require('neotest').run.stop()
       end,
-      desc = '[T]est [S]top',
+      desc = 'Stop test(s)',
     },
   },
   opts = {

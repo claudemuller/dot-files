@@ -16,8 +16,8 @@ return {
   },
   keys = {
     --{ "<leader>f", desc = "File" },
-    { '<leader>fn', ':Neotree toggle<CR>', desc = '[N]eotree' },
-    { '<leader>fts', ':Neotree document_symbols<CR>', desc = '[S]ymbol View' },
+    { '<leader>fn', ':Neotree toggle<CR>', desc = 'Toggle neotree' },
+    { '<leader>fts', ':Neotree document_symbols<CR>', desc = 'Toggel symbol view' },
   },
   config = function()
     -- If you want icons for diagnostic errors, you'll need to define them somewhere:

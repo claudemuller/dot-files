@@ -5,27 +5,27 @@ return {
     {
       '<leader>dd',
       '<cmd>Trouble diagnostics toggle<cr>',
-      desc = '[D]iagnostics (Trouble)',
+      desc = 'Show diagnostics (Trouble)',
     },
     {
       '<leader>dD',
       '<cmd>Trouble diagnostics toggle filter.buf=0<cr>',
-      desc = 'Buffer [D]iagnostics (Trouble)',
+      desc = 'Show buffer diagnostics (Trouble)',
     },
     {
       '<leader>cs',
       '<cmd>Trouble symbols toggle focus=false<cr>',
-      desc = 'Toggle [S]ymbols (Trouble)',
+      desc = 'Toggle symbols (Trouble)',
     },
     {
       '<leader>cl',
       '<cmd>Trouble lsp toggle focus=false win.position=right<cr>',
-      desc = 'LSP Definitions / references / ... (Trouble)',
+      desc = 'Show LSP definitions/references (Trouble)',
     },
     {
       '<leader>dQ',
       '<cmd>Trouble qflist toggle<cr>',
-      desc = 'Quickfix List (Trouble)',
+      desc = 'Toggle quickfix list (Trouble)',
     },
   },
   opts = {

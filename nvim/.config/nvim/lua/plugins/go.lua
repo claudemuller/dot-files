@@ -15,14 +15,19 @@ return {
     --   { '<leader>Tf', ':GoTestFunc<CR>', desc = '[T]est [f]unction' },
     --   { '<leader>TF', ':GoTestFile<CR>', desc = '[T]est [F]ile' },
     --   { '<leader>Tp', ':GoTestPkg<CR>', desc = '[T]est [p]ackage' },
-    { '<leader>cgc', ':GoCmt<CR>', desc = '[C]ode [G]enerate Function [C]omment' },
-    { '<leader>cgt', ':GoAddTag<CR>', desc = '[C]ode [G]enerate [T]ags' },
-    { '<leader>crt', ':GoRmTag<CR>', desc = '[C]ode [R]emove [T]ags' },
-    { '<leader>cfs', ':GoFillStruct<CR>', desc = '[C]ode [F]ill [S]truct Fields' },
-    { '<leader>cfS', ':GoFillSelect<CR>', desc = '[C]ode [F]ill [S]elect' },
-    { '<leader>cfe', ':GoIfErr<CR>', desc = '[C]ode [F]ill If/[E]rr' },
-    { '<leader>cgm', ':GoMockGen<CR>', desc = '[C]ode [G]enerate [M]ocks for Current File' },
-    { '<leader>ct', ':GoModTidy<CR>', desc = '[C]ode [T]idy' },
+    --
+    { '<leader>cgc', ':GoCmt<CR>', desc = 'Function comment' },
+    { '<leader>cgm', ':GoMockGen<CR>', desc = 'Mocks for current file' },
+
+    { '<leader>cgt', ':GoAddTag<CR>', desc = 'Tags' },
+    { '<leader>crt', ':GoRmTag<CR>', desc = 'Tags' },
+
+    { '<leader>cfs', ':GoFillStruct<CR>', desc = 'Struct fields' },
+    { '<leader>cfS', ':GoFillSelect<CR>', desc = 'Select' },
+    { '<leader>cfe', ':GoIfErr<CR>', desc = 'If/Err' },
+
+    { '<leader>ct', ':GoModTidy<CR>', desc = 'Tidy' },
+
     -- { '<leader>cd', 'zy:GoDoc <C-r>z<CR>', desc = '[C]ode Go[D]ocs Under Cursor', mode = 'v' },
     -- { '<leader>cs', ':GoPkgOutline<CR>', desc = '[C]ode [S]ymbols' },
   },

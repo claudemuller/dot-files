@@ -3,7 +3,7 @@
 
 local fn = require 'functions'
 
-vim.keymap.set('n', '<leader>L', ':Lazy<CR>', { desc = 'Open [L]azy' })
+vim.keymap.set('n', '<leader>L', ':Lazy<CR>', { desc = 'Show Lazy' })
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
@@ -51,11 +51,11 @@ vim.keymap.set('n', '<C-p>', ':m -2<cr>', { desc = 'Move line up' })
 vim.keymap.set('v', '<C-p>', ':m -2<cr>', { desc = 'Move line up' })
 
 -- Diagnostics
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
-vim.keymap.set('n', '<leader>de', vim.diagnostic.open_float, { desc = '[D]iagnostic [E]rror messages' })
-vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = '[D]iagnostic [Q]uickfix list' })
-vim.keymap.set('n', '<leader>df', vim.diagnostic.open_float, { desc = '[D]iagnostics in [F]loating' })
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Previous diagnostic message' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Next diagnostic message' })
+vim.keymap.set('n', '<leader>de', vim.diagnostic.open_float, { desc = 'Show diagnostic errors' })
+vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'Show diagnostic quickfix list' })
+vim.keymap.set('n', '<leader>df', vim.diagnostic.open_float, { desc = 'Show diagnostics in floating' })
 
 -- Naughty naughty
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
@@ -64,10 +64,10 @@ vim.keymap.set('n', '<leader>df', vim.diagnostic.open_float, { desc = '[D]iagnos
 -- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
 -- Obsidian
-vim.keymap.set('n', '<leader>Odn', fn.obsidian.create_new_day, { desc = '[N]ew' })
-vim.keymap.set('n', '<leader>Odc', fn.obsidian.copy_this_day, { desc = '[C]opy' })
+vim.keymap.set('n', '<leader>Odn', fn.obsidian.create_new_day, { desc = 'New daily note' })
+vim.keymap.set('n', '<leader>Odc', fn.obsidian.copy_this_day, { desc = 'Copy current note' })
 
 -- Code Notes
-vim.keymap.set('n', '<leader>Na', fn.code_notes.add_note, { desc = '[A]dd a new [N]ote at cursor' })
+vim.keymap.set('n', '<leader>Na', fn.code_notes.add_note, { desc = 'Add a new note at cursor' })
 -- vim.api.nvim_set_keymap('n', '<leader>Nd', delete_note, { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>Nt', fn.code_notes.toggel_notes, { desc = '[T]oggle [N]otes' })
+vim.keymap.set('n', '<leader>Nt', fn.code_notes.toggel_notes, { desc = 'Toggle notes' })

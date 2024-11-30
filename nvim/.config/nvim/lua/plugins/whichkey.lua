@@ -11,33 +11,40 @@ return {
     local wk = require 'which-key'
 
     wk.add {
-      { '<leader>c', group = '[C]ode' },
-      { '<leader>d', group = '[D]iagnostics' },
-      { '<leader>r', group = '[R]ename' },
-      { '<leader>l', group = '[L]SP' },
+      { '<leader>d', group = 'Diagnostics' },
+      { '<leader>N', group = 'Code notes' },
 
-      { '<leader>O', group = '[O]bsidian' },
-      { '<leader>Od', group = '[O]bsidian [D]aily' },
+      { '<leader>c', group = 'Code' },
+      { '<leader>cg', group = 'Generate' },
+      { '<leader>cr', group = 'Remove' },
+      { '<leader>cf', group = 'Fill' },
 
-      { '<leader>f', group = '[F]ile' },
-      { '<leader>ft', group = '[T]oggle' },
+      { '<leader>l', group = 'LSP' },
+      { '<leader>t', group = 'Test' },
+      { '<leader>D', group = 'Debug' },
 
-      { '<leader>h', group = '[H]ints' },
-      { '<leader>ht', group = '[T]oggle' },
+      { '<leader>s', group = 'Search' },
+      { '<leader>ss', group = 'Symbols' },
 
-      { '<leader>s', group = '[S]earch' },
-      { '<leader>ss', group = '[S]ymbols' },
+      { '<leader>r', group = 'Rename' },
 
-      { '<leader>g', group = '[G]it' },
-      { '<leader>gh', group = '[H]unk' },
-      { '<leader>gt', group = '[T]oggle' },
-      { '<leader>gd', group = '[D]iff' },
-      { '<leader>gl', group = '[L]og' },
+      { '<leader>O', group = 'Obsidian' },
+      { '<leader>Od', group = 'Daily' },
 
-      { '<leader>p', group = 'Swap [P]revious' },
-      { '<leader>n', group = 'Swap [N]ext' },
-      { '<leader>t', group = '[T]est' },
-      { '<leader>D', group = '[D]ebug' },
+      { '<leader>f', group = 'File' },
+      { '<leader>ft', group = 'Toggle' },
+
+      { '<leader>h', group = 'Hints' },
+      { '<leader>ht', group = 'Toggle' },
+
+      { '<leader>g', group = 'Git' },
+      { '<leader>gh', group = 'Hunk' },
+      { '<leader>gt', group = 'Toggle' },
+      { '<leader>gd', group = 'Diff' },
+      { '<leader>gl', group = 'Log' },
+
+      { '<leader>p', group = 'Swap previous' },
+      { '<leader>n', group = 'Swap next' },
     }
   end,
 }

@@ -68,42 +68,34 @@ return {
     vim.fn.sign_define('DapBreakpointRejected', dap_breakpoint.rejected)
 
     -- Basic debugging keymaps, feel free to change to your liking!
-    vim.keymap.set('n', '<leader>Dt', dapui.toggle, { desc = '[D]ebug: [T]oggle UI' })
-    vim.keymap.set('n', '<leader>Dr', function()
-      dapui.open { reset = true }
-    end, { desc = '[D]ebug: [R]eset UI' })
-    -- vim.keymap.set('n', '<leader>Dc', dap.continue, { desc = '[D]ebug: Start/[C]ontinue' })
-    vim.keymap.set('n', '<F1>', dap.continue, { desc = '[D]ebug: Start/[C]ontinue' })
-    vim.keymap.set('n', '<S-F1>', dap.run_last, { desc = '[D]ebug: Run Last' })
-    -- vim.keymap.set('n', '<leader>DT', dap.terminate, { desc = '[D]ebug: [T]erminate' })
-    vim.keymap.set('n', '<F12>', dap.terminate, { desc = '[D]ebug: [T]erminate' })
-    -- vim.keymap.set('n', '<leader>Do', dap.step_over, { desc = '[D]ebug: Step [o]ver' })
-    vim.keymap.set('n', '<F3>', dap.step_over, { desc = '[D]ebug: Step [o]ver' })
-    -- vim.keymap.set('n', '<leader>Di', dap.step_into, { desc = '[D]ebug: Step [I]nto' })
-    vim.keymap.set('n', '<F2>', dap.step_into, { desc = '[D]ebug: Step [I]nto' })
-    -- vim.keymap.set('n', '<leader>DO', dap.step_out, { desc = '[D]ebug: Step [O]ut' })
-    vim.keymap.set('n', '<F4>', dap.step_out, { desc = '[D]ebug: Step [O]ut' })
-    -- vim.keymap.set('n', '<leader>DB', dap.step_back, { desc = '[D]ebug: Step [B]ack' })
-    vim.keymap.set('n', '<F5>', dap.step_back, { desc = '[D]ebug: Step [B]ack' })
-    -- vim.keymap.set('n', '<leader>Db', dap.toggle_breakpoint, { desc = '[D]ebug: Toggle [b]reakpoint' })
-    vim.keymap.set('n', '<F6>', dap.toggle_breakpoint, { desc = '[D]ebug: Toggle [b]reakpoint' })
-    -- vim.keymap.set('n', '<leader>DB', function()
-    --   dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
-    -- end, { desc = '[D]ebug: Set Conditional [B]reakpoint' })
+    vim.keymap.set('n', '<F1>', dap.continue, { desc = 'Debug: Start/Continue' })
+    vim.keymap.set('n', '<S-F1>', dap.run_last, { desc = 'Debug: Run last' })
+    vim.keymap.set('n', '<F12>', dap.terminate, { desc = 'Debug: Terminate' })
+    vim.keymap.set('n', '<F3>', dap.step_over, { desc = 'Debug: Step over' })
+    vim.keymap.set('n', '<F2>', dap.step_into, { desc = 'Debug: Step into' })
+    vim.keymap.set('n', '<F4>', dap.step_out, { desc = 'Debug: Step out' })
+    vim.keymap.set('n', '<F5>', dap.step_back, { desc = 'Debug: Step back' })
+    vim.keymap.set('n', '<F6>', dap.toggle_breakpoint, { desc = 'Debug: Toggle breakpoint' })
     vim.keymap.set('n', '<S-F6>', function()
       dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
-    end, { desc = '[D]ebug: Set Conditional [B]reakpoint' })
-    vim.keymap.set({ 'n', 'v' }, '<leader>Dh', function()
-      require('dap.ui.widgets').hover()
-    end, { desc = '[D]ebug: Hover (UI)' })
-    vim.keymap.set({ 'n', 'v' }, '<leader>Dp', function()
-      require('dap.ui.widgets').preview()
-    end, { desc = '[D]ebug: Preview (UI)' })
-    vim.keymap.set('n', '<F7>', dap.run_to_cursor, { desc = '[D]ebug: Run To Cursor' })
+    end, { desc = 'Debug: Set conditional breakpoint' })
+    vim.keymap.set('n', '<F7>', dap.run_to_cursor, { desc = 'Debug: run to Cursor' })
     vim.keymap.set({ 'n', 'v' }, '<F8>', function()
       dapui.eval(nil, { enter = true })
-    end, { desc = '[D]ebug: Evaluate Under Cursor' })
-    vim.keymap.set('n', '<leader>DL', ':DapShowLog<cr>', { desc = '[D]ebug: Show [L]og' })
+    end, { desc = 'Debug: Evaluate Under Cursor' })
+
+    vim.keymap.set('n', '<leader>Dt', dapui.toggle, { desc = 'Toggle UI' })
+    vim.keymap.set('n', '<leader>Dr', function()
+      dapui.open { reset = true }
+    end, { desc = 'Reset UI' })
+    -- vim.keymap.set('n', '<leader>Dc', dap.continue, { desc = 'Debug: Start/[C]ontinue' })
+    vim.keymap.set({ 'n', 'v' }, '<leader>Dh', function()
+      require('dap.ui.widgets').hover()
+    end, { desc = 'Hover (UI)' })
+    vim.keymap.set({ 'n', 'v' }, '<leader>Dp', function()
+      require('dap.ui.widgets').preview()
+    end, { desc = 'Preview (UI)' })
+    vim.keymap.set('n', '<leader>DL', ':DapShowLog<cr>', { desc = 'Show log' })
 
     require('nvim-dap-virtual-text').setup {
       commented = true,
@@ -131,7 +123,7 @@ return {
     }
 
     -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
-    vim.keymap.set('n', '<leader>Ds', dapui.toggle, { desc = '[D]ebug: See last [s]ession result.' })
+    vim.keymap.set('n', '<leader>Ds', dapui.toggle, { desc = 'Debug: See last [s]ession result.' })
 
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
     -- dap.listeners.before.launch['dapui_config'] = dapui.open

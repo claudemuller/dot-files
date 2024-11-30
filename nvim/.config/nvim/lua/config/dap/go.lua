@@ -2,12 +2,10 @@ local M = {}
 
 function M.setup()
   require('dap-go').setup()
+
   local dap = require 'dap'
 
   dap.adapters.go = {
-    -- type = 'executable',
-    -- command = os.getenv 'GOBIN' .. '/dlv',
-    -- args = {},
     type = 'server',
     port = '${port}',
     executable = {
