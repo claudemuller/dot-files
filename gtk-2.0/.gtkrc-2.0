@@ -1,20 +1,19 @@
-# DO NOT EDIT! This file will be overwritten by LXAppearance.
+# DO NOT EDIT! This file will be overwritten by nwg-look.
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
-include "/home/dief/.gtkrc-2.0.mine"
-#gtk-icon-theme-name=”flattrcolor”
-gtk-icon-theme-name="Papirus-Dark"
-gtk-theme-name=”FlatColor”
-#gtk-theme-name="Arc-Dark"
-gtk-font-name="Inconsolata Nerd Font Mono 10"
+include "/home/lukefilewalker/.gtkrc-2.0.mine"
+gtk-theme-name="vimix-dark-compact-doder"
+gtk-icon-theme-name="Tokyonight-Moon"
+gtk-font-name="Cantarell 11"
 gtk-cursor-theme-name="Adwaita"
-gtk-cursor-theme-size=0
-gtk-toolbar-style=GTK_TOOLBAR_BOTH
+gtk-cursor-theme-size=24
+gtk-toolbar-style=GTK_TOOLBAR_BOTH_HORIZ
 gtk-toolbar-icon-size=GTK_ICON_SIZE_LARGE_TOOLBAR
 gtk-button-images=1
 gtk-menu-images=1
 gtk-enable-event-sounds=1
-gtk-enable-input-feedback-sounds=1
+gtk-enable-input-feedback-sounds=0
 gtk-xft-antialias=1
 gtk-xft-hinting=1
-gtk-xft-hintstyle="hintfull"
+gtk-xft-hintstyle="hintslight"
+gtk-xft-rgba="rgb"

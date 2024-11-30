@@ -4,7 +4,7 @@ from libqtile import bar, layout, hook, widget
 from libqtile.config import Click, Drag, DropDown, Group, Key, Match, Screen, ScratchPad
 from libqtile.lazy import lazy
 import colours
-
+import subprocess
 
 # -------------------------------------------------------------------------------------------------#
 #                                             Vars                                                #
