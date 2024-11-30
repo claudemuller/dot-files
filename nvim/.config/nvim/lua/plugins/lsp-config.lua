@@ -69,7 +69,7 @@ return {
         map('gD', vim.lsp.buf.declaration, 'Goto declaration')
         map('<leader>cd', builtin.lsp_type_definitions, 'Definition')
 
-        map('<leader>ssz', function()
+        map('<leader>sz', function()
           local symbol = vim.fn.input 'Symbol (default: under cursor): '
           if symbol == '' or symbol == nil then
             symbol = vim.fn.expand '<cword>'

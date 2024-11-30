@@ -85,14 +85,14 @@ return {
     end, { desc = 'Debug: Evaluate Under Cursor' })
 
     vim.keymap.set('n', '<leader>Dt', dapui.toggle, { desc = 'Toggle UI' })
-    vim.keymap.set('n', '<leader>Dr', function()
+    vim.keymap.set('n', '<localleader>Dr', function()
       dapui.open { reset = true }
     end, { desc = 'Reset UI' })
     -- vim.keymap.set('n', '<leader>Dc', dap.continue, { desc = 'Debug: Start/[C]ontinue' })
-    vim.keymap.set({ 'n', 'v' }, '<leader>Dh', function()
+    vim.keymap.set({ 'n', 'v' }, '<localleader>Dh', function()
       require('dap.ui.widgets').hover()
     end, { desc = 'Hover (UI)' })
-    vim.keymap.set({ 'n', 'v' }, '<leader>Dp', function()
+    vim.keymap.set({ 'n', 'v' }, '<localleader>Dp', function()
       require('dap.ui.widgets').preview()
     end, { desc = 'Preview (UI)' })
     vim.keymap.set('n', '<leader>DL', ':DapShowLog<cr>', { desc = 'Show log' })

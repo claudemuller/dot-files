@@ -22,9 +22,8 @@ return {
 
       { '<leader>gC', ':Git mergetool<cr>', desc = 'Show merge conflicts', mode = { 'n', 'v' } },
       { '<leader>gR', ':Gvdiffsplit!<cr>', desc = 'Resolve conflicts', mode = { 'n', 'v' } },
-
-      { '<leader>gdT', ':diffget //3<cr>', desc = 'Accept theirs', mode = { 'n', 'v' } },
-      { '<leader>gdM', ':diffget //2<cr>', desc = 'Accept mine', mode = { 'n', 'v' } },
+      { '<localleader>gdT', ':diffget //3<cr>', desc = 'Accept theirs', mode = { 'n', 'v' } },
+      { '<localleader>gdM', ':diffget //2<cr>', desc = 'Accept mine', mode = { 'n', 'v' } },
     },
   },
 
