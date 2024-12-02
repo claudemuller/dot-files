@@ -50,6 +50,10 @@ if [ -d "$HOME/.deno/bin" ]; then
     . "$HOME/.deno/env"
 fi
 
+if [ -d "/snap/bin" ]; then
+  PATH="/snap/bin:$PATH"
+fi
+
 export PATH=$PATH
 
 # --------------------------------------------------------------------------------------------- Env
