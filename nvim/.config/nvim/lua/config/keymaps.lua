@@ -71,3 +71,6 @@ vim.keymap.set('n', '<leader>Odc', fn.obsidian.copy_this_day, { desc = 'Copy cur
 -- vim.keymap.set('n', '<leader>Na', fn.code_notes.add_note, { desc = 'Add a new note at cursor' })
 -- vim.api.nvim_set_keymap('n', '<leader>Nd', delete_note, { noremap = true, silent = true })
 -- vim.keymap.set('n', '<leader>Nt', fn.code_notes.toggel_notes, { desc = 'Toggle notes' })
+
+-- Octo
+vim.keymap.set('n', '<leader>go', ':Octo actions<cr>', { desc = 'Open Octo' })
