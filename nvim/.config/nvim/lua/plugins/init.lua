@@ -82,7 +82,7 @@ return {
 
   { 'folke/neodev.nvim', opts = {} },
 
-  { 'towolf/vim-helm' },
+  -- { 'towolf/vim-helm' },
 
   -- {
   --   'tris203/precognition.nvim',

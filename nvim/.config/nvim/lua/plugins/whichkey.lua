@@ -42,9 +42,11 @@ return {
       { '<leader>gt', group = 'Toggle' },
       { '<leader>gd', group = 'Diff' },
       { '<leader>gl', group = 'Log' },
+      { '<leader>gL', group = 'Lazygit' },
 
-      { '<leader>p', group = 'Swap previous' },
-      { '<leader>n', group = 'Swap next' },
+      { '<leader>T', group = 'Toggle UI features' },
+
+      { '<leader>n', group = 'Notifications' },
     }
   end,
 }

@@ -86,10 +86,6 @@ return {
 
         map('K', vim.lsp.buf.hover, 'Hover Documentation')
 
-        map('<leader>lh', function()
-          vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { 0 })
-        end, 'Toggle inlay hints')
-
         -- When you move your cursor, the highlights will be cleared (the second autocommand).
         local client = vim.lsp.get_client_by_id(event.data.client_id)
         if client and client.server_capabilities.documentHighlightProvider then

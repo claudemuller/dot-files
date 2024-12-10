@@ -10,22 +10,22 @@ return {
   opts = {},
   dependencies = {
     'MunifTanjim/nui.nvim',
-    {
-      'rcarriga/nvim-notify',
-      opts = {
-        top_down = false,
-      },
-    },
+    -- {
+    --   'rcarriga/nvim-notify',
+    --   opts = {
+    --     top_down = false,
+    --   },
+    -- },
   },
-  keys = {
-    {
-      '<leader><BS>',
-      function()
-        require('noice').cmd 'dismiss'
-      end,
-      desc = 'Noice All',
-    },
-  },
+  -- keys = {
+  --   {
+  --     '<leader><BS>',
+  --     function()
+  --       require('noice').cmd 'dismiss'
+  --     end,
+  --     desc = 'Noice All',
+  --   },
+  -- },
   config = function()
     require('noice').setup {
       cmdline = {
