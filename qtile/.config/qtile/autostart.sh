@@ -25,4 +25,9 @@ if [ -x "$(command -v greenclip)" ]; then
 	greenclip daemon &
 fi
 
+# If the Thinkpad then disable touchpad
+if [[ "$(uname -n)" == "shin0bi" ]]; then
+	xinput set-prop 'ELAN0676:00 04F3:3195 Touchpad' 'Device Enabled' 0
+fi
+
 autorandr --change
