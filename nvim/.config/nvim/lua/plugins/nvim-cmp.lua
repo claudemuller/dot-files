@@ -85,6 +85,17 @@ return {
         ['<C-y>'] = cmp.mapping.confirm { select = true },
         ['<Tab>'] = cmp.mapping.confirm { select = true },
 
+        -- Only show snippets for substring.
+        ['<C-x>'] = function()
+          cmp.complete {
+            config = {
+              sources = {
+                { name = 'luasnip' }, -- Only show snippets
+              },
+            },
+          }
+        end,
+
         -- Manually trigger a completion from nvim-cmp.
         --  Generally you don't need this, because nvim-cmp will display
         --  completions whenever it has completion options available.
@@ -109,11 +120,6 @@ return {
           end
         end, { 'i', 's' }),
       },
-      -- sources = {
-      --   { name = 'nvim_lsp' },
-      --   { name = 'luasnip' },
-      --   { name = 'path' },
-      -- },
       sources = cmp.config.sources({
         { name = 'nvim_lsp', keyword_length = 1 },
         { name = 'nvim_lsp_signature_help' },
