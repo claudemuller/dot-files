@@ -41,6 +41,6 @@ require('lazy').setup {
   },
 }
 
--- require 'config.custom'
+require 'config.make-targets'
 
 -- vim: ts=2 sts=2 sw=2 et

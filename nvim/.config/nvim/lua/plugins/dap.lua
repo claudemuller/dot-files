@@ -68,15 +68,15 @@ return {
     vim.fn.sign_define('DapBreakpointRejected', dap_breakpoint.rejected)
 
     -- Basic debugging keymaps, feel free to change to your liking!
-    vim.keymap.set('n', '<F1>', dap.continue, { desc = 'Debug: Start/Continue' })
-    vim.keymap.set('n', '<S-F1>', dap.run_last, { desc = 'Debug: Run last' })
+    vim.keymap.set('n', '<F5>', dap.continue, { desc = 'Debug: Start/Continue' })
+    vim.keymap.set('n', '<S-F5>', dap.run_last, { desc = 'Debug: Run last' })
     vim.keymap.set('n', '<F12>', dap.terminate, { desc = 'Debug: Terminate' })
-    vim.keymap.set('n', '<F3>', dap.step_over, { desc = 'Debug: Step over' })
-    vim.keymap.set('n', '<F2>', dap.step_into, { desc = 'Debug: Step into' })
-    vim.keymap.set('n', '<F4>', dap.step_out, { desc = 'Debug: Step out' })
-    vim.keymap.set('n', '<F5>', dap.step_back, { desc = 'Debug: Step back' })
-    vim.keymap.set('n', '<F6>', dap.toggle_breakpoint, { desc = 'Debug: Toggle breakpoint' })
-    vim.keymap.set('n', '<S-F6>', function()
+    vim.keymap.set('n', '<F10>', dap.step_over, { desc = 'Debug: Step over' })
+    vim.keymap.set('n', '<F11>', dap.step_into, { desc = 'Debug: Step into' })
+    vim.keymap.set('n', '<S-F11>', dap.step_out, { desc = 'Debug: Step out' })
+    vim.keymap.set('n', '<C-F11>', dap.step_back, { desc = 'Debug: Step back' })
+    vim.keymap.set('n', '<F9>', dap.toggle_breakpoint, { desc = 'Debug: Toggle breakpoint' })
+    vim.keymap.set('n', '<S-F9>', function()
       dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
     end, { desc = 'Debug: Set conditional breakpoint' })
     vim.keymap.set('n', '<F7>', dap.run_to_cursor, { desc = 'Debug: run to Cursor' })
@@ -110,14 +110,21 @@ return {
       controls = {
         icons = {
           pause = '',
-          play = 'F1 ',
-          step_into = 'F2 󰆹',
-          step_over = 'F3 ',
-          step_out = 'F4 󰆸',
-          step_back = 'F5 ',
-          run_last = 'SF1 ',
+          play = 'F5 ',
+          step_into = 'F11 󰆹',
+          step_over = 'F10 ',
+          step_out = 'S-F11 󰆸',
+          step_back = 'C-F11 ',
+          run_last = 'S-F5 ',
           terminate = 'F12 ',
           disconnect = '󰇪',
+        },
+      },
+      render = {
+        value_formatters = {
+          ['uint8_t'] = function(value)
+            return tostring(value) -- Convert to decimal
+          end,
         },
       },
     }

@@ -85,6 +85,13 @@ return mergeTables(profiles[profile], {
 			mods = "CTRL",
 			action = wezterm.action.SendString("\x1b:lua require('functions').switch_c_h()\n"),
 		},
+		{
+			key = "F5",
+			mods = "CTRL",
+			action = wezterm.action.SendString("\x1b:lua select_make_target()\n"),
+			-- action = wezterm.action.SendKey({ key = "F5", mods = "CTRL" }),
+			-- action = wezterm.action.SendString("\x1b[15;5~"),
+		},
 		-- { key = "7", mods = "CTRL", action = wezterm.action.SendString("\x1b[31;7~") },
 
 		-- TMUX emulation
