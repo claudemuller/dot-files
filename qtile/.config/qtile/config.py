@@ -324,6 +324,7 @@ floating_layout = layout.Floating(
         Match(wm_class="burp-StartBurp"),
         Match(wm_class="Godot_Engine"),
         Match(wm_class="xup.class"),
+        Match(wm_class="Learn me OpenGL"),
         Match(title="game"),
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
