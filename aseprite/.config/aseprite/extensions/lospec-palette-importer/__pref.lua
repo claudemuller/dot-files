@@ -1,0 +1,1 @@
+return {suppressURIRegAlert=false,paletteSavePath="/home/lukefilewalker/.config/aseprite/palettes"}
