@@ -22,18 +22,31 @@ local profiles = {
 	},
 	-- Visual Studio Developer Command Prompt profile
 	vsdev = {
-		default_prog = {
-			"cmd.exe",
-			"/k",
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\Build\\vcvarsall.bat",
-			"x64",
-			-- "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\Tools\\VsDevCmd.bat",
-		},
 		set_environment_variables = {},
 		font = wezterm.font("JetBrainsMono NF"),
 
 		-- TMUX leader
-		leader = { key = "b", mods = "CTRL", timeout_milliseconds = 2001 },
+		keys = {
+			-- { key = "7", mods = "CTRL", action = wezterm.action.SendString("\x1b[31;7~") },
+
+			-- TMUX emulation
+			{
+				key = '"',
+				mods = "LEADER|SHIFT",
+				action = wezterm.action({ SplitVertical = { domain = "CurrentPaneDomain" } }),
+			},
+			{
+				key = "%",
+				mods = "LEADER|SHIFT",
+				action = wezterm.action({ SplitHorizontal = { domain = "CurrentPaneDomain" } }),
+			},
+			{ key = "x", mods = "LEADER", action = wezterm.action({ CloseCurrentPane = { confirm = false } }) },
+			{ key = "h", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Left" }) },
+			{ key = "l", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Right" }) },
+			{ key = "k", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Up" }) },
+			{ key = "j", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Down" }) },
+			{ key = "c", mods = "LEADER", action = wezterm.action({ SpawnTab = "CurrentPaneDomain" }) },
+		},
 	},
 	-- Manjaro in WSL profile
 	manjaro = {
@@ -47,19 +60,57 @@ local profiles = {
 		set_environment_variables = {},
 		font = wezterm.font("JetBrainsMono Nerd Font"),
 	},
+	ubuntu = {
+		default_prog = {
+			"wsl.exe",
+			"-u",
+			"claude",
+			"-d",
+			"Ubuntu-24.04",
+		},
+		set_environment_variables = {},
+		font = wezterm.font("JetBrainsMono Nerd Font"),
+	},
 }
 
 local default_profile = function()
 	local is_windows = package.config:sub(1, 1) == "\\"
-	print(is_windows)
 	if is_windows then
 		return "vsdev"
 	end
 	return "tmux"
 end
-local profile = os.getenv("WEZTERM_PROFILE") or default_profile()
+local profile_name = os.getenv("WEZTERM_PROFILE") or default_profile()
+local profile = profiles[profile_name]
 
-return mergeTables(profiles[profile], {
+if profile == "vsdev" then
+	local handle = io.popen("hostname")
+	local machine_name = handle:read("*a")
+	handle:close()
+	machine_name = machine_name:gsub("%s+", "")
+
+	if machine_name == "es-cmuller2" then
+		profile = mergeTables(profile, {
+			default_prog = {
+				"cmd.exe",
+				"/k",
+				"C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Auxiliary\\Build\\vcvarsall.bat",
+				"x64",
+			},
+		})
+	end
+
+	profile = mergeTables(profile, {
+		default_prog = {
+			"cmd.exe",
+			"/k",
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\Build\\vcvarsall.bat",
+			"x64",
+		},
+	})
+end
+
+return mergeTables(profile, {
 	-- Appearance
 	font_size = 9,
 	line_height = 1.1,
@@ -85,31 +136,5 @@ return mergeTables(profiles[profile], {
 			mods = "CTRL",
 			action = wezterm.action.SendString("\x1b:lua require('functions').switch_c_h()\n"),
 		},
-		{
-			key = "F5",
-			mods = "CTRL",
-			action = wezterm.action.SendString("\x1b:lua select_make_target()\n"),
-			-- action = wezterm.action.SendKey({ key = "F5", mods = "CTRL" }),
-			-- action = wezterm.action.SendString("\x1b[15;5~"),
-		},
-		-- { key = "7", mods = "CTRL", action = wezterm.action.SendString("\x1b[31;7~") },
-
-		-- TMUX emulation
-		{
-			key = '"',
-			mods = "LEADER|SHIFT",
-			action = wezterm.action({ SplitVertical = { domain = "CurrentPaneDomain" } }),
-		},
-		{
-			key = "%",
-			mods = "LEADER|SHIFT",
-			action = wezterm.action({ SplitHorizontal = { domain = "CurrentPaneDomain" } }),
-		},
-		{ key = "x", mods = "LEADER", action = wezterm.action({ CloseCurrentPane = { confirm = false } }) },
-		{ key = "h", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Left" }) },
-		{ key = "l", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Right" }) },
-		{ key = "k", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Up" }) },
-		{ key = "j", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Down" }) },
-		{ key = "c", mods = "LEADER", action = wezterm.action({ SpawnTab = "CurrentPaneDomain" }) },
 	},
 })
