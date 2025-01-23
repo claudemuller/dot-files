@@ -15,7 +15,7 @@ export SAVEHIST=1000000
 if [ -d "$HOME/go" ]; then
   export GOPATH=$HOME/go
   export GOBIN=$GOPATH/bin
-  PATH="$(go env GOPATH)/bin:$PATH"
+  PATH="$(whereis go):$(go env GOPATH)/bin:$PATH"
 fi
 
 if [ -d "$HOME/.luarocks/bin" ]; then
@@ -24,6 +24,10 @@ fi
 
 if [ -d "$HOME/.bin" ]; then 
   PATH="$HOME/.bin:$PATH"
+fi
+
+if [ -d "$HOME/apps" ]; then 
+  PATH="$HOME/apps:$PATH"
 fi
 
 if [ -d "$HOME/.local/bin" ]; then
@@ -60,7 +64,7 @@ export PATH=$PATH
 export BROWSER="brave"
 export VISUAL="nvim"
 export EDITOR="nvim"
-export TERMINAL="kitty"
+export TERMINAL="wezterm"
 
 export MANPAGER='nvim +Man!'
 # export MANPAGER="sh -c 'col -bx | bat --theme=\"base16-256\" -l man -p'"
