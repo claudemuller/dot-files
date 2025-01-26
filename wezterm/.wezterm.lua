@@ -27,7 +27,7 @@ local profiles = {
 
 		-- TMUX leader
 		keys = {
-			-- { key = "7", mods = "CTRL", action = wezterm.action.SendString("\x1b[31;7~") },
+			{ key = "7", mods = "CTRL", action = wezterm.action.SendString("\x1b[31;7~") },
 
 			-- TMUX emulation
 			{
@@ -83,7 +83,7 @@ end
 local profile_name = os.getenv("WEZTERM_PROFILE") or default_profile()
 local profile = profiles[profile_name]
 
-if profile == "vsdev" then
+if profile_name == "vsdev" then
 	local handle = io.popen("hostname")
 	local machine_name = handle:read("*a")
 	handle:close()
@@ -131,10 +131,10 @@ return mergeTables(profile, {
 		-- Passthrough keys
 		{ key = "S", mods = "CTRL|SHIFT", action = wezterm.action.SendString("\x1b:w\n") },
 		-- TODO: fix this ...
-		{
-			key = "7",
-			mods = "CTRL",
-			action = wezterm.action.SendString("\x1b:lua require('functions').switch_c_h()\n"),
-		},
+		-- {
+		-- 	key = "7",
+		-- 	mods = "CTRL",
+		-- 	action = wezterm.action.SendString("\x1b:lua require('functions').switch_c_h()\n"),
+		-- },
 	},
 })
