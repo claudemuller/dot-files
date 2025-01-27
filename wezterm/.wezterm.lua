@@ -98,16 +98,16 @@ if profile_name == "vsdev" then
 				"x64",
 			},
 		})
+	else
+		profile = mergeTables(profile, {
+			default_prog = {
+				"cmd.exe",
+				"/k",
+				"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\Build\\vcvarsall.bat",
+				"x64",
+			},
+		})
 	end
-
-	profile = mergeTables(profile, {
-		default_prog = {
-			"cmd.exe",
-			"/k",
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\Build\\vcvarsall.bat",
-			"x64",
-		},
-	})
 end
 
 return mergeTables(profile, {
