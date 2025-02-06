@@ -74,6 +74,15 @@ vim.api.nvim_create_autocmd('LspProgress', {
   end,
 })
 
+-- Load GLSL plugin for .vert files
+-- vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
+--   group = vim.api.nvim_create_augroup('GLSLFiletype', { clear = true }),
+--   pattern = { '*.vs', '*.fs' },
+--   callback = function()
+--     vim.bo.filetype = 'glsl'
+--   end,
+-- })
+
 -- vim.api.nvim_create_autocmd('CursorMovedI', { -- CursorMoved for all cursor movements
 --   desc = '',
 --   group = vim.api.nvim_create_augroup('typing-group', { clear = true }),

@@ -12,7 +12,7 @@ if [ -x "$(command -v picom)" ]; then
 fi
 
 if [ -x "$(command -v feh)" ]; then
-	feh --bg-fill "$HOME"/.config/qtile/wallpaper.png
+	feh --bg-fill "$HOME"/Pictures/wallpapers/wallhaven-3zlog6.png
 fi
 
 if [ -x "$(command -v nm-applet)" ]; then

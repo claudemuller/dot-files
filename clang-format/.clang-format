@@ -9,6 +9,7 @@ AlwaysBreakAfterDefinitionReturnType: None
 BreakBeforeBinaryOperators: false
 ColumnLimit: 120
 DeriveLineEnding: false
+AllowShortFunctionsOnASingleLine: None
 
 # Control placement of braces
 BreakBeforeBraces: Custom

@@ -326,6 +326,7 @@ floating_layout = layout.Floating(
         Match(wm_class="xup.class"),
         Match(wm_class="Learn me OpenGL"),
         Match(title="game"),
+        Match(title="That guy"),
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
         Match(title="Android Emulator.*"),
