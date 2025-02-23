@@ -1,5 +1,6 @@
 -- Define the function
 function _G.select_make_target()
+  print 'set'
   local telescope = require 'telescope'
   local actions = require 'telescope.actions'
   local action_state = require 'telescope.actions.state'
@@ -39,4 +40,5 @@ function _G.select_make_target()
 end
 
 -- Define the keymap after the function
-vim.api.nvim_set_keymap('n', '<C-F5>', ':lua select_make_target()<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-F5>', select_make_target, { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>r', select_make_target, { noremap = true, silent = true })

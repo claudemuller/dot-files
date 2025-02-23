@@ -478,13 +478,13 @@ window_gaps = 5
 # Drag floating layouts.
 mouse = [
     Drag(
-        [mod],
+        ["mod1", "control"],
         "Button1",
         lazy.window.set_position_floating(),
         start=lazy.window.get_position(),
     ),
-    Drag([mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
-    Click([mod], "Button2", lazy.window.bring_to_front()),
+    Drag(["mod1", "control"], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
+    Click(["mod1", "control"], "Button2", lazy.window.bring_to_front()),
 ]
 
 

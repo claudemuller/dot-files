@@ -7,9 +7,9 @@ if [ -x "$(command -v dunst)" ]; then
 	dunst -config $HOME/.config/qtile/conf/dunst.config &
 fi
 
-if [ -x "$(command -v picom)" ]; then
-	picom --config $HOME/.config/qtile/conf/picom.config &>/dev/null &
-fi
+# if [ -x "$(command -v picom)" ]; then
+# 	picom --config $HOME/.config/qtile/conf/picom.config &>/dev/null &
+# fi
 
 if [ -x "$(command -v feh)" ]; then
 	feh --bg-fill "$HOME"/Pictures/wallpapers/wallhaven-3zlog6.png

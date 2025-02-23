@@ -33,6 +33,7 @@ return {
         'luap',
         'markdown',
         'markdown_inline',
+        'odin',
         'python',
         'query',
         'regex',
