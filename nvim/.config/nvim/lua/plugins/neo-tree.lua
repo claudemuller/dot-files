@@ -60,6 +60,7 @@ return {
           ['<space>'] = false,
           ['<tab>'] = 'toggle_node',
           ['v'] = 'open_vsplit',
+          ['z'] = false,
         },
       },
       filesystem = {
