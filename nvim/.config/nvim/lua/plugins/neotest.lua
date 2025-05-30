@@ -23,14 +23,14 @@ return {
   },
   keys = {
     {
-      '<leader>tf',
+      '<leader>Tf',
       function()
         require('neotest').run.run(vim.fn.expand '%')
       end,
       desc = 'Run Tests in current file',
     },
     {
-      '<leader>tF',
+      '<leader>TF',
       function()
         local current_file = vim.fn.expand '%:t:r' -- Get filename without extension
         local search_pattern = current_file .. '.*test.*'
@@ -61,28 +61,28 @@ return {
       desc = 'Open Matching Test File',
     },
     {
-      '<leader>tt',
+      '<leader>Tt',
       function()
         require('neotest').run.run(vim.loop.cwd())
       end,
       desc = 'Run all test files',
     },
     {
-      '<leader>tr',
+      '<leader>Tr',
       function()
         require('neotest').run.run()
       end,
       desc = 'Run nearest',
     },
     {
-      '<leader>tl',
+      '<leader>Tl',
       function()
         require('neotest').run.run_last()
       end,
       desc = 'Run last',
     },
     {
-      '<leader>td',
+      '<leader>Td',
       function()
         require('neotest').run.run { strategy = 'dap' }
       end,
@@ -90,28 +90,28 @@ return {
     },
     -- ['<leader>td'] = { "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>", 'Debug Test' },
     {
-      '<leader>ts',
+      '<leader>Ts',
       function()
         require('neotest').summary.toggle()
       end,
       desc = 'Toggle test summary',
     },
     {
-      '<leader>to',
+      '<leader>To',
       function()
         require('neotest').output.open { enter = true, auto_close = true }
       end,
       desc = 'Show test output',
     },
     {
-      '<leader>tO',
+      '<leader>TO',
       function()
         require('neotest').output_panel.toggle()
       end,
       desc = 'Toggle test output panel',
     },
     {
-      '<leader>tS',
+      '<leader>TS',
       function()
         require('neotest').run.stop()
       end,

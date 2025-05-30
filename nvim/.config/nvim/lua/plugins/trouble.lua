@@ -3,30 +3,43 @@ return {
   cmd = 'Trouble',
   keys = {
     {
-      '<leader>dd',
+      '<leader>td',
       '<cmd>Trouble diagnostics toggle<cr>',
-      desc = 'Show diagnostics (Trouble)',
+      desc = 'Toggle diagnostics',
     },
     {
-      '<leader>dD',
+      '<leader>tD',
       '<cmd>Trouble diagnostics toggle filter.buf=0<cr>',
-      desc = 'Show buffer diagnostics (Trouble)',
+      desc = 'Toggle buffer diagnostics',
     },
     {
-      '<leader>cs',
+      '<leader>ts',
       '<cmd>Trouble symbols toggle focus=false<cr>',
-      desc = 'Toggle symbols (Trouble)',
+      desc = 'Toggle symbols',
     },
     {
-      '<leader>cl',
+      '<leader>tl',
       '<cmd>Trouble lsp toggle focus=false win.position=right<cr>',
-      desc = 'Show LSP definitions/references (Trouble)',
+      desc = 'Toggle LSP definitions/references',
     },
     {
-      '<leader>dQ',
+      '<leader>tQ',
       '<cmd>Trouble qflist toggle<cr>',
-      desc = 'Toggle quickfix list (Trouble)',
+      desc = 'Toggle quickfix list',
     },
+    -- {
+    --   '<leader>Tt',
+    --   function()
+    --     local trouble = require 'trouble'
+    --
+    --     if trouble.is_open() and trouble.mode() == 'symbols' then
+    --       trouble.close()
+    --     else
+    --       trouble.open { mode = 'symbols' }
+    --     end
+    --   end,
+    --   { desc = 'Toggle Symbols' },
+    -- },
   },
   opts = {
     focus = true,

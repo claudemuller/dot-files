@@ -1,11 +1,11 @@
 -----------------------------------------------------------------------
 -- [[ Neovim Theme ]]
 -----------------------------------------------------------------------
-
 return {
   -- 'folke/tokyonight.nvim',
   -- 'navarasu/onedark.nvim',
-  'EdenEast/nightfox.nvim',
+  -- 'EdenEast/nightfox.nvim',
+  'eldritch-theme/eldritch.nvim',
   lazy = false, -- make sure we load this during startup if it is your main colorscheme
   priority = 1000, -- make sure to load this before all the other start plugins
   config = function()
@@ -15,7 +15,7 @@ return {
     -- require('onedark').load()
 
     -- Load the colorscheme here
-    vim.cmd.colorscheme 'duskfox'
+    vim.cmd.colorscheme 'eldritch'
 
     -- You can configure highlights by doing something like
     -- vim.cmd.hi 'Comment gui=none'

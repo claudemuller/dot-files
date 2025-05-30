@@ -20,7 +20,7 @@ return {
       { '<leader>cf', group = 'Fill' },
 
       { '<leader>l', group = 'LSP' },
-      { '<leader>t', group = 'Test' },
+      { '<leader>T', group = 'Test' },
       { '<leader>D', group = 'Debug' },
 
       { '<leader>s', group = 'Search' },
@@ -44,7 +44,9 @@ return {
       { '<leader>gl', group = 'Log' },
       { '<leader>gL', group = 'Lazygit' },
 
-      { '<leader>T', group = 'Toggle UI features' },
+      { '<leader>u', group = 'Toggle UI features' },
+
+      { '<leader>t', group = 'Trouble' },
 
       { '<leader>n', group = 'Notifications' },
     }
