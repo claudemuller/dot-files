@@ -45,10 +45,10 @@ vim.keymap.set('n', 'Q', 'q', { desc = 'Record a macro' })
 vim.keymap.set('n', 'q', ':q<cr>', { desc = 'Close current window' })
 -- vim.keymap.set('n', 'qf', ':cclose<cr>', { desc = 'Close quickfix' })
 
-vim.keymap.set('n', '<C-j>', ':m +1<cr>', { desc = 'Move line down' })
-vim.keymap.set('v', '<C-j>', ":m '>+1<cr>gv=gv", { desc = 'Move selected lines down' })
-vim.keymap.set('n', '<C-k>', ':m -2<cr>', { desc = 'Move line up' })
-vim.keymap.set('v', '<C-k>', ":m '<-2<cr>gv=gv", { desc = 'Move selected lines up' })
+vim.keymap.set('n', '<C-S-j>', ':m +1<cr>', { desc = 'Move line down' })
+vim.keymap.set('v', '<C-S-j>', ":m '>+1<cr>gv=gv", { desc = 'Move selected lines down' })
+vim.keymap.set('n', '<C-S-k>', ':m -2<cr>', { desc = 'Move line up' })
+vim.keymap.set('v', '<C-S-k>', ":m '<-2<cr>gv=gv", { desc = 'Move selected lines up' })
 
 -- Diagnostics
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Previous diagnostic message' })

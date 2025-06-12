@@ -116,7 +116,7 @@ return {
       desc = 'Git browse web for current line',
     },
     {
-      '<leader>gB',
+      '<leader>gBl',
       function()
         Snacks.git.blame_line()
       end,

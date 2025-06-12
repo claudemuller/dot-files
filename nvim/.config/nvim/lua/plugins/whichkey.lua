@@ -24,7 +24,8 @@ return {
       { '<leader>D', group = 'Debug' },
 
       { '<leader>s', group = 'Search' },
-      { '<leader>ss', group = 'Symbols' },
+      -- { '<leader>ss', group = 'Symbols' },
+      { '<leader>sg', group = 'Grep' },
 
       { '<leader>r', group = 'Rename' },
 

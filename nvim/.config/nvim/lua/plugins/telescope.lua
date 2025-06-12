@@ -110,14 +110,17 @@ return {
 
     vim.keymap.set('n', '<leader>st', builtin.builtin, { desc = 'Telescope selects' })
 
-    vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = 'Current word (grep)' })
+    vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = 'Word under cursor in buffer' })
     vim.keymap.set('n', '<leader>sW', function()
       local term = vim.fn.expand '<cword>'
       builtin.live_grep { default_text = term }
-    end, { desc = 'Word under cursor (grep)' })
+    end, { desc = 'Word under cursor in workspace' })
 
-    vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = 'String in workspace' })
-    vim.keymap.set('n', '<leader>sG', function()
+    vim.keymap.set('n', '<leader>sgg', builtin.live_grep, { desc = 'String in workspace' })
+    vim.keymap.set('n', '<leader>sg.', function()
+      builtin.live_grep { cwd = vim.fn.expand '%:p:h' }
+    end, { desc = 'String in cwd' })
+    vim.keymap.set('n', '<leader>sgG', function()
       builtin.live_grep { cwd = vim.fn.input 'Start dir: ' }
     end, { desc = 'String in dir' })
 

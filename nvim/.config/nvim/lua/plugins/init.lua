@@ -24,6 +24,8 @@ return {
       { '<leader>gR', ':Gvdiffsplit!<cr>', desc = 'Resolve conflicts', mode = { 'n', 'v' } },
       { '<localleader>gdT', ':diffget //3<cr>', desc = 'Accept theirs', mode = { 'n', 'v' } },
       { '<localleader>gdM', ':diffget //2<cr>', desc = 'Accept mine', mode = { 'n', 'v' } },
+
+      { '<localleader>gBf', ':Git blame<cr>', desc = 'Git blame', mode = { 'n', 'v' } },
     },
   },
 
