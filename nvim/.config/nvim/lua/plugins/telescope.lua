@@ -103,8 +103,11 @@ return {
     vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = 'Help' })
     vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = 'Keymaps' })
 
-    vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = 'Files' })
-    vim.keymap.set('n', '<leader>sF', function()
+    vim.keymap.set('n', '<leader>sff', builtin.find_files, { desc = 'Files' })
+    vim.keymap.set('n', '<leader>sf.', function()
+      builtin.find_files { cwd = vim.fn.expand '%:p:h' }
+    end, { desc = 'Files in cwd' })
+    vim.keymap.set('n', '<leader>sfF', function()
       builtin.find_files { cwd = vim.fn.input 'Start dir: ' }
     end, { desc = 'Files in dir' })
 

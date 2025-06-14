@@ -68,7 +68,7 @@ return {
       desc = 'Run all test files',
     },
     {
-      '<leader>Tr',
+      '<leader>Tn',
       function()
         require('neotest').run.run()
       end,

@@ -65,7 +65,7 @@ return {
           vim.cmd 'zt'
         end, 'Goto definition in vertical split')
         map('gr', builtin.lsp_references, 'Goto references')
-        map('gI', builtin.lsp_implementations, 'Goto implementation')
+        map('gi', builtin.lsp_implementations, 'Goto implementation')
         --  For example, in C this would take you to the header
         map('gD', vim.lsp.buf.declaration, 'Goto declaration')
         map('<leader>cd', builtin.lsp_type_definitions, 'Definition')
