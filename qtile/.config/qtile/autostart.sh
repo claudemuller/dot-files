@@ -12,7 +12,7 @@ fi
 # fi
 
 if [ -x "$(command -v feh)" ]; then
-	feh --bg-fill "$HOME"/Pictures/wallpapers/wallhaven-3zlog6.png
+	feh --bg-fill "$HOME"/Pictures/wallpapers/wallhaven-39gpe9.jpg
 fi
 
 if [ -x "$(command -v nm-applet)" ]; then

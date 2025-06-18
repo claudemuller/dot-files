@@ -1,1 +1,1 @@
-return {suppressURIRegAlert=false,paletteSavePath="/home/lukefilewalker/.config/aseprite/palettes"}
+return {paletteSavePath="/home/lukefilewalker/.config/aseprite/palettes",suppressURIRegAlert=false}
