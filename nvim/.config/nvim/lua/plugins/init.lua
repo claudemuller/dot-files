@@ -86,7 +86,7 @@ return {
 
   { 'folke/neodev.nvim', opts = {} },
 
-  { 'tikhomirov/vim-glsl', opts = {} },
+  'tikhomirov/vim-glsl',
 
   -- { 'towolf/vim-helm' },
 
