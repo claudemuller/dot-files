@@ -90,7 +90,7 @@ vim.opt.exrc = true
 vim.opt.secure = true
 
 -- Show folds in column
-vim.opt.foldcolumn = "1"
+vim.opt.foldcolumn = '1'
 
 -- Log Level
 -- vim.lsp.set_log_level 'off'

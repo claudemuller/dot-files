@@ -108,7 +108,12 @@ return {
       builtin.find_files { cwd = vim.fn.expand '%:p:h' }
     end, { desc = 'Files in cwd' })
     vim.keymap.set('n', '<leader>sfF', function()
-      builtin.find_files { cwd = vim.fn.input 'Start dir: ' }
+      local get_start_dir = function()
+        local input = vim.fn.input 'Start dir: '
+        local base = vim.fn.expand '%:p:h' -- current buffer's directory
+        return vim.fn.fnamemodify(base .. '/' .. input, ':p') -- resolve relative to buffer dir
+      end
+      builtin.find_files { cwd = get_start_dir() }
     end, { desc = 'Files in dir' })
 
     vim.keymap.set('n', '<leader>st', builtin.builtin, { desc = 'Telescope selects' })

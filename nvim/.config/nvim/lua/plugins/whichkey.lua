@@ -51,6 +51,9 @@ return {
       { '<leader>t', group = 'Trouble' },
 
       { '<leader>n', group = 'Notifications' },
+
+      { '<leader>b', group = 'Buffers' },
+      { '<leader>S', group = 'Scratch buffer' },
     }
   end,
 }
