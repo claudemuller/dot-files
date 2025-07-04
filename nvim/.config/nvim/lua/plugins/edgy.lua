@@ -1,29 +1,29 @@
 return {
-  'folke/edgy.nvim',
-  event = 'VeryLazy',
-  init = function()
-    vim.opt.laststatus = 3
-    -- vim.opt.splitkeep = 'screen'
-  end,
-  opts = {
-    -- left = {
-    --   'Trouble',
-    --   { ft = 'qf', title = 'QuickFix' },
-    --   {
-    --     ft = 'help',
-    --     size = { height = 20 },
-    --     -- only show help buffers
-    --     filter = function(buf)
-    --       return vim.bo[buf].buftype == 'help'
-    --     end,
-    --   },
-    -- },
-    right = {
-      {
-        ft = 'trouble',
-        title = 'Trouble',
-        size = { width = 60 },
-      },
-    },
-  },
+  -- 'folke/edgy.nvim',
+  -- event = 'VeryLazy',
+  -- init = function()
+  --   vim.opt.laststatus = 3
+  --   -- vim.opt.splitkeep = 'screen'
+  -- end,
+  -- opts = {
+  --   -- left = {
+  --   --   'Trouble',
+  --   --   { ft = 'qf', title = 'QuickFix' },
+  --   --   {
+  --   --     ft = 'help',
+  --   --     size = { height = 20 },
+  --   --     -- only show help buffers
+  --   --     filter = function(buf)
+  --   --       return vim.bo[buf].buftype == 'help'
+  --   --     end,
+  --   --   },
+  --   -- },
+  --   right = {
+  --     {
+  --       ft = 'trouble',
+  --       title = 'Trouble',
+  --       size = { width = 60 },
+  --     },
+  --   },
+  -- },
 }

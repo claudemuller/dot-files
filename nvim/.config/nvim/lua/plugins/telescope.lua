@@ -138,6 +138,8 @@ return {
     vim.keymap.set('n', '<leader>sm', builtin.marks, { desc = 'Marks' })
     vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = 'Recent Files ("." for repeat)' })
 
+    vim.keymap.set('n', '<leader>sj', builtin.jumplist, { desc = 'Jumplist' })
+
     vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = 'Search buffers' })
 
     vim.keymap.set({ 'n', 'v' }, '<leader>/', function()
