@@ -60,8 +60,8 @@ alias jctl="journalctl -p 3 -xb"
 
 # Better ls
 alias ls="eza --icons --git" #ls
-alias ll="eza -l --icons --git -a" #ls -lah"
-alias lt="eza -l --sort=modified --icons --git -a" #ls -latrh"
+alias ll="eza -l --icons --group --git -a" #ls -lah"
+alias lt="eza -l --sort=modified --group --icons --git -a" #ls -latrh"
 
 # Git
 alias ga="git a"

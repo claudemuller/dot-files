@@ -19,7 +19,8 @@ return {
     },
     {
       '<leader>tl',
-      '<cmd>Trouble lsp toggle focus=false win.position=right<cr>',
+      -- '<cmd>Trouble lsp toggle focus=false win.position=right<cr>',
+      '<cmd>Trouble lsp_float<cr>',
       desc = 'Toggle LSP definitions/references',
     },
     {
@@ -54,6 +55,24 @@ return {
           title_pos = 'center',
           position = { 0, -2 },
           size = { width = 0.3, height = 0.3 },
+          zindex = 200,
+        },
+      },
+      lsp_float = {
+        mode = 'lsp',
+        focus = true,
+        win = {
+          position = 'right',
+          size = 50,
+        },
+        preview = {
+          type = 'float',
+          relative = 'win',
+          border = 'rounded',
+          title = 'Preview',
+          title_pos = 'center',
+          position = { 0, -200 },
+          size = { width = 150, height = 0.5 },
           zindex = 200,
         },
       },
