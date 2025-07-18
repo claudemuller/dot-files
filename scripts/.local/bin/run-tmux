@@ -2,8 +2,8 @@
 
 if [ "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ] && [ -z "$TMUX" ]
 then
-  is_default=$(tmux ls | rg default)
-  is_special=$(tmux ls | rg "$1")
+  is_default=$(tmux ls 2>/dev/null | rg default || true)
+  is_special=$(tmux ls 2>/dev/null | rg "$1" || true)
 
   tmux="TERM=xterm-256color tmux"
 
