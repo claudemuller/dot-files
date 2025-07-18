@@ -35,3 +35,4 @@ gtk-3.0/.config/gtk-3.0/bookmarks
 systemd
 mopidy
 fish/.config/fish/fish_variables
+scripts/.local/bin/zmk

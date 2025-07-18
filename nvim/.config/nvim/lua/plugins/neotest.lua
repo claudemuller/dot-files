@@ -18,7 +18,6 @@ return {
     -- {
     --   dir = '~/repos/3rd-party/neotest-go/',
     -- },
-    -- 'nvim-neotest/neotest-rust',
     'nvim-neotest/neotest-vim-test',
   },
   keys = {
@@ -151,7 +150,7 @@ return {
         require 'neotest-plenary',
         require 'neotest-jest',
         require 'neotest-go',
-        -- require 'neotest-rust',
+        require 'neotest-rust',
         require 'neotest-vim-test' {
           ignore_file_types = { 'python', 'vim', 'lua', 'go', 'typescript', 'jest' },
         },

@@ -17,7 +17,7 @@ return {
       lua = { 'stylua' },
       cpp = { 'clang-format' },
       go = { 'gofmt', 'goimports' },
-      rust = { 'rustfmt', lsp_format = 'fallback' },
+      -- rust = { 'rustfmt', lsp_format = 'fallback' },
       -- Conform will run multiple formatters sequentially
       python = { 'isort', 'black' },
       -- Use a sub-list to run only the first available formatter
