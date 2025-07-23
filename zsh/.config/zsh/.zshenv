@@ -40,13 +40,11 @@ fi
 
 if [ -d "$HOME/.cargo/bin" ]; then
   PATH="$HOME/.cargo/bin:$PATH"
+  . "$HOME/.cargo/env"
 fi
 
 if [ -d "$HOME/.yarn/bin" ]; then
   PATH="$HOME/.yarn/bin:$PATH"
-fi
-
-if [ -d "$HOME/.yarn/bin" ]; then
   PATH="/opt/clang-format-static:$PATH"
 fi
 
