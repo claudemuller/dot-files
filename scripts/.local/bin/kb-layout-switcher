@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
 
 variant="us"
+
 if [ -n "$1" ] && [ "$1" = "dvorak" ]; then
+	echo "dv"
 	variant="dv"
 	# loadkeys dvorak
 	setxkbmap -layout us -variant dvorak -option caps:backspace -option compose:ralt
 else
+	echo "us"
 	# loadkeys us
 	setxkbmap -layout us -option caps:backspace -option compose:ralt
 fi

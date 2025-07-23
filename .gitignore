@@ -36,3 +36,5 @@ systemd
 mopidy
 fish/.config/fish/fish_variables
 scripts/.local/bin/zmk
+scripts/.local/bin/greenclip
+

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-/usr/lib/polkit-kde-authentication-agent-1 &	# Graphical authentication agent
+# This was needed when not using polkitd in manjaro
+# /usr/lib/polkit-kde-authentication-agent-1 &	# Graphical authentication agent
 
 if [ -x "$(command -v dunst)" ]; then
 	pkill dunst
@@ -25,9 +26,18 @@ if [ -x "$(command -v greenclip)" ]; then
 	greenclip daemon &
 fi
 
-# If the Thinkpad then disable touchpad
-if [[ "$(uname -n)" == "shin0bi" ]]; then
+# Set us kb layout
+$HOME/.local/bin/kb-layout-switcher
+
+# If the Thinkpad laptop
+if [[ "$(uname -n)" == "shinobi" ]]; then
+	# Set dvorak layout for kb
+	$HOME/.local/bin/kb-layout-switcher dvorak
+
+	# Disable touchpad
 	xinput set-prop 'ELAN0676:00 04F3:3195 Touchpad' 'Device Enabled' 0
 fi
 
-autorandr --change
+if [ -x "$(command -v autorandr)" ]; then
+	autorandr --change
+fi

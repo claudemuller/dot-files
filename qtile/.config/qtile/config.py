@@ -325,6 +325,7 @@ floating_layout = layout.Floating(
         Match(wm_class="Godot_Engine"),
         Match(wm_class="xup.class"),
         Match(wm_class="Learn me OpenGL"),
+        Match(title="Demo"),
         Match(title="game"),
         Match(title="That guy"),
         Match(title="branchdialog"),  # gitk
