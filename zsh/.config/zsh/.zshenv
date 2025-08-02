@@ -56,6 +56,19 @@ if [ -d "/snap/bin" ]; then
   PATH="/snap/bin:$PATH"
 fi
 
+if [ -d "/opt/flutter/" ]; then
+  export CHROME_EXECUTABLE=/opt/brave.com/brave/brave
+  export FLUTTER_ROOT="/opt/flutter/"
+  PATH="$FLUTTER_ROOT/bin:$PATH"
+fi
+
+if [ -d "$HOME/Android/Sdk" ]; then
+  export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
+  PATH="$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$PATH"
+  PATH="$ANDROID_SDK_ROOT/platform-tools:$PATH"
+  PATH="$ANDROID_SDK_ROOT/emulator:$PATH"
+fi
+
 export PATH=$PATH
 
 # --------------------------------------------------------------------------------------------- Env

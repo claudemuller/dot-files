@@ -6,8 +6,9 @@
 
 [ -f ~/.xprofile ] && . ~/.xprofile
 
-/home/lukefilewalker/.local/bin/keyboard &
-file-inotify /tmp/keyboard.lock /home/lukefilewalker/.local/bin/keyboard &  # Triggered by udev rule
+#/home/lukefilewalker/.local/bin/keyboard &
+#file-inotify /tmp/keyboard.lock /home/lukefilewalker/.local/bin/keyboard &  # Triggered by udev rule
 
 #exec dwm
-exec bspwm 
+#exec bspwm 
+exec qtile start
