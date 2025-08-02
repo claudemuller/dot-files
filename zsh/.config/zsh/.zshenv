@@ -57,7 +57,6 @@ if [ -d "/snap/bin" ]; then
 fi
 
 if [ -d "/opt/flutter/" ]; then
-  export CHROME_EXECUTABLE=/opt/brave.com/brave/brave
   export FLUTTER_ROOT="/opt/flutter/"
   PATH="$FLUTTER_ROOT/bin:$PATH"
 fi
@@ -76,6 +75,7 @@ export BROWSER="brave"
 export VISUAL="nvim"
 export EDITOR="nvim"
 export TERMINAL="wezterm"
+export CHROME_EXECUTABLE=$([ -x /usr/bin/brave ] && echo /usr/bin/brave || ([ -x /opt/brave.com/brave/brave ] && echo /opt/brave.com/brave/brave))
 
 export MANPAGER='nvim +Man!'
 # export MANPAGER="sh -c 'col -bx | bat --theme=\"base16-256\" -l man -p'"
