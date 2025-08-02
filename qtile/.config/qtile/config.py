@@ -327,6 +327,7 @@ floating_layout = layout.Floating(
         Match(wm_class="Learn me OpenGL"),
         Match(title="Demo"),
         Match(title="game"),
+        Match(title="sitstand"),
         Match(title="That guy"),
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
