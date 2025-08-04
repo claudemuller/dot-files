@@ -63,7 +63,7 @@ return {
         focus = true,
         win = {
           position = 'right',
-          size = 50,
+          size = 80,
         },
         preview = {
           type = 'float',
@@ -71,8 +71,8 @@ return {
           border = 'rounded',
           title = 'Preview',
           title_pos = 'center',
-          position = { 0, -200 },
-          size = { width = 150, height = 0.5 },
+          position = { 0, -230 },
+          size = { width = 150, height = 0.8 },
           zindex = 200,
         },
       },
