@@ -7,10 +7,10 @@
 return {
   'nvim-lualine/lualine.nvim',
   opts = function(_, opts)
-    local kanagawa_paper = require 'lualine.themes.kanagawa-paper-ink'
+    -- local kanagawa_paper = require 'lualine.themes.kanagawa-paper-ink'
 
     opts.icons_enabled = true
-    opts.theme = kanagawa_paper -- 'tokyonight'
+    -- opts.theme = kanagawa_paper -- 'tokyonight'
     opts.component_separators = '|'
     opts.section_separators = ''
     opts.sections = {
