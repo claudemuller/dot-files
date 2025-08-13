@@ -59,6 +59,9 @@ vim.opt.timeoutlen = 0
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
+-- Add the full path in the winbar
+vim.o.winbar = '%F%='
+
 -- Sets how neovim will display certain whitespace in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
