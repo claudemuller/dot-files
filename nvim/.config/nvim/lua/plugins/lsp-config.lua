@@ -131,7 +131,9 @@ return {
       cucumber_language_server = {},
       dockerls = {},
       docker_compose_language_service = {},
-      golangci_lint_ls = {},
+      golangci_lint_ls = {
+        cmd = '/home/claude/repos/3rd-party/golangci-lint-langserver/golangci-lint-langserver',
+      },
       gopls = {
         settings = {
           gopls = {
