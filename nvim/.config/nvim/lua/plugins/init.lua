@@ -2,6 +2,8 @@
 -- [[ General config ]]
 -----------------------------------------------------------------------
 
+vim.o.termguicolors = true -- must be set
+
 return {
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
@@ -87,6 +89,8 @@ return {
   { 'folke/neodev.nvim', opts = {} },
 
   'tikhomirov/vim-glsl',
+
+  { 'norcalli/nvim-colorizer.lua', opts = {} },
 
   -- { 'towolf/vim-helm' },
 

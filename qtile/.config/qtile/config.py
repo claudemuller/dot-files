@@ -14,7 +14,7 @@ mod = "mod1"
 terminal = "wezterm"
 home = os.path.expanduser("~")
 conf_dir = os.path.dirname(os.path.abspath(__file__))
-colours = colours.TokyoNight
+colours = colours.Base16Custom
 
 
 # -------------------------------------------------------------------------------------------------#

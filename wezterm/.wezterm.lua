@@ -1,5 +1,7 @@
 local wezterm = require("wezterm")
 
+local base16 = dofile(wezterm.config_dir .. "/.config/wezterm/base16_custom.lua")
+
 local function mergeTables(t1, t2)
 	for k, v in pairs(t2) do
 		if type(v) == "table" and type(t1[k]) == "table" then
@@ -116,7 +118,8 @@ return mergeTables(profile, {
 	font_size = 9,
 	line_height = 1.1,
 	harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
-	color_scheme = "Catppuccin Mocha",
+	color_scheme = "CustomBase16",
+	colors = base16,
 	hide_tab_bar_if_only_one_tab = true,
 
 	-- Layout

@@ -30,6 +30,48 @@ mantle = ["#181825", "#181825"]
 crust = ["#11111b", "#11111b"]
 base = ["#1e1e2e", "#1e1e2e"]
 
+base00 = ["#120f09", "#120f09"]
+base01 = ["#1e1812", "#1e1812"]
+base02 = ["#35291d", "#35291d"]
+base03 = ["#66553f", "#66553f"]
+base04 = ["#a28662", "#a28662"]
+base05 = ["#c0a179", "#c0a179"]
+base06 = ["#d6b891", "#d6b891"]
+base07 = ["#292016", "#292016"]
+base08 = ["#887254", "#887254"]
+base09 = ["#d6b891", "#d6b891"]
+base0A = ["#c0a179", "#c0a179"]
+base0B = ["#927a60", "#927a60"]
+base0C = ["#a28662", "#a28662"]
+base0D = ["#d6b891", "#d6b891"]
+base0E = ["#a28662", "#a28662"]
+base0F = ["#887254", "#887254"]
+
+RetroTerm = {
+    "sepia":"#78490A",
+    "sepia_darker":"#59380D",
+    "jet":"#2F2B26",
+    "licorice":"#20170C",
+    "bistre":"#322513",
+    "bistre_darker":"#2D1D0E",
+    "golden_brown":"#956216",
+    "aureolin":"#FDF41B",
+    "eerie_black":"#242424",
+    "harvest_gold":"#D3951D",
+}
+
+Base16Custom = [
+     base00,
+     base01,
+     base06,
+     base04,
+     base03,
+     base02,
+     base05,
+     base07,
+     base0D,
+]
+
 TokyoNight = [
         text, # fg
         base, # bg

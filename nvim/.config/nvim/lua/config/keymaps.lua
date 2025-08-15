@@ -74,3 +74,6 @@ vim.keymap.set('n', '<leader>Odc', fn.obsidian.copy_this_day, { desc = 'Copy cur
 
 -- Octo
 vim.keymap.set('n', '<leader>go', ':Octo actions<cr>', { desc = 'Open Octo' })
+
+-- Toggle colorizer
+vim.keymap.set('n', '<leader>uC', ':ColorizerAttachToBuffer<cr>', { desc = 'Attach Colorizer to buffer' })
