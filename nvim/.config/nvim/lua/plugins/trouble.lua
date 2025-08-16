@@ -4,7 +4,7 @@ return {
   keys = {
     {
       '<leader>td',
-      '<cmd>Trouble diagnostics toggle<cr>',
+      '<cmd>Trouble diagnostics_split toggle<cr>',
       desc = 'Toggle diagnostics',
     },
     {
@@ -19,8 +19,7 @@ return {
     },
     {
       '<leader>tl',
-      -- '<cmd>Trouble lsp toggle focus=false win.position=right<cr>',
-      '<cmd>Trouble lsp_float<cr>',
+      '<cmd>Trouble lsp_split toggle<cr>',
       desc = 'Toggle LSP definitions/references',
     },
     {
@@ -28,19 +27,6 @@ return {
       '<cmd>Trouble qflist toggle<cr>',
       desc = 'Toggle quickfix list',
     },
-    -- {
-    --   '<leader>Tt',
-    --   function()
-    --     local trouble = require 'trouble'
-    --
-    --     if trouble.is_open() and trouble.mode() == 'symbols' then
-    --       trouble.close()
-    --     else
-    --       trouble.open { mode = 'symbols' }
-    --     end
-    --   end,
-    --   { desc = 'Toggle Symbols' },
-    -- },
   },
   opts = {
     focus = true,
@@ -58,7 +44,7 @@ return {
           zindex = 200,
         },
       },
-      lsp_float = {
+      lsp_split = {
         mode = 'lsp',
         focus = true,
         win = {
@@ -76,13 +62,22 @@ return {
           zindex = 200,
         },
       },
-      preview_split = {
+      diagnostics_split = {
         mode = 'diagnostics',
-        preview = {
-          type = 'split',
-          relative = 'win',
+        focus = true,
+        win = {
           position = 'right',
-          size = 0.3,
+          size = 80,
+        },
+        preview = {
+          type = 'float',
+          relative = 'win',
+          border = 'rounded',
+          title = 'Preview',
+          title_pos = 'center',
+          position = { 0, -230 },
+          size = { width = 150, height = 0.8 },
+          zindex = 200,
         },
       },
     },

@@ -77,3 +77,10 @@ vim.keymap.set('n', '<leader>go', ':Octo actions<cr>', { desc = 'Open Octo' })
 
 -- Toggle colorizer
 vim.keymap.set('n', '<leader>uC', ':ColorizerAttachToBuffer<cr>', { desc = 'Attach Colorizer to buffer' })
+
+-- Copy full file path to clipboard
+vim.keymap.set('n', '<leader>fc', function()
+  local path = vim.fn.expand '%:p'
+  vim.fn.setreg('+', path)
+  print('Copied path: ' .. path)
+end, { desc = 'Copy full file path to clipboard' })
