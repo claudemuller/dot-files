@@ -3,6 +3,8 @@ import subprocess
 from libqtile import bar, layout, hook, widget
 from libqtile.config import Click, Drag, DropDown, Group, Key, Match, Screen, ScratchPad
 from libqtile.lazy import lazy
+from qtile_extras import widget
+from qtile_extras.widget.decorations import RectDecoration, PowerLineDecoration
 import retro_term as theme
 import subprocess
 
@@ -15,7 +17,6 @@ terminal = "wezterm"
 home = os.path.expanduser("~")
 conf_dir = os.path.dirname(os.path.abspath(__file__))
 colours = theme.RetroTerm('base')
-
 
 # -------------------------------------------------------------------------------------------------#
 #                                             Keys                                                #
@@ -341,72 +342,246 @@ floating_layout = layout.Floating(
 #                                             Bars                                                #
 # -------------------------------------------------------------------------------------------------#
 
+powerline_f = {
+    "decorations": [
+        PowerLineDecoration(path="forward_slash")
+    ]
+}
+powerline_fp = {
+    "decorations": [
+        PowerLineDecoration(
+            path="forward_slash",
+            extrawidth=5,
+        )
+    ]
+}
+powerline_b = {
+    "decorations": [
+        PowerLineDecoration(path="back_slash")
+    ]
+}
+powerline_bp = {
+    "decorations": [
+        PowerLineDecoration(
+            path="back_slash",
+            extrawidth=5,
+        )
+    ]
+}
+decoration_group = {
+    "decorations": [
+        RectDecoration(
+            colour="#004040",
+            radius=10,
+            filled=True,
+            # padding_y=4,
+            group=True,
+        )
+    ],
+    "padding": 10,
+}
+
 widget_defaults = dict(
     font="Hack Nerd Font",
     fontsize=10,
-    padding=5,
+    padding=0,
     background=colours["bg_light"],
 )
 extension_defaults = widget_defaults.copy()
 
 widget_opts = [
     widget.GroupBox(
-        highlight_method="block",
+        highlight_method="line",
         border_width=1,
-        active=colours["bg_light"],
-        foreground=colours["bg_light"],
         rounded=False,
-        this_current_screen_border=colours["fg"],
-        this_screen_border=colours["fg"],
+        padding=5,
+        active=colours["fg"],
+        block_highlight_text_color=colours["highlight"],
+        foreground=colours["red"],
+        highlight_color=[colours["fg_dark"], colours["fg_dark"]],
+        inactive=colours["comment"],
+        this_current_screen_border=colours["highlight"],
+        this_screen_border=colours["fg_dark"],
+        other_current_screen_border=colours["text"],
+        other_screen_border=colours["comment"],
+        urgent_border=colours["highlight_sat"],
+        urgent_text=colours["fg_dark"],
     ),
-    widget.CurrentLayout(),
-    # widget.Prompt(),
-    widget.WindowName(),
+    widget.CurrentLayout(
+        mode="icon",
+        icon_first=True,
+        padding=5,
+        foreground=colours["text"],
+    ),
+    widget.Spacer(
+        length=5,
+        foreground=colours["text"],
+        **powerline_b,
+    ),
+
+    widget.WindowName(
+        fontsize=12,
+        padding=5,
+        foreground=colours["fg"],
+        background=colours["transparent"],
+        **powerline_b,
+    ),
     widget.Chord(
         chords_colors={
             "launch": ("#ff0000", "#ffffff"),
         },
         name_transform=lambda name: name.upper(),
     ),
-    # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
-    # widget.StatusNotifier(),
-    # widget.OpenWeather(location="Stockholm", format='{location_city}: {icon} {main_temp}'),
-    # widget.Wttr(format='2', location={'Kungsaengen': 'Home', 'Kista': 'Work'}),
-    widget.TextBox(foreground=colours["fg"], fmt="", fontsize=14),
+
+    widget.Spacer(
+        length=10,
+        foreground=colours["text"],
+        background=colours["transparent"],
+        **powerline_f,
+    ),
+    widget.OpenWeather(
+        location="Stockholm",
+        format='{location_city}: {icon} {main_temp}',
+        padding=5,
+        foreground=colours["text"],
+        background=colours["bg"],
+        **powerline_f,
+    ),
+
+    widget.TextBox(
+        foreground=colours["text"],
+        fmt="",
+        fontsize=14,
+        padding=5,
+        **powerline_f,
+    ),
     widget.MemoryGraph(
         graph_color=colours["highlight"],
         fill_color=colours["comment"],
         border_width=1,
         border_color=colours["comment"],
+        **powerline_fp,
     ),
-    widget.TextBox(foreground=colours["fg"], fmt="", fontsize=14),
+
+    widget.TextBox(
+        foreground=colours["text"],
+        fmt="",
+        fontsize=14,
+        padding=5,
+        background=colours["bg"],
+        **powerline_f,
+    ),
     widget.CPUGraph(
         graph_color=colours["highlight"],
         fill_color=colours["comment"],
         border_width=1,
         border_color=colours["comment"],
+        background=colours["bg"],
+        **powerline_fp,
     ),
-    # widget.Wlan(interface="wlp0s20f3"),
-    widget.TextBox(foreground=colours["fg"], fmt="󰛳", fontsize=14),
+
+    # widget.Wlan(interface="wlan0"),
+    widget.TextBox(
+        foreground=colours["text"],
+        fmt="󰛳",
+        fontsize=14,
+        padding=5,
+        **powerline_f,
+    ),
     widget.NetGraph(
         graph_color=colours["highlight"],
         fill_color=colours["comment"],
         border_width=1,
         border_color=colours["comment"],
+        **powerline_fp,
     ),
-    widget.TextBox(foreground=colours["fg"], fmt="󰕾", fontsize=14),
+
+    widget.TextBox(
+        foreground=colours["text"],
+        fmt="󰕾",
+        fontsize=14,
+        padding=5,
+        background=colours["bg"],
+        **powerline_f,
+    ),
     # widget.PulseVolume(),
-    widget.Volume(channel='Master'),
-    widget.Spacer(length=1, background=colours["text"]),
-    widget.TextBox(foreground=colours["fg"], fmt="󱃂", fontsize=14),
-    widget.ThermalSensor(tag_sensor='Package id 0', format="{temp:.1f}{unit}"),
+    widget.Volume(
+        channel='Master',
+        foreground=colours["fg"],
+        background=colours["bg"],
+        **powerline_fp,
+    ),
+
+    widget.TextBox(
+        foreground=colours["text"],
+        fmt="󱃂",
+        fontsize=14,
+        padding=5,
+        **powerline_f,
+    ),
+    widget.ThermalSensor(
+        tag_sensor='Package id 0',
+        format="{temp:.1f}{unit}",
+        foreground=colours["fg"],
+        **powerline_fp,
+    ),
+
     # widget.Bluetooth(),
-    widget.TextBox(foreground=colours["fg"], fmt="", fontsize=14),
-    widget.Battery(full_char="", charge_char="↑", discharge_char="↓", low_percentage=0.12, notify_below=12, max_chars=5),
-    widget.CheckUpdates(distro="Arch", no_update_string="", display_format=" {updates}"),
-    widget.Pomodoro(prefix_inactive="", color_inactive=colours["fg"]),
-    widget.Clock(format="%Y-%m-%d %a %H:%M %p"),
-    # widget.QuickExit(),
+    widget.TextBox(
+        fmt="",
+        fontsize=14,
+        padding=5,
+        foreground=colours["text"],
+        background=colours["bg"],
+        **powerline_f,
+    ),
+    widget.Battery(
+        full_char="",
+        charge_char="↑",
+        discharge_char="↓",
+        low_percentage=0.12,
+        notify_below=12,
+        max_chars=5,
+        foreground=colours["fg"],
+        background=colours["bg"],
+        **powerline_fp,
+    ),
+
+    widget.CheckUpdates(
+        distro="Arch",
+        no_update_string="",
+        display_format=" {updates}",
+        foreground=colours["fg"],
+    ),
+    # widget.WiFiIcon(),
+    # widget.IDW(
+    #     show_image=True,
+    #     show_text=False
+    # ),
+    widget.Pomodoro(
+        prefix_inactive="",
+        color_inactive=colours["fg"],
+        padding=5,
+        foreground=colours["fg"],
+        **powerline_f,
+    ),
+
+    widget.Clock(
+        format="%Y-%m-%d %a %H:%M %p",
+        padding=5,
+        foreground=colours["fg"],
+        background=colours["bg"],
+        **powerline_f,
+    ),
+    # widget.Spacer(
+    #     length=1,
+    #     background=colours["bg"],
+    # ),
+    widget.QuickExit(
+        default_text="[X]",
+        foreground=colours["fg"],
+        background=colours["bg"],
+    ),
 ]
 
 
@@ -418,7 +593,7 @@ def new_bar(widget_opts):
         bar_size,
         margin=[0, 0, 5, 0],
         # border_width=bar_border,
-        # border_color=bar_border_colour,
+        # border_color=colours["red"],
     )
 
 

@@ -73,7 +73,11 @@ def RetroTerm(palette='base'):
         "bg_light": p["base01"],
         "select": p["base02"],
         "comment": p["base03"],
-        "fg": p["base04"],
+        "fg": p["base06"],
+        "fg_dark": p["base04"],
         "text": p["base05"],
-        "highlight": p["base06"],
+        "highlight": p["base07"],
+        "highlight_sat": p["base08"],
+        "red": "#ff0000",
+        "transparent": "#00000000",
     }
