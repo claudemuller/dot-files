@@ -3,7 +3,7 @@ import subprocess
 from libqtile import bar, layout, hook, widget
 from libqtile.config import Click, Drag, DropDown, Group, Key, Match, Screen, ScratchPad
 from libqtile.lazy import lazy
-import colours
+import retro_term as theme
 import subprocess
 
 # -------------------------------------------------------------------------------------------------#
@@ -14,7 +14,7 @@ mod = "mod1"
 terminal = "wezterm"
 home = os.path.expanduser("~")
 conf_dir = os.path.dirname(os.path.abspath(__file__))
-colours = colours.Base16Custom
+colours = theme.RetroTerm('base')
 
 
 # -------------------------------------------------------------------------------------------------#
@@ -284,8 +284,8 @@ for i in normal_groups:
 
 layout_theme = dict(
     margin=[5, 5, 5, 5],
-    border_normal=colours[1],
-    border_focus=colours[6],
+    border_normal=colours["bg_light"],
+    border_focus=colours["highlight"],
     border_width=1,
     border_on_single=True,
 )
@@ -345,7 +345,7 @@ widget_defaults = dict(
     font="Hack Nerd Font",
     fontsize=10,
     padding=5,
-    background=colours[1],
+    background=colours["bg_light"],
 )
 extension_defaults = widget_defaults.copy()
 
@@ -353,11 +353,11 @@ widget_opts = [
     widget.GroupBox(
         highlight_method="block",
         border_width=1,
-        active=colours[1],
-        foreground=colours[1],
+        active=colours["bg_light"],
+        foreground=colours["bg_light"],
         rounded=False,
-        this_current_screen_border=colours[3],
-        this_screen_border=colours[3],
+        this_current_screen_border=colours["fg"],
+        this_screen_border=colours["fg"],
     ),
     widget.CurrentLayout(),
     # widget.Prompt(),
@@ -372,39 +372,39 @@ widget_opts = [
     # widget.StatusNotifier(),
     # widget.OpenWeather(location="Stockholm", format='{location_city}: {icon} {main_temp}'),
     # widget.Wttr(format='2', location={'Kungsaengen': 'Home', 'Kista': 'Work'}),
-    widget.TextBox(foreground=colours[3], fmt="", fontsize=14),
+    widget.TextBox(foreground=colours["fg"], fmt="", fontsize=14),
     widget.MemoryGraph(
-        graph_color=colours[2],
-        fill_color=colours[4],
+        graph_color=colours["highlight"],
+        fill_color=colours["comment"],
         border_width=1,
-        border_color=colours[4],
+        border_color=colours["comment"],
     ),
-    widget.TextBox(foreground=colours[3], fmt="", fontsize=14),
+    widget.TextBox(foreground=colours["fg"], fmt="", fontsize=14),
     widget.CPUGraph(
-        graph_color=colours[2],
-        fill_color=colours[4],
+        graph_color=colours["highlight"],
+        fill_color=colours["comment"],
         border_width=1,
-        border_color=colours[4],
+        border_color=colours["comment"],
     ),
     # widget.Wlan(interface="wlp0s20f3"),
-    widget.TextBox(foreground=colours[3], fmt="󰛳", fontsize=14),
+    widget.TextBox(foreground=colours["fg"], fmt="󰛳", fontsize=14),
     widget.NetGraph(
-        graph_color=colours[2],
-        fill_color=colours[4],
+        graph_color=colours["highlight"],
+        fill_color=colours["comment"],
         border_width=1,
-        border_color=colours[4],
+        border_color=colours["comment"],
     ),
-    widget.TextBox(foreground=colours[3], fmt="󰕾", fontsize=14),
+    widget.TextBox(foreground=colours["fg"], fmt="󰕾", fontsize=14),
     # widget.PulseVolume(),
     widget.Volume(channel='Master'),
-    widget.Spacer(length=1, background=colours[5]),
-    widget.TextBox(foreground=colours[3], fmt="󱃂", fontsize=14),
+    widget.Spacer(length=1, background=colours["text"]),
+    widget.TextBox(foreground=colours["fg"], fmt="󱃂", fontsize=14),
     widget.ThermalSensor(tag_sensor='Package id 0', format="{temp:.1f}{unit}"),
     # widget.Bluetooth(),
-    widget.TextBox(foreground=colours[3], fmt="", fontsize=14),
+    widget.TextBox(foreground=colours["fg"], fmt="", fontsize=14),
     widget.Battery(full_char="", charge_char="↑", discharge_char="↓", low_percentage=0.12, notify_below=12, max_chars=5),
     widget.CheckUpdates(distro="Arch", no_update_string="", display_format=" {updates}"),
-    widget.Pomodoro(prefix_inactive="", color_inactive=colours[3]),
+    widget.Pomodoro(prefix_inactive="", color_inactive=colours["fg"]),
     widget.Clock(format="%Y-%m-%d %a %H:%M %p"),
     # widget.QuickExit(),
 ]

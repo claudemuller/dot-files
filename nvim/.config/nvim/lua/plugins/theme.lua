@@ -1,6 +1,18 @@
 -----------------------------------------------------------------------
 -- [[ Neovim Theme ]]
 -----------------------------------------------------------------------
+
+return {
+  'claudemuller/retro-term.nvim',
+  dependencies = { 'echasnovski/mini.nvim' },
+  lazy = false,
+  priority = 1000,
+  opts = {},
+  -- config = function()
+  --   require('retro-term').setup { variant = 'base' } -- "muted" | "original" | "base"
+  -- end,
+}
+
 -- return {
 --   'folke/tokyonight.nvim',
 --   -- 'navarasu/onedark.nvim',
@@ -44,34 +56,3 @@
 --     -- vim.cmd.hi 'Comment gui=none'
 --   end,
 -- }
-
-return {
-  'echasnovski/mini.nvim',
-  config = function()
-    require('mini.base16').setup {
-      palette = {
-        base00 = '#120f09',
-        base01 = '#1e1812',
-        base02 = '#35291d',
-        base03 = '#66553f',
-        base04 = '#a28662',
-        base05 = '#c0a179',
-        base06 = '#d6b891',
-        base07 = '#292016',
-        base08 = '#887254',
-        base09 = '#d6b891',
-        base0A = '#c0a179',
-        base0B = '#927a60',
-        base0C = '#a28662',
-        base0D = '#d6b891',
-        base0E = '#a28662',
-        base0F = '#887254',
-      },
-      use_cterm = true,
-      plugins = {
-        default = false,
-        ['echasnovski/mini.nvim'] = true,
-      },
-    }
-  end,
-}

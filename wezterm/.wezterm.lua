@@ -1,6 +1,6 @@
 local wezterm = require("wezterm")
 
-local base16 = dofile(wezterm.config_dir .. "/.config/wezterm/base16_custom.lua")
+local retro_term = dofile(wezterm.config_dir .. "/.config/wezterm/retro-term.lua")
 
 local function mergeTables(t1, t2)
 	for k, v in pairs(t2) do
@@ -16,9 +16,9 @@ end
 local profiles = {
 	-- Default TMUX profile
 	tmux = {
-		default_prog = {
-			"run-tmux",
-		},
+		-- default_prog = {
+		-- 	"run-tmux",
+		-- },
 		set_environment_variables = {},
 		font = wezterm.font("JetBrainsMono Nerd Font"),
 	},
@@ -118,8 +118,8 @@ return mergeTables(profile, {
 	font_size = 9,
 	line_height = 1.1,
 	harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
-	color_scheme = "CustomBase16",
-	colors = base16,
+	color_scheme = "RetroTerm",
+	colors = retro_term("base"),
 	hide_tab_bar_if_only_one_tab = true,
 
 	-- Layout
