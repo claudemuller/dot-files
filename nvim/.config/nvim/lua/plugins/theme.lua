@@ -8,6 +8,7 @@ return {
   lazy = false,
   priority = 1000,
   opts = {},
+  dev = true,
   -- config = function()
   --   require('retro-term').setup { variant = 'base' } -- "muted" | "original" | "base"
   -- end,

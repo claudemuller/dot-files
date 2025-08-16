@@ -84,3 +84,27 @@ vim.keymap.set('n', '<leader>fc', function()
   vim.fn.setreg('+', path)
   print('Copied path: ' .. path)
 end, { desc = 'Copy full file path to clipboard' })
+
+-- Reload plugins
+-- TODO: ATM just one pluging I'm working on
+vim.api.nvim_create_user_command('ReloadRetroTerm', function()
+  -- clear plugin cache
+  for k in pairs(package.loaded) do
+    if k:match '^retro%-term' or k:match '^mini%.base16' then
+      package.loaded[k] = nil
+    end
+  end
+
+  -- reset highlights and colorscheme state
+  -- vim.cmd 'hi clear'
+  -- vim.cmd 'syntax reset'
+  -- vim.g.colors_name = nil
+
+  -- reload both
+  local retro = require 'retro-term'
+  local base16 = require 'mini.base16'
+
+  retro.setup { variant = 'base' }
+
+  print '🎨 Reloaded retro-term.nvim with fresh mini.base16'
+end, {})

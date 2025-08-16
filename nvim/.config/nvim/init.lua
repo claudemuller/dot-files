@@ -39,6 +39,12 @@ require('lazy').setup {
   install = {
     colorscheme = { 'folke/tokyonight.nvim' },
   },
+
+  dev = {
+    path = '~/repos',
+    patterns = { 'claudemuller' },
+    fallback = false,
+  },
 }
 
 require 'config.make-targets'
