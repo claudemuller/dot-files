@@ -615,7 +615,7 @@ sec_screen = new_screen(new_bar(widget_opts))
 
 ter_screen = new_screen(new_bar(widget_opts[:]))
 
-prim_widget_opts = widget_opts[:-2] + [widget.Systray()] + widget_opts[-2:]
+prim_widget_opts = widget_opts[:-2] + [widget.Systray(**powerline_fp)] + widget_opts[-2:]
 prim_screen = new_screen(new_bar(prim_widget_opts))
 
 screens = [prim_screen, sec_screen, ter_screen]
