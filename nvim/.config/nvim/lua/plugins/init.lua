@@ -123,4 +123,6 @@ return {
   --     -- },
   --   },
   -- },
+
+  { 'nvim-treesitter/playground' },
 }

@@ -389,29 +389,6 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
-# class GlobalWindowName(widget.base._TextBox):
-#     """A WindowName widget that always shows the currently focused window."""
-#     
-#     defaults = [
-#         ("empty_string", "Desktop", "Text to display when no window is focused"),
-#         ("max_chars", 50, "Maximum number of characters to display"),
-#     ]
-#
-#     def __init__(self, **config):
-#         super().__init__("", **config)
-#         self.add_defaults(GlobalWindowName.defaults)
-#         hook.subscribe.client_focus(self.update_name)
-#         hook.subscribe.client_killed(self.update_name)
-#         hook.subscribe.setgroup(self.update_name)
-#
-#     def update_name(self, *_):
-#         win = self.qtile.current_window
-#         name = win.name if win else self.empty_string
-#         if len(name) > self.max_chars:
-#             name = name[:self.max_chars]
-#         self.text = name
-#         self.bar.draw()
-
 widget_opts = [
     widget.GroupBox(
         highlight_method="line",
@@ -724,11 +701,12 @@ def update_all_windownames(client):
                 w.update()
 
 # @hook.subscribe.client_focus
-# def update_window_name(client):
-#     for bar in qtile.bars:
-#         for widget in bar.widgets:
-#             if hasattr(widget, "update"):
-#                 widget.update()
+@hook.subscribe.screen_change
+def update_window_name(client):
+    for bar in qtile.bars:
+        for widget in bar.widgets:
+            if hasattr(widget, "update"):
+                widget.update()
 
 # @hook.subscribe.screen_change
 # def restart_on_randr(qtile, ev):

@@ -108,3 +108,9 @@ vim.api.nvim_create_user_command('ReloadRetroTerm', function()
 
   print '🎨 Reloaded retro-term.nvim with fresh mini.base16'
 end, {})
+
+vim.keymap.set('n', '<leader>li', function()
+  -- vim.cmd 'TSNodeUnderCursor'
+  -- pcall(vim.cmd, 'TSHighlightCapturesUnderCursor')
+  vim.cmd 'Inspect'
+end, { desc = 'Inspect node + captures + final HL group' })
