@@ -7,7 +7,9 @@ return {
   dependencies = { 'echasnovski/mini.nvim' },
   lazy = false,
   priority = 1000,
-  opts = {},
+  opts = {
+    blinking_cursor = true,
+  },
   dev = true,
   -- config = function()
   --   require('retro-term').setup { variant = 'base' } -- "muted" | "original" | "base"
