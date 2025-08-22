@@ -77,7 +77,7 @@ return {
             symbol = vim.fn.expand '<cword>'
           end
           builtin.lsp_workspace_symbols { query = symbol }
-        end, '')
+        end, 'Symbol (default: under cursor)')
         map('<leader>ss', builtin.lsp_document_symbols, 'Document symbols')
         map('<leader>sS', builtin.lsp_workspace_symbols, 'Workspace symbols')
 
