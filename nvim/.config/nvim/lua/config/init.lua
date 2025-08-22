@@ -97,11 +97,3 @@ vim.opt.foldcolumn = '1'
 
 -- Log Level
 -- vim.lsp.set_log_level 'off'
-
--- Blinking cursor
-vim.opt.guicursor = {
-  'n-v-c:block-Cursor/lCursor-blinkon100-blinkoff100',
-  'i-ci-ve:ver25-Cursor/lCursor-blinkon100-blinkoff100',
-  'r-cr:hor20-Cursor/lCursor-blinkon100-blinkoff100',
-  'o:hor50-Cursor/lCursor-blinkon100-blinkoff100',
-}
