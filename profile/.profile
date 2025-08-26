@@ -1,4 +1,3 @@
-
 if [ -d "$HOME/go" ]; then
   export GOPATH=$HOME/go
   export GOBIN=$GOPATH/bin
@@ -38,6 +37,8 @@ if [ -d "$HOME/.deno/bin" ]; then
     . "$HOME/.deno/env"
 fi
 
+PATH="$PATH:$HOME/.lmstudio/bin"
+
 export PATH=$PATH
 
 # --------------------------------------------------------------------------------------------- Env
@@ -45,7 +46,11 @@ export BROWSER="brave"
 export VISUAL="/usr/bin/nvim"
 export EDITOR=/usr/bin/nvim
 export TERMINAL="wezterm"
+export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
 
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 export GTK_THEME=Catppuccin-Mocha-Standard-Mauve-Dark
+
+$HOME/.local/bin/kb-layout-switcher
+
