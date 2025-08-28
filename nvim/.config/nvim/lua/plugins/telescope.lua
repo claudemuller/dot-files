@@ -129,8 +129,43 @@ return {
       builtin.live_grep { cwd = vim.fn.expand '%:p:h' }
     end, { desc = 'String in cwd' })
     vim.keymap.set('n', '<leader>sgG', function()
-      builtin.live_grep { cwd = vim.fn.input 'Start dir: ' }
+      builtin.live_grep { cwd = vim.fn.input('Start dir: ', '', 'dir') }
     end, { desc = 'String in dir' })
+
+    local actions = require 'telescope.actions'
+    local action_state = require 'telescope.actions.state'
+
+    local function to_dir(path)
+      local uv = vim.loop
+      local stat = uv.fs_stat(path)
+      if stat and stat.type == 'directory' then
+        return path
+      else
+        return uv.fs_realpath(vim.fn.fnamemodify(path, ':h')) -- parent folder
+      end
+    end
+
+    vim.keymap.set('n', '<leader>sgD', function()
+      builtin.find_files {
+        prompt_title = 'Pick a directory',
+        cwd = vim.fn.getcwd(),
+        -- Show hidden dirs too (optional)
+        hidden = true,
+        -- Only show items that are directories
+        find_command = { 'fd', '--type', 'd', '--strip-cwd-prefix' },
+        attach_mappings = function(prompt_bufnr, map)
+          -- Replace <CR> with our custom action
+          actions.select_default:replace(function()
+            local selection = action_state.get_selected_entry()
+            actions.close(prompt_bufnr)
+
+            local dir = to_dir(selection.path) -- ensure we have a clean dir path
+            builtin.live_grep { cwd = dir }
+          end)
+          return true
+        end,
+      }
+    end, { desc = 'Live grep in chosen directory' })
 
     vim.keymap.set('n', '<leader>sp', builtin.resume, { desc = 'Previous picker' })
     vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = 'Diagnostics' })
