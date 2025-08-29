@@ -79,7 +79,7 @@ return {
           builtin.lsp_workspace_symbols { query = symbol }
         end, 'Symbol (default: under cursor)')
         map('<leader>ss', builtin.lsp_document_symbols, 'Document symbols')
-        map('<leader>sS', builtin.lsp_workspace_symbols { query = '' }, 'Workspace symbols')
+        map('<leader>sS', builtin.lsp_workspace_symbols, 'Workspace symbols')
 
         map('<leader>lr', ':LspRestart<cr>', 'Restart')
 
