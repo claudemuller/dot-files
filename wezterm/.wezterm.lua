@@ -1,4 +1,5 @@
 local wezterm = require("wezterm")
+local act = wezterm.action
 
 local retro_term = dofile(wezterm.config_dir .. "/.config/wezterm/retro-term.lua")
 
@@ -30,6 +31,7 @@ local profiles = {
 		-- TMUX leader
 		keys = {
 			{ key = "7", mods = "CTRL", action = wezterm.action.SendString("\x1b[31;7~") },
+			{ key = "V", mods = "CTRL", action = act.PasteFrom("Clipboard") },
 
 			-- TMUX emulation
 			{
@@ -48,6 +50,26 @@ local profiles = {
 			{ key = "k", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Up" }) },
 			{ key = "j", mods = "LEADER", action = wezterm.action({ ActivatePaneDirection = "Down" }) },
 			{ key = "c", mods = "LEADER", action = wezterm.action({ SpawnTab = "CurrentPaneDomain" }) },
+		},
+		mouse_bindings = {
+			{
+				event = { Down = { streak = 3, button = "Left" } },
+				action = wezterm.action.SelectTextAtMouseCursor("SemanticZone"),
+				mods = "NONE",
+			},
+			{
+				event = { Down = { streak = 1, button = "Right" } },
+				mods = "NONE",
+				action = wezterm.action_callback(function(window, pane)
+					local has_selection = window:get_selection_text_for_pane(pane) ~= ""
+					if has_selection then
+						window:perform_action(act.CopyTo("ClipboardAndPrimarySelection"), pane)
+						window:perform_action(act.ClearSelection, pane)
+					else
+						window:perform_action(act({ PasteFrom = "Clipboard" }), pane)
+					end
+				end),
+			},
 		},
 	},
 	-- Manjaro in WSL profile

@@ -43,7 +43,7 @@ require('lazy').setup {
   dev = {
     path = '~/repos',
     patterns = { 'claudemuller' },
-    fallback = false,
+    fallback = true,
   },
 }
 
