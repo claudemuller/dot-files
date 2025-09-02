@@ -17,9 +17,9 @@ end
 local profiles = {
 	-- Default TMUX profile
 	tmux = {
-		-- default_prog = {
-		-- 	"run-tmux",
-		-- },
+		default_prog = {
+			"run-tmux",
+		},
 		set_environment_variables = {},
 		font = wezterm.font("JetBrainsMono Nerd Font"),
 	},

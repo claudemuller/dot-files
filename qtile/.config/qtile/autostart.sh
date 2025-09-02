@@ -37,7 +37,16 @@ if [[ "$(uname -n)" == "shinobi" ]]; then
 
 	# Disable touchpad
 	xinput set-prop 'ELAN0676:00 04F3:3195 Touchpad' 'Device Enabled' 0
-fi
+
+	# Running audio
+	if [ -x "$(command -v pipewire)" ]; then
+		killall pipewire
+		pipewire &
+	fi
+	if [ -x "$(command -v wireplumber)" ]; then
+		killall wireplumber
+		wireplumber &
+	fi
 
 if [ -x "$(command -v autorandr)" ]; then
 	autorandr --change
