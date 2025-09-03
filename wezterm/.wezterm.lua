@@ -29,6 +29,7 @@ local profiles = {
 		font = wezterm.font("JetBrainsMono NF"),
 
 		-- TMUX leader
+		leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 },
 		keys = {
 			{ key = "7", mods = "CTRL", action = wezterm.action.SendString("\x1b[31;7~") },
 			{ key = "V", mods = "CTRL", action = act.PasteFrom("Clipboard") },
