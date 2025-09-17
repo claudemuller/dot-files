@@ -11,6 +11,7 @@ ColumnLimit: 120
 DeriveLineEnding: false
 AllowShortFunctionsOnASingleLine: None
 AllowShortIfStatementsOnASingleLine: Always
+AllowShortElseStatementsOnASingleLine: Always
 # SpacesInBracedLists: true
 
 # Control placement of braces
@@ -18,3 +19,5 @@ BreakBeforeBraces: Custom
 BraceWrapping:
   AfterFunction: true
   AfterControlStatement: false
+
+PointerAlignment: Left
