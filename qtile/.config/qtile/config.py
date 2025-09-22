@@ -1,4 +1,5 @@
 import os
+import re
 import subprocess
 from libqtile import bar, layout, hook, widget
 from libqtile.config import Click, Drag, DropDown, Group, Key, Match, Screen, ScratchPad
@@ -328,12 +329,14 @@ floating_layout = layout.Floating(
         Match(wm_class="Learn me OpenGL"),
         Match(title="Demo"),
         Match(title="game"),
+        Match(title=re.compile(r".*DEV.*")),
         Match(title="sitstand"),
         Match(title="That guy"),
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
         Match(title="Android Emulator.*"),
         Match(title="Burp Suite Pro Loader & Keygen"),
+        Match(title="remmina"),
     ]
 )
 

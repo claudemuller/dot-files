@@ -1,1 +1,1 @@
-return {paletteSavePath="/home/lukefilewalker/.config/aseprite/palettes",suppressURIRegAlert=false}
+return {suppressURIRegAlert=false,paletteSavePath="/home/lukefilewalker/.config/aseprite/palettes",paletteFormat=".gpl"}

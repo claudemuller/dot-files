@@ -32,6 +32,7 @@ local profiles = {
 		leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 },
 		keys = {
 			{ key = "7", mods = "CTRL", action = wezterm.action.SendString("\x1b[31;7~") },
+			{ key = "6", mods = "CTRL", action = wezterm.action.SendString("\x1b[31;6~") },
 			{ key = "V", mods = "CTRL", action = act.PasteFrom("Clipboard") },
 
 			-- TMUX emulation

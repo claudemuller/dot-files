@@ -143,20 +143,20 @@ return {
       end,
       desc = 'Log (cwd)',
     },
-    {
-      '<c-/>',
-      function()
-        Snacks.terminal()
-      end,
-      desc = 'Toggle terminal',
-    },
-    {
-      '<c-_>',
-      function()
-        Snacks.terminal()
-      end,
-      desc = 'which_key_ignore',
-    },
+    -- {
+    --   '<c-/>',
+    --   function()
+    --     Snacks.terminal()
+    --   end,
+    --   desc = 'Toggle terminal',
+    -- },
+    -- {
+    --   '<c-_>',
+    --   function()
+    --     Snacks.terminal()
+    --   end,
+    --   desc = 'which_key_ignore',
+    -- },
     {
       ']]',
       function()
