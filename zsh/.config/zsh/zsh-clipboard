@@ -1,0 +1,89 @@
+#!/usr/bin/env sh
+
+# ---------------------------------------------------------------
+# Robust “y” → system clipboard for Zsh vi‑mode
+# ---------------------------------------------------------------
+
+# 1️⃣ Choose a clipboard program that exists on the system.
+if (( $+commands[xclip] )); then
+  _CLIP_CMD='xclip -selection clipboard'
+elif (( $+commands[xsel] )); then
+  _CLIP_CMD='xsel --clipboard --input'
+elif (( $+commands[wl-copy] )); then
+  _CLIP_CMD='wl-copy'
+elif (( $+commands[pbcopy] )); then
+  _CLIP_CMD='pbcopy'
+elif (( $+commands[clip.exe] )); then
+  _CLIP_CMD='clip.exe'
+else
+  _CLIP_CMD=''   # No known clipboard utility.
+fi
+
+# 2️⃣ The widget itself.
+function zle-copy-to-clipboard() {
+  # -----------------------------------------------------------
+  # a) Is a visual selection active?
+  # -----------------------------------------------------------
+  if [[ -z $REGION_ACTIVE ]]; then
+    zle -M "No visual selection – falling back to internal yank."
+    zle yank                # keep the normal Zsh yank behaviour
+    return 0
+  fi
+
+  # -----------------------------------------------------------
+  # b) Do we have a clipboard program?
+  # -----------------------------------------------------------
+  if [[ -z $_CLIP_CMD ]]; then
+    zle -M "No clipboard utility found (xclip, xsel, wl-copy, pbcopy, clip.exe)."
+    return 1
+  fi
+
+  # -----------------------------------------------------------
+  # c) Get numeric bounds of the selection.
+  # -----------------------------------------------------------
+  # Try the modern variables first.
+  local start=$REGION_MARK
+  local end=$CURSOR
+
+  # If they are empty, fall back to the older names (some people have them).
+  if [[ -z $start || -z $end ]]; then
+    start=$REGION_BEGIN
+    end=$REGION_END
+  fi
+
+  # At this point we *should* have numbers; verify.
+  if ! [[ $start =~ ^[0-9]+$ && $end =~ ^[0-9]+$ ]]; then
+    # Print the offending values for debugging – they will appear after you exit visual mode.
+    zle -M "Unexpected region indices (non‑numeric): start='$start', end='$end'."
+    return 1
+  fi
+
+  # If the user selected backwards (cursor left of the mark), swap them.
+  if (( start > end )); then
+    local tmp=$start
+    start=$end
+    end=$tmp
+  fi
+
+  # -----------------------------------------------------------
+  # d) Extract the selected text.
+  # -----------------------------------------------------------
+  # Zsh uses 1‑based indexing; the range is inclusive.
+  local selected="${BUFFER[start,end]}"
+
+  # -----------------------------------------------------------
+  # e) Push it to the system clipboard.
+  # -----------------------------------------------------------
+  print -rn -- "$selected" | eval $_CLIP_CMD
+
+  # -----------------------------------------------------------
+  # f) Confirmation message.
+  # -----------------------------------------------------------
+  zle -M "Copied ${#selected} character(s) to the system clipboard."
+}
+
+# Register the widget.
+zle -N zle-copy-to-clipboard
+
+# Bind it to “y” in vi‑visual mode (the `vicmd` keymap).
+bindkey -M vicmd 'y' zle-copy-to-clipboard
