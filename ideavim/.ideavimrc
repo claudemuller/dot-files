@@ -48,3 +48,4 @@ map <leader>cr :action RunClass<CR>
 map <leader>db :action ToggleLineBreakpoint<CR>
 
 map <leader>ce :action InsertLiveTemplate<CR>
+set ideajoin
