@@ -48,19 +48,20 @@ autoload -Uz colors && colors
 # zle -N edit-command-line
 # bindkey -M vicmd v edit-command-line
 
-# ----------------------------------------------------------------------------------------- Imports
-zsh_add_file "zsh-vim-mode"
-zsh_add_file "zsh-aliases"
-zsh_add_file "zsh-private"
-
 # ----------------------------------------------------------------------------------------- Plugins
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "romkatv/powerlevel10k"
 zsh_add_plugin "zap-zsh/fzf"
 zsh_add_plugin "zsh-users/zsh-completions"
+# zsh_add_plugin "jeffreytse/zsh-vi-mode"
 # zsh_add_plugin "Tarrasch/zsh-bd"
 # zsh_add_plugin "Freed-Wu/fzf-tab-source"
+
+# ----------------------------------------------------------------------------------------- Imports
+zsh_add_file "zsh-vim-mode"
+zsh_add_file "zsh-aliases"
+zsh_add_file "zsh-private"
 
 # ------------------------------------------------------------------------------------ Key-bindings
 bindkey -s '^o' 'ranger^M'
@@ -73,12 +74,6 @@ bindkey "^k" up-line-or-beginning-search # Up
 bindkey "^j" down-line-or-beginning-search # Down
 bindkey -r "^u"
 bindkey -r "^d"
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect '^xi' vi-insert
-# bindkey -M menuselect '^xx' vi-cmd-mode
 bindkey '\e[1;6T' fzf_dirs_widget
 
 ### Change title of terminals

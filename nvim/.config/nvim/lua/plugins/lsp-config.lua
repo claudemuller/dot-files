@@ -105,6 +105,27 @@ return {
         if vim.lsp.inlay_hint then
           vim.lsp.inlay_hint.enable(true, { 0 })
         end
+
+        -- Full documentation func
+        map('<leader>ch', function()
+          local params = vim.lsp.util.make_position_params()
+          vim.lsp.buf_request(0, 'textDocument/hover', params, function(_, result, _, _)
+            if not result or not result.contents then
+              return
+            end
+            -- Extract the type name from the hover text (looks like "var p Person")
+            local typ = result.contents.value:match '%s+([%w_]+)%s*$'
+            if typ then
+              -- Issue a second hover request on the type name
+              local new_params = vim.tbl_extend('force', params, { position = { line = params.position.line, character = params.position.character } })
+              vim.lsp.buf_request(0, 'textDocument/hover', new_params, function(_, res, _, _)
+                if res then
+                  vim.lsp.util.open_floating_preview(vim.lsp.util.convert_input_to_markdown_lines(res.contents), 'markdown')
+                end
+              end)
+            end
+          end)
+        end, 'Full documentation')
       end,
     })
 

@@ -80,20 +80,20 @@ return {
       end,
       desc = 'Select scratch buffer',
     },
-    {
-      '<leader>nh',
-      function()
-        Snacks.notifier.show_history()
-      end,
-      desc = 'Notification history',
-    },
-    {
-      '<leader>nd',
-      function()
-        Snacks.notifier.hide()
-      end,
-      desc = 'Dismiss all notifications',
-    },
+    -- {
+    --   '<leader>nh',
+    --   function()
+    --     Snacks.notifier.show_history()
+    --   end,
+    --   desc = 'Notification history',
+    -- },
+    -- {
+    --   '<leader>nd',
+    --   function()
+    --     Snacks.notifier.hide()
+    --   end,
+    --   desc = 'Dismiss all notifications',
+    -- },
     {
       '<leader>bd',
       function()
