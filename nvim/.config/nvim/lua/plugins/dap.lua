@@ -158,5 +158,57 @@ return {
     --     require('dap.ext.vscode').load_launchjs()
     --   end,
     -- })
+
+    -- Define the layouts you want to switch between
+    local layouts = {
+      default = {
+        elements = {
+          'scopes',
+          'watches',
+          'stacks',
+          'breakpoints',
+          'repl',
+          'console',
+        },
+        size = 40,
+        position = 'left',
+      },
+      no_watches = {
+        elements = {
+          'scopes',
+          'stacks',
+          'breakpoints',
+          'repl',
+          'console',
+        },
+        size = 40,
+        position = 'left',
+      },
+    }
+
+    local current_layout = 'default'
+
+    -- Function to toggle between the layouts
+    local function toggle_watches_pane()
+      if current_layout == 'default' then
+        current_layout = 'no_watches'
+      else
+        current_layout = 'default'
+      end
+      dapui.setup {
+        layouts = { layouts[current_layout] },
+      }
+      dapui.open()
+    end
+
+    -- Setup dap-ui with the initial layout
+    dapui.setup {
+      layouts = { layouts[current_layout] },
+      -- Add other configuration options here
+      -- ...
+    }
+
+    -- Attach a keymap to your toggle function
+    vim.keymap.set('n', '<leader>Dw', toggle_watches_pane, { desc = 'Toggle DAP UI Watches Pane' })
   end,
 }
