@@ -42,7 +42,7 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 vim.keymap.set('n', '<C-W><C-l>', '<cmd>:vertical resize +10<cr>', { desc = 'Increase pane split' })
 vim.keymap.set('n', '<C-W><C-h>', '<cmd>:vertical resize -10<cr>', { desc = 'Decrease pane split' })
-vim.keymap.set('n', 'Q', ':q<cr>', { desc = 'Close current window' })
+vim.keymap.set('n', 'q', ':q<cr>', { desc = 'Close current window' })
 vim.keymap.set('n', 'Qf', ':cclose<cr>', { desc = 'Close quickfix' })
 
 vim.keymap.set('n', '<C-S-j>', ':m +1<cr>', { desc = 'Move line down' })
