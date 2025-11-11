@@ -78,8 +78,12 @@ return {
           end
           builtin.lsp_workspace_symbols { query = symbol }
         end, 'Symbol (default: under cursor)')
-        map('<leader>ss', builtin.lsp_document_symbols, 'Document symbols')
-        map('<leader>sS', builtin.lsp_workspace_symbols, 'Workspace symbols')
+        map('<leader>ss', function()
+          builtin.lsp_document_symbols { symbol_width = 100 }
+        end, 'Document symbols')
+        map('<leader>sS', function()
+          builtin.lsp_workspace_symbols { symbol_width = 100 }
+        end, 'Workspace symbols')
 
         map('<leader>lr', ':LspRestart<cr>', 'Restart')
 
