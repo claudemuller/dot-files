@@ -14,23 +14,23 @@
 [alias]
 	last = log -1 --stat
 	cp = cherry-pick
-	co = checkout
-	cl = clone
-	ci = commit
-	cm = commit -m
-	st = status -sb
-	s = status -sb
-	pp = push
-	p = pull
-	a = add
-	br = branch
+	co = !"echo '- Use gco instead of git co' >&2; exit "
+	cl = !"echo '- Use gcl instead of git cl' >&2; exit "
+	ci = !"echo '- Use gci instead of git ci' >&2; exit "
+	cm = !"echo '- Use gcm instead of git cm' >&2; exit "
+	st = !"echo '- Use gst instead of git st' >&2; exit "
+	s = !"echo '- Use gs instead of git s' >&2; exit "
+	pp = !"echo '- Use gpp instead of git pp' >&2; exit "
+	p = !"echo '- Use gp instead of git p' >&2; exit "
+	a = !"echo '- Use ga instead of git a' >&2; exit "
+	br = !"echo '- Use gbr instead of git br' >&2; exit "
 	unstage = reset HEAD --
 	dc = diff --cached
-	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative --all
-	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
-	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
-	lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
-	ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+	lg = !"echo '- Use glg instead of git lg' >&2; exit "
+	ls = !"echo '- Use gls instead of git ls' >&2; exit "
+	ll = !"echo '- Use gll instead of git ll' >&2; exit "
+	lds = !"echo '- Use glds instead of git lds' >&2; exit "
+	ld = !"echo '- Use gld instead of git ld' >&2; exit "
 	bs = for-each-ref --format='%(committerdate) %09 %(authorname) %09 %(refname)'
 	behind-ahead = !sh -c 'git "for-each-ref --format=\"%(refname:short) %(upstream:track)\" refs/heads"'
 	br = !git fetch && git behind-ahead
