@@ -1,0 +1,15 @@
+-- local root = vim.fs.root(0, { 'compile_commands.json', '.git' })
+--
+-- vim.lsp.start {
+--   name = 'ccls',
+--   cmd = { 'ccls' },
+--   root_dir = root,
+--   filetypes = { 'c', 'cpp', 'objc', 'objcpp' },
+--   init_options = {
+--     compilationDatabaseDirectory = 'build',
+--     index = { threads = 0 },
+--     clang = {
+--       extraArgs = { '-std=c11', '-std=c++17' },
+--     },
+--   },
+-- }

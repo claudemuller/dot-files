@@ -150,15 +150,18 @@ return {
       bashls = {},
       clangd = {
         -- capabilities = { signatureHelpProvider = false },
+        cmd = {
+          'clangd',
+          '--background-index', -- Index all project files
+          '--clang-tidy', -- Optional: enable clang-tidy
+          '--completion-style=detailed', -- Better completions
+          '--compile-commands-dir=build', -- Path to compile_commands.json
+        },
+        filetypes = { 'c', 'cpp', 'objc', 'objcpp' },
+        root_dir = require('lspconfig.util').root_pattern('compile_commands.json', 'compile_flags.txt', '.git'),
       },
       codelldb = {},
       cssls = {},
-      cucumber_language_server = {},
-      dockerls = {},
-      docker_compose_language_service = {},
-      golangci_lint_ls = {
-        cmd = '/home/claude/repos/3rd-party/golangci-lint-langserver/golangci-lint-langserver',
-      },
       gopls = {
         settings = {
           gopls = {

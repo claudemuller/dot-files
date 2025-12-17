@@ -209,6 +209,6 @@ return {
     -- }
 
     -- Attach a keymap to your toggle function
-    vim.keymap.set('n', '<leader>Dw', toggle_watches_pane, { desc = 'Toggle DAP UI Watches Pane' })
+    -- vim.keymap.set('n', '<leader>Dw', toggle_watches_pane, { desc = 'Toggle DAP UI Watches Pane' })
   end,
 }

@@ -102,4 +102,28 @@ vim.api.nvim_create_autocmd('LspProgress', {
 --     end, 100)
 --   end,
 --   group = format_sync_grp,
+
+-- vim.api.nvim_create_autocmd('FileType', {
+--   pattern = { 'c', 'cpp', 'objc', 'objcpp' },
+--   callback = function()
+--     local bufnr = vim.api.nvim_get_current_buf()
+--     local root = vim.fs.find({ 'compile_commands.json', '.git' }, { upward = true })[1]
+--     print(root)
+--     if root then
+--       root = vim.fn.fnamemodify(root, ':h')
+--       vim.lsp.start {
+--         name = 'ccls',
+--         cmd = { 'ccls' },
+--         root_dir = root,
+--         filetypes = { 'c', 'cpp', 'objc', 'objcpp' },
+--         init_options = {
+--           compilationDatabaseDirectory = '.',
+--           index = { threads = 0 },
+--           clang = { extraArgs = { '-std=c11', '-std=c++17' } },
+--         },
+--         -- attach the current buffer
+--         bufnr = bufnr,
+--       }
+--     end
+--   end,
 -- })
