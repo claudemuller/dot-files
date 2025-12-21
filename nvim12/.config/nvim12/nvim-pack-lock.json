@@ -1,0 +1,16 @@
+{
+  "plugins": {
+    "mini.nvim": {
+      "rev": "6acb62618e2e7f1bf4f2e96e77a562ec80696f5e",
+      "src": "https://github.com/echasnovski/mini.nvim"
+    },
+    "nvim-lspconfig": {
+      "rev": "d20d83b3f24f5884da73a9fc92fdc47e778b8d0d",
+      "src": "http://github.com/neovim/nvim-lspconfig"
+    },
+    "retro-term.nvim": {
+      "rev": "1c8a79a7768d94f868773f709f8f3337bd16940f",
+      "src": "http://github.com/claudemuller/retro-term.nvim"
+    }
+  }
+}
