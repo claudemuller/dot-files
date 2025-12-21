@@ -14,23 +14,23 @@ vim.g.maplocalleader = ' '
 --  For more options, you can see `:help option-list`
 
 -- Line numbers
-vim.opt.number = true
+vim.o.number = true
 -- Relative line numbers
 vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = 'a'
+vim.o.mouse = 'a'
 
 -- Don't show the mode, since it's already in status line
-vim.opt.showmode = false
+vim.o.showmode = false
 
 -- Sync clipboard between OS and Neovim.
 --  See `:help 'clipboard'`
-vim.opt.clipboard = 'unnamedplus'
+vim.o.clipboard = 'unnamedplus'
 
 -- Setup default tabstop and shiftwidth
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
 
 vim.o.autocomplete = true
 -- Set completeopt to have a better completion experience
@@ -41,25 +41,25 @@ vim.o.complete = "o"
 vim.o.hlsearch = true
 
 -- Enable break indent
-vim.opt.breakindent = true
+vim.o.breakindent = true
 
 -- Save undo history
-vim.opt.undofile = true
+vim.o.undofile = true
 
 -- Case-insensitive searching UNLESS \C or capital in search
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
 -- Keep signcolumn on by default
-vim.opt.signcolumn = 'yes:1'
+vim.o.signcolumn = 'yes:1'
 
 -- Decrease update time
-vim.opt.updatetime = 250
-vim.opt.timeoutlen = 0
+vim.o.updatetime = 250
+vim.o.timeoutlen = 0
 
 -- Configure how new splits should be opened
-vim.opt.splitright = true
-vim.opt.splitbelow = true
+vim.o.splitright = true
+vim.o.splitbelow = true
 
 -- Add the full path in the winbar
 vim.o.winbar = '%F%='
@@ -67,44 +67,39 @@ vim.o.winbar = '%F%='
 -- Sets how neovim will display certain whitespace in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
--- vim.opt.list = true
--- vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+-- vim.o.list = true
+-- vim.o.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- vim.cmd [[highlight Visual guifg=Black guibg=White ctermfg=Black ctermbg=White]]
 
 -- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
+vim.o.inccommand = 'split'
 
 -- Show which line your cursor is on
-vim.opt.cursorline = true
+vim.o.cursorline = true
 
 -- Set line length indicators
-vim.opt.colorcolumn = '100,120'
+vim.o.colorcolumn = '100,120'
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 5
+vim.o.scrolloff = 5
 
 -- Set backspace to "normal" behaviour
--- vim.opt.backspace = 'indent,eol,start'
+-- vim.o.backspace = 'indent,eol,start'
 
 -- Obsidian checkbox rendering thing
 vim.opt_local.conceallevel = 1
 
 -- Enable loading of local configs
-vim.opt.exrc = true
-vim.opt.secure = true
+vim.o.exrc = true
+vim.o.secure = true
 
 -- Show folds in column
-vim.opt.foldcolumn = '1'
+vim.o.foldcolumn = '1'
 
 -- Log Level
 -- vim.lsp.set_log_level 'off'
 
 require "config.lsp"
 require "config.keymaps"
-
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-	border = "rounded",
-	max_width = 80,
-	max_height = 20,
-})
+require "config.autocmds"

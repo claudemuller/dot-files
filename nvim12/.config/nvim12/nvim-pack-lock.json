@@ -1,16 +1,53 @@
 {
   "plugins": {
+    "Comment.nvim": {
+      "rev": "e30b7f2008e52442154b66f7c519bfd2f1e32acb",
+      "src": "https://github.com/numToStr/Comment.nvim"
+    },
+    "mason-lspconfig.nvim": {
+      "rev": "8f1a3e6eecb638817e8999aaa16ada27cd54d867",
+      "src": "https://github.com/mason-org/mason-lspconfig.nvim"
+    },
+    "mason.nvim": {
+      "rev": "57e5a8addb8c71fb063ee4acda466c7cf6ad2800",
+      "src": "https://github.com/mason-org/mason.nvim"
+    },
     "mini.nvim": {
       "rev": "6acb62618e2e7f1bf4f2e96e77a562ec80696f5e",
       "src": "https://github.com/echasnovski/mini.nvim"
+    },
+    "neo-tree.nvim": {
+      "rev": "b0b73273b4f5a1f4b4aac8accd6e0c3b4b5a6967",
+      "src": "http://github.com/nvim-neo-tree/neo-tree.nvim",
+      "version": "'v3.x'"
+    },
+    "nui.nvim": {
+      "rev": "de740991c12411b663994b2860f1a4fd0937c130",
+      "src": "http://github.com/MunifTanjim/nui.nvim"
     },
     "nvim-lspconfig": {
       "rev": "d20d83b3f24f5884da73a9fc92fdc47e778b8d0d",
       "src": "http://github.com/neovim/nvim-lspconfig"
     },
+    "nvim-web-devicons": {
+      "rev": "6788013bb9cb784e606ada44206b0e755e4323d7",
+      "src": "http://github.com/nvim-tree/nvim-web-devicons"
+    },
+    "plenary.nvim": {
+      "rev": "b9fd5226c2f76c951fc8ed5923d85e4de065e509",
+      "src": "http://github.com/nvim-lua/plenary.nvim"
+    },
     "retro-term.nvim": {
       "rev": "1c8a79a7768d94f868773f709f8f3337bd16940f",
       "src": "http://github.com/claudemuller/retro-term.nvim"
+    },
+    "telescope.nvim": {
+      "rev": "e709d31454ee6e6157f0537f861f797bd44c0bad",
+      "src": "https://github.com/nvim-telescope/telescope.nvim"
+    },
+    "todo-comments.nvim": {
+      "rev": "31e3c38ce9b29781e4422fc0322eb0a21f4e8668",
+      "src": "https://github.com/folke/todo-comments.nvim"
     }
   }
 }
