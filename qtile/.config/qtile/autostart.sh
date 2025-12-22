@@ -8,10 +8,10 @@ if [ -x "$(command -v dunst)" ]; then
 	dunst -config $HOME/.config/qtile/conf/dunst.config &
 fi
 
-if [ -x "$(command -v picom)" ]; then
-	sleep 1
-	picom --config $HOME/.config/qtile/conf/picom.config &>/dev/null &
-fi
+#if [ -x "$(command -v picom)" ]; then
+#	sleep 1
+#	picom --config $HOME/.config/qtile/conf/picom.config &>/dev/null &
+#fi
 
 if [ -x "$(command -v feh)" ]; then
 	feh --bg-fill "$HOME"/Pictures/wallpapers/wallhaven-39gpe9.jpg
@@ -31,7 +31,7 @@ fi
 $HOME/.local/bin/kb-layout-switcher
 
 # If the Thinkpad laptop
-if [[ "$(uname -n)" == "shinobi" ]]; then
+if [[ "$(uname -n)" == "loki" ]]; then
 	# Set dvorak layout for kb
 	$HOME/.local/bin/kb-layout-switcher dvorak
 
