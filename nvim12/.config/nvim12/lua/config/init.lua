@@ -55,7 +55,7 @@ vim.o.signcolumn = 'yes:1'
 
 -- Decrease update time
 vim.o.updatetime = 250
-vim.o.timeoutlen = 0
+vim.o.timeoutlen = 300
 
 -- Configure how new splits should be opened
 vim.o.splitright = true

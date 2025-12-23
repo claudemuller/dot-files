@@ -4,6 +4,10 @@
       "rev": "e30b7f2008e52442154b66f7c519bfd2f1e32acb",
       "src": "https://github.com/numToStr/Comment.nvim"
     },
+    "black-metal-theme-neovim": {
+      "rev": "6d0207871387077f40d5396ab1ae90520e688d36",
+      "src": "https://github.com/metalelf0/black-metal-theme-neovim"
+    },
     "mason-lspconfig.nvim": {
       "rev": "8f1a3e6eecb638817e8999aaa16ada27cd54d867",
       "src": "https://github.com/mason-org/mason-lspconfig.nvim"
@@ -16,10 +20,18 @@
       "rev": "6acb62618e2e7f1bf4f2e96e77a562ec80696f5e",
       "src": "https://github.com/echasnovski/mini.nvim"
     },
+    "monochrome.nvim": {
+      "rev": "2de78d9688ea4a177bcd9be554ab9192337d35ff",
+      "src": "https://github.com/kdheepak/monochrome.nvim"
+    },
     "neo-tree.nvim": {
       "rev": "b0b73273b4f5a1f4b4aac8accd6e0c3b4b5a6967",
       "src": "http://github.com/nvim-neo-tree/neo-tree.nvim",
       "version": "'v3.x'"
+    },
+    "noir.nvim": {
+      "rev": "ad1dbcde722bacd8b5bb06175e401298658c7f65",
+      "src": "https://github.com/dzfrias/noir.nvim"
     },
     "nui.nvim": {
       "rev": "de740991c12411b663994b2860f1a4fd0937c130",

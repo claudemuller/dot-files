@@ -47,3 +47,6 @@ vim.api.nvim_create_autocmd("VimEnter", {
 -- vim.pack.add({ "https://github.com/echasnovski/mini.nvim", "http://github.com/claudemuller/retro-term.nvim" })
 -- require("retro-term").setup({})
 
+vim.pack.add({ "https://github.com/kdheepak/monochrome.nvim" })
+vim.pack.add({ "https://github.com/dzfrias/noir.nvim" })
+vim.cmd("colorscheme noir")
