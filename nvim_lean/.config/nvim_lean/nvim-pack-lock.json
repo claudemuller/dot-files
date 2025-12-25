@@ -1,0 +1,8 @@
+{
+  "plugins": {
+    "noir.nvim": {
+      "rev": "ad1dbcde722bacd8b5bb06175e401298658c7f65",
+      "src": "https://github.com/dzfrias/noir.nvim"
+    }
+  }
+}

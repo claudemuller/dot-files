@@ -51,7 +51,7 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 
 -- Keep signcolumn on by default
-vim.o.signcolumn = 'yes:1'
+vim.o.signcolumn = 'yes'
 
 -- Decrease update time
 vim.o.updatetime = 250
@@ -90,6 +90,11 @@ vim.o.scrolloff = 5
 -- Obsidian checkbox rendering thing
 vim.opt_local.conceallevel = 1
 
+-- Use ripgrep for grepping
+vim.opt.grepprg = 'rg --vimgrep --no-messages --smart-case'
+
+vim.opt.statusline = '[%n] %<%f %h%w%m%r%=%-14.(%l,%c%V%) %P'
+
 -- Enable loading of local configs
 vim.o.exrc = true
 vim.o.secure = true
@@ -100,6 +105,8 @@ vim.o.foldcolumn = '1'
 -- Log Level
 -- vim.lsp.set_log_level 'off'
 
-require "config.lsp"
-require "config.keymaps"
-require "config.autocmds"
+-- disable mouse popup yet keep mouse enabled
+vim.cmd [[
+  aunmenu PopUp
+  autocmd! nvim.popupmenu
+]]

@@ -43,3 +43,14 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.opt.spelllang = 'en_gb'
   end,
 })
+
+-- Show diagnostic on hover
+vim.api.nvim_create_autocmd("CursorHold", {
+	callback = function()
+		local line = vim.api.nvim_win_get_cursor(0)[1] - 1
+		local diags = vim.diagnostic.get(0, { lnum = line })
+		if #diags > 0 then
+			vim.diagnostic.open_float(nil, { focusable = false, border = "rounded" })
+		end
+	end,
+})
