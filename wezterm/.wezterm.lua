@@ -15,6 +15,11 @@ local function mergeTables(t1, t2)
 end
 
 local profiles = {
+	-- Bare
+	bare = {
+		set_environment_variables = {},
+		font = wezterm.font("JetBrainsMono Nerd Font"),
+	},
 	-- Default TMUX profile
 	tmux = {
 		default_prog = {
@@ -142,7 +147,7 @@ return mergeTables(profile, {
 	font_size = 9,
 	line_height = 1.1,
 	harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
-	color_scheme = noir.color_scheme,
+	-- color_scheme = noir.color_scheme,
 	colors = noir.colors,
 	hide_tab_bar_if_only_one_tab = true,
 

@@ -23,7 +23,7 @@ return {
 		},
 
 		brights = {
-			"#171513", -- bright black
+			"#2c3436", -- bright black
 			"#916666", -- bright red
 			"#7691a3", -- bright green
 			"#949669", -- bright yellow
