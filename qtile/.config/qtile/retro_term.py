@@ -64,6 +64,24 @@ palettes = {
         "base0E": "#e0b060",  # types/storage (keyword)
         "base0F": "#8a704e",  # deprecated/other (warning2)
     },
+    "noir": {
+        "base00": "#0f0f0f",  # background
+        "base01": "#1a1a1a",  # lighter background
+        "base02": "#262626",  # selection background
+        "base03": "#4a4a4a",  # comments / inactive
+        "base04": "#6f6f6f",  # subtle foreground
+        "base05": "#bcbcbc",  # main foreground
+        "base06": "#d0d0d0",  # bright foreground
+        "base07": "#ffffff",  # highlight / strongest
+        "base08": "#8f8f8f",  # warnings / muted red
+        "base09": "#bcbcbc",  # constants
+        "base0A": "#cfcfcf",  # keywords
+        "base0B": "#a0a0a0",  # strings
+        "base0C": "#9a9a9a",  # operators
+        "base0D": "#e0e0e0",  # functions
+        "base0E": "#cfcfcf",  # types
+        "base0F": "#7a7a7a",  # deprecated
+    },
 }
 
 def RetroTerm(palette='base'):

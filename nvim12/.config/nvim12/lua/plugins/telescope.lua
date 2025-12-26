@@ -14,6 +14,7 @@ vim.pack.add({
 	},
 	{ src = "https://github.com/nvim-telescope/telescope.nvim", version = "v0.2.0" },
 })
+
 require("telescope").setup({
 	defaults = {
 		mappings = {

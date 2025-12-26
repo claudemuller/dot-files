@@ -6,7 +6,7 @@ from libqtile.config import Click, Drag, DropDown, Group, Key, Match, Screen, Sc
 from libqtile.lazy import lazy
 from qtile_extras import widget
 from qtile_extras.widget.decorations import RectDecoration, PowerLineDecoration
-import retro_term as theme
+import noir as theme
 import subprocess
 
 # -------------------------------------------------------------------------------------------------#
@@ -17,7 +17,7 @@ mod = "mod1"
 terminal = "wezterm"
 home = os.path.expanduser("~")
 conf_dir = os.path.dirname(os.path.abspath(__file__))
-colours = theme.RetroTerm('base')
+colours = theme.Noir('base')
 
 # -------------------------------------------------------------------------------------------------#
 #                                             Keys                                                #

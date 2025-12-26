@@ -6,51 +6,16 @@
 vim.pack.add({ "http://github.com/neovim/nvim-lspconfig" })
 
 -- mason
-vim.pack.add({ "https://github.com/mason-org/mason-lspconfig.nvim", "https://github.com/mason-org/mason.nvim" })
-
--- neo-tree
--- vim.pack.add({
--- 	"http://github.com/nvim-lua/plenary.nvim",
--- 	"http://github.com/nvim-tree/nvim-web-devicons",
--- 	"http://github.com/MunifTanjim/nui.nvim",
--- 	--"http://github.com/3rd/image.nvim",
--- 	{ src = "http://github.com/nvim-neo-tree/neo-tree.nvim", version = "v3.x" },
--- })
--- require("neo-tree").setup({
--- 	vim.keymap.set("n", "<leader>fn", ":Neotree toggle<CR>", { desc = "Toggle neotree" } )
---     -- { '<leader>fts', ':Neotree document_symbols<CR>', desc = 'Toggel symbol view' },
--- })
-
-require("plugins.telescope")
-
--- oil
-vim.pack.add({ "https://github.com/stevearc/oil.nvim" })
-require('oil').setup({
-	columns = {
-		"icon",
-		"permissions",
-		"size",
-		"mtime",
-	},
-	view_options = {
-		show_hidden = true,
-	},
-	float = {
-		padding = 2,
-		max_width = 0.75,
-		max_height = 0.75,
-		border = "rounded",
-		win_options = {
-			winblend = 0,
-		},
-	},
-	keymaps = {
-		["<ESC>"] = { "actions.close", mode = "n" },
-		["<C-v>"] = { "actions.select", opts = { vertical = true } },
-		["<C-h>"] = { "actions.select", opts = { horizontal = true } },
-	},
+vim.pack.add({
+	"https://github.com/mason-org/mason-lspconfig.nvim",
+	"https://github.com/mason-org/mason.nvim",
 })
-vim.keymap.set('n', '-', ':Oil --float<CR>', { silent = true })
+
+-- multi select
+vim.pack.add({{
+	src = "https://github.com/mg979/vim-visual-multi",
+	version = "master",
+}})
 
 -- themes ------------------------------------------------------------
 
@@ -76,3 +41,8 @@ vim.cmd("colorscheme noir")
 -- vim.g.alabaster_floatborder = 1
 --
 -- vim.cmd.colorscheme("alabaster")
+
+require("plugins.oil")
+require("plugins.telescope")
+require("plugins.treesitter")
+require("plugins.trouble")
