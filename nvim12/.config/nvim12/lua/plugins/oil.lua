@@ -1,6 +1,12 @@
--- oil
-vim.pack.add({ "https://github.com/stevearc/oil.nvim" })
-require('oil').setup({
+-----------------------------------------------------------------------
+-- [[ Oil config ]]
+-----------------------------------------------------------------------
+
+local gh = require("functions").gh
+
+vim.pack.add({ gh("stevearc/oil.nvim") })
+
+require("oil").setup({
 	columns = {
 		"icon",
 		"permissions",
@@ -25,5 +31,4 @@ require('oil').setup({
 		["<C-h>"] = { "actions.select", opts = { horizontal = true } },
 	},
 })
-vim.keymap.set('n', '-', ':Oil --float<CR>', { silent = true })
-
+vim.keymap.set("n", "-", ":Oil --float<CR>", { silent = true })

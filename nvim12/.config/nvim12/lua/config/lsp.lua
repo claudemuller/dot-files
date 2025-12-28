@@ -8,24 +8,27 @@ local lsps = {
 	{ "bashls" },
 	{ "ccls" },
 	{ "docker_language_server" }, -- dockerls
-	{ "clangd", {
-		-- capabilities = { signatureHelpProvider = false },
-		cmd = {
-			'clangd',
-			'--background-index', -- Index all project files
-			'--clang-tidy', -- Optional: enable clang-tidy
-			'--completion-style=detailed', -- Better completions
-			'--compile-commands-dir=build', -- Path to compile_commands.json
+	{
+		"clangd",
+		{
+			-- capabilities = { signatureHelpProvider = false },
+			cmd = {
+				"clangd",
+				"--background-index", -- Index all project files
+				"--clang-tidy", -- Optional: enable clang-tidy
+				"--completion-style=detailed", -- Better completions
+				"--compile-commands-dir=build", -- Path to compile_commands.json
+			},
+			filetypes = { "c", "cpp", "objc", "objcpp" },
+			root_dir = function(bufnr)
+				return vim.fs.root(bufnr, {
+					"compile_commands.json",
+					"compile_flags.txt",
+					".git",
+				})
+			end,
 		},
-		filetypes = { 'c', 'cpp', 'objc', 'objcpp' },
-		root_dir = function(bufnr)
-			return vim.fs.root(bufnr, {
-				'compile_commands.json',
-				'compile_flags.txt',
-				'.git',
-			})
-		end
-	} },
+	},
 	{ "cssls" },
 	{ "eslint" },
 	{ "gitlab_ci_ls" },
