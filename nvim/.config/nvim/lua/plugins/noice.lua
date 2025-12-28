@@ -5,11 +5,11 @@
 -- Better UI
 -- See `:help noice.txt`
 return {
-  'folke/noice.nvim',
-  event = 'VeryLazy',
+  "folke/noice.nvim",
+  event = "VeryLazy",
   opts = {},
   dependencies = {
-    'MunifTanjim/nui.nvim',
+    "MunifTanjim/nui.nvim",
     -- {
     --   'rcarriga/nvim-notify',
     --   opts = {
@@ -27,37 +27,37 @@ return {
   --   },
   -- },
   config = function()
-    require('noice').setup {
+    require("noice").setup({
       cmdline = {
         enabled = true,
-        view = 'cmdline',
+        view = "cmdline",
       },
       notify = {
         position = {
-          row = '50%',
-          col = '50%',
+          row = "50%",
+          col = "50%",
         },
       },
       lsp = {
         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
         override = {
-          ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
-          ['vim.lsp.util.stylize_markdown'] = true,
-          ['cmp.entry.get_documentation'] = true,
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+          ["vim.lsp.util.stylize_markdown"] = true,
+          ["cmp.entry.get_documentation"] = true,
         },
         hover = {
           enabled = true,
         },
         documentation = {
-          view = 'hover',
+          view = "hover",
         },
       },
       routes = {
         {
           filter = {
-            event = 'msg_show',
-            kind = '',
-            find = 'written',
+            event = "msg_show",
+            kind = "",
+            find = "written",
           },
           opts = { skip = true },
         },
@@ -69,6 +69,6 @@ return {
         inc_rename = false,
         lsp_doc_border = true,
       },
-    }
+    })
   end,
 }

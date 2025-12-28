@@ -5,10 +5,10 @@
 -- Show Indentation guides
 -- See `:help idl`
 return {
-  'lukas-reineke/indent-blankline.nvim',
-  main = 'ibl',
+  "lukas-reineke/indent-blankline.nvim",
+  main = "ibl",
   opts = {
-    indent = { char = '┊' },
+    indent = { char = "┊" },
     whitespace = {
       remove_blankline_trail = false,
     },

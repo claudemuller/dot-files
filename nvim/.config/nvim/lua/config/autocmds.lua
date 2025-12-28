@@ -1,74 +1,74 @@
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
-local fn = require 'functions'
+local fn = require("functions")
 
 -- Highlight when yanking (copying) text
 --  See `:help vim.highlight.on_yank()`
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
+vim.api.nvim_create_autocmd("TextYankPost", {
+  desc = "Highlight when yanking (copying) text",
+  group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
   callback = function()
     vim.highlight.on_yank()
   end,
 })
 
-vim.api.nvim_create_autocmd('FileType', {
-  desc = 'Spell check markdown files',
-  pattern = 'markdown',
-  group = vim.api.nvim_create_augroup('markdown-group', { clear = true }),
+vim.api.nvim_create_autocmd("FileType", {
+  desc = "Spell check markdown files",
+  pattern = "*.md",
+  group = vim.api.nvim_create_augroup("markdown-group", { clear = true }),
   callback = function()
     vim.opt.spell = true
-    vim.opt.spelllang = 'en_gb'
+    vim.opt.spelllang = "en_gb"
   end,
 })
 
-vim.api.nvim_create_autocmd('BufWritePost', {
-  desc = 'Convert keybindings cheatsheet to PDF on save',
-  pattern = 'keybindings.md',
-  group = vim.api.nvim_create_augroup('notes-group', { clear = true }),
+vim.api.nvim_create_autocmd("BufWritePost", {
+  desc = "Convert keybindings cheatsheet to PDF on save",
+  pattern = "keybindings.md",
+  group = vim.api.nvim_create_augroup("notes-group", { clear = true }),
   callback = function()
     local path = vim.api.nvim_buf_get_name(0)
-    local fname = vim.fn.fnamemodify(path, ':t:r')
-    local dir = vim.fn.fnamemodify(path, ':p:h')
-    local mdfile = ('%s/%s.md'):format(dir, fname)
-    local cssfile = ('%s/%s.css.html'):format(dir, fname)
-    local out_path = ('%s/%s.html'):format(dir, fname)
+    local fname = vim.fn.fnamemodify(path, ":t:r")
+    local dir = vim.fn.fnamemodify(path, ":p:h")
+    local mdfile = ("%s/%s.md"):format(dir, fname)
+    local cssfile = ("%s/%s.css.html"):format(dir, fname)
+    local out_path = ("%s/%s.html"):format(dir, fname)
     local job_cmd = {
-      'pandoc',
-      '-o',
+      "pandoc",
+      "-o",
       out_path,
-      '--include-in-header',
+      "--include-in-header",
       cssfile,
       mdfile,
     }
     local job_opts = {
       on_stdout = function(_, data, _)
-        print('Pandoc output:', data)
+        print("Pandoc output:", data)
       end,
       on_stderr = function(_, data, _)
-        print('Pandoc error:', data)
+        print("Pandoc error:", data)
       end,
     }
     vim.fn.jobstart(job_cmd, job_opts)
   end,
 })
 
-vim.api.nvim_create_autocmd('FocusLost', {
-  desc = 'Auto save all buffers when Vim loses focus',
-  group = vim.api.nvim_create_augroup('saving-group', { clear = true }),
+vim.api.nvim_create_autocmd("FocusLost", {
+  desc = "Auto save all buffers when Vim loses focus",
+  group = vim.api.nvim_create_augroup("saving-group", { clear = true }),
   callback = fn.save_all_buffers,
 })
 
-vim.api.nvim_create_autocmd('LspProgress', {
+vim.api.nvim_create_autocmd("LspProgress", {
   ---@param ev {data: {client_id: integer, params: lsp.ProgressParams}}
   callback = function(ev)
-    local spinner = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' }
-    vim.notify(vim.lsp.status(), 'info', {
-      id = 'lsp_progress',
-      title = 'LSP Progress',
+    local spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
+    vim.notify(vim.lsp.status(), "info", {
+      id = "lsp_progress",
+      title = "LSP Progress",
       opts = function(notif)
-        notif.icon = ev.data.params.value.kind == 'end' and ' ' or spinner[math.floor(vim.uv.hrtime() / (1e6 * 80)) % #spinner + 1]
+        notif.icon = ev.data.params.value.kind == "end" and " " or spinner[math.floor(vim.uv.hrtime() / (1e6 * 80)) % #spinner + 1]
       end,
     })
   end,

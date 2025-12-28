@@ -5,44 +5,44 @@
 -- Test thing
 -- See `:help neotest`
 return {
-  'nvim-neotest/neotest',
+  "nvim-neotest/neotest",
   dependencies = {
-    'nvim-neotest/nvim-nio',
-    'nvim-lua/plenary.nvim',
-    'antoinemadec/FixCursorHold.nvim',
-    'nvim-treesitter/nvim-treesitter',
-    'nvim-neotest/neotest-python',
-    'nvim-neotest/neotest-plenary',
-    'nvim-neotest/neotest-jest',
-    'nvim-neotest/neotest-go',
+    "nvim-neotest/nvim-nio",
+    "nvim-lua/plenary.nvim",
+    "antoinemadec/FixCursorHold.nvim",
+    "nvim-treesitter/nvim-treesitter",
+    "nvim-neotest/neotest-python",
+    "nvim-neotest/neotest-plenary",
+    "nvim-neotest/neotest-jest",
+    "nvim-neotest/neotest-go",
     -- {
     --   dir = '~/repos/3rd-party/neotest-go/',
     -- },
-    'nvim-neotest/neotest-vim-test',
+    "nvim-neotest/neotest-vim-test",
   },
   keys = {
     {
-      '<leader>Tf',
+      "<leader>Tf",
       function()
-        require('neotest').run.run(vim.fn.expand '%')
+        require("neotest").run.run(vim.fn.expand("%"))
       end,
-      desc = 'Run Tests in current file',
+      desc = "Run Tests in current file",
     },
     {
-      '<leader>TF',
+      "<leader>TF",
       function()
-        local current_file = vim.fn.expand '%:t:r' -- Get filename without extension
-        local search_pattern = current_file .. '.*test.*'
-        local current_dir = vim.fn.expand '%:p:h'
+        local current_file = vim.fn.expand("%:t:r") -- Get filename without extension
+        local search_pattern = current_file .. ".*test.*"
+        local current_dir = vim.fn.expand("%:p:h")
 
         local function find_matching_files(dir, pattern)
           local matches = {}
-          local files = vim.fn.globpath(dir, '*', false, true)
+          local files = vim.fn.globpath(dir, "*", false, true)
 
           for _, file in ipairs(files) do
-            local filename = vim.fn.fnamemodify(file, ':t') -- Get the base name of the file
+            local filename = vim.fn.fnamemodify(file, ":t") -- Get the base name of the file
             if filename:match(pattern) then
-              table.insert(matches, current_dir .. '/' .. filename)
+              table.insert(matches, current_dir .. "/" .. filename)
             end
           end
 
@@ -52,69 +52,69 @@ return {
         local matching_files = find_matching_files(current_dir, search_pattern)
 
         if #matching_files > 0 then
-          vim.cmd('vsplit ' .. vim.fn.fnameescape(matching_files[1]))
+          vim.cmd("vsplit " .. vim.fn.fnameescape(matching_files[1]))
         else
-          print 'No matching files found.'
+          print("No matching files found.")
         end
       end,
-      desc = 'Open Matching Test File',
+      desc = "Open Matching Test File",
     },
     {
-      '<leader>Tt',
+      "<leader>Tt",
       function()
-        require('neotest').run.run(vim.loop.cwd())
+        require("neotest").run.run(vim.loop.cwd())
       end,
-      desc = 'Run all test files',
+      desc = "Run all test files",
     },
     {
-      '<leader>Tn',
+      "<leader>Tn",
       function()
-        require('neotest').run.run()
+        require("neotest").run.run()
       end,
-      desc = 'Run nearest',
+      desc = "Run nearest",
     },
     {
-      '<leader>Tl',
+      "<leader>Tl",
       function()
-        require('neotest').run.run_last()
+        require("neotest").run.run_last()
       end,
-      desc = 'Run last',
+      desc = "Run last",
     },
     {
-      '<leader>Td',
+      "<leader>Td",
       function()
-        require('neotest').run.run { strategy = 'dap' }
+        require("neotest").run.run({ strategy = "dap" })
       end,
-      desc = 'Debug test',
+      desc = "Debug test",
     },
     -- ['<leader>td'] = { "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>", 'Debug Test' },
     {
-      '<leader>Ts',
+      "<leader>Ts",
       function()
-        require('neotest').summary.toggle()
+        require("neotest").summary.toggle()
       end,
-      desc = 'Toggle test summary',
+      desc = "Toggle test summary",
     },
     {
-      '<leader>To',
+      "<leader>To",
       function()
-        require('neotest').output.open { enter = true, auto_close = true }
+        require("neotest").output.open({ enter = true, auto_close = true })
       end,
-      desc = 'Show test output',
+      desc = "Show test output",
     },
     {
-      '<leader>TO',
+      "<leader>TO",
       function()
-        require('neotest').output_panel.toggle()
+        require("neotest").output_panel.toggle()
       end,
-      desc = 'Toggle test output panel',
+      desc = "Toggle test output panel",
     },
     {
-      '<leader>TS',
+      "<leader>TS",
       function()
-        require('neotest').run.stop()
+        require("neotest").run.stop()
       end,
-      desc = 'Stop test(s)',
+      desc = "Stop test(s)",
     },
   },
   opts = {
@@ -122,38 +122,38 @@ return {
     output = { open_on_run = true },
     quickfix = {
       open = function()
-        if require('lazyvim.util').has 'trouble.nvim' then
-          require('trouble').open { mode = 'quickfix', focus = false }
+        if require("lazyvim.util").has("trouble.nvim") then
+          require("trouble").open({ mode = "quickfix", focus = false })
         else
-          vim.cmd 'copen'
+          vim.cmd("copen")
         end
       end,
     },
   },
   config = function()
     -- get neotest namespace (api call creates or returns namespace)
-    local neotest_ns = vim.api.nvim_create_namespace 'neotest'
+    local neotest_ns = vim.api.nvim_create_namespace("neotest")
     vim.diagnostic.config({
       virtual_text = {
         format = function(diagnostic)
-          local message = diagnostic.message:gsub('\n', ' '):gsub('\t', ' '):gsub('%s+', ' '):gsub('^%s+', '')
+          local message = diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
           return message
         end,
       },
     }, neotest_ns)
 
-    require('neotest').setup {
+    require("neotest").setup({
       adapters = {
-        require 'neotest-python' {
+        require("neotest-python")({
           dap = { justMyCode = false },
-        },
-        require 'neotest-plenary',
-        require 'neotest-jest',
-        require 'neotest-go',
-        require 'neotest-rust',
-        require 'neotest-vim-test' {
-          ignore_file_types = { 'python', 'vim', 'lua', 'go', 'typescript', 'jest' },
-        },
+        }),
+        require("neotest-plenary"),
+        require("neotest-jest"),
+        require("neotest-go"),
+        require("neotest-rust"),
+        require("neotest-vim-test")({
+          ignore_file_types = { "python", "vim", "lua", "go", "typescript", "jest" },
+        }),
       },
       -- icons = {
       --   expanded = '',
@@ -168,6 +168,6 @@ return {
       --   failed = '',
       --   unknown = '',
       -- },
-    }
+    })
   end,
 }

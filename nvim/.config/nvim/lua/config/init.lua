@@ -5,8 +5,8 @@
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -19,21 +19,22 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = 'a'
+vim.opt.mouse = "a"
 
 -- Don't show the mode, since it's already in status line
 vim.opt.showmode = false
 
 -- Sync clipboard between OS and Neovim.
 --  See `:help 'clipboard'`
-vim.opt.clipboard = 'unnamedplus'
+vim.opt.clipboard = "unnamedplus"
 
 -- Setup default tabstop and shiftwidth
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+vim.o.completeopt = "menu,menuone,popup,fuzzy,noselect"
+vim.o.complete = "o"
 
 -- Set highlight on search
 vim.o.hlsearch = true
@@ -49,7 +50,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Keep signcolumn on by default
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = "yes"
 
 -- Decrease update time
 vim.opt.updatetime = 250
@@ -60,7 +61,7 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 -- Add the full path in the winbar
-vim.o.winbar = '%F%='
+vim.o.winbar = "%F%="
 
 -- Sets how neovim will display certain whitespace in the editor.
 --  See `:help 'list'`
@@ -71,13 +72,13 @@ vim.o.winbar = '%F%='
 -- vim.cmd [[highlight Visual guifg=Black guibg=White ctermfg=Black ctermbg=White]]
 
 -- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
+vim.opt.inccommand = "split"
 
 -- Show which line your cursor is on
 vim.opt.cursorline = true
 
 -- Set line length indicators
-vim.opt.colorcolumn = '100,120'
+vim.opt.colorcolumn = "100,120"
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 5
@@ -93,7 +94,22 @@ vim.opt.exrc = true
 vim.opt.secure = true
 
 -- Show folds in column
-vim.opt.foldcolumn = '1'
+vim.opt.foldcolumn = "1"
 
 -- Log Level
 -- vim.lsp.set_log_level 'off'
+
+-- Use ripgrep for grepping
+vim.opt.grepprg = "rg --vimgrep --no-messages --smart-case"
+
+vim.opt.statusline = "[%n] %<%f %h%w%m%r%=%-14.(%l,%c%V%) %P"
+
+-- Enable loading of local configs
+vim.o.exrc = true
+vim.o.secure = true
+
+-- disable mouse popup yet keep mouse enabled
+vim.cmd([[
+  aunmenu PopUp
+  autocmd! nvim.popupmenu
+]])
