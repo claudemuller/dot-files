@@ -2,8 +2,8 @@ return {
   'stevearc/oil.nvim',
   ---@module 'oil'
   ---@type oil.SetupOpts
-  dependencies = { 
-    { "nvim-mini/mini.icons", opts = {} },
+  dependencies = {
+    { "nvim-mini/mini.icons",       opts = {} },
     { "nvim-tree/nvim-web-devicons" },
     lazy = false,
   },
@@ -38,4 +38,3 @@ return {
     vim.keymap.set("n", "-", ":Oil --float<CR>", { silent = true })
   end
 }
-
