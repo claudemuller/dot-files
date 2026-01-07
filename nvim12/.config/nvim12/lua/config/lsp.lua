@@ -34,18 +34,50 @@ local lsps = {
 	{ "gitlab_ci_ls" },
 	{ "golangci_lint_ls" },
 	{ "gopls" },
+	{
+		"intelephense",
+		{
+			root_dir = function(fname)
+				return vim.loop.cwd()
+			end,
+		},
+	},
 	{ "java_language_server" },
 	{ "jsonls" },
 	{ "jsonnet_ls" },
-	{ "lua_ls", {
-		settings = {
-			Lua = {
-				diagnostics = {
-					globals = { "vim" },
+	{
+		"lua_ls",
+		{
+			settings = {
+				Lua = {
+					diagnostics = {
+						globals = { "vim" },
+					},
+				},
+				workspace = {
+					checkThirdParty = false,
+					-- Tells lua_ls where to find all the Lua files that you have loaded
+					-- for your neovim configuration.
+					library = {
+						"${3rd}/luv/library",
+						unpack(vim.api.nvim_get_runtime_file("", true)),
+					},
+					-- If lua_ls is really slow on your computer, you can try this instead:
+					-- library = { vim.env.VIMRUNTIME },
 				},
 			},
 		},
-	} },
+	},
+	{
+		"ltex",
+		{
+			settings = {
+				filetypes = { "markdown", "text" },
+				flags = { debounce_text_changes = 300 },
+				language = "en-GB",
+			},
+		},
+	},
 	{ "marksman" },
 	{ "ols" },
 	{ "powershell_es" },
