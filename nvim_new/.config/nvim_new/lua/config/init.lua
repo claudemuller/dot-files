@@ -55,7 +55,7 @@ vim.opt.timeoutlen = 500                           -- Key timeout duration
 vim.opt.ttimeoutlen = 0                            -- Key code timeout
 vim.opt.autoread = true                            -- Auto reload files changed outside vim
 vim.opt.autowrite = false                          -- Don't auto save
- 
+
 -- Behaviour settings
 vim.opt.hidden = true                                           -- Allow hidden buffers
 vim.opt.errorbells = false                                      -- No error bells
@@ -84,6 +84,6 @@ vim.opt.splitright = true                          -- Vertical splits go right
 
 -- Disable mouse popup yet keep mouse enabled
 vim.cmd [[
-  aunmenu PopUp
-  autocmd! nvim.popupmenu
+aunmenu PopUp
+autocmd! nvim.popupmenu
 ]]

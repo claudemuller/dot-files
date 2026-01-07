@@ -28,23 +28,6 @@ require("lazy").setup({
   checker = { enabled = true },
 })
 
----------------------------------------------------------------------------------------------------
-
-print("test")
-print("test 2")
-
--- Keymaps ----------------------------------------------------------------------------------------
-
-vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>")
-vim.keymap.set("n", "<space>x", ":.lua<CR>")
-vim.keymap.set("v", "<space>x", ":lua<CR>")
-
--- Autocmds ---------------------------------------------------------------------------------------
-
-vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highlight when yanking text",
-	group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
-	callback = function()
-		vim.highlight.on_yank()
-	end,
-})
+require("config.lsp")
+require("config.keymaps")
+require("config.autocmds")
