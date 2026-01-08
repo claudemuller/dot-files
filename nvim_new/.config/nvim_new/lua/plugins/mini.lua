@@ -23,7 +23,6 @@ return {
     })
 
     -- Icons --------------------------------------------------------------------------------------
-    -- TODO: check config and redundant plugins
     require("mini.icons").setup()
 
     -- Statusline ---------------------------------------------------------------------------------
@@ -34,5 +33,19 @@ return {
 
     -- Surround -----------------------------------------------------------------------------------
     require("mini.surround").setup()
+
+    -- Cursorword ---------------------------------------------------------------------------------
+    require("mini.cursorword").setup()
+    vim.api.nvim_set_hl(0, 'MiniCursorwordCurrent', { fg = "#222222", bg = "#5c5f62", italic = true })
+    vim.api.nvim_set_hl(0, 'MiniCursorword', { fg = "#222222", bg = "#5c5f62", italic = true })
+
+    -- Indentscope --------------------------------------------------------------------------------
+    require("mini.indentscope").setup({
+      symbol = "┊",
+    })
+    vim.api.nvim_set_hl(0, 'MiniIndentscopeSymbol', { fg = "#444444" })
+
+    -- Notify -------------------------------------------------------------------------------------
+    -- require("mini.notify").setup()
   end
 }
