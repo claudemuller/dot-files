@@ -82,6 +82,27 @@ vim.keymap.set("n", "<leader>Fc", function()
   print("Copied path: " .. path)
 end, { desc = "Copy full file path to clipboard" })
 
+-- Quickfix ---------------------------------------------------------------------------------------
+vim.keymap.set("n", "<M-q>", function()
+  local function is_quickfix_open()
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+      local buf = vim.api.nvim_win_get_buf(win)
+      if vim.bo[buf].buftype == "quickfix" then
+        return true
+      end
+    end
+    return false
+  end
+
+  if is_quickfix_open() then
+    vim.cmd("cclose")
+  else
+    vim.cmd("copen")
+  end
+end, { desc = "Toggle quickfix" })
+vim.keymap.set("n", "<M-j>", "<cmd>:cnext", { desc = "Next quickfix entry" })
+vim.keymap.set("n", "<M-k>", "<cmd>:cprev", { desc = "Previous quickfix entry" })
+
 -- Debugging/Dev ----------------------------------------------------------------------------------
 
 vim.keymap.set("n", "<leader>x", "<cmd>source %<CR>")
