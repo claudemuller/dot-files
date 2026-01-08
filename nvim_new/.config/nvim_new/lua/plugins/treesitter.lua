@@ -21,7 +21,7 @@ return {
       "lua",
       "luadoc",
       "luap",
-      "markdowm",
+      "markdown",
       "markdown_inline",
       "odin",
       "python",
