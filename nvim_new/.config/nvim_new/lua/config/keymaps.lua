@@ -100,8 +100,8 @@ vim.keymap.set("n", "<M-q>", function()
     vim.cmd("copen")
   end
 end, { desc = "Toggle quickfix" })
-vim.keymap.set("n", "<M-j>", "<cmd>:cnext", { desc = "Next quickfix entry" })
-vim.keymap.set("n", "<M-k>", "<cmd>:cprev", { desc = "Previous quickfix entry" })
+vim.keymap.set("n", "<M-n>", "<cmd>:cnext<CR>", { desc = "Next quickfix entry" })
+vim.keymap.set("n", "<M-p>", "<cmd>:cprev<CR>", { desc = "Previous quickfix entry" })
 
 -- Debugging/Dev ----------------------------------------------------------------------------------
 
