@@ -42,7 +42,7 @@ keys = [
     Key([mod, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
     Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
     Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
-    Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
+    Key([mod, "shift"], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
     # Switch focus to next/previous monitor
     Key([mod, "control", "shift"], "l", lazy.next_screen(), desc="Next monitor"),
     Key([mod, "control", "shift"], "h", lazy.prev_screen(), desc="Previous monitor"),
