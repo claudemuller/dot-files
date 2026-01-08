@@ -36,10 +36,7 @@ return {
 
     -- Cursorword ---------------------------------------------------------------------------------
     require("mini.cursorword").setup()
-    vim.api.nvim_set_hl(0, 'MiniCursorwordCurrent', { fg = "#222222", bg = "#5c5f62", italic = true })
-    vim.api.nvim_set_hl(0, 'MiniCursorword', { fg = "#222222", bg = "#5c5f62", italic = true })
-
-    -- Notify -------------------------------------------------------------------------------------
-    -- require("mini.notify").setup()
+    vim.api.nvim_set_hl(0, 'MiniCursorwordCurrent', { link = "Visual" })
+    vim.api.nvim_set_hl(0, 'MiniCursorword', { link = "Visual" })
   end
 }
