@@ -51,8 +51,6 @@ return {
     -- Grep -------------------------------------------------------------------------------
 
     -- Live grep
-    vim.keymap.set('n', '<leader>gg', builtin.live_grep, { desc = 'Live grep' })
-
     local function to_dir(path)
       local uv = vim.loop
       local stat = uv.fs_stat(path)
