@@ -83,7 +83,7 @@ vim.opt.splitbelow = true -- Horizontal splits go below
 vim.opt.splitright = true -- Vertical splits go right
 
 -- Disable mouse popup yet keep mouse enabled
-vim.cmd [[
-aunmenu PopUp
-autocmd! nvim.popupmenu
-]]
+-- vim.cmd [[
+-- aunmenu PopUp
+-- autocmd! nvim.popupmenu
+-- ]]
