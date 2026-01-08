@@ -36,9 +36,10 @@ return {
       "yaml",
     }):wait(300000)
 
-    vim.api.nvim_create_autocmd('FileType', {
-      pattern = { "*" },
-      callback = function() vim.treesitter.start() end,
-    })
+    -- TODO: start treesitter
+    -- vim.api.nvim_create_autocmd('FileType', {
+    --   pattern = { "*" },
+    --   callback = function() vim.treesitter.start() end,
+    -- })
   end
 }

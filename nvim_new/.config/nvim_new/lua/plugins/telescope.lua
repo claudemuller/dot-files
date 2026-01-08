@@ -34,7 +34,7 @@ return {
     -- end, { desc = "Files in cwd" })
 
     -- Find files in dir
-    vim.keymap.set("n", "<leader>fF", function()
+    vim.keymap.set("n", "<leader>fd", function()
       local get_start_dir = function()
         -- local input = vim.fn.input 'Start dir: '
         local input = vim.fn.input("Start dir: ", "", "dir")
@@ -66,8 +66,13 @@ return {
     local actions = require("telescope.actions")
     local action_state = require("telescope.actions.state")
 
+    -- Grep in cwd
+    vim.keymap.set("n", "<leader>g.", function()
+      builtin.live_grep({ cwd = vim.fn.expand("%:p:h") })
+    end, { desc = "String in cwd" })
+
     -- Live grep in dir
-    vim.keymap.set("n", "<leader>gG", function()
+    vim.keymap.set("n", "<leader>gd", function()
       builtin.find_files({
         prompt_title = "Pick a directory",
         cwd = vim.fn.getcwd(),
