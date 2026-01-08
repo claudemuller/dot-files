@@ -1,5 +1,5 @@
 return {
-  {
+  { -- Snazzy theme
     "dzfrias/noir.nvim",
     config = function()
       vim.cmd.colorscheme("noir")
@@ -8,7 +8,7 @@ return {
     end
   },
 
-  {
+  { -- Mason for tool installtion
     "mason-org/mason-lspconfig.nvim",
     opts = {},
     dependencies = {
@@ -17,27 +17,20 @@ return {
     },
   },
 
+  -- Mulit selections
   { "mg979/vim-visual-multi" },
 
+  -- Better notifications
   { "rcarriga/nvim-notify" },
 
-  -- TODO: check config
   { -- Highlight todo, notes, etc in comments
     "folke/todo-comments.nvim",
     event = "VimEnter",
     dependencies = { "nvim-lua/plenary.nvim" },
-    opts = {
-      signs = true,
-    },
+    opts = {},
   },
 
-  { -- TODO: check config
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    config = true,
-  },
-
-  {
+  { -- Nvim config dev helper
     "folke/lazydev.nvim",
     ft = "lua",
     opts = {

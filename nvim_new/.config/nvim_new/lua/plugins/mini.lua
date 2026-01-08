@@ -2,23 +2,37 @@ return {
   'nvim-mini/mini.nvim',
   version = '*',
   config = function()
-    -- git ----------------------------------------------------------------------------------------
-    -- TODO: check config and redundant plugins
-    local git = require("mini.git")
-    git.setup()
+    -- AI
+    --
+    -- Examples:
+    --  - va)  - [V]isually select [A]round [)]paren
+    --  - yinq - [Y]ank [I]nside [N]ext [']quote
+    --  - ci'  - [C]hange [I]nside [']quote
+    require("mini.ai").setup({ n_lines = 500 })
 
-    -- diff ---------------------------------------------------------------------------------------
-    -- TODO: check config and redundant plugins
-    local diff = require("mini.diff")
-    diff.setup()
+    -- Git ----------------------------------------------------------------------------------------
+    -- TODO: READ THE DOCS
+    require("mini.git").setup()
 
-    -- icons --------------------------------------------------------------------------------------
-    -- TODO: check config and redundant plugins
-    local icons = require("mini.icons")
-    icons.setup()
+    -- Diff ---------------------------------------------------------------------------------------
+    vim.go.number = false
+    require("mini.diff").setup({
+      mappings = {
+        reset = 'gr',
+      },
+    })
 
-    -- statusline ---------------------------------------------------------------------------------
-    local statusline = require("mini.statusline")
-    statusline.setup()
+    -- Icons --------------------------------------------------------------------------------------
+    -- TODO: check config and redundant plugins
+    require("mini.icons").setup()
+
+    -- Statusline ---------------------------------------------------------------------------------
+    require("mini.statusline").setup()
+
+    -- Pairs --------------------------------------------------------------------------------------
+    require("mini.pairs").setup()
+
+    -- Surround -----------------------------------------------------------------------------------
+    require("mini.surround").setup()
   end
 }
