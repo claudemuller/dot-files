@@ -1,7 +1,8 @@
-return { -- Collection of various small independent plugins/modules
-  "echasnovski/mini.nvim",
+return {
+  'nvim-mini/mini.nvim',
+  version = '*',
   config = function()
-    -- Better Around/Inside textobjects
+    -- AI
     --
     -- Examples:
     --  - va)  - [V]isually select [A]round [)]paren
@@ -9,38 +10,33 @@ return { -- Collection of various small independent plugins/modules
     --  - ci'  - [C]hange [I]nside [']quote
     require("mini.ai").setup({ n_lines = 500 })
 
-    -- Add/delete/replace surroundings (brackets, quotes, etc.)
-    --
-    -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
-    -- - sd'   - [S]urround [D]elete [']quotes
-    -- - sr)'  - [S]urround [R]eplace [)] [']
-    require("mini.surround").setup({
+    -- Git ----------------------------------------------------------------------------------------
+    -- TODO: READ THE DOCS
+    require("mini.git").setup()
+
+    -- Diff ---------------------------------------------------------------------------------------
+    vim.go.number = false
+    require("mini.diff").setup({
       mappings = {
-        add = "s", -- Add surrounding
-        delete = "ds", -- Delete surrounding
-        find = "fs", -- Find surrounding (to the right)
-        find_left = "Fs", -- Find surrounding (to the left)
-        highlight = "hs", -- Highlight surrounding
-        replace = "cs", -- Change surrounding
-        update_n_lines = "sn", -- Update `n_lines`
+        reset = 'gR',
       },
     })
 
-    -- Simple and easy statusline.
-    --  You could remove this setup call if you don't like it,
-    --  and try some other statusline plugin
-    -- local statusline = require 'mini.statusline'
-    -- statusline.setup()
+    -- Icons --------------------------------------------------------------------------------------
+    require("mini.icons").setup()
 
-    -- You can configure sections in the statusline by overriding their
-    -- default behavior. For example, here we disable the section for
-    -- cursor information because line numbers are already enabled
-    -- ---@diagnostic disable-next-line: duplicate-set-field
-    -- statusline.section_location = function()
-    --   return ''
-    -- end
+    -- Statusline ---------------------------------------------------------------------------------
+    require("mini.statusline").setup()
 
-    -- ... and there is more!
-    --  Check out: https://github.com/echasnovski/mini.nvim
-  end,
+    -- Pairs --------------------------------------------------------------------------------------
+    require("mini.pairs").setup()
+
+    -- Surround -----------------------------------------------------------------------------------
+    require("mini.surround").setup()
+
+    -- Cursorword ---------------------------------------------------------------------------------
+    require("mini.cursorword").setup()
+    vim.api.nvim_set_hl(0, 'MiniCursorwordCurrent', { link = "Visual" })
+    vim.api.nvim_set_hl(0, 'MiniCursorword', { link = "Visual" })
+  end
 }

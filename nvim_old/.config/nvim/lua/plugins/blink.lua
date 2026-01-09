@@ -1,3 +1,5 @@
+-- [[ LSP config ]]
+
 return {
   "saghen/blink.cmp",
   dependencies = { "rafamadriz/friendly-snippets" },
@@ -11,8 +13,8 @@ return {
       menu = {
         draw = {
           columns = {
-            { "label",      "label_description", gap = 1 },
-            { "kind_icon",  "kind" },
+            { "label", "label_description", gap = 1 },
+            { "kind_icon", "kind" },
             { "source_name" },
           },
           treesitter = { "lsp" },

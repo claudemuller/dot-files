@@ -1,9 +1,13 @@
------------------------------------------------------------------------
--- [[ Oil config ]]
------------------------------------------------------------------------
-
 return {
-  "stevearc/oil.nvim",
+  'stevearc/oil.nvim',
+  ---@module 'oil'
+  ---@type oil.SetupOpts
+  dependencies = {
+    { "nvim-mini/mini.icons",       opts = {} },
+    { "nvim-tree/nvim-web-devicons" },
+    lazy = false,
+  },
+  opts = {},
   config = function()
     require("oil").setup({
       columns = {
@@ -32,5 +36,5 @@ return {
     })
 
     vim.keymap.set("n", "-", ":Oil --float<CR>", { silent = true })
-  end,
+  end
 }

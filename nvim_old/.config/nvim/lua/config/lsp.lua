@@ -2,17 +2,7 @@
 -- LSP + Language servers
 -----------------------------------------------------------------------
 
--- Default LSP config
-vim.lsp.config('*', {
-  capabilities = {
-    textDocument = {
-      semanticTokens = {
-        multilineTokenSupport = true,
-      }
-    }
-  },
-  root_markers = { '.git' },
-})
+local fn = require("functions")
 
 local lsps = {
   { "bashls" },
@@ -24,9 +14,9 @@ local lsps = {
       -- capabilities = { signatureHelpProvider = false },
       cmd = {
         "clangd",
-        "--background-index",           -- Index all project files
-        "--clang-tidy",                 -- Optional: enable clang-tidy
-        "--completion-style=detailed",  -- Better completions
+        "--background-index", -- Index all project files
+        "--clang-tidy", -- Optional: enable clang-tidy
+        "--completion-style=detailed", -- Better completions
         "--compile-commands-dir=build", -- Path to compile_commands.json
       },
       filetypes = { "c", "cpp", "objc", "objcpp" },
@@ -97,7 +87,7 @@ local lsps = {
   { "ts_ls" },
 }
 
--- Mason ------------------------------------------------------------------------------------------
+-- Mason
 
 local mason_map = {
   ccls = "clangd",
@@ -116,12 +106,12 @@ require("mason-lspconfig").setup({
   ensure_installed = servers_to_install,
 })
 
--- Enable LSPs ------------------------------------------------------------------------------------
+-- Enable LSPs
 
 for _, lsp in ipairs(lsps) do
   local name, config = lsp[1], lsp[2] or {}
   config = config or {}
-
+  config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
   vim.lsp.config(name, config)
   vim.lsp.enable(name)
 end
@@ -130,20 +120,4 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
   border = "rounded",
   max_width = 80,
   max_height = 20,
-})
-
-vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function(args)
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    if not client then return end
-
-    if client.supports_method("textDocument/formatting") then
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        buffer = args.buf,
-        callback = function()
-          vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
-        end
-      })
-    end
-  end
 })

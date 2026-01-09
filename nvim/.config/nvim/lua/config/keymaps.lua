@@ -1,12 +1,10 @@
--- [[ Basic Keymaps ]]
---  See `:help vim.keymap.set()`
+-- Keymaps ----------------------------------------------------------------------------------------
 
 local fn = require("functions")
 
 vim.keymap.set("n", "<leader>L", ":Lazy<CR>", { desc = "Show Lazy" })
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
-vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
@@ -33,17 +31,15 @@ vim.keymap.set("n", "<C-S-A-s>", fn.save_all_buffers, { noremap = true, desc = "
 vim.keymap.set("n", "<C-7>", fn.switch_c_h, { noremap = true, desc = "Switch between .c/.c++ and .h files" })
 vim.keymap.set("n", "gH", fn.switch_c_h, { noremap = true, desc = "Switch between .c/.c++ and .h files" })
 
--- Keybinds to make split navigation easier.
---  Use CTRL+<hjkl> to switch between windows
---  See `:help wincmd` for a list of all window commands
+-- Window keybinds
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 vim.keymap.set("n", "<C-W><C-l>", "<cmd>:vertical resize +10<cr>", { desc = "Increase pane split" })
 vim.keymap.set("n", "<C-W><C-h>", "<cmd>:vertical resize -10<cr>", { desc = "Decrease pane split" })
-vim.keymap.set("n", "q", ":q<cr>", { desc = "Close current window" })
-vim.keymap.set("n", "Qf", ":cclose<cr>", { desc = "Close quickfix" })
+-- vim.keymap.set("n", "q", ":q<cr>", { desc = "Close current window" })
+-- vim.keymap.set("n", "Qf", ":cclose<cr>", { desc = "Close quickfix" })
 
 vim.keymap.set("n", "<C-S-j>", ":m +1<cr>", { desc = "Move line down" })
 vim.keymap.set("v", "<C-S-j>", ":m '>+1<cr>gv=gv", { desc = "Move selected lines down" })
@@ -80,8 +76,35 @@ vim.keymap.set("n", "<leader>go", ":Octo actions<cr>", { desc = "Open Octo" })
 vim.keymap.set("n", "<leader>qf", function() end, { desc = "Toggle quickfix window" })
 
 -- Copy full file path to clipboard
-vim.keymap.set("n", "<leader>fc", function()
+vim.keymap.set("n", "<leader>Fc", function()
   local path = vim.fn.expand("%:p")
   vim.fn.setreg("+", path)
   print("Copied path: " .. path)
 end, { desc = "Copy full file path to clipboard" })
+
+-- Quickfix ---------------------------------------------------------------------------------------
+vim.keymap.set("n", "<M-q>", function()
+  local function is_quickfix_open()
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+      local buf = vim.api.nvim_win_get_buf(win)
+      if vim.bo[buf].buftype == "quickfix" then
+        return true
+      end
+    end
+    return false
+  end
+
+  if is_quickfix_open() then
+    vim.cmd("cclose")
+  else
+    vim.cmd("copen")
+  end
+end, { desc = "Toggle quickfix" })
+vim.keymap.set("n", "<M-n>", "<cmd>:cnext<CR>", { desc = "Next quickfix entry" })
+vim.keymap.set("n", "<M-p>", "<cmd>:cprev<CR>", { desc = "Previous quickfix entry" })
+
+-- Debugging/Dev ----------------------------------------------------------------------------------
+
+vim.keymap.set("n", "<leader>x", "<cmd>source %<CR>")
+vim.keymap.set("n", "<leader>X", ":.lua<CR>")
+vim.keymap.set("v", "<leader>X", ":lua<CR>")

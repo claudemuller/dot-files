@@ -1,9 +1,4 @@
------------------------------------------------------------------------
--- [[ Noice config ]]
------------------------------------------------------------------------
-
--- Better UI
--- See `:help noice.txt`
+-- TODO: check the config on this too
 return {
   "folke/noice.nvim",
   event = "VeryLazy",

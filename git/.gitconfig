@@ -45,11 +45,15 @@
 	navigate = true    # use n and N to move between diff sections
 	light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
 [merge]
-	conflictstyle = diff3
-	tool = nvim -c ":DiffviewOpen"
+	; conflictstyle = diff3
+	; tool = nvim -c ":DiffviewOpen"
+	tool = nvimdiff
+[mergetool "vimdiff"]
+	layout = BASE,MERGED + BASE,LOCAL + BASE,REMOTE
 [diff]
 	colorMoved = default
-	tool = nvim -c ":DiffviewOpen"
+	; tool = nvim -c ":DiffviewOpen"
+	tool = nvimdiff
 [credential]
 	helper = store
 [filter "lfs"]

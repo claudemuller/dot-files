@@ -177,8 +177,8 @@ M.code_notes = {
     end
 
     local cur_pos = vim.api.nvim_win_get_cursor(0) -- 0 refers to the current window
-    local cur_line = cur_pos[1] -- Line num
-    local cur_char = cur_pos[2] -- Char num
+    local cur_line = cur_pos[1]                    -- Line num
+    local cur_char = cur_pos[2]                    -- Char num
     local cur_loc = "L" .. cur_line .. ":" .. cur_char
     local note = vim.fn.input("Note at " .. cur_loc) .. " [" .. os.date("%Y-%m-%d %H:%M:%S") .. "]"
     local final_note = cur_loc .. " " .. note

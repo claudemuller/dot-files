@@ -1,5 +1,14 @@
--- Bootstrap lazy.nvim ----------------------------------------------------------------------------
+-- [[ Load Config ]]
+require("config")
 
+-- [[ Load Keymaps ]]
+require("config.keymaps")
+
+-- [[ Load Autocmds ]]
+require("config.autocmds")
+
+-- [[ Bootstrap Lazy Plugin Manager ]]
+--    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -7,7 +16,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out,                            "WarningMsg" },
+      { out, "WarningMsg" },
       { "\nPress any key to exit..." },
     }, true, {})
     vim.fn.getchar()
@@ -16,20 +25,29 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Setup config -----------------------------------------------------------------------------------
-require("config")
-
--- Setup Lazy.nvim --------------------------------------------------------------------------------
+-- [[ Load Plugins ]]
 require("lazy").setup({
+  -- Import plugins
   spec = {
     { import = "plugins" },
   },
-  install = { colorscheme = { "noir" } },
-  checker = { enabled = true },
+
+  defaults = {
+    -- lazy = true,
+  },
+
+  install = {
+    colorscheme = { "dzfrias/noir" },
+  },
+
+  dev = {
+    path = "~/repos",
+    patterns = { "claudemuller" },
+    fallback = true,
+  },
 })
 
 require("config.lsp")
-require("config.keymaps")
-require("config.autocmds")
-require("config.context-menu")
-require("config.blame-line")
+require("config.make-targets")
+
+-- vim: ts=2 sts=2 sw=2 et

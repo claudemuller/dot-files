@@ -1,9 +1,4 @@
------------------------------------------------------------------------
--- [[ nvim-dap config ]]
------------------------------------------------------------------------
-
--- Debugger
--- See `:help nvim-dap`
+-- TODO: tighten this up
 return {
   "mfussenegger/nvim-dap",
   dependencies = {

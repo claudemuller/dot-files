@@ -1,12 +1,7 @@
--- [[ Conform config ]]
-
--- Autoformatting management
--- See `:help confirm`
 return {
   "stevearc/conform.nvim",
   event = { "BufWritePre" },
   cmd = { "ConformInfo" },
-  -- Everything in opts will be passed to setup()
   opts = {
     notify_on_error = true,
     format_on_save = {
