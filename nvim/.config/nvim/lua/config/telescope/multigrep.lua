@@ -47,7 +47,7 @@ local live_multigrep = function(opts)
 end
 
 M.setup = function()
-  vim.keymap.set("n", "<leader>gg", live_multigrep, { desc = "Grep with glob" })
+  vim.keymap.set("n", "<leader>gm", live_multigrep, { desc = "Grep with glob" })
 end
 
 return M

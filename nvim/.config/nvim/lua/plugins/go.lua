@@ -14,14 +14,14 @@ return {
       { "<leader>cgc", ":GoCmt<CR>",        desc = "Function comment" },
       { "<leader>cgm", ":GoMockGen<CR>",    desc = "Mocks for current file" },
 
-      { "<leader>cgt", ":GoAddTag<CR>",     desc = "Tags" },
-      { "<leader>crt", ":GoRmTag<CR>",      desc = "Tags" },
+      { "<leader>cta", ":GoAddTag<CR>",     desc = "Tags" },
+      { "<leader>ctr", ":GoRmTag<CR>",      desc = "Tags" },
 
       { "<leader>cfs", ":GoFillStruct<CR>", desc = "Struct fields" },
       { "<leader>cfS", ":GoFillSelect<CR>", desc = "Select" },
       { "<leader>cfe", ":GoIfErr<CR>",      desc = "If/Err" },
 
-      { "<leader>ct",  ":GoModTidy<CR>",    desc = "Tidy" },
+      { "<leader>cT",  ":GoModTidy<CR>",    desc = "Tidy" },
 
       -- { '<leader>cd', 'zy:GoDoc <C-r>z<CR>', desc = '[C]ode Go[D]ocs Under Cursor', mode = 'v' },
       -- { '<leader>cs', ':GoPkgOutline<CR>', desc = '[C]ode [S]ymbols' },

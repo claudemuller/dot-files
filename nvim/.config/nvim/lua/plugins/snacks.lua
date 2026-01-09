@@ -110,40 +110,40 @@ return {
       desc = "Rename file",
     },
     {
-      "<leader>gG",
+      "<leader>vG",
       function()
         Snacks.gitbrowse()
       end,
       desc = "Git browse web for current line",
     },
     {
-      "<leader>gBl",
+      "<leader>vBl",
       function()
         Snacks.git.blame_line()
       end,
       desc = "Git blame current line",
     },
-    {
-      "<leader>gLf",
-      function()
-        Snacks.lazygit.log_file()
-      end,
-      desc = "Current file history",
-    },
-    {
-      "<leader>gL",
-      function()
-        Snacks.lazygit()
-      end,
-      desc = "Launch",
-    },
-    {
-      "<leader>gLl",
-      function()
-        Snacks.lazygit.log()
-      end,
-      desc = "Log (cwd)",
-    },
+    -- {
+    --   "<leader>vLf",
+    --   function()
+    --     Snacks.lazygit.log_file()
+    --   end,
+    --   desc = "Current file history",
+    -- },
+    -- {
+    --   "<leader>gL",
+    --   function()
+    --     Snacks.lazygit()
+    --   end,
+    --   desc = "Launch",
+    -- },
+    -- {
+    --   "<leader>gLl",
+    --   function()
+    --     Snacks.lazygit.log()
+    --   end,
+    --   desc = "Log (cwd)",
+    -- },
     -- {
     --   '<c-/>',
     --   function()
@@ -213,7 +213,7 @@ return {
         Snacks.toggle.diagnostics():map("<leader>ud")
         Snacks.toggle.line_number():map("<leader>ul")
         Snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map(
-        "<leader>uc")
+          "<leader>uc")
         Snacks.toggle.treesitter():map("<leader>uT")
         Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map("<leader>ub")
         Snacks.toggle.inlay_hints():map("<leader>uh")

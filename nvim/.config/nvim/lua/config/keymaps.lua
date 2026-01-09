@@ -66,14 +66,11 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Half page up (centered)" })
 -- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
 -- Obsidian
-vim.keymap.set("n", "<leader>Odn", fn.obsidian.create_new_day, { desc = "New daily note" })
-vim.keymap.set("n", "<leader>Odc", fn.obsidian.copy_this_day, { desc = "Copy current note" })
+-- vim.keymap.set("n", "<leader>Odn", fn.obsidian.create_new_day, { desc = "New daily note" })
+-- vim.keymap.set("n", "<leader>Odc", fn.obsidian.copy_this_day, { desc = "Copy current note" })
 
 -- Octo
-vim.keymap.set("n", "<leader>go", ":Octo actions<cr>", { desc = "Open Octo" })
-
--- Toggle Quickfix
-vim.keymap.set("n", "<leader>qf", function() end, { desc = "Toggle quickfix window" })
+-- vim.keymap.set("n", "<leader>go", ":Octo actions<cr>", { desc = "Open Octo" })
 
 -- Copy full file path to clipboard
 vim.keymap.set("n", "<leader>Fc", function()
@@ -105,6 +102,6 @@ vim.keymap.set("n", "<M-p>", "<cmd>:cprev<CR>", { desc = "Previous quickfix entr
 
 -- Debugging/Dev ----------------------------------------------------------------------------------
 
-vim.keymap.set("n", "<leader>x", "<cmd>source %<CR>")
-vim.keymap.set("n", "<leader>X", ":.lua<CR>")
-vim.keymap.set("v", "<leader>X", ":lua<CR>")
+vim.keymap.set("n", "<leader>x", "<cmd>source %<CR>", { desc = "Source current buffer" })
+vim.keymap.set("n", "<leader>X", ":.lua<CR>", { desc = "Source current line" })
+vim.keymap.set("v", "<leader>X", ":lua<CR>", { desc = "Source current line" })

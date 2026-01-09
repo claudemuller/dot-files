@@ -65,6 +65,9 @@ return {
     local action_state = require("telescope.actions.state")
 
     -- Grep in cwd
+    -- TODO: fix multigrep's preview
+    vim.keymap.set("n", "<leader>gg", builtin.live_grep, { desc = "String in workspace" })
+
     vim.keymap.set("n", "<leader>g.", function()
       builtin.live_grep({ cwd = vim.fn.expand("%:p:h") })
     end, { desc = "String in cwd" })
@@ -166,7 +169,7 @@ return {
 
     -- Grep word ----------------------------------------------------------------------------------
 
-    vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "Word under cursor in buffer" })
+    vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "Word under cursor in buffer" })
 
     -- Config -------------------------------------------------------------------------------------
 
