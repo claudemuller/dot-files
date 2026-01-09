@@ -25,6 +25,10 @@ return {
     ts.load_extension("fzf")
     require("config.telescope.multigrep").setup()
 
+    if vim.lsp.inlay_hint then
+      vim.lsp.inlay_hint.enable(true, { 0 })
+    end
+
     -- Find  --------------------------------------------------------------------------------------
 
     -- Find files
@@ -145,6 +149,8 @@ return {
       end
     end
 
+    vim.keymap.set("n", "<leader>gw", builtin.grep_string, { desc = "Word under cursor in buffer" })
+
     -- Grep in snippets
     vim.keymap.set("n", "<leader>gX", grep_snippets, { desc = "Grep snippets" })
 
@@ -167,9 +173,74 @@ return {
     vim.keymap.set("n", "<leader>fm", builtin.marks, { desc = "Find marks" })
     vim.keymap.set("n", "<leader>fj", builtin.jumplist, { desc = "Find jumplist" })
 
-    -- Grep word ----------------------------------------------------------------------------------
+    -- LSP ----------------------------------------------------------------------------------------
 
-    vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "Word under cursor in buffer" })
+    vim.keymap.set("n", "gd", builtin.lsp_definitions, { desc = "Go to definition" })
+    vim.keymap.set("n", "gz", function()
+      vim.cmd("vsplit")
+      vim.lsp.buf.definition()
+      vim.cmd("zt")
+    end, { desc = "Split go to definition" })
+    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" })
+    vim.keymap.set("n", "gr", builtin.lsp_references, { desc = "Show references" })
+    vim.keymap.set("n", "gI", builtin.lsp_implementations, { desc = "Show implementations" })
+
+    vim.keymap.set("n", "<leader>fz", function()
+      local symbol = vim.fn.input("Symbol (default: under cursor): ")
+      if symbol == "" or symbol == nil then
+        symbol = vim.fn.expand("<cword>")
+      end
+      builtin.lsp_workspace_symbols({ query = symbol })
+    end, { desc = "Symbol (default: under cursor)" })
+
+    vim.keymap.set("n", "<leader>fs", function()
+      builtin.lsp_document_symbols({ symbol_width = 100 })
+    end, { desc = "Document symbols" })
+
+    vim.keymap.set("n", "<leader>fS", function()
+      builtin.lsp_workspace_symbols({ symbol_width = 100 })
+    end, { desc = "Workspace symbols" })
+
+    vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename" })
+    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
+
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover Documentation" })
+
+    -- When you move your cursor, the highlights will be cleared (the second autocommand).
+    -- local client = vim.lsp.get_client_by_id(event.data.client_id)
+    -- if client and client.server_capabilities.documentHighlightProvider then
+    --   vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+    --     buffer = event.buf,
+    --     callback = vim.lsp.buf.document_highlight,
+    --   })
+    --
+    --   vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+    --     buffer = event.buf,
+    --     callback = vim.lsp.buf.clear_references,
+    --   })
+    -- end
+
+    -- Full documentation func
+    vim.keymap.set("n", "<leader>ch", function()
+      local params = vim.lsp.util.make_position_params()
+      vim.lsp.buf_request(0, "textDocument/hover", params, function(_, result, _, _)
+        if not result or not result.contents then
+          return
+        end
+        -- Extract the type name from the hover text (looks like "var p Person")
+        local typ = result.contents.value:match("%s+([%w_]+)%s*$")
+        if typ then
+          -- Issue a second hover request on the type name
+          local new_params = vim.tbl_extend("force", params,
+            { position = { line = params.position.line, character = params.position.character } })
+          vim.lsp.buf_request(0, "textDocument/hover", new_params, function(_, res, _, _)
+            if res then
+              vim.lsp.util.open_floating_preview(vim.lsp.util.convert_input_to_markdown_lines(res.contents), "markdown")
+            end
+          end)
+        end
+      end)
+    end, { desc = "Full documentation" })
 
     -- Config -------------------------------------------------------------------------------------
 

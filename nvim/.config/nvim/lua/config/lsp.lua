@@ -126,6 +126,15 @@ for _, lsp in ipairs(lsps) do
   vim.lsp.enable(name)
 end
 
+-- Keymaps ----------------------------------------------------------------------------------------
+
+vim.keymap.set("n", "grr", function()
+  vim.lsp.buf.references()
+  vim.cmd("lopen")
+  vim.cmd("wincmd L")
+  print("its a me")
+end, { desc = "Open references" })
+
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
   border = "rounded",
   max_width = 80,
