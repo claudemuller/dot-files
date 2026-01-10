@@ -41,7 +41,7 @@ vim.api.nvim_create_autocmd("LspProgress", {
   end,
 })
 
-local parse_fn_str = function(arg)
+local parse_file_str = function(arg)
   local file, line, col
 
   -- foo.lua:12:5
@@ -64,34 +64,30 @@ local parse_fn_str = function(arg)
   return arg, 0, 0
 end
 
--- nvim foo.lua:10     # open foo.lua and go to line 10
--- nvim foo.lua(10)    # open foo.lua and go to line 10
--- nvim foo.lua:12:5   # open foo.lua and go to line 12, column 5
--- nvim foo.lua(12:5)
-
-local parse_fllenames = function(fns)
-  for i, fn in ipairs(fns) do
-    print(vim.inspect(fn))
-
-    local file, line, col = parse_fn_str(fn)
-
+local parse_file_loc = function(filenames)
+  for _, filename in ipairs(filenames) do
+    local file, line, col = parse_file_str(filename)
     if not file then return end
-
-    -- TODO: check that line and col are valid
 
     -- TODO: if more than one file, open other files in tabs
     vim.cmd.edit(vim.fn.fnameescape(file))
 
-    if line then
-      vim.api.nvim_win_set_cursor(0, {
-        (line or 1),
-        ((col - 1) or 1),
-      })
-    end
+    local start_line = (line <= 0) and 1 or line
+    start_line = math.min(line, vim.api.nvim_buf_line_count(0))
+    local start_col = ((col - 1) <= 0) and 1 or (col - 1)
+
+    return start_line, start_col
   end
 end
 
--- vim.api.nvim_create_autocmd('VimEnter', {
---   pattern = '*',
---   callback = function() parse_fllenames(vim.fn.argv()) end,
--- })
+vim.api.nvim_create_autocmd('VimEnter', {
+  pattern = '*',
+  callback = function()
+    local start_line, start_col = parse_file_loc(vim.fn.argv())
+    vim.api.nvim_win_set_cursor(0, {
+      start_line,
+      start_col,
+    })
+    vim.cmd.filetype('detect')
+  end,
+})
