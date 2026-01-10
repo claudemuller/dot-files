@@ -73,7 +73,7 @@ local parse_file_loc = function(filenames)
     vim.cmd.edit(vim.fn.fnameescape(file))
 
     local start_line = (line <= 0) and 1 or line
-    start_line = math.min(line, vim.api.nvim_buf_line_count(0))
+    start_line = math.min(start_line, vim.api.nvim_buf_line_count(0))
     local start_col = ((col - 1) <= 0) and 1 or (col - 1)
 
     return start_line, start_col
@@ -84,6 +84,7 @@ vim.api.nvim_create_autocmd('VimEnter', {
   pattern = '*',
   callback = function()
     local start_line, start_col = parse_file_loc(vim.fn.argv())
+    print(start_line, start_col)
     vim.api.nvim_win_set_cursor(0, {
       start_line,
       start_col,
