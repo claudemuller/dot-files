@@ -81,3 +81,9 @@ vim.opt.foldlevel = 99                          -- Start with all folds open
 -- Split behavior
 vim.opt.splitbelow = true -- Horizontal splits go below
 vim.opt.splitright = true -- Vertical splits go right
+
+-- Neovide
+if vim.g.neovide then
+  vim.o.guifont = "JetBrainsMono NF:h7.5:w0.01"
+  vim.g.neovide_scale_factor = 1.0
+end
