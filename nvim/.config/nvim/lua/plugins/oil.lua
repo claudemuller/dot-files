@@ -37,22 +37,10 @@ return {
       },
     })
 
-    -- TODO: doesn't quite work
-    vim.api.nvim_create_autocmd("CursorMoved", {
-      pattern = "*",
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "OilEnter",
       callback = function()
-        if vim.bo.filetype ~= "oil" then
-          return
-        end
-
-        local oil = require("oil")
-        local entry = require("oil").get_cursor_entry()
-
-        if entry and entry.type == "file" then
-          oil.open_preview()
-        else
-          oil.close_preview()
-        end
+        require("oil").open_preview()
       end,
     })
 
