@@ -27,6 +27,11 @@ if [ -x "$(command -v greenclip)" ]; then
 	greenclip daemon &
 fi
 
+if [ -x "$(command -v nextcloud)" ]; then
+	pkill nextcloud
+	nextcloud --background &
+fi
+
 # Set us kb layout
 $HOME/.local/bin/kb-layout-switcher
 
