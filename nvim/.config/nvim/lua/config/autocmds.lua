@@ -80,15 +80,36 @@ local parse_file_loc = function(filenames)
   end
 end
 
-vim.api.nvim_create_autocmd('VimEnter', {
-  pattern = '*',
-  callback = function()
-    local start_line, start_col = parse_file_loc(vim.fn.argv())
-    print(start_line, start_col)
-    vim.api.nvim_win_set_cursor(0, {
-      start_line,
-      start_col,
-    })
-    vim.cmd.filetype('detect')
-  end,
-})
+-- vim.api.nvim_create_autocmd('VimEnter', {
+--   pattern = '*',
+--   callback = function()
+--     local start_line, start_col = parse_file_loc(vim.fn.argv())
+--     print(start_line, start_col)
+--     vim.api.nvim_win_set_cursor(0, {
+--       start_line,
+--       start_col,
+--     })
+--     vim.cmd.filetype('detect')
+--   end,
+-- })
+
+vim.api.nvim_create_user_command('LspRestart', function()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local clients = vim.lsp.get_active_clients({ bufnr = bufnr })
+  local configs = {}
+
+  -- Save the config names of the attached clients
+  for _, client in ipairs(clients) do
+    if client.name and require('lspconfig')[client.name] then
+      table.insert(configs, client.name)
+    end
+    client.stop()
+  end
+
+  -- Give some time to stop, then restart the same servers
+  vim.defer_fn(function()
+    for _, name in ipairs(configs) do
+      require('lspconfig')[name].manager.try_add_wrapper(bufnr)
+    end
+  end, 100) -- 100ms delay to ensure clients are stopped
+end, {})

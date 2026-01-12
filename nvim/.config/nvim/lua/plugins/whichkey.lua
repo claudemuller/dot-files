@@ -8,6 +8,10 @@ return {
   config = function()
     local wk = require("which-key")
 
+    wk.setup({
+      preset = 'helix',
+    })
+
     wk.add({
       { "<leader>d", group = "Diagnostics" },
       -- { "<leader>N",  group = "Code notes" },

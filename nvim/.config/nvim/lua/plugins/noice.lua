@@ -4,13 +4,13 @@ return {
   event = "VeryLazy",
   opts = {},
   dependencies = {
-    "MunifTanjim/nui.nvim",
-    -- {
-    --   'rcarriga/nvim-notify',
-    --   opts = {
-    --     top_down = false,
-    --   },
-    -- },
+    -- "MunifTanjim/nui.nvim",
+    {
+      'rcarriga/nvim-notify',
+      opts = {
+        top_down = false,
+      },
+    },
   },
   -- keys = {
   --   {
@@ -24,7 +24,6 @@ return {
   config = function()
     require("noice").setup({
       cmdline = {
-        enabled = true,
         view = "cmdline",
       },
       notify = {
@@ -55,6 +54,10 @@ return {
             find = "written",
           },
           opts = { skip = true },
+        },
+        {
+          view = "cmdline",
+          filter = { event = "msg_showmode" },
         },
       },
       presets = {
