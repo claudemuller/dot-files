@@ -36,28 +36,67 @@ return {
     opts = {},
   },
 
+  -- TODO: clean this up :)
   {
-    "tpope/vim-fugitive",
-    dependencies = {
-      "tpope/vim-rhubarb",
-    },
-    keys = {
-      -- { "<leader>gs",       ":Git<cr>",                desc = "Status",               mode = { "n", "v" } },
-      -- { "<leader>gc",       ":Git commit<cr>",         desc = "Commit",               mode = { "n", "v" } },
-      -- { "<leader>gp",       ":Git pull<cr>",           desc = "Pull",                 mode = { "n", "v" } },
-      -- { "<leader>gP",       ":Git push<cr>",           desc = "Push",                 mode = { "n", "v" } },
-      -- { "<leader>gll",      ":Gllog<cr>",              desc = "Log",                  mode = { "n", "v" } },
+    "sindrets/diffview.nvim",
+    opts = {},
+    config = function()
+      local function file_history_to_diffview()
+        local builtin = require("telescope.builtin")
+        local actions = require("telescope.actions")
+        local action_state = require("telescope.actions.state")
 
-      { "<leader>vdh",      ":Gdiff :0<cr>",           desc = "Hunk",                 mode = { "n", "v" } },
-      { "<leader>vdm",      ":Gvdiffsplit master<cr>", desc = "With master",          mode = { "n", "v" } },
+        builtin.git_bcommits({
+          attach_mappings = function(prompt_bufnr, map)
+            -- Override 'Enter' to open Diffview
+            actions.select_default:replace(function()
+              actions.close(prompt_bufnr)
+              local selection = action_state.get_selected_entry()
+              -- selection.value is the commit hash
+              vim.cmd("DiffviewOpen " .. selection.value .. "^!" .. " -- " .. selection.path)
+            end)
+            return true
+          end,
+        })
+      end
 
-      { "<leader>vC",       ":Git mergetool<cr>",      desc = "Show merge conflicts", mode = { "n", "v" } },
-      { "<leader>vR",       ":Gvdiffsplit!<cr>",       desc = "Resolve conflicts",    mode = { "n", "v" } },
-      { "<localleader>vdT", ":diffget //3<cr>",        desc = "Accept theirs",        mode = { "n", "v" } },
-      { "<localleader>vdM", ":diffget //2<cr>",        desc = "Accept mine",          mode = { "n", "v" } },
+      -- Keymap example:
+      vim.keymap.set("n", "<leader>vh", file_history_to_diffview, { desc = "File git history (Diffview)" })
 
-      { "<localleader>vBf", ":Git blame<cr>",          desc = "Git blame",            mode = { "n", "v" } },
-    },
+      -- Helper for cleaner keymaps
+      local function map(mode, lhs, rhs, desc)
+        vim.keymap.set(mode, lhs, rhs, { desc = desc, silent = true })
+      end
+
+      -- 1. Current file with HEAD~1 (Previous version)
+      map("n", "<leader>vfp", "<cmd>DiffviewOpen HEAD~1 -- %<cr>", "Diff File: Previous Commit")
+
+      -- 2. Current file with a specific branch (Prompt for branch name)
+      map("n", "<leader>vfb", function()
+        local branch = vim.fn.input("Branch to compare: ")
+        if branch ~= "" then
+          vim.cmd("DiffviewOpen " .. branch .. " -- %")
+        end
+      end, "Diff File: Against Branch")
+
+      -- 3. Current file with HEAD (Uncommitted changes)
+      -- Note: DiffviewOpen with no args defaults to comparing current state vs Index/HEAD
+      map("n", "<leader>vfh", "<cmd>DiffviewOpen -- %<cr>", "Diff File: Against HEAD")
+
+      -- 4. Current STATE (All staged/unstaged) with HEAD
+      map("n", "<leader>vsh", "<cmd>DiffviewOpen<cr>", "Diff State: Against HEAD")
+
+      -- 5. Current STATE (All staged/unstaged) with Branch
+      map("n", "<leader>vsb", function()
+        local branch = vim.fn.input("Branch to compare: ")
+        if branch ~= "" then
+          vim.cmd("DiffviewOpen " .. branch)
+        end
+      end, "Diff State: Against Branch")
+
+      -- Bonus: Close the diff view easily
+      map("n", "<leader>dc", "<cmd>DiffviewClose<cr>", "Diff: Close View")
+    end
   },
 
   -- {
