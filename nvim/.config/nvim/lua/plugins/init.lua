@@ -30,6 +30,11 @@ return {
     opts = {},
   },
 
+  {
+    "chentoast/marks.nvim",
+    event = "VeryLazy",
+    opts = {},
+  },
   -- {
   --   "aaronhallaert/advanced-git-search.nvim",
   --   dependencies = {
