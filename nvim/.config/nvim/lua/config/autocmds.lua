@@ -124,3 +124,24 @@ vim.api.nvim_create_user_command('LspRestart', function()
     end
   end, 100) -- 100ms delay to ensure clients are stopped
 end, {})
+
+
+-- Show the result of a CLI cmd in a floating buffer
+vim.api.nvim_create_user_command('RunCmd', function(opts)
+  local buf = vim.api.nvim_create_buf(false, true)
+  local width = math.floor(vim.o.columns * 0.8)
+  local height = math.floor(vim.o.lines * 0.8)
+  local row = math.floor((vim.o.lines - height) / 2)
+  local col = math.floor((vim.o.columns - width) / 2)
+  local bufconf = {
+    relative = 'editor',
+    width = width,
+    height = height,
+    row = row,
+    col = col,
+    style = 'minimal',
+    border = 'rounded',
+  }
+  vim.api.nvim_open_win(buf, true, bufconf)
+  vim.cmd("read !" .. opts.args)
+end, { nargs = "*" })
