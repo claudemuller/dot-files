@@ -10,13 +10,24 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
+local md_group = vim.api.nvim_create_augroup("markdown-group", { clear = true })
+
 vim.api.nvim_create_autocmd("FileType", {
   desc = "Spell check markdown files",
   pattern = "*.md",
-  group = vim.api.nvim_create_augroup("markdown-group", { clear = true }),
+  group = md_group,
   callback = function()
     vim.opt.spell = true
     vim.opt.spelllang = "en_gb"
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  desc = "Set wrap on for markdown files",
+  pattern = "*.md",
+  group = md_group,
+  callback = function()
+    vim.opt.wrap = true
   end,
 })
 
