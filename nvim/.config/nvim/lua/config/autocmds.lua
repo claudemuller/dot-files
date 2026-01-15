@@ -125,9 +125,8 @@ vim.api.nvim_create_user_command('LspRestart', function()
   end, 100) -- 100ms delay to ensure clients are stopped
 end, {})
 
-
--- Show the result of a CLI cmd in a floating buffer
-vim.api.nvim_create_user_command('RunCmd', function(opts)
+-- TODO: move to functions.lua
+local mkfloat = function()
   local buf = vim.api.nvim_create_buf(false, true)
   local width = math.floor(vim.o.columns * 0.8)
   local height = math.floor(vim.o.lines * 0.8)
@@ -142,6 +141,42 @@ vim.api.nvim_create_user_command('RunCmd', function(opts)
     style = 'minimal',
     border = 'rounded',
   }
+
   vim.api.nvim_open_win(buf, true, bufconf)
+
+  return buf
+end
+
+-- Show the result of a CLI cmd in a floating buffer
+vim.api.nvim_create_user_command('RunCmd', function(opts)
+  mkfloat()
   vim.cmd("read !" .. opts.args)
 end, { nargs = "*" })
+
+-- Get LSP info
+vim.api.nvim_create_user_command("LSPInfo", function()
+  local clients = vim.lsp.get_active_clients()
+  if next(clients) == nil then
+    vim.notify("No active LSP clients")
+    return
+  end
+
+  local lspinfo = {}
+
+  local function add_lines(str)
+    for line in str:gmatch("[^\r\n]+") do
+      table.insert(lspinfo, line)
+    end
+  end
+
+  for _, client in pairs(clients) do
+    table.insert(lspinfo, "Name: " .. client.name)
+    table.insert(lspinfo, "Root: " .. (client.config.root_dir or "N/A"))
+    add_lines("Capabilities: " .. vim.inspect(client.server_capabilities))
+    table.insert(lspinfo, "--------------------------------------------------")
+    table.insert(lspinfo, "")
+  end
+
+  local buf = mkfloat() -- assuming mkfloat() creates a floating buffer
+  vim.api.nvim_buf_set_lines(buf, 0, -1, false, lspinfo)
+end, {})
