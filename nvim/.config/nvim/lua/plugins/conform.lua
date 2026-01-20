@@ -42,12 +42,7 @@ return {
           "false",
         },
       },
-      eslint_d = {
-        prepend_args = {
-          "--fix",
-          "--max-warnings", "0",
-        },
-      },
+      eslint_d = {},
     },
   },
 }
