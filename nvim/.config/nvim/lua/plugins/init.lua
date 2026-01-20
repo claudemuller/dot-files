@@ -60,6 +60,20 @@ return {
         })
       end
 
+      -- TODO: put in functions
+      local function get_main_branch()
+        local remote_head = vim.fn.systemlist("git symbolic-ref refs/remotes/origin/HEAD --short 2>/dev/null")[1]
+        if vim.v.shell_error == 0 and remote_head then
+          return remote_head -- Returns "origin/main" or "origin/master"
+        end
+
+        if vim.fn.system("git rev-parse --verify main 2>/dev/null") ~= "" then
+          return "main"
+        end
+
+        return "master"
+      end
+
       -- Keymap example:
       vim.keymap.set("n", "<leader>vh", file_history_to_diffview, { desc = "File git history (Diffview)" })
 
@@ -92,6 +106,12 @@ return {
         if branch ~= "" then
           vim.cmd("DiffviewOpen " .. branch)
         end
+      end, "Diff State: Against Branch")
+
+      -- 6. Current branch with main (changes on this branch)
+      map("n", "<leader>vdsb", function()
+        vim.cmd("DiffviewOpen origin/main... -- %")
+        -- vim.cmd("DiffviewOpen origin/" .. get_main_branch() .. "... -- %")
       end, "Diff State: Against Branch")
 
       -- Bonus: Close the diff view easily
