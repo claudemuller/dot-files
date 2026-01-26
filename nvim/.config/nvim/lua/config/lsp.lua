@@ -16,8 +16,8 @@ vim.lsp.config('*', {
 
 local lsps = {
   { "bashls" },
+  { "buf_ls" },
   { "ccls" },
-  { "docker_language_server" }, -- dockerls
   {
     "clangd",
     {
@@ -40,6 +40,7 @@ local lsps = {
     },
   },
   { "cssls" },
+  { "docker_language_server" }, -- dockerls
   { "eslint" },
   { "gitlab_ci_ls" },
   { "golangci_lint_ls" },
