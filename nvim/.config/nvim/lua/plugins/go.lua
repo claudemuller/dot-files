@@ -7,19 +7,19 @@ return {
       "nvim-treesitter/nvim-treesitter",
     },
     event = { "CmdlineEnter" },
-    ft = { "go", 'gomod' },
+    ft = { "go", "gomod" },
     build = ':lua require("go.install").update_all_sync()',
     opts = function()
-      require("go").setup()
+      require("go").setup(opts)
 
-      local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        pattern = "*.go",
-        callback = function()
-          require('go.format').goimports()
-        end,
-        group = format_sync_grp,
-      })
+      -- local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
+      -- vim.api.nvim_create_autocmd("BufWritePre", {
+      --   pattern = "*.go",
+      --   callback = function()
+      --     require("go.format").goimports()
+      --   end,
+      --   group = format_sync_grp,
+      -- })
       return {
         -- lsp_keymaps = false,
         -- other options
@@ -46,27 +46,27 @@ return {
       -- { '<leader>cs', ':GoPkgOutline<CR>', desc = '[C]ode [S]ymbols' },
     },
     config = function()
-      local function get_git_root()
-        local dot_git = vim.fn.finddir(".git", ".;")
-        return vim.fn.fnamemodify(dot_git, ":p:h:h")
-      end
-
-      vim.api.nvim_create_autocmd("BufWritePost", {
-        pattern = "*.go",
-        callback = function()
-          if get_git_root():find("repos/src") then
-            -- golangci-lint run --new-from-rev=HEAD~1
-            -- golangci-lint run --new-from-merge-base=main
-            vim.fn.jobstart({ "./bin/golangci-lint", "run", "--new-from-rev=HEAD~1", "--fix" }, {
-              on_exit = function(_, code)
-                if code == 0 then
-                  print("Golangci-lint ran successfully")
-                end
-              end,
-            })
-          end
-        end,
-      })
+      -- local function get_git_root()
+      --   local dot_git = vim.fn.finddir(".git", ".;")
+      --   return vim.fn.fnamemodify(dot_git, ":p:h:h")
+      -- end
+      --
+      -- vim.api.nvim_create_autocmd("BufWritePost", {
+      --   pattern = "*.go",
+      --   callback = function()
+      --     if get_git_root():find("repos/src") then
+      --       -- golangci-lint run --new-from-rev=HEAD~1
+      --       -- golangci-lint run --new-from-merge-base=main
+      --       vim.fn.jobstart({ "./bin/golangci-lint", "run", "--new-from-rev=HEAD~1", "--fix" }, {
+      --         on_exit = function(_, code)
+      --           if code == 0 then
+      --             print("Golangci-lint ran successfully")
+      --           end
+      --         end,
+      --       })
+      --     end
+      --   end,
+      -- })
     end,
   },
   {
