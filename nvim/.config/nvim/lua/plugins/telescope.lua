@@ -1,9 +1,9 @@
 return {
-  'nvim-telescope/telescope.nvim',
-  tag = 'v0.2.1',
+  "nvim-telescope/telescope.nvim",
+  tag = "v0.2.1",
   dependencies = {
-    'nvim-lua/plenary.nvim',
-    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+    "nvim-lua/plenary.nvim",
+    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   },
   config = function()
     local ts = require("telescope")
@@ -19,7 +19,7 @@ return {
       },
     })
 
-    local builtin = require('telescope.builtin')
+    local builtin = require("telescope.builtin")
 
     builtin.diagnostics({ severity_sort = true })
     ts.load_extension("fzf")
@@ -32,7 +32,7 @@ return {
     -- Find  --------------------------------------------------------------------------------------
 
     -- Find files
-    vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Find files' })
+    vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
     -- vim.keymap.set("n", "<leader>fF", function()
     --   builtin.find_files({ cwd = vim.fn.expand("%:p:h") })
     -- end, { desc = "Files in cwd" })
@@ -163,8 +163,8 @@ return {
 
     -- Find Misc ----------------------------------------------------------------------------------
 
-    vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = 'Find buffers' })
-    vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Find help tags' })
+    vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "Find buffers" })
+    vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find help tags" })
     vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "Find keymaps" })
     vim.keymap.set("n", "<leader>ft", builtin.builtin, { desc = "Find Telescope selects" })
     vim.keymap.set("n", "<leader>fr", builtin.registers, { desc = "Find registers" })
@@ -174,15 +174,15 @@ return {
 
     -- LSP ----------------------------------------------------------------------------------------
 
-    vim.keymap.set("n", "gd", builtin.lsp_definitions, { desc = "Go to definition" })
+    vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", { desc = "Go to definition" })
     vim.keymap.set("n", "gz", function()
       vim.cmd("vsplit")
       vim.lsp.buf.definition()
       vim.cmd("zt")
     end, { desc = "Split go to definition" })
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" })
-    vim.keymap.set("n", "gr", builtin.lsp_references, { desc = "Show references" })
-    vim.keymap.set("n", "gI", builtin.lsp_implementations, { desc = "Show implementations" })
+    vim.keymap.set("n", "grr", "<cmd>Telescope lsp_references<CR>", { desc = "Show references" })
+    vim.keymap.set("n", "gri", "<cmd>Telescope lsp_implementations<CR>", { desc = "Show implementations" })
 
     vim.keymap.set("n", "<leader>fz", function()
       local symbol = vim.fn.input("Symbol (default: under cursor): ")
@@ -230,8 +230,11 @@ return {
         local typ = result.contents.value:match("%s+([%w_]+)%s*$")
         if typ then
           -- Issue a second hover request on the type name
-          local new_params = vim.tbl_extend("force", params,
-            { position = { line = params.position.line, character = params.position.character } })
+          local new_params = vim.tbl_extend(
+            "force",
+            params,
+            { position = { line = params.position.line, character = params.position.character } }
+          )
           vim.lsp.buf_request(0, "textDocument/hover", new_params, function(_, res, _, _)
             if res then
               vim.lsp.util.open_floating_preview(vim.lsp.util.convert_input_to_markdown_lines(res.contents), "markdown")
@@ -244,11 +247,11 @@ return {
     -- Config -------------------------------------------------------------------------------------
 
     -- Find in Neovim config
-    vim.keymap.set('n', '<leader>en', function()
+    vim.keymap.set("n", "<leader>en", function()
       local opts = require("telescope.themes").get_ivy({
-        cwd = vim.fn.stdpath("config")
+        cwd = vim.fn.stdpath("config"),
       })
       builtin.find_files(opts)
-    end, { desc = 'Telescope Neovim config' })
-  end
+    end, { desc = "Telescope Neovim config" })
+  end,
 }
