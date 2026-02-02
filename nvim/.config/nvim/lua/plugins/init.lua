@@ -36,6 +36,30 @@ return {
     opts = {},
   },
 
+  -- {
+  --   "tpope/vim-fugitive",
+  --   dependencies = {
+  --     "tpope/vim-rhubarb",
+  --   },
+  --   keys = {
+  --     -- { "<leader>gs",       ":Git<cr>",                desc = "Status",               mode = { "n", "v" } },
+  --     -- { "<leader>gc",       ":Git commit<cr>",         desc = "Commit",               mode = { "n", "v" } },
+  --     -- { "<leader>gp",       ":Git pull<cr>",           desc = "Pull",                 mode = { "n", "v" } },
+  --     -- { "<leader>gP",       ":Git push<cr>",           desc = "Push",                 mode = { "n", "v" } },
+  --     -- { "<leader>gll",      ":Gllog<cr>",              desc = "Log",                  mode = { "n", "v" } },
+  --     --
+  --     -- { "<leader>gdh",      ":Gdiff :0<cr>",           desc = "Hunk",                 mode = { "n", "v" } },
+  --     -- { "<leader>gdm",      ":Gvdiffsplit master<cr>", desc = "With master",          mode = { "n", "v" } },
+  --
+  --     { "<leader>vC",       ":Git mergetool<cr>", desc = "Show merge conflicts", mode = { "n", "v" } },
+  --     { "<leader>vR",       ":Gvdiffsplit!<cr>",  desc = "Resolve conflicts",    mode = { "n", "v" } },
+  --     { "<localleader>vdT", ":diffget //3<cr>",   desc = "Accept theirs",        mode = { "n", "v" } },
+  --     { "<localleader>vdM", ":diffget //2<cr>",   desc = "Accept mine",          mode = { "n", "v" } },
+  --
+  --     -- { "<localleader>gBf", ":Git blame<cr>",          desc = "Git blame",            mode = { "n", "v" } },
+  --   },
+  -- },
+
   -- TODO: clean this up :)
   {
     "sindrets/diffview.nvim",
