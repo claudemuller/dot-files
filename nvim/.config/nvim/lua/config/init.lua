@@ -41,7 +41,7 @@ vim.opt.winblend = 0                                    -- Floating window trans
 vim.opt.conceallevel = 0                                -- Don't hide markup
 vim.opt.concealcursor = ""                              -- Don't hide cursor line markup
 vim.opt.synmaxcol = 300                                 -- Syntax highlighting limit
-vim.o.winbar = '%F%='                                   -- Add the full path in the winbar
+vim.o.winbar = "%F%="                                   -- Add the full path in the winbar
 
 -- File handling
 vim.opt.backup = false                            -- Don't create backup files
@@ -79,6 +79,13 @@ vim.opt.foldlevel = 99                          -- Start with all folds open
 -- Split behavior
 vim.opt.splitbelow = true -- Horizontal splits go below
 vim.opt.splitright = true -- Vertical splits go right
+
+-- UI
+vim.diagnostic.config({
+  float = {
+    border = "rounded",
+  },
+})
 
 -- Neovide
 if vim.g.neovide then
