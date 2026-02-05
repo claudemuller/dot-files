@@ -79,16 +79,16 @@ local lsps = {
       },
     },
   },
-  {
-    "ltex",
-    {
-      settings = {
-        filetypes = { "markdown", "text" },
-        flags = { debounce_text_changes = 300 },
-        language = "en-GB",
-      },
-    },
-  },
+  -- {
+  --   "ltex",
+  --   {
+  --     settings = {
+  --       filetypes = { "markdown", "text" },
+  --       flags = { debounce_text_changes = 300 },
+  --       language = "en-GB",
+  --     },
+  --   },
+  -- },
   { "marksman" },
   { "ols" },
   { "powershell_es" },
