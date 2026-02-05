@@ -337,6 +337,7 @@ floating_layout = layout.Floating(
         Match(title="Android Emulator.*"),
         Match(title="Burp Suite Pro Loader & Keygen"),
         Match(title="remmina"),
+        Match(title="Boox Product Change"),
     ]
 )
 

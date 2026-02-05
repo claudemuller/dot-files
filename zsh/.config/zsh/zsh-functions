@@ -112,7 +112,7 @@ function yy() {
 }
 
 function fzf_dirs() {
-    fd -H --type d . | fzf
+    fd -H --type d . | fzf --preview 'bat --style=numbers --color=always {} | head -n 50'
 }
 
 # ------------------------------------------------------------------------------------- Zsh Widgets

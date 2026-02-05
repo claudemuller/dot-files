@@ -19,6 +19,7 @@ return {
       lua = { "stylua" },
       markdown = { "prettier" },
       python = { "isort", "black" },
+      sql = { "sqlfmt" },
       typescript = { "eslint_d", "prettierd", "prettier", stop_after_first = true },
       typescriptreact = { "eslint_d", "prettierd", "prettier", stop_after_first = true },
       yaml = { "yamlfmt" },
@@ -43,6 +44,11 @@ return {
         },
       },
       eslint_d = {},
+      sqlfmt = {
+        command = "sqlfmt",
+        args = {},
+        stdin = true,
+      },
     },
   },
 }
