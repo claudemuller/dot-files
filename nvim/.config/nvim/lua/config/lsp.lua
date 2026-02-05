@@ -16,7 +16,7 @@ vim.lsp.config("*", {
 
 local lsps = {
   { "bashls" },
-  { "buf_ls" },
+  -- { "buf_ls" },
   { "ccls" },
   {
     "clangd",
