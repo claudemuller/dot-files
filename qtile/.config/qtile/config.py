@@ -1,13 +1,13 @@
 import os
 import re
 import subprocess
-from libqtile import bar, layout, hook, widget
-from libqtile.config import Click, Drag, DropDown, Group, Key, Match, Screen, ScratchPad
+
+import noir as theme
+from libqtile import bar, hook, layout, widget
+from libqtile.config import Click, Drag, DropDown, Group, Key, Match, ScratchPad, Screen
 from libqtile.lazy import lazy
 from qtile_extras import widget
-from qtile_extras.widget.decorations import RectDecoration, PowerLineDecoration
-import noir as theme
-import subprocess
+from qtile_extras.widget.decorations import PowerLineDecoration, RectDecoration
 
 # -------------------------------------------------------------------------------------------------#
 #                                             Vars                                                #
@@ -17,7 +17,7 @@ mod = "mod1"
 terminal = "wezterm"
 home = os.path.expanduser("~")
 conf_dir = os.path.dirname(os.path.abspath(__file__))
-colours = theme.Noir('base')
+colours = theme.Noir("base")
 
 # -------------------------------------------------------------------------------------------------#
 #                                             Keys                                                #
@@ -97,6 +97,12 @@ keys = [
         "t",
         lazy.spawn(home + "/.config/qtile/scripts/tmuxer"),
         desc="Launch TMUX manager",
+    ),
+    Key(
+        [mod, "control"],
+        "w",
+        lazy.spawn(home + "/.config/qtile/scripts/web-search"),
+        desc="Search the web",
     ),
     Key(
         [mod, "control"],
@@ -338,7 +344,7 @@ floating_layout = layout.Floating(
         Match(title="Burp Suite Pro Loader & Keygen"),
         Match(title="remmina"),
         Match(title="Boox Product Change"),
-    ]
+    ],
 )
 
 
@@ -346,11 +352,7 @@ floating_layout = layout.Floating(
 #                                             Bars                                                #
 # -------------------------------------------------------------------------------------------------#
 
-powerline_f = {
-    "decorations": [
-        PowerLineDecoration(path="forward_slash")
-    ]
-}
+powerline_f = {"decorations": [PowerLineDecoration(path="forward_slash")]}
 powerline_fp = {
     "decorations": [
         PowerLineDecoration(
@@ -359,11 +361,7 @@ powerline_fp = {
         )
     ]
 }
-powerline_b = {
-    "decorations": [
-        PowerLineDecoration(path="back_slash")
-    ]
-}
+powerline_b = {"decorations": [PowerLineDecoration(path="back_slash")]}
 powerline_bp = {
     "decorations": [
         PowerLineDecoration(
@@ -422,7 +420,6 @@ widget_opts = [
         foreground=colours["text"],
         **powerline_b,
     ),
-
     widget.WindowName(
         fontsize=12,
         padding=5,
@@ -437,7 +434,6 @@ widget_opts = [
         },
         name_transform=lambda name: name.upper(),
     ),
-
     widget.Spacer(
         length=10,
         foreground=colours["text"],
@@ -446,13 +442,12 @@ widget_opts = [
     ),
     widget.OpenWeather(
         location="Stockholm",
-        format='{location_city}: {icon} {main_temp}',
+        format="{location_city}: {icon} {main_temp}",
         padding=5,
         foreground=colours["text"],
         background=colours["bg"],
         **powerline_f,
     ),
-
     widget.TextBox(
         foreground=colours["text"],
         fmt="",
@@ -467,7 +462,6 @@ widget_opts = [
         border_color=colours["comment"],
         **powerline_fp,
     ),
-
     widget.TextBox(
         foreground=colours["text"],
         fmt="",
@@ -484,7 +478,6 @@ widget_opts = [
         background=colours["bg"],
         **powerline_fp,
     ),
-
     # widget.Wlan(interface="wlan0"),
     widget.TextBox(
         foreground=colours["text"],
@@ -500,7 +493,6 @@ widget_opts = [
         border_color=colours["comment"],
         **powerline_fp,
     ),
-
     widget.TextBox(
         foreground=colours["text"],
         fmt="󰕾",
@@ -511,12 +503,11 @@ widget_opts = [
     ),
     # widget.PulseVolume(),
     widget.Volume(
-        channel='Master',
+        channel="Master",
         foreground=colours["fg"],
         background=colours["bg"],
         **powerline_fp,
     ),
-
     widget.TextBox(
         foreground=colours["text"],
         fmt="󱃂",
@@ -525,12 +516,11 @@ widget_opts = [
         **powerline_f,
     ),
     widget.ThermalSensor(
-        tag_sensor='Package id 0',
+        tag_sensor="Package id 0",
         format="{temp:.1f}{unit}",
         foreground=colours["fg"],
         **powerline_fp,
     ),
-
     # widget.Bluetooth(),
     widget.TextBox(
         fmt="",
@@ -551,7 +541,6 @@ widget_opts = [
         background=colours["bg"],
         **powerline_fp,
     ),
-
     widget.CheckUpdates(
         distro="Arch",
         no_update_string="",
@@ -570,7 +559,6 @@ widget_opts = [
         foreground=colours["fg"],
         **powerline_f,
     ),
-
     widget.Clock(
         format="%Y-%m-%d %a %H:%M %p",
         padding=5,
@@ -697,12 +685,14 @@ def start_once():
     home = os.path.expanduser("~")
     subprocess.call([home + "/.config/qtile/autostart.sh"])
 
+
 @hook.subscribe.client_focus
 def update_all_windownames(client):
     for screen in qtile.screens:
         for w in screen.bar.widgets:
             if w.__class__.__name__ == "WindowName":
                 w.update()
+
 
 # @hook.subscribe.client_focus
 @hook.subscribe.screen_change
@@ -711,6 +701,7 @@ def update_window_name(client):
         for widget in bar.widgets:
             if hasattr(widget, "update"):
                 widget.update()
+
 
 # @hook.subscribe.screen_change
 # def restart_on_randr(qtile, ev):
