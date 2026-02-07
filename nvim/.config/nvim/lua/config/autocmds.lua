@@ -45,8 +45,8 @@ vim.api.nvim_create_autocmd("LspProgress", {
       id = "lsp_progress",
       title = "LSP Progress",
       opts = function(notif)
-        notif.icon = ev.data.params.value.kind == "end" and " " or
-            spinner[math.floor(vim.uv.hrtime() / (1e6 * 80)) % #spinner + 1]
+        notif.icon = ev.data.params.value.kind == "end" and " "
+          or spinner[math.floor(vim.uv.hrtime() / (1e6 * 80)) % #spinner + 1]
       end,
     })
   end,
@@ -56,20 +56,28 @@ local parse_file_str = function(arg)
   local file, line, col
 
   -- foo.lua:12:5
-  file, line, col = arg:match('^(.-):(%d+):(%d+)$')
-  if file then return file, tonumber(line), tonumber(col) end
+  file, line, col = arg:match("^(.-):(%d+):(%d+)$")
+  if file then
+    return file, tonumber(line), tonumber(col)
+  end
 
   -- foo.lua:10
-  file, line = arg:match('^(.-):(%d+)$')
-  if file then return file, tonumber(line), 0 end
+  file, line = arg:match("^(.-):(%d+)$")
+  if file then
+    return file, tonumber(line), 0
+  end
 
   -- foo.lua(12:5)
-  file, line, col = arg:match('^(.-)%((%d+):(%d+)%)$')
-  if file then return file, tonumber(line), tonumber(col) end
+  file, line, col = arg:match("^(.-)%((%d+):(%d+)%)$")
+  if file then
+    return file, tonumber(line), tonumber(col)
+  end
 
   -- foo.lua(10)
-  file, line = arg:match('^(.-)%((%d+)%)$')
-  if file then return file, tonumber(line), 0 end
+  file, line = arg:match("^(.-)%((%d+)%)$")
+  if file then
+    return file, tonumber(line), 0
+  end
 
   -- plain filename
   return arg, 0, 0
@@ -78,7 +86,9 @@ end
 local parse_file_loc = function(filenames)
   for _, filename in ipairs(filenames) do
     local file, line, col = parse_file_str(filename)
-    if not file then return end
+    if not file then
+      return
+    end
 
     -- TODO: if more than one file, open other files in tabs
     vim.cmd.edit(vim.fn.fnameescape(file))
@@ -104,14 +114,14 @@ end
 --   end,
 -- })
 
-vim.api.nvim_create_user_command('LspRestart', function()
+vim.api.nvim_create_user_command("LspRestart", function()
   local bufnr = vim.api.nvim_get_current_buf()
   local clients = vim.lsp.get_active_clients({ bufnr = bufnr })
   local configs = {}
 
   -- Save the config names of the attached clients
   for _, client in ipairs(clients) do
-    if client.name and require('lspconfig')[client.name] then
+    if client.name and require("lspconfig")[client.name] then
       table.insert(configs, client.name)
     end
     client.stop()
@@ -120,7 +130,7 @@ vim.api.nvim_create_user_command('LspRestart', function()
   -- Give some time to stop, then restart the same servers
   vim.defer_fn(function()
     for _, name in ipairs(configs) do
-      require('lspconfig')[name].manager.try_add_wrapper(bufnr)
+      require("lspconfig")[name].manager.try_add_wrapper(bufnr)
     end
   end, 100) -- 100ms delay to ensure clients are stopped
 end, {})
@@ -133,13 +143,13 @@ local mkfloat = function()
   local row = math.floor((vim.o.lines - height) / 2)
   local col = math.floor((vim.o.columns - width) / 2)
   local bufconf = {
-    relative = 'editor',
+    relative = "editor",
     width = width,
     height = height,
     row = row,
     col = col,
-    style = 'minimal',
-    border = 'rounded',
+    style = "minimal",
+    border = "rounded",
   }
 
   vim.api.nvim_open_win(buf, true, bufconf)
@@ -148,13 +158,13 @@ local mkfloat = function()
 end
 
 -- Show the result of a CLI cmd in a floating buffer
-vim.api.nvim_create_user_command('RunCmd', function(opts)
+vim.api.nvim_create_user_command("RunCmd", function(opts)
   mkfloat()
   vim.cmd("read !" .. opts.args)
 end, { nargs = "*" })
 
 -- Get LSP info
-vim.api.nvim_create_user_command("LSPInfo", function()
+vim.api.nvim_create_user_command("LspInfo", function()
   local clients = vim.lsp.get_active_clients()
   if next(clients) == nil then
     vim.notify("No active LSP clients")
