@@ -110,3 +110,37 @@ vim.keymap.set("n", "<M-p>", "<cmd>:cprev<CR>", { desc = "Previous quickfix entr
 vim.keymap.set("n", "<leader>x", "<cmd>source %<CR>", { desc = "Source current buffer" })
 vim.keymap.set("n", "<leader>X", ":.lua<CR>", { desc = "Source current line" })
 vim.keymap.set("v", "<leader>X", ":lua<CR>", { desc = "Source current line" })
+
+
+
+function RunCmdOnSelection()
+  -- Get visual selection
+  local start_pos = vim.fn.getpos("'<")
+  local end_pos = vim.fn.getpos("'>")
+  local lines = vim.fn.getline(start_pos[2], end_pos[2])
+
+  -- If selection is single-line, trim to selected columns
+  if #lines == 1 then
+    lines[1] = string.sub(lines[1], start_pos[3], end_pos[3])
+  else
+    lines[#lines] = string.sub(lines[#lines], 1, end_pos[3])
+    lines[1] = string.sub(lines[1], start_pos[3])
+  end
+
+  -- Join lines to a single command
+  local cmd = table.concat(lines, "\n")
+
+  -- Run shell command
+  local output = vim.fn.system(cmd)
+
+  -- Replace selection with output
+  vim.fn.setline(start_pos[2], vim.split(output, "\n"))
+
+  -- If multi-line, delete extra lines
+  if end_pos[2] > start_pos[2] then
+    vim.api.nvim_buf_set_lines(0, start_pos[2], end_pos[2], false, {})
+  end
+end
+
+vim.api.nvim_set_keymap('v', '<leader>R', ':lua RunCmdOnSelection()<CR>',
+  { desc = "Run command in selection", noremap = true, silent = true })

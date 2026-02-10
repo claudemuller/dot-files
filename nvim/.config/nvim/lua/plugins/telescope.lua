@@ -31,6 +31,13 @@ return {
 
     -- Find  --------------------------------------------------------------------------------------
 
+    -- TODO:(claude) move to funcitons
+
+    local function find_parent_dir(name)
+      local dir = vim.fn.expand("%:p:h")
+      return vim.fs.find(name, { upward = true, type = "directory", path = dir })[1]
+    end
+
     -- Find files
     vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
     -- vim.keymap.set("n", "<leader>fF", function()
@@ -42,8 +49,7 @@ return {
       local get_start_dir = function()
         -- local input = vim.fn.input 'Start dir: '
         local input = vim.fn.input("Start dir: ", "", "dir")
-        local base = vim.fn.expand("%:p:h")                   -- current buffer's directory
-        return vim.fn.fnamemodify(base .. "/" .. input, ":p") -- resolve relative to buffer dir
+        return find_parent_dir(input)
       end
 
       builtin.find_files({ cwd = get_start_dir() })
