@@ -144,3 +144,10 @@ end
 
 vim.api.nvim_set_keymap('v', '<leader>R', ':lua RunCmdOnSelection()<CR>',
   { desc = "Run command in selection", noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader>la", function()
+  for _, client in ipairs(vim.lsp.get_active_clients()) do
+    vim.lsp.buf_attach_client(0, client.id)
+  end
+  print("LSP attached")
+end, { desc = "Force attach LSP to buffer" })

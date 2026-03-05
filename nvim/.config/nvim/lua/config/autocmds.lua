@@ -46,7 +46,7 @@ vim.api.nvim_create_autocmd("LspProgress", {
       title = "LSP Progress",
       opts = function(notif)
         notif.icon = ev.data.params.value.kind == "end" and " "
-          or spinner[math.floor(vim.uv.hrtime() / (1e6 * 80)) % #spinner + 1]
+            or spinner[math.floor(vim.uv.hrtime() / (1e6 * 80)) % #spinner + 1]
       end,
     })
   end,
@@ -190,3 +190,23 @@ vim.api.nvim_create_user_command("LspInfo", function()
   local buf = mkfloat() -- assuming mkfloat() creates a floating buffer
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, lspinfo)
 end, {})
+
+-- Get LSP in diffviews
+vim.api.nvim_create_autocmd("BufReadPost", {
+  pattern = "*",
+  callback = function()
+    local bufnr = vim.api.nvim_get_current_buf()
+    local buftype = vim.bo[bufnr].buftype
+
+    if buftype == "nowrite" then
+      -- Get the filepath from the buffer name, strip diffview prefix
+      local fname = vim.api.nvim_buf_get_name(bufnr)
+      -- Try to start LSP clients that would match this file
+      for _, client in ipairs(vim.lsp.get_active_clients()) do
+        if not vim.lsp.buf_is_attached(bufnr, client.id) then
+          vim.lsp.buf_attach_client(bufnr, client.id)
+        end
+      end
+    end
+  end,
+})
