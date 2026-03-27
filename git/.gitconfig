@@ -1,63 +1,79 @@
 [core]
-	trustctime = false
-	filemode = false
-	preloadindex = true
-	fscache = true
-	autocrlf = input
-	pager = delta
+  trustctime = false
+  filemode = false
+  preloadindex = true
+  fscache = true
+  autocrlf = input
+  pager = delta
+
 [color]
-	ui = auto
+  ui = auto
+
 [push]
-	default = current
+  default = current
+
 [pull]
-	rebase = false
+  rebase = false
+
 [alias]
-	last = log -1 --stat
-	cp = cherry-pick
-	co = !"echo '- Use gco instead of git co' >&2; exit "
-	cl = !"echo '- Use gcl instead of git cl' >&2; exit "
-	ci = !"echo '- Use gci instead of git ci' >&2; exit "
-	cm = !"echo '- Use gcm instead of git cm' >&2; exit "
-	st = !"echo '- Use gst instead of git st' >&2; exit "
-	s = !"echo '- Use gs instead of git s' >&2; exit "
-	pp = !"echo '- Use gpp instead of git pp' >&2; exit "
-	p = !"echo '- Use gp instead of git p' >&2; exit "
-	a = !"echo '- Use ga instead of git a' >&2; exit "
-	br = !"echo '- Use gbr instead of git br' >&2; exit "
-	unstage = reset HEAD --
-	dc = diff --cached
-	lg = !"echo '- Use glg instead of git lg' >&2; exit "
-	ls = !"echo '- Use gls instead of git ls' >&2; exit "
-	ll = !"echo '- Use gll instead of git ll' >&2; exit "
-	lds = !"echo '- Use glds instead of git lds' >&2; exit "
-	ld = !"echo '- Use gld instead of git ld' >&2; exit "
-	bs = for-each-ref --format='%(committerdate) %09 %(authorname) %09 %(refname)'
-	behind-ahead = !sh -c 'git "for-each-ref --format=\"%(refname:short) %(upstream:track)\" refs/heads"'
-	br = !git fetch && git behind-ahead
-	checkconflicts = diff -S "<<<<<<< HEAD" -S "=======" -S ">>>>>>> $(git name-rev --name-only MERGE_HEAD)" HEAD
-	example = !sh -c 'echo "Merge branch ${1} into ${1}"' -
+  last = log -1 --stat
+  cp = cherry-pick
+  co = !"echo '- Use gco instead of git co' >&2; exit "
+  cl = !"echo '- Use gcl instead of git cl' >&2; exit "
+  ci = !"echo '- Use gci instead of git ci' >&2; exit "
+  cm = !"echo '- Use gcm instead of git cm' >&2; exit "
+  st = !"echo '- Use gst instead of git st' >&2; exit "
+  s = !"echo '- Use gs instead of git s' >&2; exit "
+  pp = !"echo '- Use gpp instead of git pp' >&2; exit "
+  p = !"echo '- Use gp instead of git p' >&2; exit "
+  a = !"echo '- Use ga instead of git a' >&2; exit "
+  br = !"echo '- Use gbr instead of git br' >&2; exit "
+  unstage = reset HEAD --
+  dc = diff --cached
+  lg = !"echo '- Use glg instead of git lg' >&2; exit "
+  ls = !"echo '- Use gls instead of git ls' >&2; exit "
+  ll = !"echo '- Use gll instead of git ll' >&2; exit "
+  lds = !"echo '- Use glds instead of git lds' >&2; exit "
+  ld = !"echo '- Use gld instead of git ld' >&2; exit "
+  bs = for-each-ref --format='%(committerdate) %09 %(authorname) %09 %(refname)'
+  behind-ahead = !sh -c 'git "for-each-ref --format=\"%(refname:short) %(upstream:track)\" refs/heads"'
+  br = !git fetch && git behind-ahead
+  checkconflicts = diff -S "<<<<<<< HEAD" -S "=======" -S ">>>>>>> $(git name-rev --name-only MERGE_HEAD)" HEAD
+  example = !sh -c 'echo "Merge branch ${1} into ${1}"' -
+
 [user]
-	name = Claude Müller
-	email = ${GIT_AUTHOR_EMAIL}
+  name = Claude Müller
+  email = ${GIT_AUTHOR_EMAIL}
+
 [interactive]
-	diffFilter = delta --color-only
+  diffFilter = delta --color-only
+
 [delta]
-	navigate = true    # use n and N to move between diff sections
-	light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+  navigate = true    # use n and N to move between diff sections
+  light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+
 [merge]
-	; conflictstyle = diff3
-	; tool = nvim -c ":DiffviewOpen"
-	tool = nvimdiff
-[mergetool "vimdiff"]
-	layout = BASE,MERGED + BASE,LOCAL + BASE,REMOTE
+  tool = nvimdiff
+  conflictstyle = diff3
+
+[mergetool "nvimdiff"]
+  cmd = nvim -c ":DiffviewOpen"
+  trustExitCode = false
+
+[mergetool]
+  prompt = false
+
 [diff]
-	colorMoved = default
-	; tool = nvim -c ":DiffviewOpen"
-	tool = nvimdiff
+  tool = nvimdiff
+
+[difftool "nvimdiff"]
+  cmd = nvim -c ":DiffviewOpen"
+
 [credential]
-	helper = store
+  helper = store
+
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true

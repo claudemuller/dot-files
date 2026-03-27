@@ -1,0 +1,12 @@
+#!/bin/bash
+
+LPATH="$(
+	cd "$(dirname "$0")"
+	pwd -P
+)"
+
+msg_header="web search"
+
+rofi_cmd="rofi -theme $LPATH/rasi/wide.rasi"
+
+$rofi_cmd -dmenu -i -p "$msg_header: " | "$HOME/.config/rofi/scripts/web-search"

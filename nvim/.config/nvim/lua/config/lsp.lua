@@ -3,21 +3,21 @@
 -----------------------------------------------------------------------
 
 -- Default LSP config
-vim.lsp.config('*', {
+vim.lsp.config("*", {
   capabilities = {
     textDocument = {
       semanticTokens = {
         multilineTokenSupport = true,
-      }
-    }
+      },
+    },
   },
-  root_markers = { '.git' },
+  root_markers = { ".git" },
 })
 
 local lsps = {
   { "bashls" },
+  -- { "buf_ls" },
   { "ccls" },
-  { "docker_language_server" }, -- dockerls
   {
     "clangd",
     {
@@ -40,6 +40,7 @@ local lsps = {
     },
   },
   { "cssls" },
+  { "docker_language_server" }, -- dockerls
   { "eslint" },
   { "gitlab_ci_ls" },
   { "golangci_lint_ls" },
@@ -78,22 +79,35 @@ local lsps = {
       },
     },
   },
-  {
-    "ltex",
-    {
-      settings = {
-        filetypes = { "markdown", "text" },
-        flags = { debounce_text_changes = 300 },
-        language = "en-GB",
-      },
-    },
-  },
+  -- {
+  --   "ltex",
+  --   {
+  --     settings = {
+  --       filetypes = { "markdown", "text" },
+  --       flags = { debounce_text_changes = 300 },
+  --       language = "en-GB",
+  --     },
+  --   },
+  -- },
   { "marksman" },
   { "ols" },
   { "powershell_es" },
   { "pyright" },
   { "rust_analyzer" },
-  { "sqls" },
+  -- { "sql-language-server", -- cmd = { "sql-language-server", "up", "--method", "stdio" } },
+  -- {
+  --   "sqls",
+  --   settings = {
+  --     sqls = {
+  --       connections = {
+  --         {
+  --           driver = "postgresql",
+  --           dataSourceName = "user=postgres password=secret host=127.0.0.1 port=5432 dbname=mydb sslmode=disable",
+  --         },
+  --       },
+  --     },
+  --   },
+  -- },
   { "ts_ls" },
 }
 
@@ -144,15 +158,17 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)
-    if not client then return end
+    if not client then
+      return
+    end
 
     if client.supports_method("textDocument/formatting") then
       vim.api.nvim_create_autocmd("BufWritePre", {
         buffer = args.buf,
         callback = function()
           vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
-        end
+        end,
       })
     end
-  end
+  end,
 })

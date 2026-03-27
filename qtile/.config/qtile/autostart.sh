@@ -56,3 +56,7 @@ if [[ "$(uname -n)" == "loki" ]]; then
 if [ -x "$(command -v autorandr)" ]; then
 	autorandr --change
 fi
+
+if [ -f "$HOME/code/bash/link-checker" ]; then
+  $HOME/code/bash/link-checker
+fi

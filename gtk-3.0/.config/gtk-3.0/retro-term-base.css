@@ -1,0 +1,50 @@
+/* RetroTerm - Base Palette */
+@define-color bg #120f09;
+@define-color bg_light #1e1812;
+@define-color select #2a2018;
+@define-color comment #5a4632;
+@define-color fg #8a704e;
+@define-color text #c09048;
+@define-color highlight #d8a860;
+
+/* Window and background */
+window,
+.view {
+	background-color: @bg;
+	color: @text;
+}
+
+/* Entry / Text input */
+entry,
+textview {
+	background-color: @bg_light;
+	color: @text;
+	selection-background-color: @select;
+	selection-color: @text;
+}
+
+/* Buttons */
+button {
+	background-color: @highlight;
+	color: @bg;
+	border-radius: 4px;
+}
+
+/* Hovered / active buttons */
+button:hover,
+button:active {
+	background-color: @fg;
+	color: @bg;
+}
+
+/* Labels / secondary text */
+label,
+.label {
+	color: @fg;
+}
+
+/* Tooltips / comments */
+tooltip {
+	background-color: @bg_light;
+	color: @comment;
+}

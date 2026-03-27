@@ -41,7 +41,24 @@ vim.opt.winblend = 0                                    -- Floating window trans
 vim.opt.conceallevel = 0                                -- Don't hide markup
 vim.opt.concealcursor = ""                              -- Don't hide cursor line markup
 vim.opt.synmaxcol = 300                                 -- Syntax highlighting limit
-vim.o.winbar = '%F%='                                   -- Add the full path in the winbar
+vim.o.winbar = "%F%="                                   -- Add the full path in the winbar
+-- What to do with lists of actions to choose like code actions
+vim.ui.select = vim.ui.select or function(items, opts, on_choice)
+  local choices = {}
+  for i, item in ipairs(items) do
+    choices[i] = string.format("%d: %s", i, opts.format_item(item))
+  end
+  vim.ui.input({
+    prompt = opts.prompt .. " (choose number): ",
+  }, function(input)
+    local choice = tonumber(input)
+    if choice and items[choice] then
+      on_choice(items[choice])
+    else
+      on_choice(nil)
+    end
+  end)
+end
 
 -- File handling
 vim.opt.backup = false                            -- Don't create backup files
@@ -60,10 +77,8 @@ vim.opt.hidden = true                   -- Allow hidden buffers
 vim.opt.errorbells = false              -- No error bells
 vim.opt.backspace = "indent,eol,start"  -- Better backspace behavior
 vim.opt.autochdir = false               -- Don't auto change directory
-vim.opt.iskeyword:append("-")           -- Treat dash as part of word
 vim.opt.path:append("**")               -- include subdirectories in search
 vim.opt.wildignore:append("**/node_modules/**,**/.git/**,**/target/**,**/dist/**")
-vim.opt.selection = "exclusive"         -- Selection behavior
 vim.opt.mouse = "a"                     -- Enable mouse support
 vim.opt.clipboard:append("unnamedplus") -- Use system clipboard
 vim.opt.modifiable = true               -- Allow buffer modifications
@@ -81,6 +96,13 @@ vim.opt.foldlevel = 99                          -- Start with all folds open
 -- Split behavior
 vim.opt.splitbelow = true -- Horizontal splits go below
 vim.opt.splitright = true -- Vertical splits go right
+
+-- UI
+vim.diagnostic.config({
+  float = {
+    border = "rounded",
+  },
+})
 
 -- Neovide
 if vim.g.neovide then

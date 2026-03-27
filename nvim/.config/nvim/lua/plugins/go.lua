@@ -6,6 +6,9 @@ return {
       "neovim/nvim-lspconfig",
       "nvim-treesitter/nvim-treesitter",
     },
+    event = { "CmdlineEnter" },
+    ft = { "go", "gomod" },
+    build = ':lua require("go.install").update_all_sync()',
     keys = {
       --   { '<leader>Tf', ':GoTestFunc<CR>', desc = '[T]est [f]unction' },
       --   { '<leader>TF', ':GoTestFile<CR>', desc = '[T]est [F]ile' },
@@ -26,25 +29,6 @@ return {
       -- { '<leader>cd', 'zy:GoDoc <C-r>z<CR>', desc = '[C]ode Go[D]ocs Under Cursor', mode = 'v' },
       -- { '<leader>cs', ':GoPkgOutline<CR>', desc = '[C]ode [S]ymbols' },
     },
-    opts = function()
-      require("go").setup()
-
-      local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        pattern = "*.go",
-        callback = function()
-          require('go.format').goimports()
-        end,
-        group = format_sync_grp,
-      })
-      return {
-        -- lsp_keymaps = false,
-        -- other options
-      }
-    end,
-    event = { "CmdlineEnter" },
-    ft = { "go", 'gomod' },
-    build = ':lua require("go.install").update_all_sync()'
   },
   {
     "leoluz/nvim-dap-go",

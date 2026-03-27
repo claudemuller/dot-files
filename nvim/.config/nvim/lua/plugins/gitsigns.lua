@@ -1,22 +1,58 @@
+local function switch_base()
+  local pickers = require("telescope.pickers")
+  local finders = require("telescope.finders")
+  local conf = require("telescope.config").values
+  local actions = require("telescope.actions")
+  local action_state = require("telescope.actions.state")
+
+  -- Get all branches
+  local branches = vim.fn.systemlist("git branch -a --format='%(refname:short)'")
+
+  -- Prepend a reset option
+  table.insert(branches, 1, "  [reset to HEAD]")
+
+  pickers.new({}, {
+    prompt_title = "Gitsigns Base Branch",
+    finder = finders.new_table({ results = branches }),
+    sorter = conf.generic_sorter({}),
+    attach_mappings = function(prompt_bufnr)
+      actions.select_default:replace(function()
+        local selection = action_state.get_selected_entry()
+        actions.close(prompt_bufnr)
+
+        if selection[1] == "  [reset to HEAD]" then
+          require("gitsigns").reset_base(true)
+          vim.notify("gitsigns: reset base to HEAD", vim.log.levels.INFO)
+        else
+          local branch = vim.trim(selection[1])
+          require("gitsigns").change_base(branch, true)
+          vim.notify("gitsigns: base → " .. branch, vim.log.levels.INFO)
+        end
+      end)
+      return true
+    end,
+  }):find()
+end
+
 return {
   "lewis6991/gitsigns.nvim",
   event = { "BufEnter", "BufCreate" },
   keys = {
     { "]h",          "<cmd>Gitsigns next_hunk<cr>",        desc = "Next hunk" },
     { "[h",          "<cmd>Gitsigns prev_hunk<cr>",        desc = "Previous hunk" },
-    { "ih",          "<cmd><C-U>Gitsigns select_hunk<CR>", "Select Hunk",                 mode = { "o", "x" } },
+    { "ih",          "<cmd><C-U>Gitsigns select_hunk<CR>", "Select Hunk",                     mode = { "o", "x" } },
 
-    { "<leader>vhs", "<cmd>Gitsigns stage_hunk<cr>",       desc = "Stage",                mode = { "n", "v" } },
-    { "<leader>vhr", "<cmd>Gitsigns reset_hunk<cr>",       desc = "Reset",                mode = { "n", "v" } },
+    { "<leader>vhs", "<cmd>Gitsigns stage_hunk<cr>",       desc = "Stage",                    mode = { "n", "v" } },
+    { "<leader>vhr", "<cmd>Gitsigns reset_hunk<cr>",       desc = "Reset",                    mode = { "n", "v" } },
     { "<leader>vhp", "<cmd>Gitsigns preview_hunk<cr>",     desc = "Preview" },
     { "<leader>vhu", "<cmd>Gitsigns undo_stage_hunk<cr>",  desc = "Undo staged" },
     { "<leader>va",  "<cmd>Gitsigns stage_buffer<cr>",     desc = "Stage buffer" },
     { "<leader>vr",  "<cmd>Gitsigns reset_buffer<cr>",     desc = "Reset buffer" },
     { "<leader>vtb", "<cmd>Gitsigns blame_line<cr>",       desc = "Toggle blame line" },
     { "<leader>vtd", "<cmd>Gitsigns toggle_deleted<cr>",   desc = "Toggle deleted" },
-    { "<leader>vdt", "<cmd>Gitsigns diffthis<cr>",         desc = "Diff file with index", mode = { "n", "v" } },
+    { "<leader>vdt", "<cmd>Gitsigns diffthis<cr>",         desc = "Diff file with index",     mode = { "n", "v" } },
     { "<leader>vdd", "<cmd>Gitsigns diffthis ~<cr>",       desc = "Diff file with ~" },
-    { "<leader>vdb", "",                                   desc = "Diff branch",          mode = { "n" } },
+    { "<leader>vdb", function() switch_base() end,         desc = "Pick branch to diff with", mode = { "n" } },
   },
   config = function()
     require("gitsigns").setup({

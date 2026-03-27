@@ -5,19 +5,23 @@ return {
   opts = {
     notify_on_error = true,
     format_on_save = {
-      timeout_ms = 500,
-      lsp_fallback = true,
+      timeout_ms = 1500,
+      lsp_format = "fallback",
     },
     formatters_by_ft = {
-      lua = { "stylua" },
       cpp = { "clang-format" },
+      css = { "prettier" },
       go = { "gofmt", "goimports" },
-      -- rust = { 'rustfmt', lsp_format = 'fallback' },
-      -- Conform will run multiple formatters sequentially
+      html = { "prettier" },
+      javascript = { "eslint_d", "prettierd", "prettier", stop_after_first = true },
+      javascriptreact = { "eslint_d", "prettierd", "prettier", stop_after_first = true },
+      json = { "prettier" },
+      lua = { "stylua" },
+      markdown = { "prettier" },
       python = { "isort", "black" },
-      -- Use a sub-list to run only the first available formatter
-      javascript = { { "prettierd", "prettier" } },
-      typescript = { { "prettierd", "prettier" } },
+      sql = { "sqlfmt" },
+      typescript = { "eslint_d", "prettierd", "prettier", stop_after_first = true },
+      typescriptreact = { "eslint_d", "prettierd", "prettier", stop_after_first = true },
       yaml = { "yamlfmt" },
     },
     lang_to_formatters = {
@@ -35,7 +39,15 @@ return {
           4,
           "--arrow-parens",
           "avoid",
+          "--single-quote",
+          "false",
         },
+      },
+      eslint_d = {},
+      sqlfmt = {
+        command = "sqlfmt",
+        args = {},
+        stdin = true,
       },
     },
   },

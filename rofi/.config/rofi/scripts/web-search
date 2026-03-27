@@ -1,0 +1,14 @@
+#!/bin/bash
+
+read input
+
+case "$input" in
+  :d*)
+    query="${input#:d }"
+    xdg-open "https://duckduckgo.com/search?q=$query"
+    ;;
+  *) 
+    query="$input"
+    xdg-open "http://search.asgard:8080/search?q=$query"
+    ;;
+esac

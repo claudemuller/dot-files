@@ -135,3 +135,10 @@ CYGWIN* | MINGW32* | MSYS* | MINGW*)
 	# 'Other OS'
 	;;
 esac
+
+# pnpm
+export PNPM_HOME="/home/lukefilewalker/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
