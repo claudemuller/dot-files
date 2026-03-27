@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
-variant="us"
-
-if [ -n "$1" ] && [ "$1" = "dvorak" ]; then
-	variant="dv"
-	# loadkeys dvorak
-	setxkbmap -layout us -variant dvorak -option caps:backspace -option compose:ralt
+if [ -n "$1" ]; then 
+  if [ "$1" = "dvorak" ]; then
+    # loadkeys dvorak
+    echo "switching to dvorak"
+    setxkbmap -layout us -variant dvorak -option caps:backspace -option compose:ralt
+  fi
 else
 	# loadkeys us
+  echo "switching to qwerty"
 	setxkbmap -layout us -variant altgr-intl -option compose:ralt -option caps:backspace
 fi
