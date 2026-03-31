@@ -18,5 +18,4 @@ BreakBeforeBraces: Custom
 BraceWrapping:
   AfterFunction: true
   AfterControlStatement: false
-
-PointerAlignment: Left
+PointerAlignment: Right

@@ -132,7 +132,7 @@ keys = [
         [mod, "control", "shift"],
         "c",
         lazy.spawn(home + "/.config/qtile/scripts/calc"),
-        desc="VPN picker",
+        desc="Calculator",
     ),
     Key(
         [mod, "control", "shift"],
@@ -145,7 +145,7 @@ keys = [
     Key([mod], "grave", lazy.group["scratchpad"].dropdown_toggle("special")),
     Key([mod, "control"], "n", lazy.group["scratchpad"].dropdown_toggle("notes")),
     Key([mod, "control"], "k", lazy.group["scratchpad"].dropdown_toggle("cheatsheet")),
-    Key([mod, "control"], "s", lazy.group["scratchpad"].dropdown_toggle("spotify")),
+    Key([mod, "control"], "s", lazy.group["scratchpad"].dropdown_toggle("signal")),
     Key([mod, "control"], "b", lazy.group["scratchpad"].dropdown_toggle("browser")),
     Key([mod, "control"], "o", lazy.group["scratchpad"].dropdown_toggle("obsidian")),
     # Media Keys
@@ -237,12 +237,12 @@ groups = [
                 desc="Keybindings cheatsheet",
             ),
             DropDown(
-                "spotify",
-                "spotify",
+                "signal",
+                "signal-desktop",
                 opacity=1,
                 height=0.9,
                 on_focus_lost_hide=False,
-                desc="Spotify",
+                desc="Signal",
             ),
             DropDown(
                 "browser",
