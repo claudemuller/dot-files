@@ -13,6 +13,7 @@ return {
       css = { "prettier" },
       go = { "gofmt", "goimports" },
       html = { "prettier" },
+      htmlhugo = { "prettier" },
       javascript = { "eslint_d", "prettierd", "prettier", stop_after_first = true },
       javascriptreact = { "eslint_d", "prettierd", "prettier", stop_after_first = true },
       json = { "prettier" },

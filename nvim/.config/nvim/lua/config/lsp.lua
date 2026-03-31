@@ -53,7 +53,7 @@ local lsps = {
       end,
     },
   },
-  { "java_language_server" },
+  -- { "java_language_server" },
   { "jsonls" },
   { "jsonnet_ls" },
   {
@@ -116,7 +116,7 @@ local lsps = {
 local mason_map = {
   ccls = "clangd",
   docker_language_server = "dockerls",
-  java_language_server = "jdtls",
+  -- java_language_server = "jdtls",
 }
 
 local servers_to_install = {}
