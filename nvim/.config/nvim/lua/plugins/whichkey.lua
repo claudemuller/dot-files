@@ -9,7 +9,7 @@ return {
     local wk = require("which-key")
 
     wk.setup({
-      preset = 'helix',
+      preset = "helix",
     })
 
     wk.add({
@@ -61,6 +61,8 @@ return {
 
       { "<leader>b", group = "Buffers" },
       { "<leader>S", group = "Scratch buffer" },
+
+      { "<leader>l", group = "LSP" },
     })
   end,
 }
