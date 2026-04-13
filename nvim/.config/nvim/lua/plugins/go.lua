@@ -14,27 +14,33 @@ return {
       --   { '<leader>TF', ':GoTestFile<CR>', desc = '[T]est [F]ile' },
       --   { '<leader>Tp', ':GoTestPkg<CR>', desc = '[T]est [p]ackage' },
       --
-      { "<leader>cgc", ":GoCmt<CR>",        desc = "Function comment" },
-      { "<leader>cgm", ":GoMockGen<CR>",    desc = "Mocks for current file" },
+      { "<leader>cgc", ":GoCmt<CR>", desc = "Function comment" },
+      { "<leader>cgm", ":GoMockGen<CR>", desc = "Mocks for current file" },
 
-      { "<leader>cta", ":GoAddTag<CR>",     desc = "Tags" },
-      { "<leader>ctr", ":GoRmTag<CR>",      desc = "Tags" },
+      { "<leader>cta", ":GoAddTag<CR>", desc = "Tags" },
+      { "<leader>ctr", ":GoRmTag<CR>", desc = "Tags" },
 
       { "<leader>cfs", ":GoFillStruct<CR>", desc = "Struct fields" },
       { "<leader>cfS", ":GoFillSelect<CR>", desc = "Select" },
-      { "<leader>cfe", ":GoIfErr<CR>",      desc = "If/Err" },
+      { "<leader>cfe", ":GoIfErr<CR>", desc = "If/Err" },
 
-      { "<leader>cT",  ":GoModTidy<CR>",    desc = "Tidy" },
+      { "<leader>cT", ":GoModTidy<CR>", desc = "Tidy" },
+
+      { "<leader>Tc", ":GoCoverage -p<CR>", desc = "Show coverage for current pkg" },
+      { "<leader>TC", ":GoCoverage<CR>", desc = "Show coverage for module" },
 
       -- { '<leader>cd', 'zy:GoDoc <C-r>z<CR>', desc = '[C]ode Go[D]ocs Under Cursor', mode = 'v' },
       -- { '<leader>cs', ':GoPkgOutline<CR>', desc = '[C]ode [S]ymbols' },
     },
+    config = function()
+      require("go").setup()
+    end,
   },
   {
     "leoluz/nvim-dap-go",
     keys = {
-      { "<leader>Dn", ':lua require("dap-go").debug_test()<cr>',      desc = "Nearest test", mode = { "n" } },
-      { "<leader>Dl", ':lua require("dap-go").debug_last_test()<cr>', desc = "Last test",    mode = { "n" } },
+      { "<leader>Dn", ':lua require("dap-go").debug_test()<cr>', desc = "Nearest test", mode = { "n" } },
+      { "<leader>Dl", ':lua require("dap-go").debug_last_test()<cr>', desc = "Last test", mode = { "n" } },
     },
   },
 }
