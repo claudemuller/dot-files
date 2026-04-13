@@ -13,56 +13,56 @@ return {
     })
 
     wk.add({
-      { "<leader>d", group = "Diagnostics" },
+      { "<leader>d",  group = "Diagnostics" },
       -- { "<leader>N",  group = "Code notes" },
       --
-      { "<leader>c", group = "Code" },
-      -- { "<leader>cg", group = "Generate" },
-      -- { "<leader>cr", group = "Remove" },
-      -- { "<leader>cf", group = "Fill" },
+      { "<leader>c",  group = "Code" },
+      { "<leader>cg", group = "Generate" },
+      { "<leader>cf", group = "Fill" },
+      { "<leader>ct", group = "Add tags" },
       --
       -- { "<leader>l",  group = "LSP" },
-      { "<leader>T", group = "Test" },
-      { "<leader>D", group = "Debug" },
+      { "<leader>T",  group = "Test" },
+      { "<leader>D",  group = "Debug" },
       --
-      { "<leader>f", group = "Find" },
+      { "<leader>f",  group = "Find" },
       -- { "<leader>sf", group = "Files" },
       -- -- { '<leader>ss', group = 'Symbols' },
       -- { "<leader>sg", group = "Grep" },
 
-      { "<leader>r", group = "Run" },
+      { "<leader>r",  group = "Run" },
 
       -- { "<leader>O",  group = "Obsidian" },
       -- { "<leader>Od", group = "Daily" },
       --
-      { "<leader>F", group = "File" },
+      { "<leader>F",  group = "File" },
       -- { "<leader>Ft", group = "Toggle" },
 
-      { "<leader>e", group = "Edit" },
+      { "<leader>e",  group = "Edit" },
 
       -- { "<leader>ht", group = "Toggle" },
       --
-      { "<leader>g", group = "Grep" },
+      { "<leader>g",  group = "Grep" },
 
-      { "<leader>q", group = "Quickfix" },
+      { "<leader>q",  group = "Quickfix" },
 
-      { "<leader>v", group = "Version control (git)" },
+      { "<leader>v",  group = "Version control (git)" },
       -- { "<leader>gh", group = "Hunk" },
       -- { "<leader>gt", group = "Toggle" },
       -- { "<leader>gd", group = "Diff" },
       -- { "<leader>gl", group = "Log" },
       -- { "<leader>gL", group = "Lazygit" },
 
-      { "<leader>u", group = "Toggle UI features" },
+      { "<leader>u",  group = "Toggle UI features" },
 
-      { "<leader>t", group = "Trouble" },
+      { "<leader>t",  group = "Trouble" },
 
       -- { "<leader>n",  group = "Notifications" },
 
-      { "<leader>b", group = "Buffers" },
-      { "<leader>S", group = "Scratch buffer" },
+      { "<leader>b",  group = "Buffers" },
+      { "<leader>S",  group = "Scratch buffer" },
 
-      { "<leader>l", group = "LSP" },
+      { "<leader>l",  group = "LSP" },
     })
   end,
 }
