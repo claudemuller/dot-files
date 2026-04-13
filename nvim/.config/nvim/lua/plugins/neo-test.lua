@@ -8,7 +8,13 @@ return {
     "nvim-neotest/neotest-python",
     "nvim-neotest/neotest-plenary",
     "nvim-neotest/neotest-jest",
-    "nvim-neotest/neotest-go",
+    {
+      "fredrikaverpil/neotest-golang",
+      version = "*",
+      build = function()
+        vim.system({ "go", "install", "gotest.tools/gotestsum@latest" }):wait()
+      end,
+    },
     -- {
     --   dir = '~/repos/3rd-party/neotest-go/',
     -- },
@@ -143,8 +149,8 @@ return {
         }),
         require("neotest-plenary"),
         require("neotest-jest"),
-        require("neotest-go"),
-        require("neotest-rust"),
+        require("neotest-golang")({ runner = "gotestsum" }),
+        -- require("neotest-rust"),
         require("neotest-vim-test")({
           ignore_file_types = { "python", "vim", "lua", "go", "typescript", "jest" },
         }),
