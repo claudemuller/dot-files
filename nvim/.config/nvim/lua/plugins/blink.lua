@@ -18,7 +18,7 @@ return {
         version = "v2.*",
       },
     },
-    version = "1.*",
+    -- version = "1.*",
     opts = {
       keymap = { preset = "default" },
       completion = {
@@ -28,8 +28,8 @@ return {
         menu = {
           draw = {
             columns = {
-              { "label", "label_description", gap = 1 },
-              { "kind_icon", "kind" },
+              { "label",      "label_description", gap = 1 },
+              { "kind_icon",  "kind" },
               { "source_name" },
             },
             treesitter = { "lsp" },
@@ -38,15 +38,16 @@ return {
       },
       signature = {
         enabled = true,
-        window = {
-          show_documenation = false,
-        },
+        -- window = {
+        --   show_documenation = false,
+        -- },
       },
       snippets = { preset = "luasnip" },
       sources = {
         default = { "lsp", "path", "snippets", "buffer" },
       },
+      fuzzy = { implementation = "rust" },
     },
-    opts_extend = { "sources.default" },
+    -- opts_extend = { "sources.default" },
   },
 }

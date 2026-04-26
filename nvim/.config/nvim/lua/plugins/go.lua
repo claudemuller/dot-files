@@ -33,7 +33,9 @@ return {
       -- { '<leader>cs', ':GoPkgOutline<CR>', desc = '[C]ode [S]ymbols' },
     },
     config = function()
-      require("go").setup()
+      require("go").setup({
+        remap_commands = { GoDoc = false },
+      })
     end,
   },
   {
@@ -41,6 +43,20 @@ return {
     keys = {
       { "<leader>Dn", ':lua require("dap-go").debug_test()<cr>', desc = "Nearest test", mode = { "n" } },
       { "<leader>Dl", ':lua require("dap-go").debug_last_test()<cr>', desc = "Last test", mode = { "n" } },
+    },
+  },
+  {
+    "fredrikaverpil/godoc.nvim",
+    version = "*",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    cmd = { "GoDoc" },
+    ft = "godoc",
+    opts = {
+      window = { type = "vsplit" },
+      picker = { type = "telescope" },
+    },
+    keys = {
+      { "<leader>cd", ":GoDoc<CR>", desc = "Documentation", mode = { "n" } },
     },
   },
 }
