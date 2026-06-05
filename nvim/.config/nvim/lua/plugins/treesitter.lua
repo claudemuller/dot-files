@@ -53,6 +53,7 @@ return {
             "vim",
             "vimdoc",
             "yaml",
+            "zig",
           })
           :wait(300000)
 

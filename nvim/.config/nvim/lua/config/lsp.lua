@@ -24,9 +24,9 @@ local lsps = {
       -- capabilities = { signatureHelpProvider = false },
       cmd = {
         "clangd",
-        "--background-index",           -- Index all project files
-        "--clang-tidy",                 -- Optional: enable clang-tidy
-        "--completion-style=detailed",  -- Better completions
+        "--background-index", -- Index all project files
+        "--clang-tidy", -- Optional: enable clang-tidy
+        "--completion-style=detailed", -- Better completions
         "--compile-commands-dir=build", -- Path to compile_commands.json
       },
       filetypes = { "c", "cpp", "objc", "objcpp" },
@@ -42,17 +42,8 @@ local lsps = {
   { "cssls" },
   { "docker_language_server" }, -- dockerls
   { "eslint" },
-  { "gitlab_ci_ls" },
   { "golangci_lint_ls" },
   { "gopls" },
-  {
-    "intelephense",
-    {
-      root_dir = function(fname)
-        return vim.loop.cwd()
-      end,
-    },
-  },
   -- { "java_language_server" },
   { "jsonls" },
   { "jsonnet_ls" },
@@ -109,6 +100,7 @@ local lsps = {
   --   },
   -- },
   { "ts_ls" },
+  { "zls" },
 }
 
 -- Mason ------------------------------------------------------------------------------------------
