@@ -17,7 +17,7 @@ vim.lsp.config("*", {
 local lsps = {
   { "bashls" },
   -- { "buf_ls" },
-  { "ccls" },
+  -- { "ccls" },
   {
     "clangd",
     {
@@ -27,16 +27,8 @@ local lsps = {
         "--background-index", -- Index all project files
         "--clang-tidy", -- Optional: enable clang-tidy
         "--completion-style=detailed", -- Better completions
-        "--compile-commands-dir=build", -- Path to compile_commands.json
       },
       filetypes = { "c", "cpp", "objc", "objcpp" },
-      root_dir = function(bufnr)
-        return vim.fs.root(bufnr, {
-          "compile_commands.json",
-          "compile_flags.txt",
-          ".git",
-        })
-      end,
     },
   },
   { "cssls" },
@@ -106,7 +98,7 @@ local lsps = {
 -- Mason ------------------------------------------------------------------------------------------
 
 local mason_map = {
-  ccls = "clangd",
+  -- ccls = "clangd",
   docker_language_server = "dockerls",
   -- java_language_server = "jdtls",
 }
@@ -125,10 +117,11 @@ require("mason-lspconfig").setup({
 -- Enable LSPs ------------------------------------------------------------------------------------
 
 for _, lsp in ipairs(lsps) do
-  local name, config = lsp[1], lsp[2] or {}
-  config = config or {}
+  local name, config = lsp[1], lsp[2]
 
-  vim.lsp.config(name, config)
+  if config then
+    vim.lsp.config(name, config)
+  end
   vim.lsp.enable(name)
 end
 
