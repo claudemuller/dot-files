@@ -19,6 +19,18 @@ return {
     config = function()
       vim.cmd.colorscheme("atlas")
       vim.api.nvim_set_hl(0, "Normal", { bg = "#121212" })
+      vim.api.nvim_set_hl(0, "Comment", { fg = "#5c5f62", italic = true })
+      vim.api.nvim_set_hl(0, "@comment", { fg = "#5c5f62", italic = true })
+      -- Popup & completion menu
+      vim.api.nvim_set_hl(0, "Pmenu", { bg = "#161616", fg = "#cccccc" })
+      -- Selected item in the popup menu
+      vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#2e2e2e", fg = "#ffffff", bold = true })
+      -- General floating windows (LSP hover, diagnostics)
+      vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#161616", fg = "#cccccc" })
+      -- Floating window borders
+      vim.api.nvim_set_hl(0, "FloatBorder", { bg = "#161616", fg = "#555555" })
+      -- Matching Brackets (Highlight when cursor is on a bracket)
+      vim.api.nvim_set_hl(0, "MatchParen", { bg = "#383838", fg = "#ffffff", bold = true })
     end,
   },
 
