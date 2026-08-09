@@ -24,8 +24,8 @@ local lsps = {
       -- capabilities = { signatureHelpProvider = false },
       cmd = {
         "clangd",
-        "--background-index", -- Index all project files
-        "--clang-tidy", -- Optional: enable clang-tidy
+        "--background-index",          -- Index all project files
+        "--clang-tidy",                -- Optional: enable clang-tidy
         "--completion-style=detailed", -- Better completions
       },
       filetypes = { "c", "cpp", "objc", "objcpp" },
