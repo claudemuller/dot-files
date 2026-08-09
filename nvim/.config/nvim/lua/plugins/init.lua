@@ -1,12 +1,43 @@
 return {
-  { -- Snazzy theme
-    "dzfrias/noir.nvim",
+  -- {
+  --   "ronisbr/nano-theme.nvim",
+  --   config = function()
+  --     require("nano-theme").setup({
+  --       light_variant = "gray",
+  --       dark_variant = "amber",
+  --       transparent = false,
+  --       transparent_floats = true,
+  --       float_blend = 0,
+  --     })
+  --     vim.o.background = "light"
+  --     vim.cmd.colorscheme("nano-theme")
+  --   end,
+  -- },
+
+  {
+    "huyvohcmc/atlas.vim",
     config = function()
-      vim.cmd.colorscheme("noir")
-      vim.api.nvim_set_hl(0, "Comment", { fg = "#5c5f62", italic = true })
-      vim.api.nvim_set_hl(0, "@comment", { fg = "#5c5f62", italic = true })
-    end
+      vim.cmd.colorscheme("atlas")
+      vim.api.nvim_set_hl(0, "Normal", { bg = "#121212" })
+    end,
   },
+
+  -- {
+  --   "hardselius/warlock",
+  --   config = function()
+  --     vim.cmd.colorscheme("warlock")
+  --     vim.api.nvim_set_hl(0, "Normal", { bg = "#121212" })
+  --   end,
+  -- },
+
+  -- { -- Snazzy theme
+  --   "dzfrias/noir.nvim",
+  --   config = function()
+  --     vim.cmd.colorscheme("noir")
+  --     vim.api.nvim_set_hl(0, "Comment", { fg = "#5c5f62", italic = true })
+  --     vim.api.nvim_set_hl(0, "@comment", { fg = "#5c5f62", italic = true })
+  --   end,
+  -- },
 
   { -- Mason for tool installtion
     "mason-org/mason-lspconfig.nvim",
@@ -140,7 +171,7 @@ return {
 
       -- Bonus: Close the diff view easily
       map("n", "<leader>dc", "<cmd>DiffviewClose<cr>", "Diff: Close View")
-    end
+    end,
   },
 
   -- {
