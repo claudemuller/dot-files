@@ -67,29 +67,35 @@ return {
     require("gitsigns").setup({
       -- █▓▒░▀▄
       signs = {
-        add = { text = "█" },
-        change = { text = "▓" },
-        delete = { text = "▒" },
-        topdelete = { text = "▀" },
-        changedelete = { text = "░" },
-        untracked = { text = "▄" },
+        add = { text = "░" }, -- Lightest (New additions)
+        change = { text = "▒" }, -- Medium (Modified lines)
+        delete = { text = "▓" }, -- Darker (Deletions)
+        topdelete = { text = "▓" },
+        changedelete = { text = "█" }, -- Darkest/Solid (Complex change + delete)
+        untracked = { text = "░" },
       },
       signs_staged = {
-        add = { text = "█" },
+        add = { text = "▒" }, -- Staged variants can use a slightly different block
         change = { text = "▓" },
-        delete = { text = "▒" },
-        topdelete = { text = "▀" },
-        changedelete = { text = "░" },
-        untracked = { text = "▄" },
+        delete = { text = "█" },
+        topdelete = { text = "█" },
+        changedelete = { text = "█" },
+        untracked = { text = "▒" },
       },
       signcolumn = true,
       current_line_blame = true,
       current_line_blame_opts = {
         virt_text = true,
         virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
-        delay = 100,
-        ignore_whitespace = false,
+        ignore_witespace = false,
+        gnore_witespace = false,
       },
     })
+    vim.api.nvim_set_hl(0, "GitSignsAdd", { fg = "#98c379" })
+    vim.api.nvim_set_hl(0, "GitSignsChange", { fg = "#d19a66" })
+    vim.api.nvim_set_hl(0, "GitSignsDelete", { fg = "#e06c75" })
+    vim.api.nvim_set_hl(0, "GitSignsTopdelete", { fg = "#e06c75" })
+    vim.api.nvim_set_hl(0, "GitSignsChangedelete", { fg = "#c678dd" })
+    vim.api.nvim_set_hl(0, "GitSignsUntracked", { fg = "#5c5f62" })
   end,
 }
