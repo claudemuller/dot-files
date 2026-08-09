@@ -27,7 +27,7 @@ vim.opt.incsearch = true  -- Show matches as you type
 
 -- Visual settings
 vim.opt.termguicolors = true                            -- Enable 24-bit colors
-vim.opt.signcolumn = "yes"                              -- Always show sign column
+vim.opt.signcolumn = "yes:1"                            -- Always show sign column
 vim.opt.colorcolumn = "100,120"                         -- Show column at 100 characters
 vim.opt.showmatch = true                                -- Highlight matching brackets
 vim.opt.matchtime = 2                                   -- How long to show matching bracket
@@ -43,22 +43,23 @@ vim.opt.concealcursor = ""                              -- Don't hide cursor lin
 vim.opt.synmaxcol = 300                                 -- Syntax highlighting limit
 vim.o.winbar = "%F%="                                   -- Add the full path in the winbar
 -- What to do with lists of actions to choose like code actions
-vim.ui.select = vim.ui.select or function(items, opts, on_choice)
-  local choices = {}
-  for i, item in ipairs(items) do
-    choices[i] = string.format("%d: %s", i, opts.format_item(item))
-  end
-  vim.ui.input({
-    prompt = opts.prompt .. " (choose number): ",
-  }, function(input)
-    local choice = tonumber(input)
-    if choice and items[choice] then
-      on_choice(items[choice])
-    else
-      on_choice(nil)
+vim.ui.select = vim.ui.select
+    or function(items, opts, on_choice)
+      local choices = {}
+      for i, item in ipairs(items) do
+        choices[i] = string.format("%d: %s", i, opts.format_item(item))
+      end
+      vim.ui.input({
+        prompt = opts.prompt .. " (choose number): ",
+      }, function(input)
+        local choice = tonumber(input)
+        if choice and items[choice] then
+          on_choice(items[choice])
+        else
+          on_choice(nil)
+        end
+      end)
     end
-  end)
-end
 
 -- File handling
 vim.opt.backup = false                            -- Don't create backup files
@@ -101,6 +102,14 @@ vim.opt.splitright = true -- Vertical splits go right
 vim.diagnostic.config({
   float = {
     border = "rounded",
+  },
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = " ",
+      [vim.diagnostic.severity.WARN] = " ",
+      [vim.diagnostic.severity.INFO] = " ",
+      [vim.diagnostic.severity.HINT] = "󰌵 ",
+    },
   },
 })
 
