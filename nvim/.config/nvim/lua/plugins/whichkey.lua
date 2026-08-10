@@ -47,11 +47,13 @@ return {
       { "<leader>q",  group = "Quickfix" },
 
       { "<leader>v",  group = "Version control (git)" },
-      -- { "<leader>gh", group = "Hunk" },
-      -- { "<leader>gt", group = "Toggle" },
-      -- { "<leader>gd", group = "Diff" },
-      -- { "<leader>gl", group = "Log" },
-      -- { "<leader>gL", group = "Lazygit" },
+      { "<leader>vh", group = "Hunk" },
+      { "<leader>vt", group = "Toggle" },
+      { "<leader>vd", group = "Diff" },
+      { "<leader>vf", group = "Diff file" },
+      { "<leader>vs", group = "Diff state" },
+      { "<leader>vl", group = "Log" },
+      { "<leader>vL", group = "Lazygit" },
 
       { "<leader>u",  group = "Toggle UI features" },
 

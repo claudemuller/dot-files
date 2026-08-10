@@ -104,5 +104,20 @@ return {
     vim.api.nvim_set_hl(0, "GitSignsTopdelete", { fg = "#e06c75" })
     vim.api.nvim_set_hl(0, "GitSignsChangedelete", { fg = "#c678dd" })
     vim.api.nvim_set_hl(0, "GitSignsUntracked", { fg = "#5c5f62" })
+
+    -- This changes the base on load e.g. GIT_BASE=HEAD~1 nvim
+    local git_base = os.getenv("GIT_BASE")
+    if git_base then
+      vim.api.nvim_create_autocmd("BufReadPost", {
+        callback = function(args)
+          vim.defer_fn(function()
+            local status, gs = pcall(require, "gitsigns")
+            if status then
+              gs.change_base(git_base)
+            end
+          end, 200)
+        end,
+      })
+    end
   end,
 }
