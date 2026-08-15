@@ -5,12 +5,29 @@ return {
     priority = 1000,
     config = function()
       require("tiny-inline-diagnostic").setup({
-        preset = "minimal",
+        -- preset = "minimal",
+        transparent_bg = false,
         options = {
           multilines = {
             enabled = true,
             always_show = true,
+            severity = { vim.diagnostic.severity.ERROR },
           },
+          show_source = {
+            enabled = true,
+          },
+        },
+        signs = {
+          left = "",
+          right = "",
+          diag = ">",
+          arrow = "    ",
+          up_arrow = "    ",
+          vertical = " │",
+          vertical_end = " └",
+        },
+        blend = {
+          factor = 0.22,
         },
       })
 
