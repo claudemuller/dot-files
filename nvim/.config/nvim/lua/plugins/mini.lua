@@ -30,7 +30,23 @@ return {
     require("mini.cursorword").setup({
       priority = 1000,
     })
-    vim.api.nvim_set_hl(0, "MiniCursorword", { underline = false, bg = "#444444" })
-    vim.api.nvim_set_hl(0, "MiniCursorwordCurrent", { underline = false, bg = "#444444" })
+
+    local function set_cursorword_hl()
+      vim.api.nvim_set_hl(0, "MiniCursorword", { underline = false, bg = "#444444" })
+      vim.api.nvim_set_hl(0, "MiniCursorwordCurrent", { underline = false, bg = "#444444" })
+    end
+
+    vim.api.nvim_create_autocmd("ColorScheme", {
+      pattern = "*",
+      callback = set_cursorword_hl,
+    })
+
+    vim.api.nvim_create_autocmd("LspAttach", {
+      callback = function(args)
+        set_cursorword_hl()
+      end,
+    })
+
+    set_cursorword_hl()
   end,
 }
