@@ -27,8 +27,10 @@ return {
     require("mini.surround").setup()
 
     -- Cursorword ---------------------------------------------------------------------------------
-    require("mini.cursorword").setup()
-    vim.api.nvim_set_hl(0, "MiniCursorwordCurrent", { link = "Visual", italic = true })
-    vim.api.nvim_set_hl(0, "MiniCursorword", { link = "Visual", italic = true })
+    require("mini.cursorword").setup({
+      priority = 1000,
+    })
+    vim.api.nvim_set_hl(0, "MiniCursorword", { underline = false, bg = "#444444" })
+    vim.api.nvim_set_hl(0, "MiniCursorwordCurrent", { underline = false, bg = "#444444" })
   end,
 }
