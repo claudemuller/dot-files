@@ -64,23 +64,27 @@ return {
     },
   },
   config = function()
+    local green = "#98c379"
+    local orange = "#d19a66"
+    local red = "#e06c75"
+    local purple = "#c678dd"
+
     require("gitsigns").setup({
-      -- █▓▒░▀▄
       signs = {
-        add = { text = "░" }, -- Lightest (New additions)
-        change = { text = "▒" }, -- Medium (Modified lines)
-        delete = { text = "▓" }, -- Darker (Deletions)
-        topdelete = { text = "▓" },
-        changedelete = { text = "█" }, -- Darkest/Solid (Complex change + delete)
-        untracked = { text = "░" },
+        add = { text = "+" },
+        change = { text = "~" },
+        delete = { text = "-" },
+        topdelete = { text = "‾" }, -- Deletion at the top of a file
+        changedelete = { text = "~" }, -- Line was modified and then deleted
+        untracked = { text = "┆" }, -- File is untracked
       },
       signs_staged = {
-        add = { text = "▒" }, -- Staged variants can use a slightly different block
-        change = { text = "▓" },
-        delete = { text = "█" },
-        topdelete = { text = "█" },
-        changedelete = { text = "█" },
-        untracked = { text = "▒" },
+        add = { text = "+" },
+        change = { text = "~" },
+        delete = { text = "-" },
+        topdelete = { text = "‾" },
+        changedelete = { text = "~" },
+        untracked = { text = "┆" },
       },
       word_diff = true,
       watch_gitdir = {
@@ -96,15 +100,24 @@ return {
       },
     })
 
-    vim.api.nvim_set_hl(0, "GitSignsAdd", { fg = "#98c379" })
-    vim.api.nvim_set_hl(0, "GitSignsAddLnInline", { fg = "#98c379" })
-    vim.api.nvim_set_hl(0, "GitSignsChange", { fg = "#d19a66" })
-    vim.api.nvim_set_hl(0, "GitSignsChangeLnInline", { fg = "#d19a66" })
-    vim.api.nvim_set_hl(0, "GitSignsDelete", { fg = "#e06c75" })
-    vim.api.nvim_set_hl(0, "GitSignsDeleteLnInline", { fg = "#e06c75" })
-    vim.api.nvim_set_hl(0, "GitSignsTopdelete", { fg = "#e06c75" })
-    vim.api.nvim_set_hl(0, "GitSignsChangedelete", { fg = "#c678dd" })
-    vim.api.nvim_set_hl(0, "GitSignsUntracked", { fg = "#5c5f62" })
+    vim.api.nvim_set_hl(0, "GitSignsAdd", { fg = green })
+    vim.api.nvim_set_hl(0, "GitSignsStagedAdd", { fg = green })
+    vim.api.nvim_set_hl(0, "GitSignsAddLnInline", { fg = green })
+
+    vim.api.nvim_set_hl(0, "GitSignsChange", { fg = purple })
+    vim.api.nvim_set_hl(0, "GitSignsStagedChange", { fg = purple })
+    vim.api.nvim_set_hl(0, "GitSignsChangeLnInline", { fg = purple })
+
+    vim.api.nvim_set_hl(0, "GitSignsDelete", { fg = red })
+    vim.api.nvim_set_hl(0, "GitSignsStagedDelete", { fg = red })
+    vim.api.nvim_set_hl(0, "GitSignsDeleteLnInline", { fg = red })
+    vim.api.nvim_set_hl(0, "GitSignsTopdelete", { fg = red })
+    vim.api.nvim_set_hl(0, "GitSignsStagedTopdelete", { fg = red })
+    vim.api.nvim_set_hl(0, "GitSignsChangedelete", { fg = orange })
+    vim.api.nvim_set_hl(0, "GitSignsStagedChangedelete", { fg = orange })
+
+    vim.api.nvim_set_hl(0, "GitSignsUntracked", { fg = green })
+    vim.api.nvim_set_hl(0, "GitSignsStagedUntracked", { fg = green })
 
     -- This changes the base on load e.g. GIT_BASE=HEAD~1 nvim
     local git_base = os.getenv("GIT_BASE")
