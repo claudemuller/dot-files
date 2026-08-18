@@ -24,8 +24,8 @@ local lsps = {
       -- capabilities = { signatureHelpProvider = false },
       cmd = {
         "clangd",
-        "--background-index", -- Index all project files
-        "--clang-tidy", -- Optional: enable clang-tidy
+        "--background-index",          -- Index all project files
+        "--clang-tidy",                -- Optional: enable clang-tidy
         "--completion-style=detailed", -- Better completions
       },
       filetypes = { "c", "cpp", "objc", "objcpp" },
@@ -134,11 +134,11 @@ end
 --   print("its a me")
 -- end, { desc = "Open references" })
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = "rounded",
-  max_width = 80,
-  max_height = 20,
-})
+-- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+--   border = "rounded",
+--   max_width = 80,
+--   max_height = 20,
+-- })
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)

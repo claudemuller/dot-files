@@ -118,3 +118,21 @@ if vim.g.neovide then
   vim.o.guifont = "JetBrainsMono NF:h7.5:w0.01"
   vim.g.neovide_scale_factor = 1.0
 end
+
+-- Spell check for Markdown
+local spell_types = { "text", "plaintex", "typst", "gitcommit", "markdown" }
+vim.opt.spell = false
+vim.api.nvim_create_augroup("Spellcheck", { clear = true })
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  group = "Spellcheck",
+  pattern = spell_types,
+  callback = function()
+    vim.opt.spelllang = { "sv", "en_gb" }
+    vim.opt_local.spell = true
+    vim.api.nvim_set_hl(0, "SpellBad", { undercurl = true, fg = "#e06c75" })
+    vim.api.nvim_set_hl(0, "SpellCap", { undercurl = true, fg = "#d19a66" })
+    vim.api.nvim_set_hl(0, "SpellLocal", { undercurl = true, fg = "#a4d8d8" })
+    vim.api.nvim_set_hl(0, "SpellRare", { undercurl = true, fg = "#c678dd" })
+  end,
+  desc = "Enable spellcheck for defined filetypes",
+})

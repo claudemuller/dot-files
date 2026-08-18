@@ -7,7 +7,9 @@ return {
   },
   cmd = "Neogit",
   keys = {
-    { "<leader>vg", "<cmd>Neogit kind=floating<cr>", desc = "Show Neogit UI" },
+    { "<leader>vg", "<cmd>Neogit kind=floating<cr>",      desc = "Show Neogit UI" },
+    { "<leader>vp", "<cmd>Neogit pull kind=floating<cr>", desc = "Pull" },
+    { "<leader>vP", "<cmd>Neogit push kind=floating<cr>", desc = "Push" },
   },
   config = function()
     vim.api.nvim_set_hl(0, "DiffAdd", { fg = "#98c379", bg = "#21262d" })

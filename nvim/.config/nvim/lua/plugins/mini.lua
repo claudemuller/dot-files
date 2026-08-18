@@ -34,6 +34,7 @@ return {
     local function set_cursorword_hl()
       vim.api.nvim_set_hl(0, "MiniCursorword", { underline = false, bg = "#444444" })
       vim.api.nvim_set_hl(0, "MiniCursorwordCurrent", { underline = false, bg = "#444444" })
+      vim.api.nvim_set_hl(0, "MiniStatuslineModeNormal", { bg = "#2e2e2e", fg = "#5c5f62", bold = true })
     end
 
     vim.api.nvim_create_autocmd("ColorScheme", {

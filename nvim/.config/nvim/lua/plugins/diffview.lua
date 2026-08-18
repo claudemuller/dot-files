@@ -77,5 +77,15 @@ return {
 
     -- Bonus: Close the diff view easily
     map("n", "<leader>dc", "<cmd>DiffviewClose<cr>", "Diff: Close View")
+
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "DiffviewFiles,DiffviewFileHistory",
+      callback = function()
+        vim.api.nvim_set_hl(0, "DiffviewDiffAdd", { fg = "#98c379", bg = "#21262d" })
+        vim.api.nvim_set_hl(0, "DiffviewDiffChange", { fg = "#d19a66", bg = "#21262d" })
+        vim.api.nvim_set_hl(0, "DiffviewDiffDelete", { fg = "#e06c75", bg = "#21262d" })
+        vim.api.nvim_set_hl(0, "DiffviewDiffText", { fg = "#ffffff", bg = "#30363d" })
+      end,
+    })
   end,
 }

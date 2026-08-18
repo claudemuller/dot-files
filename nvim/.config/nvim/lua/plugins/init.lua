@@ -59,7 +59,8 @@ return {
       vim.api.nvim_set_hl(0, "@comment", { fg = "#5c5f62", italic = true })
       vim.api.nvim_set_hl(0, "Identifier", { fg = "#c0c0c0" })
       vim.api.nvim_set_hl(0, "@variable", { fg = "#c0c0c0" })
-      vim.api.nvim_set_hl(0, "MiniStatuslineModeNormal", { bg = "#2e2e2e", fg = "#5c5f62", bold = true })
+      vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { fg = "#e06c75", bold = true })
+      vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarning", { fg = "#d19a66" })
       -- Popup & completion menu
       vim.api.nvim_set_hl(0, "Pmenu", { bg = "#161616", fg = "#cccccc" })
       -- Selected item in the popup menu

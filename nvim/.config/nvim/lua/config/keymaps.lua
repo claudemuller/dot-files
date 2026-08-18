@@ -111,8 +111,6 @@ vim.keymap.set("n", "<leader>x", "<cmd>source %<CR>", { desc = "Source current b
 vim.keymap.set("n", "<leader>X", ":.lua<CR>", { desc = "Source current line" })
 vim.keymap.set("v", "<leader>X", ":lua<CR>", { desc = "Source current line" })
 
-
-
 function RunCmdOnSelection()
   -- Get visual selection
   local start_pos = vim.fn.getpos("'<")
@@ -142,12 +140,29 @@ function RunCmdOnSelection()
   end
 end
 
-vim.api.nvim_set_keymap('v', '<leader>R', ':lua RunCmdOnSelection()<CR>',
-  { desc = "Run command in selection", noremap = true, silent = true })
+-- Run command under selection
+vim.api.nvim_set_keymap(
+  "v",
+  "<leader>R",
+  ":lua RunCmdOnSelection()<CR>",
+  { desc = "Run command in selection", noremap = true, silent = true }
+)
 
+-- Force LSP attach to buffer
 vim.keymap.set("n", "<leader>la", function()
   for _, client in ipairs(vim.lsp.get_active_clients()) do
     vim.lsp.buf_attach_client(0, client.id)
   end
   print("LSP attached")
 end, { desc = "Force attach LSP to buffer" })
+
+-- Copy absolute filename with line and column numbers
+vim.keymap.set("n", "<leader>fc", function()
+  local file = vim.fn.expand("%:p")
+  local line = vim.api.nvim_win_get_cursor(0)[1]
+  local col = vim.api.nvim_win_get_cursor(0)[2] + 1
+  local result = string.format("%s:%d:%d", file, line, col)
+
+  vim.fn.setreg("+", result)
+  vim.notify("Copied: " .. result)
+end, { desc = "Copy absolute path with line and column" })
