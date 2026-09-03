@@ -11,6 +11,14 @@ return {
   },
   opts = {},
   config = function()
+    -- {
+    --   "openPair.service": "bore",
+    --   "openPair.boreArgs": [
+    --   "--to", "192.168.1.52"
+    --   ],
+    --   "open-pair.borePort": 7835
+    -- }
+
     local HOST_IP = "192.168.1.52"
 
     require("live-share.provider").register("bore", {
