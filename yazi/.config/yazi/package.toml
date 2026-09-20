@@ -1,10 +1,24 @@
-[plugin]
-deps = [
-	{ use = "dedukun/relative-motions", rev = "73f5542" },
-	{ use = "yazi-rs/plugins:full-border", rev = "b659791" },
-	{ use = "AnirudhG07/rich-preview", rev = "1aa4216" },
-	{ use = "ndtoan96/ouch", rev = "251da69" }, { use = "yazi-rs/plugins:max-preview", rev = "8ca0bdd" },
-]
+[[plugin.deps]]
+use = "dedukun/relative-motions"
+rev = "a603d9e"
+hash = "e02a788e5b8ae0fb47fd0193dda589cc"
 
-[flavor]
-deps = [{ use = "yazi-rs/flavors:catppuccin-latte", rev = "d479f67" }]
+[[plugin.deps]]
+use = "yazi-rs/plugins:full-border"
+rev = "f703392"
+hash = "f281261ff04ad7ec867c3f802a50835f"
+
+[[plugin.deps]]
+use = "AnirudhG07/rich-preview"
+rev = "02597c4"
+hash = "33982a6e2d6df07619a2a0fc163a0950"
+
+[[plugin.deps]]
+use = "ndtoan96/ouch"
+rev = "596b666"
+hash = "c2f4f4aca257dcceafa9e3b828dbf1c9"
+
+[[flavor.deps]]
+use = "yazi-rs/flavors:catppuccin-latte"
+rev = "d479f67"
+hash = ""

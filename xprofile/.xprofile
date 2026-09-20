@@ -3,7 +3,10 @@
 # For QT Themes
 # export QT_QPA_PLATFORMTHEME=qt5ct
 
-/usr/local/bin/slstatus &
+if [ -x "$(command -v slstatus)" ]; then
+	pkill slstatus 
+  slstatus &
+fi
 
 if [ -x "$(command -v dunst)" ]; then
 	pkill dunst
@@ -22,6 +25,11 @@ fi
 if [ -x "$(command -v nm-applet)" ]; then
 	pkill nm-applet
 	nm-applet &
+fi
+
+if [ -x "$(command -v greenclip)" ]; then
+	pkill greenclip
+	greenclip daemon &
 fi
 
 $HOME/.local/bin/kb-layout-switcher
