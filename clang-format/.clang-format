@@ -18,5 +18,6 @@ AllowShortIfStatementsOnASingleLine: Always
 BreakBeforeBraces: Custom
 BraceWrapping:
   AfterFunction: true
-  AfterControlStatement: false
+  # AfterControlStatement: false
+  AfterControlStatement: true
 PointerAlignment: Right
