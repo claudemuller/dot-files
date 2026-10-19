@@ -26,6 +26,7 @@ return {
             "c",
             "cpp",
             "diff",
+            "glsl",
             "go",
             "godoc",
             "gomod",

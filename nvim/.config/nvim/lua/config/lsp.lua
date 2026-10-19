@@ -34,6 +34,7 @@ local lsps = {
   { "cssls" },
   { "docker_language_server" }, -- dockerls
   { "eslint" },
+  { "glsl_analyzer" },
   { "golangci_lint_ls" },
   { "gopls" },
   -- { "java_language_server" },
