@@ -29,7 +29,12 @@ vim.keymap.set("n", "<C-S-A-s>", fn.save_all_buffers, { noremap = true, desc = "
 
 -- Switch between .c and .h files
 vim.keymap.set("n", "<C-7>", fn.switch_c_h, { noremap = true, desc = "Switch between .c/.c++ and .h files" })
-vim.keymap.set("n", "gH", fn.switch_c_h, { noremap = true, desc = "Switch between .c/.c++ and .h files" })
+vim.keymap.set("n", "gh", function()
+  fn.switch_c_h()
+end, { noremap = true, desc = "Switch between .c/.c++ and .h files" })
+vim.keymap.set("n", "gH", function()
+  fn.switch_c_h(true)
+end, { noremap = true, desc = "Open corresponding .c/.c++ and .h files" })
 
 -- Window keybinds
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
