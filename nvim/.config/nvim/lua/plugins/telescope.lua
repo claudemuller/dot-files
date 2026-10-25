@@ -184,7 +184,7 @@ return {
     vim.keymap.set("n", "gz", function()
       vim.cmd("vsplit")
       vim.lsp.buf.definition()
-      vim.cmd("zt")
+      vim.cmd("normal! zt")
     end, { desc = "Split go to definition" })
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" })
     vim.keymap.set("n", "grr", "<cmd>Telescope lsp_references<CR>", { desc = "Show references" })

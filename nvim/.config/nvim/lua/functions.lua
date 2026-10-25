@@ -15,25 +15,30 @@ local chop_filename = function(file)
 end
 
 -- Easily switch between .c and .h files
-M.switch_c_h = function()
+M.switch_c_h = function(newwin)
   -- local name, ext = chop_filename(vim.fn.expand '%')
   local curFile = vim.fn.expand("%")
   local ext = string.match(curFile, ".(%w+)$")
   local name = string.sub(curFile, 0, string.len(curFile) - string.len(ext))
 
+  local opencmd = "e"
+  if newwin then
+    opencmd = "vs"
+  end
+
   if ext == "h" or ext == "hpp" then
     if vim.fn.filereadable(name .. "c") > 0 then
-      vim.cmd(":e " .. name .. "c")
+      vim.cmd(":" .. opencmd .. " " .. name .. "c")
     elseif vim.fn.filereadable(name .. "cpp") > 0 then
-      vim.cmd(":e " .. name .. "cpp")
+      vim.cmd(":" .. opencmd .. " " .. name .. "cpp")
     end
   end
 
   if ext == "c" or ext == "cpp" then
     if vim.fn.filereadable(name .. "h") > 0 then
-      vim.cmd(":e " .. name .. "h")
+      vim.cmd(":" .. opencmd .. " " .. name .. "h")
     elseif vim.fn.filereadable(name .. "hpp") > 0 then
-      vim.cmd(":e " .. name .. "hpp")
+      vim.cmd(":" .. opencmd .. " " .. name .. "hpp")
     end
   end
 end
