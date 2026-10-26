@@ -22,8 +22,10 @@ return {
     opts = {
       keymap = {
         preset = "none",
-        ["<C-n>"] = { "show", "select_next", "snippet_forward", "fallback" },
-        ["<C-p>"] = { "select_prev", "snippet_backward", "fallback" },
+        ["<C-n>"] = { "show", "select_next", "fallback" },
+        ["<C-p>"] = { "select_prev", "fallback" },
+        ["<Tab>"] = { "snippet_forward", "fallback" },
+        ["<S-Tab>"] = { "snippet_backward", "fallback" },
         ["<C-y>"] = { "accept", "fallback" },
         ["<C-e>"] = { "hide", "fallback" },
       },
