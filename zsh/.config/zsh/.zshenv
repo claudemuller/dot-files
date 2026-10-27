@@ -12,6 +12,9 @@ export HISTSIZE=1000000
 export SAVEHIST=1000000
 
 # ------------------------------------------------------------------------------------------- Paths
+if [ -d "/usr/local/go/bin" ]; then
+    PATH="/usr/local/go/bin:$PATH"
+fi
 if [ -d "$HOME/go" ]; then
   export GOPATH=$HOME/go
   export GOBIN=$GOPATH/bin
@@ -56,6 +59,10 @@ if [ -d "/snap/bin" ]; then
   PATH="/snap/bin:$PATH"
 fi
 
+if [ -d "$HOME/.config/emacs/bin" ]; then
+  PATH="$HOME/.config/emacs/bin:$PATH"
+fi
+
 if [ -d "/opt/flutter/" ]; then
   export FLUTTER_ROOT="/opt/flutter/"
   PATH="$FLUTTER_ROOT/bin:$PATH"
@@ -66,6 +73,14 @@ if [ -d "$HOME/Android/Sdk" ]; then
   PATH="$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$PATH"
   PATH="$ANDROID_SDK_ROOT/platform-tools:$PATH"
   PATH="$ANDROID_SDK_ROOT/emulator:$PATH"
+fi
+
+if [ -d "$HOME/.local/share/pnpm" ]; then
+    export PNPM_HOME="$HOME/.local/share/pnpm"
+    case ":$PATH:" in
+      *":$PNPM_HOME:"*) ;;
+      *) export PATH="$PNPM_HOME:$PATH" ;;
+    esac
 fi
 
 export PATH=$PATH
@@ -136,9 +151,3 @@ CYGWIN* | MINGW32* | MSYS* | MINGW*)
 	;;
 esac
 
-# pnpm
-export PNPM_HOME="/home/lukefilewalker/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
